@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-canvas-default: #f5f2eb;
+  /* Anthropic Warm Off-White */
+  --color-canvas-subtle: #eeede9;
+  --color-fg-default: #1a1a1a;
+  /* Anthropic Matte Black */
+  --color-fg-muted: #666666;
+  --color-accent: #cc5500;
+  /* Martian Earth Tone (Subtle) */
+  --font-serif: 'Times New Roman', Times, serif;
+  /* Placeholder for GT Alpina */
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.bg-canvas {
+  background-color: var(--color-canvas-default);
+}
+
+.text-fg-default {
+  color: var(--color-fg-default);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}

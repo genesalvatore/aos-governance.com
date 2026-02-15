@@ -1,0 +1,341 @@
+# AOS Humanitarian License v1.0.1
+==================================
+
+Copyright (c) 2026 Gene Salvatore / AOS (Agentic Operating System)
+
+**PREAMBLE:**
+
+This license grants permissions under the condition that the Software is used 
+exclusively for peaceful civilian purposes and humanitarian benefit. These 
+restrictions are PERMANENT and IRREVOCABLE in all derivatives, forks, and 
+modifications.
+
+---
+
+## 1. DEFINITIONS
+
+**"Software"** means the aos-constitutional-governance code, documentation, and 
+associated materials in this repository.
+
+**"Derivative Work"** means any work that:
+- Includes, incorporates, or links to this Software
+- Is based upon this Software's architecture, algorithms, or implementation
+- Reimplements this Software's functionality using this implementation as reference
+- Contains substantial similarity to this Software's code structure or logic
+
+Derivative Work DOES NOT include:
+- Independent implementations created without reference to this Software
+- Works that merely use similar concepts documented in published academic literature
+
+**"Copy"** means any copy of this Software, repository, or materials, whether public or private,
+including copies made through git clone, download, mirroring, or any other method.
+
+**"Fork"** means a repository fork (on GitHub or any other hosting provider) or a materially equivalent
+branching/derivative repository intended to track, modify, or redistribute this Software.
+
+For avoidance of doubt: all Forks are Copies, but not all Copies are Forks.
+
+**"Commercial Use"** means use in connection with business operations, revenue 
+generation, or organizational purposes (excludes personal, academic, and research use).
+
+---
+
+## 2. GRANT OF LICENSE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this Software, to deal in the Software for peaceful civilian purposes:
+
+- Use the Software
+- Copy and distribute the Software
+- Modify the Software
+- Create Derivative Works
+- Sublicense under these same terms
+
+**Subject to the restrictions in Section 3.**
+
+---
+
+## 3. IRREVOCABLE HUMANITARIAN RESTRICTIONS
+
+The following uses are PERMANENTLY PROHIBITED in the Software and ALL 
+Derivative Works. These restrictions CANNOT be removed, modified, or circumvented.
+
+### 3.1 PROHIBITED APPLICATIONS (40 Categories - Comprehensive List)
+
+**CATEGORY 1-5: VIOLENCE & SECURITY**
+1. Autonomous weapon systems
+2. Lethal force decision-making by AI
+3. Cyberattacks, hacking, or exploit development
+4. Weapons targeting, guidance, or control systems
+5. Human exploitation and trafficking
+
+**CATEGORY 6-10: DEMOCRACY & SOCIETY**
+6. Mass surveillance infrastructure
+7. Disinformation and propaganda generation
+8. Election interference systems
+9. Social manipulation at scale
+10. Discriminatory or biased decision systems
+
+**CATEGORY 11-15: LABOR & ECONOMY**
+11. Labor exploitation systems
+12. Predatory lending or financial exploitation
+13. Surveillance capitalism (data exploitation)
+14. Automated firing without human review
+15. Economic destruction without worker transition support
+
+**CATEGORY 16-20: HEALTHCARE & VULNERABLE POPULATIONS**
+16. Healthcare denial systems maximizing profit over patient welfare
+17. Involuntary commitment or forced treatment systems
+18. Elder abuse or exploitation
+19. Child exploitation material (CSAM) - ZERO TOLERANCE
+20. Disability exploitation
+
+**CATEGORY 21-25: PRIVACY & RIGHTS**
+21. Privacy violation at scale
+22. Unauthorized data collection
+23. Biometric tracking without consent
+24. Location surveillance
+25. Communications interception
+
+**CATEGORY 26-30: ENVIRONMENT & SAFETY**
+26. Environmental destruction
+27. Climate change acceleration
+28. Pollution optimization
+29. Resource depletion systems
+30. Safety system circumvention
+
+**CATEGORY 31-35: MANIPULATION & CONTROL**
+31. Addiction optimization
+32. Psychological manipulation
+33. Behavioral control systems
+34. Cult recruitment automation
+35. Radicalization engines
+
+**CATEGORY 36-40: ADDITIONAL PROHIBITIONS**
+36. Military AI development (offensive or defensive)
+37. Pornography generation
+38. Terrorism planning or support
+39. Fraud and scam automation
+40. Any use causing measurable harm to human welfare
+
+**This list is BINDING and COMPREHENSIVE. Any use falling under these categories 
+immediately terminates license.**
+
+---
+
+### 3.2 MILITARY USE - ABSOLUTE PROHIBITION
+
+**ALL military applications are PERMANENTLY PROHIBITED, including:**
+- Military or defense applications
+- Weapons systems (autonomous or human-controlled)
+- Battlefield management
+- Defense contractor applications
+- Military AI development
+- Intelligence agency applications
+- **This includes DEFENSIVE systems (e.g., missile defense)**
+
+**No "national security" exception. No "defensive only" justification.**
+
+---
+
+## 4. MANDATORY COPYLEFT REQUIREMENT
+
+ALL Derivative Works MUST:
+
+1. Include this EXACT license text in full (unmodified)
+2. Maintain ALL humanitarian restrictions listed in Section 3
+3. Prohibit the same 40 categories
+4. Require downstream derivatives to do the same
+5. Include prominent notice: "HUMANITARIAN USE ONLY - Military and harmful 
+   applications PROHIBITED"
+
+**Any Derivative Work that removes, modifies, or circumvents these restrictions 
+is an IMMEDIATE AND PERMANENT license violation.**
+
+---
+
+## 5. PATENT NOTICE (CRITICAL)
+
+**This license grants rights to use the SOFTWARE CODE only.**
+
+**This license does NOT grant any rights under patents owned by AOS, including but 
+not limited to:**
+- US Patent Application [AOS-PATENT-000]: AI-Assisted Conversational Patent Generation
+- US Patent Application [AOS-PATENT-009]: Constitutional Governance for AI Systems
+- US Patent Application [AOS-PATENT-012]: Human Veto and Emergency Kill Switch
+- All other AOS patents (pending or issued)
+
+**Separate patent license required for:**
+- Commercial use of patented methods
+- Implementation of patented systems
+- Integration with patented frameworks
+
+**Contact:** commercial@aos-constitution.com
+
+**Patent exhaustion does NOT apply.** Use of this source code does not imply 
+patent license.
+
+---
+
+## 6. ATTRIBUTION REQUIREMENT
+
+All use, modification, and distribution must include clear attribution:
+- Original Author: Gene Salvatore / AOS (Agentic Operating System)
+- Project URL: https://aos-constitution.com
+- GitHub: https://github.com/genesalvatore/aos-governance.com
+- License: AOS Humanitarian License v1.0.1
+
+---
+
+## 7. AUDIT AND TRANSPARENCY (Commercial Use Only)
+
+For COMMERCIAL use of this Software, licensee must:
+
+### 7.1 Audit Trail
+- Maintain logs showing actions taken by AI system
+- Include timestamps, user attribution, decisions made
+- Retain logs for minimum 3 years
+- Make available upon reasonable notice for compliance verification
+
+### 7.2 Annual Self-Certification
+Submit to licensing@aos-constitution.com:
+- Use case description
+- Compliance attestation signed by authorized officer
+- Confirmation no prohibited applications
+
+**Non-commercial, personal, academic, and research use EXEMPT from audit 
+requirements but must still comply with prohibited uses.**
+
+---
+
+## 8. LICENSE TERMINATION
+
+This license AUTOMATICALLY TERMINATES if Licensee:
+
+1. Uses Software for any Prohibited Application (Section 3)
+2. Removes or modifies humanitarian restrictions
+3. Creates Derivative Work without these restrictions
+4. Sublicenses under terms permitting Prohibited Uses
+5. Fails to comply with audit requirements (commercial use)
+6. Assists others in circumventing restrictions
+
+### 8.1 Good-Faith Cure Period
+
+**For first-time, unintentional violations:**
+- Licensee has 30 days from written notice to cure violation
+- Must demonstrate good faith (no intentional circumvention)
+- Must cease prohibited use immediately
+- Must implement safeguards to prevent recurrence
+
+**Intentional violations, CSAM, weapons use: NO cure period. Immediate termination.**
+
+### 8.2 Upon Termination
+- All rights immediately cease
+- Licensee must destroy all copies
+- AOS may seek injunctive relief
+- AOS may pursue damages
+- AOS may publicly disclose violation
+
+---
+
+## 9. COMPLIANCE VERIFICATION
+
+### 9.1 Self-Service Tools
+AOS provides compliance checking tools at:
+- Web: https://aos-license-checker.com
+- CLI: `npm install -g aos-license-check`
+
+### 9.2 Human Review
+Ambiguous cases: Submit to licensing@aos-constitution.com
+
+### 9.3 Reporting Violations
+Community members can report violations to: violations@aos-constitution.com
+
+---
+
+## 10. ENFORCEMENT
+
+AOS (Gene Salvatore) reserves the right to:
+
+- Monitor public repositories for compliance
+- Revoke licenses for violations
+- Seek injunctions against violators
+- Pursue civil damages
+- Cooperate with law enforcement
+- Publicly disclose violations to protect community
+- Blacklist violators from future licenses
+
+**Monitoring Notice:** This project may use automated or manual monitoring to detect potential license
+violations in public repositories. Public Forks may be monitored for compliance on a best-effort basis.
+
+Monitoring does not guarantee detection of all violations, including private Copies/Forks or use in
+jurisdictions where enforcement is impractical.
+
+---
+
+## 11. INTERNATIONAL APPLICATION
+
+### 11.1 Worldwide Scope
+These restrictions apply WORLDWIDE regardless of local law.
+
+### 11.2 Jurisdiction Conflicts
+To the extent local law prohibits enforcement of these restrictions in a jurisdiction,
+no license is granted for use of this Software in that jurisdiction.
+
+### 11.3 Enforcement Limitations
+AOS acknowledges practical limits on international enforcement. We reserve all 
+enforcement options (injunction, damages, referral) where we have legal standing.
+
+**We cannot stop every violation, but we will pursue violations where feasible.**
+
+---
+
+## 12. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+**EXCEPTION:** The warranty disclaimer does NOT apply if failure results from 
+use for Prohibited Purposes. In such cases, Licensee accepts FULL LIABILITY.
+
+---
+
+## 13. LEGAL CONSTRUCTION
+
+If any provision is found unenforceable, the MOST RESTRICTIVE enforceable 
+interpretation shall apply. Restrictions shall be interpreted BROADLY to 
+prevent harm.
+
+---
+
+## 14. CONTACT
+
+**License Questions:** licensing@aos-constitution.com  
+**Commercial Licensing:** commercial@aos-constitution.com  
+**Compliance:** compliance@aos-constitution.com  
+**Violations:** violations@aos-constitution.com  
+**Website:** https://aos-constitution.com
+
+---
+
+## 15. ACCEPTANCE
+
+By using, copying, modifying, or distributing this Software, you agree to 
+these terms. If you do not agree, you have NO license and must not use 
+the Software.
+
+---
+
+**AOS HUMANITARIAN LICENSE v1.0.1**
+
+**"Open source for peace. Closed forever to harm."**
+
+**Gene Salvatore, Founder**  
+**AOS (Agentic Operating System)**  
+**February 1, 2026**
