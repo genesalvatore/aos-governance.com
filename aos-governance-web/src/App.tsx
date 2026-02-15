@@ -224,7 +224,7 @@ export default function App() {
               <a href="#standard" className="hover:text-black transition-colors">Standard</a>
               <a href="#how-it-works" className="hover:text-black transition-colors">How It Works</a>
               <a href="#mars" className="hover:text-black transition-colors">The Mars Precedent</a>
-              <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Skill</a>
+              <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
             </div>
 
             {/* Mobile hamburger */}
@@ -243,7 +243,7 @@ export default function App() {
                 <a href="#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Standard</a>
                 <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
                 <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Mars Precedent</a>
-                <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Skill</a>
+                <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
               </div>
             </div>
           )}
@@ -268,7 +268,7 @@ export default function App() {
             </button>
             <div className="pt-8 flex flex-wrap gap-4">
               <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
-                Install Governance Skill
+                Get the Standard
               </a>
               <a href="#manifesto" className="px-6 py-3 border border-black/20 text-black rounded-lg font-medium hover:bg-black/5 transition-colors text-center">
                 Read the Manifesto
@@ -573,17 +573,17 @@ export default function App() {
         <section id="get-started" className="py-24 bg-white border-y border-black/5">
           <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
             <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Get Started</div>
-            <h2 className="font-serif text-4xl md:text-5xl">Install the Governance Skill</h2>
+            <h2 className="font-serif text-4xl md:text-5xl">Adopt the Standard</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              The AOS Governance Skill is a portable folder that can be installed in any Claude-based agent. It follows the Anthropic Skill Standard.
+              The AOS Governance Standard is platform-agnostic. It works with any AI agent — Claude, ChatGPT, Gemini, LLaMA, or your own. The reference implementation is packaged as a portable skill folder.
             </p>
             <div className="bg-gray-900 rounded-xl p-6 text-left font-mono text-sm text-gray-300 max-w-2xl mx-auto">
               <div className="text-gray-500 mb-2"># Clone the repository</div>
               <div className="text-green-400">$ git clone https://github.com/genesalvatore/aos-governance.com.git</div>
-              <div className="text-gray-500 mt-4 mb-2"># Copy the skill to your agent's workspace</div>
-              <div className="text-green-400">$ cp -r aos-governance.com/aos-governance ./your-agent/skills/</div>
+              <div className="text-gray-500 mt-4 mb-2"># Copy the governance standard to your agent's workspace</div>
+              <div className="text-green-400">$ cp -r aos-governance.com/aos-governance ./your-agent/governance/</div>
               <div className="text-gray-500 mt-4 mb-2"># Set the constitution path</div>
-              <div className="text-green-400">$ export AOS_CONSTITUTION_PATH=./skills/aos-governance/references</div>
+              <div className="text-green-400">$ export AOS_CONSTITUTION_PATH=./governance/aos-governance/references</div>
             </div>
             <div className="pt-4 flex flex-wrap justify-center gap-4">
               <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
@@ -600,13 +600,13 @@ export default function App() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-16 items-start">
               <div className="space-y-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Anatomy of a Skill</div>
+                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Anatomy of the Standard</div>
                 <h2 className="font-serif text-4xl">What's Inside</h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  The AOS Governance Skill follows the Anthropic Skill Standard: a portable folder containing instructions, scripts, and references. It is designed to be self-contained and substrate-agnostic.
+                  The AOS Governance Standard is a portable folder containing instructions, verification scripts, and constitutional references. The reference implementation follows Anthropic's Skill format — but the standard itself is universal.
                 </p>
                 <p className="text-gray-500 leading-relaxed">
-                  The skill intercepts agent actions, runs deterministic verification checks, and logs every decision to an immutable audit trail. It works with Claude Desktop, Claude Code, or any MCP-compatible agent.
+                  It intercepts agent actions, runs deterministic verification checks, and logs every decision to an immutable audit trail. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
                 </p>
               </div>
               <div className="bg-gray-50 rounded-xl p-8 font-mono text-sm border border-gray-100">
