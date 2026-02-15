@@ -224,6 +224,12 @@ export default function App() {
               <a href="#standard" className="hover:text-black transition-colors">Standard</a>
               <a href="#how-it-works" className="hover:text-black transition-colors">How It Works</a>
               <a href="#mars" className="hover:text-black transition-colors">The Mars Precedent</a>
+
+              {/* Trio nav */}
+              <div className="w-px h-4 bg-black/15 mx-1" />
+              <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Foundation</a>
+              <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Evidence</a>
+
               <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
             </div>
 
@@ -243,6 +249,10 @@ export default function App() {
                 <a href="#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Standard</a>
                 <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
                 <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Mars Precedent</a>
+                <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
+                  <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Foundation</a>
+                  <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
+                </div>
                 <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
               </div>
             </div>
