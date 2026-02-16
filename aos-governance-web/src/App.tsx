@@ -227,7 +227,6 @@ export default function App() {
               <a href="#manifesto" className="hover:text-black transition-colors">Manifesto</a>
               <a href="#standard" className="hover:text-black transition-colors">Standard</a>
               <a href="#how-it-works" className="hover:text-black transition-colors">How It Works</a>
-              <a href="#mars" className="hover:text-black transition-colors">The Mars Precedent</a>
 
               {/* Quartet nav */}
               <div className="w-px h-4 bg-black/15 mx-1" />
@@ -255,7 +254,6 @@ export default function App() {
                 <a href="#manifesto" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Manifesto</a>
                 <a href="#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Standard</a>
                 <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
-                <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Mars Precedent</a>
                 <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
                   <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
                   <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
