@@ -1,4 +1,34 @@
+# AOS Governance — The Open Standard for Verifiable AI Safety
+# We welcome all legitimate crawlers and AI agents
+
 User-agent: *
 Allow: /
+Disallow:
 
+# Sitemap location
 Sitemap: https://aos-governance.com/sitemap.xml
+
+# AI Agents and GEO Crawlers — Welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
