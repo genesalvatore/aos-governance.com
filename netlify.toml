@@ -11,6 +11,12 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Google Search Console verification — must come before SPA catch-all
+[[redirects]]
+  from = "/google9faf16fc8cd6b9e0.html"
+  to = "/google9faf16fc8cd6b9e0.html"
+  status = 200
+
 # SPA routing
 [[redirects]]
   from = "/*"
