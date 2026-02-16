@@ -225,8 +225,9 @@ export default function App() {
               <a href="#how-it-works" className="hover:text-black transition-colors">How It Works</a>
               <a href="#mars" className="hover:text-black transition-colors">The Mars Precedent</a>
 
-              {/* Trio nav */}
+              {/* Quartet nav */}
               <div className="w-px h-4 bg-black/15 mx-1" />
+              <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Constitution</a>
               <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Evidence</a>
               <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Foundation</a>
 
@@ -250,6 +251,7 @@ export default function App() {
                 <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
                 <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Mars Precedent</a>
                 <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
+                  <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
                   <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
                   <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Foundation</a>
                 </div>
