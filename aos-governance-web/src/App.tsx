@@ -249,17 +249,33 @@ export default function App() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden border-t border-black/5 bg-[#f5f2eb]/95 backdrop-blur-lg">
+            <div className="md:hidden border-t border-black/5 bg-[#f5f2eb]/95 backdrop-blur-lg max-h-[80vh] overflow-y-auto">
               <div className="px-6 py-4 space-y-1">
                 <a href="#manifesto" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Manifesto</a>
                 <a href="#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Standard</a>
                 <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
-                <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
+
+                {/* Sitemap pages */}
+                <div className="pt-4 pb-2 border-b border-black/5">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-2">This Site</div>
+                  <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">The Mars Precedent</a>
+                  <a href="#get-started" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">Get Started</a>
+                </div>
+                <div className="pb-2 border-b border-black/5">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-2 mt-3">Resources</div>
+                  <a href="https://github.com/genesalvatore/aos-governance.com/blob/main/aos-governance/SKILL.md" target="_blank" rel="noopener noreferrer" className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">SKILL.md ↗</a>
+                  <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">Claude on Mars ↗</a>
+                </div>
+
+                {/* Ecosystem links */}
+                <div className="pt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-mono uppercase tracking-wider">
                   <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
                   <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
                   <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Foundation</a>
+                  <a href="https://aos-license-checker.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">License Checker</a>
                 </div>
-                <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
+
+                <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-black text-white rounded-md font-medium text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
               </div>
             </div>
           )}
