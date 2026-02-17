@@ -588,7 +588,7 @@ export default function App() {
               <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="text-3xl mb-4">📜</div>
                 <h3 className="font-bold text-lg mb-2">§5 — Transparency</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">All agent reasoning must be logged to an immutable ledger. No hidden thoughts. No side channels. Every decision is auditable.</p>
+                <p className="text-gray-500 text-sm leading-relaxed">All agent reasoning must be logged to an immutable ledger. No unlogged actions. No side channels. Every decision is auditable.</p>
               </div>
               <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="p-6 rounded-xl border border-dashed border-gray-300 hover:border-black hover:shadow-md transition-all flex flex-col items-center justify-center text-center group">
                 <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">→</div>
@@ -752,7 +752,7 @@ export default function App() {
                   <div className="text-sm text-gray-500">Uptime Track Record</div>
                 </div>
                 <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl font-bold tracking-tight mb-1">137+</div>
+                  <div className="text-3xl font-bold tracking-tight mb-1">143</div>
                   <div className="text-sm text-gray-500">Codified Patent Filings</div>
                 </div>
                 <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
