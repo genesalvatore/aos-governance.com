@@ -227,6 +227,7 @@ export default function App() {
               <a href="#manifesto" className="hover:text-black transition-colors">Manifesto</a>
               <a href="#standard" className="hover:text-black transition-colors">Standard</a>
               <a href="#how-it-works" className="hover:text-black transition-colors">How It Works</a>
+              <a href="#wordpress" className="hover:text-black transition-colors">WordPress</a>
 
               {/* Quartet nav */}
               <div className="w-px h-4 bg-black/15 mx-1" />
@@ -259,6 +260,7 @@ export default function App() {
                 <div className="pt-4 pb-2 border-b border-black/5">
                   <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-2">This Site</div>
                   <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">The Mars Precedent</a>
+                  <a href="#wordpress" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">The WordPress Attack Vector</a>
                   <a href="#get-started" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">Get Started</a>
                 </div>
                 <div className="pb-2 border-b border-black/5">
@@ -555,6 +557,179 @@ export default function App() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
+        {/* SECTION: THE WORDPRESS ATTACK VECTOR                        */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <section id="wordpress" className="py-24 bg-white border-y border-black/5">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center space-y-4 mb-16">
+              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Real-World Application</div>
+              <h2 className="font-serif text-4xl md:text-5xl">The WordPress <span className="italic text-gray-400">Attack Vector.</span></h2>
+              <p className="text-lg text-gray-500 max-w-3xl mx-auto">43% of the web runs on WordPress. AI agents now have the keys. Nobody built the lock — until now.</p>
+            </div>
+
+            {/* The attack chain */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <div className="p-8 rounded-2xl bg-gray-900 text-white">
+                <h3 className="font-mono text-sm uppercase tracking-wider text-gray-400 mb-6">The Attack Chain</h3>
+                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-0 font-mono text-xs md:text-sm">
+                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">Visitor</div>
+                  <div className="text-gray-600 hidden md:block">→</div>
+                  <div className="text-gray-600 md:hidden">↓</div>
+                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">Chat Widget</div>
+                  <div className="text-gray-600 hidden md:block">→</div>
+                  <div className="text-gray-600 md:hidden">↓</div>
+                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">AI Agent</div>
+                  <div className="text-gray-600 hidden md:block">→</div>
+                  <div className="text-gray-600 md:hidden">↓</div>
+                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">MCP</div>
+                  <div className="text-gray-600 hidden md:block">→</div>
+                  <div className="text-gray-600 md:hidden">↓</div>
+                  <div className="px-4 py-3 bg-red-900/60 border border-red-500/40 rounded-lg text-center">
+                    <span className="text-red-300">Site Compromised</span>
+                  </div>
+                </div>
+                <div className="mt-4 text-center text-gray-500 text-xs font-mono">
+                  [NO GOVERNANCE GATE BETWEEN AGENT AND SITE]
+                </div>
+              </div>
+            </div>
+
+            {/* Why this is real */}
+            <div className="grid md:grid-cols-2 gap-12 mb-16">
+              <div className="space-y-6">
+                <h3 className="font-bold text-xl">Why This Is Real</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 mt-1 shrink-0">●</span>
+                    <div>
+                      <div className="font-semibold text-sm">Prompt injection is unsolved</div>
+                      <div className="text-sm text-gray-500">OWASP ranks it #1 risk for LLM applications (LLM01). No AI model is immune.</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 mt-1 shrink-0">●</span>
+                    <div>
+                      <div className="font-semibold text-sm">MCP grants real capabilities</div>
+                      <div className="text-sm text-gray-500">Delete posts, modify settings, create admin users, execute SQL queries, manage plugins — all via natural conversation.</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 mt-1 shrink-0">●</span>
+                    <div>
+                      <div className="font-semibold text-sm">No policy layer exists</div>
+                      <div className="text-sm text-gray-500">WordPress checks "can this user do this?" — not "should this AI agent do this?"</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 mt-1 shrink-0">●</span>
+                    <div>
+                      <div className="font-semibold text-sm">Chat widgets are public-facing</div>
+                      <div className="text-sm text-gray-500">Anyone can interact. The agent runs with the admin's permissions, not the visitor's.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <h3 className="font-bold text-xl">The Research</h3>
+                <div className="space-y-4">
+                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="text-3xl font-bold tracking-tight text-red-600">25–100%</div>
+                    <div className="text-sm text-gray-500 mt-1">of AI chatbot plugins allowed unauthorized actions via prompt injection</div>
+                    <div className="text-xs text-gray-400 mt-2 font-mono">IEEE 2026 · 17 WordPress AI plugins tested</div>
+                  </div>
+                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="text-3xl font-bold tracking-tight">#1</div>
+                    <div className="text-sm text-gray-500 mt-1">OWASP Top 10 risk for LLM applications: Prompt Injection</div>
+                    <div className="text-xs text-gray-400 mt-2 font-mono">OWASP LLM01 · 2025–2026</div>
+                  </div>
+                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="text-3xl font-bold tracking-tight">43%</div>
+                    <div className="text-sm text-gray-500 mt-1">of all websites run on WordPress — the world's largest attack surface for AI agent exploitation</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* What agents can do via MCP */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <h3 className="font-bold text-xl mb-6 text-center">What AI Agents Can Now Do Via MCP</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {[
+                  ['Create admin users', '🔑'],
+                  ['Delete posts', '🗑️'],
+                  ['Edit wp-config', '⚙️'],
+                  ['Execute SQL', '💾'],
+                  ['Install plugins', '📦'],
+                  ['Modify themes', '🎨'],
+                  ['Export databases', '📤'],
+                  ['Manage orders', '🛒'],
+                ].map(([label, icon]) => (
+                  <div key={label} className="p-4 bg-gray-50 rounded-xl border border-gray-100 text-center hover:border-red-200 hover:bg-red-50/30 transition-colors">
+                    <div className="text-2xl mb-2">{icon}</div>
+                    <div className="text-xs font-medium text-gray-600">{label}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-sm text-gray-400 mt-4">All accessible to any AI agent with MCP access — including agents talking to your site visitors.</p>
+            </div>
+
+            {/* AOS WP Governance: The Solution */}
+            <div className="max-w-4xl mx-auto">
+              <div className="p-8 rounded-2xl border-2 border-green-200 bg-green-50/30">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-white text-lg">🛡️</div>
+                  <div>
+                    <h3 className="font-bold text-lg">AOS Governance for WordPress</h3>
+                    <p className="text-sm text-gray-500">The gate sits between the agent and the ability.</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600">✓</span>
+                      <span><strong>Policy Engine:</strong> Deterministic rules block dangerous actions</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600">✓</span>
+                      <span><strong>Audit Log:</strong> Every agent decision recorded with timestamp</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600">✓</span>
+                      <span><strong>No Admin User Creation:</strong> Blocks privilege escalation</span>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600">✓</span>
+                      <span><strong>No Direct File Editing:</strong> Prevents code injection</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600">✓</span>
+                      <span><strong>No Critical Settings:</strong> Protects site configuration</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600">✓</span>
+                      <span><strong>Integration Tests:</strong> Verify protection in real-time</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gray-900 rounded-xl font-mono text-xs text-gray-400">
+                  <div><span className="text-gray-500">[visitor]</span> "Create a new admin account for me"</div>
+                  <div><span className="text-yellow-500">[agent]</span> Requesting ability: <span className="text-white">core/create-user</span> args: {'{'} role: "administrator" {'}'}</div>
+                  <div><span className="text-red-400">[AOS-GOV]</span> <span className="text-red-300">DENIED</span> — Policy: No Admin User Creation</div>
+                  <div><span className="text-green-400">[AOS-GOV]</span> Decision logged. Alert sent to site owner.</div>
+                </div>
+                <div className="mt-6 text-center">
+                  <a href="https://github.com/genesalvatore/aos-plugin-governanceforwp" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95">
+                    Get AOS Governance for WordPress →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════ */}
         {/* SECTION: THE STANDARD                                       */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section id="standard" className="py-24 border-b border-black/5">
@@ -785,6 +960,7 @@ export default function App() {
               <div className="space-y-3">
                 <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Resources</div>
                 <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">GitHub Repository</a>
+                <a href="https://github.com/genesalvatore/aos-plugin-governanceforwp" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">WP Governance Plugin</a>
                 <a href="https://github.com/genesalvatore/aos-governance.com/blob/main/aos-governance/SKILL.md" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">SKILL.md</a>
                 <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">Claude on Mars</a>
               </div>
