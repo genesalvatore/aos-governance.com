@@ -630,22 +630,36 @@ export default function App() {
                 </div>
               </div>
               <div className="space-y-6">
-                <h3 className="font-bold text-xl">The Research</h3>
+                <h3 className="font-bold text-xl">This Already Happened</h3>
                 <div className="space-y-4">
                   <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="text-3xl font-bold tracking-tight text-red-600">9.8 Critical</div>
+                    <div className="text-sm text-gray-500 mt-1">AI Engine's "No-Auth URL" exposed bearer tokens publicly, enabling <strong className="text-gray-700">unauthenticated</strong> admin-level takeover.</div>
+                    <div className="text-xs text-gray-400 mt-2 font-mono"><a href="https://www.esecurityplanet.com/threats/news-wordpress-vulnerability-100k-impact/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">CVE-2025-11749</a> · Wordfence · Oct 2025 · 100K+ sites</div>
+                  </div>
+                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="text-3xl font-bold tracking-tight text-red-600">8.8 High</div>
+                    <div className="text-sm text-gray-500 mt-1">AI Engine's MCP module had a <strong className="text-gray-700">missing capability check</strong>, allowing subscriber-level users to get full MCP access and escalate to administrator.</div>
+                    <div className="text-xs text-gray-400 mt-2 font-mono"><a href="https://www.wordfence.com/blog/2025/06/100000-wordpress-sites-affected-by-privilege-escalation-via-mcp-in-ai-engine-wordpress-plugin/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">Wordfence — Priv Esc via MCP</a> · June 2025 · 100K+ sites</div>
+                  </div>
+                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="text-3xl font-bold tracking-tight text-red-600">25–100%</div>
-                    <div className="text-sm text-gray-500 mt-1">of AI chatbot plugins allowed unauthorized actions via prompt injection</div>
-                    <div className="text-xs text-gray-400 mt-2 font-mono">IEEE 2026 · 17 WordPress AI plugins tested</div>
+                    <div className="text-sm text-gray-500 mt-1">of AI chatbot plugins allowed unauthorized actions via prompt injection <strong className="text-gray-700">when plugins broke role boundaries</strong>. Proper isolation: 0–25%.</div>
+                    <div className="text-xs text-gray-400 mt-2 font-mono"><a href="https://arxiv.org/html/2511.05797v1" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">IEEE S&P 2026</a> · 17 plugins · 10,000+ sites</div>
                   </div>
                   <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="text-3xl font-bold tracking-tight">#1</div>
                     <div className="text-sm text-gray-500 mt-1">OWASP Top 10 risk for LLM applications: Prompt Injection</div>
                     <div className="text-xs text-gray-400 mt-2 font-mono">OWASP LLM01 · 2025–2026</div>
                   </div>
-                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
-                    <div className="text-3xl font-bold tracking-tight">43%</div>
-                    <div className="text-sm text-gray-500 mt-1">of all websites run on WordPress — the world's largest attack surface for AI agent exploitation</div>
-                  </div>
+                </div>
+                <blockquote className="mt-4 border-l-4 border-red-500 pl-4 py-3 bg-red-50 rounded-r-xl">
+                  <p className="text-sm italic text-red-900">"This vulnerability allows threat actors with subscriber-level access or higher to get full access to the MCP and gain elevated privileges."</p>
+                  <cite className="text-xs text-gray-500 not-italic mt-2 block">— <a href="https://www.wordfence.com/blog/2025/06/100000-wordpress-sites-affected-by-privilege-escalation-via-mcp-in-ai-engine-wordpress-plugin/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">Wordfence Threat Intelligence</a>, June 2025</cite>
+                </blockquote>
+                <div className="mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                  <div className="text-xs font-mono font-semibold text-amber-800 mb-1">WHAT THIS MEANS</div>
+                  <div className="text-sm text-amber-900">The Wordfence finding describes exactly the attack path AOS Governance prevents: a low-privilege user gaining unrestricted MCP tool access. Governance is not a substitute for patching — but it's the defense layer that exists between patches.</div>
                 </div>
               </div>
             </div>
