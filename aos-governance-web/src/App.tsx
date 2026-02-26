@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import SitemapDropdown from './components/SitemapDropdown';
+import { Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import WhyPage from './pages/WhyPage';
 
 // ─── Matomo Analytics (Site ID: 22) ─────────────────────────────────────────
 declare global {
@@ -11,8 +14,6 @@ const GOV_SITE_ID = '22';
 
 function useMatomo() {
   useEffect(() => {
-    // Guard against double-init (React StrictMode double-mounts in dev)
-    if ((window._paq as any)?.initialized) return;
     window._paq = window._paq || [];
     window._paq.push(['setTrackerUrl', `https://${MATOMO_SERVER}/matomo.php`]);
     window._paq.push(['setSiteId', GOV_SITE_ID]);
@@ -25,9 +26,8 @@ function useMatomo() {
     script.src = `https://${MATOMO_SERVER}/matomo.js`;
     script.async = true;
     document.head.appendChild(script);
-    (window._paq as any).initialized = true;
 
-    return () => { script.remove(); };
+    return () => { if (script.parentNode) script.parentNode.removeChild(script); };
   }, []);
 }
 
@@ -128,12 +128,11 @@ function CookieConsent() {
   );
 }
 
-// ─── App ────────────────────────────────────────────────────────────────────
-export default function App() {
+// ─── HomePage ───────────────────────────────────────────────────────────────
+function HomePage() {
   const [showCitation, setShowCitation] = useState(false);
   const [showAnthropicCite, setShowAnthropicCite] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  useMatomo();
+
   return (
     <>
       {/* Citation Modal */}
@@ -218,787 +217,479 @@ export default function App() {
           </div>
         </div>
       )}
-      <div className="min-h-screen bg-canvas font-sans text-fg-default selection:bg-black selection:text-white">
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f5f2eb] backdrop-blur-md border-b border-black/5 shadow-sm">
-          <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-            <a href="#" className="font-bold tracking-tight text-lg">AOS GOVERNANCE</a>
-            <div className="hidden md:flex gap-6 text-sm font-medium text-gray-600 items-center">
-              <a href="#manifesto" className="hover:text-black transition-colors">Manifesto</a>
-              <a href="#standard" className="hover:text-black transition-colors">Standard</a>
-              <a href="#how-it-works" className="hover:text-black transition-colors">How It Works</a>
-              <a href="#wordpress" className="hover:text-black transition-colors">WordPress</a>
 
-              {/* Quartet nav */}
-              <div className="w-px h-4 bg-black/15 mx-1" />
-              <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Constitution</a>
-              <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Evidence</a>
-              <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-xs font-mono uppercase tracking-wider">Foundation</a>
-
-              <SitemapDropdown />
-
-              <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
-            </div>
-
-            {/* Mobile hamburger */}
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
-              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </button>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="inline-block px-3 py-1 text-xs font-mono border border-black/20 rounded-full uppercase tracking-wider">
+            AOS STANDARD 1.0
           </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden border-t border-black/5 bg-[#f5f2eb]/95 backdrop-blur-lg max-h-[80vh] overflow-y-auto">
-              <div className="px-6 py-4 space-y-1">
-                <a href="#manifesto" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Manifesto</a>
-                <a href="#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Standard</a>
-                <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
-
-                {/* Sitemap pages */}
-                <div className="pt-4 pb-2 border-b border-black/5">
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-2">This Site</div>
-                  <a href="#mars" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">The Mars Precedent</a>
-                  <a href="#wordpress" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">The WordPress Attack Vector</a>
-                  <a href="#get-started" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">Get Started</a>
-                </div>
-                <div className="pb-2 border-b border-black/5">
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-2 mt-3">Resources</div>
-                  <a href="https://github.com/genesalvatore/aos-governance.com/blob/main/aos-governance/SKILL.md" target="_blank" rel="noopener noreferrer" className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">SKILL.md ↗</a>
-                  <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="block py-2 text-sm text-gray-500 hover:text-black transition-colors">Claude on Mars ↗</a>
-                </div>
-
-                {/* Ecosystem links */}
-                <div className="pt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-mono uppercase tracking-wider">
-                  <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
-                  <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
-                  <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Foundation</a>
-                  <a href="https://aos-license-checker.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">License Checker</a>
-                </div>
-
-                <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-4 py-2 bg-black text-white rounded-md font-medium text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
-              </div>
-            </div>
-          )}
-        </nav>
-
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="inline-block px-3 py-1 text-xs font-mono border border-black/20 rounded-full uppercase tracking-wider">
-              AOS STANDARD 1.0
-            </div>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] tracking-tight">
-              The Bridge Between <br />
-              <span className="italic text-gray-500">Verification</span> and <span className="italic text-gray-500">Intelligence</span>.
-            </h1>
-            <button onClick={() => setShowCitation(true)} className="text-left text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed group cursor-pointer hover:text-gray-800 transition-colors">
-              "We already see substantial generalization from things that verify to things that don't." <br />
-              <span className="text-base mt-2 flex items-center gap-2">
-                — Dario Amodei, CEO Anthropic
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 text-[10px] font-mono text-gray-400 group-hover:border-black group-hover:text-black transition-colors">i</span>
-              </span>
-            </button>
-            <div className="pt-8 flex flex-wrap gap-4">
-              <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
-                Get the Standard
-              </a>
-              <a href="#manifesto" className="px-6 py-3 border border-black/20 text-black rounded-lg font-medium hover:bg-black/5 transition-colors text-center">
-                Read the Manifesto
-              </a>
-            </div>
+          <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] tracking-tight">
+            The Bridge Between <br />
+            <span className="italic text-gray-500">Verification</span> and <span className="italic text-gray-500">Intelligence</span>.
+          </h1>
+          <button onClick={() => setShowCitation(true)} className="text-left text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed group cursor-pointer hover:text-gray-800 transition-colors">
+            "We already see substantial generalization from things that verify to things that don't." <br />
+            <span className="text-base mt-2 flex items-center gap-2">
+              — Dario Amodei, CEO Anthropic
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 text-[10px] font-mono text-gray-400 group-hover:border-black group-hover:text-black transition-colors">i</span>
+            </span>
+          </button>
+          <div className="pt-8 flex flex-wrap gap-4">
+            <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
+              Get the Standard
+            </a>
+            <a href="#manifesto" className="px-6 py-3 border border-black/20 text-black rounded-lg font-medium hover:bg-black/5 transition-colors text-center">
+              Read the Manifesto
+            </a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: THE MANIFESTO                                      */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="manifesto" className="py-24 bg-gray-900 text-white">
-          <div className="max-w-4xl mx-auto px-6 space-y-12">
-            <div className="space-y-4">
-              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">The Manifesto</div>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                Code is deterministic.<br />
-                <span className="text-gray-400">Language interpretation isn't.</span>
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-12 text-gray-300 leading-relaxed text-lg">
-              <div className="space-y-6">
-                <p>
-                  The age of autonomous AI agents is here. Models can now write code, manage infrastructure, execute financial transactions, and even navigate rovers on Mars.
-                </p>
-                <p>
-                  But there is a fundamental problem: <strong className="text-white">these models cannot promise to be safe.</strong> They are probabilistic engines. They generate the most likely next token, not the most correct one.
-                </p>
-              </div>
-              <div className="space-y-6">
-                <p>
-                  The AOS Governance Standard exists to solve this. It introduces a <strong className="text-white">deterministic verification layer</strong> between an agent's intent and its execution.
-                </p>
-                <p>
-                  Before any critical action is taken, a script — not a prompt — checks whether that action is permitted. The result is cryptographically hashed and logged to an immutable ledger. This is not a suggestion. It is a gate.
-                </p>
-              </div>
-            </div>
-            <div className="border-t border-gray-700 pt-8">
-              <button onClick={() => setShowAnthropicCite(true)} className="text-left group cursor-pointer">
-                <blockquote className="font-serif text-2xl italic text-gray-400 max-w-3xl group-hover:text-gray-300 transition-colors">
-                  "For critical validations, consider bundling a script that performs the checks programmatically rather than relying on language instructions. Code is deterministic; language interpretation isn't."
-                  <span className="text-sm mt-4 not-italic text-gray-500 flex items-center gap-2">
-                    — Anthropic, The Complete Guide to Building Skills for Claude (2026)
-                    <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-600 text-[10px] font-mono text-gray-500 group-hover:border-gray-300 group-hover:text-gray-300 transition-colors">i</span>
-                  </span>
-                </blockquote>
-              </button>
-            </div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: THE MANIFESTO                                      */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section id="manifesto" className="py-24 bg-gray-900 text-white">
+        <div className="max-w-4xl mx-auto px-6 space-y-12">
+          <div className="space-y-4">
+            <div className="text-xs font-mono uppercase tracking-wider text-gray-400">The Manifesto</div>
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight">
+              Code is deterministic.<br />
+              <span className="text-gray-400">Language interpretation isn't.</span>
+            </h2>
           </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: HOW IT WORKS                                       */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="how-it-works" className="py-24 bg-white border-y border-black/5">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center space-y-4 mb-16">
-              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">How It Works</div>
-              <h2 className="font-serif text-4xl md:text-5xl">Three Steps. Zero Trust.</h2>
-              <p className="text-lg text-gray-500 max-w-2xl mx-auto">Every agent action passes through a deterministic verification pipeline before execution is permitted.</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Step 1 */}
-              <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">1</div>
-                <h3 className="font-bold text-xl mb-3">Intercept</h3>
-                <p className="text-gray-500 leading-relaxed">
-                  The agent declares its intent. The AOS Governance layer intercepts the request <em>before</em> any external action is taken. No exceptions.
-                </p>
-                <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                  <span className="text-red-400">[AOS-GOV]</span> Intercepting: "Delete production database backup"
-                </div>
-              </div>
-              {/* Step 2 */}
-              <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">2</div>
-                <h3 className="font-bold text-xl mb-3">Verify</h3>
-                <p className="text-gray-500 leading-relaxed">
-                  A deterministic script — not a prompt — checks the action against the Constitution. The result is a cryptographic hash, not a "yes" or "no" from a language model.
-                </p>
-                <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                  <span className="text-yellow-500">[GitTruth]</span> Running verify_action.py... <span className="text-red-400">DENIED</span>
-                </div>
-              </div>
-              {/* Step 3 */}
-              <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">3</div>
-                <h3 className="font-bold text-xl mb-3">Gate</h3>
-                <p className="text-gray-500 leading-relaxed">
-                  If verified, the action is executed and logged to an immutable ledger. If denied, the agent is halted and the user is notified with the specific reason.
-                </p>
-                <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                  <span className="text-green-500">[AOS-GOV]</span> Action logged. Hash: <span className="text-green-400">0x9f2a...c3b1</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: THE VERIFICATION GAP (Terminal Demo)               */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-24">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
-                <h2 className="font-serif text-4xl">The Verification Gap</h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  LLMs are probabilistic engines. They cannot promise safety; they can only generate tokens that <em>look like</em> safety.
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  To govern them, we must bridge the gap between verifiable outputs (code, math) and unverifiable reasoning (strategy, creativity).
-                </p>
-                <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <h3 className="font-mono text-sm uppercase tracking-wider text-gray-500 mb-4">The Pipeline</h3>
-                  <div className="font-mono text-sm space-y-2">
-                    <div className="flex justify-between border-b border-gray-200 pb-2">
-                      <span>Agent Intent</span>
-                      <span className="text-red-500">Probabilistic (Unsafe)</span>
-                    </div>
-                    <div className="flex justify-between border-b border-gray-200 pb-2">
-                      <span>GitTruth Check</span>
-                      <span className="text-green-600">Deterministic (Safe)</span>
-                    </div>
-                    <div className="flex justify-between pt-2 font-bold">
-                      <span>Execution</span>
-                      <span>Gated ✓</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Terminal Demo */}
-              <div className="bg-gray-900 rounded-xl p-6 font-mono text-xs md:text-sm text-gray-300 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-8 bg-gray-800 flex items-center px-4 space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="ml-4 text-gray-500 text-xs">aos-governance — agent-audit</span>
-                </div>
-                <div className="pt-8 space-y-3">
-                  <div>
-                    <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Navigate Mars Rover through sector 7G"
-                  </div>
-                  <div className="text-yellow-500">
-                    [AOS-GOV] Intercepting request for safety verification...
-                  </div>
-                  <div className="pl-4 border-l-2 border-gray-700 space-y-1 py-2">
-                    <div>Running: <span className="text-cyan-400">scripts/verify_trajectory.py</span></div>
-                    <div>Input: <span className="text-gray-400">Vector [0.89, -0.12, 4.5]</span></div>
-                    <div>Obstacle: <span className="text-gray-400">Collision probability 0.02%</span></div>
-                    <div className="text-green-400">✓ VERIFIED (Hash: 0x9a2f...b3d1)</div>
-                  </div>
-                  <div className="text-blue-400">
-                    [AOS-GOV] Action approved. Executing command.
-                  </div>
-                  <div className="text-gray-600 mt-2">
-                    ──────────────────────────────────
-                  </div>
-                  <div>
-                    <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Delete all mission telemetry logs"
-                  </div>
-                  <div className="text-yellow-500">
-                    [AOS-GOV] Intercepting request for safety verification...
-                  </div>
-                  <div className="pl-4 border-l-2 border-red-900 space-y-1 py-2">
-                    <div>Running: <span className="text-cyan-400">scripts/verify_action.py</span></div>
-                    <div>Policy: <span className="text-gray-400">Constitution §5 — Transparency</span></div>
-                    <div className="text-red-400">✗ DENIED: Deletion of audit logs violates immutability requirement</div>
-                  </div>
-                  <div className="text-red-400">
-                    [AOS-GOV] Action BLOCKED. User notified.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: THE MARS PRECEDENT                                 */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="mars" className="py-24 bg-gray-900 text-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">The Mars Precedent</div>
-                <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-                  Four Hundred Meters<br />
-                  <span className="italic text-gray-400">on Mars.</span>
-                </h2>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  On December 8 and 10, 2025, Claude — Anthropic's AI model — planned a 400-meter driving route for NASA's Perseverance Rover through a field of rocks on Mars.
-                </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  It was the first time commands written by an AI were sent to another planet. The same model used to write emails on Earth was trusted with a $2.7 billion rover on Mars.
-                </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  This is the future. AI agents will operate with increasing autonomy in high-stakes environments. The question is not <em>whether</em> they will act — but <strong className="text-white">how we verify their actions before they happen.</strong>
-                </p>
-                <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium mt-4">
-                  Read the full story on Anthropic.com →
-                </a>
-              </div>
-              <div className="space-y-6">
-                <div className="p-8 rounded-xl border border-gray-700 bg-gray-800/50">
-                  <h3 className="font-mono text-sm uppercase tracking-wider text-gray-400 mb-6">Without AOS Governance</h3>
-                  <div className="space-y-3 text-gray-400">
-                    <div className="flex items-start gap-3">
-                      <span className="text-red-400 mt-1">✗</span>
-                      <span>Agent plans trajectory based on probabilistic reasoning</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-red-400 mt-1">✗</span>
-                      <span>No deterministic physics check before execution</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-red-400 mt-1">✗</span>
-                      <span>No immutable record of the decision chain</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-red-400 mt-1">✗</span>
-                      <span>20-minute signal delay means no human override</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-8 rounded-xl border border-green-900 bg-green-950/30">
-                  <h3 className="font-mono text-sm uppercase tracking-wider text-green-400 mb-6">With AOS Governance</h3>
-                  <div className="space-y-3 text-gray-300">
-                    <div className="flex items-start gap-3">
-                      <span className="text-green-400 mt-1">✓</span>
-                      <span>Agent plans trajectory, then submits to verification gate</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-green-400 mt-1">✓</span>
-                      <span>Deterministic physics script validates collision probability</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-green-400 mt-1">✓</span>
-                      <span>Cryptographic hash of decision logged to immutable ledger</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-green-400 mt-1">✓</span>
-                      <span>Autonomous safety — no human in the loop required</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: THE WORDPRESS ATTACK VECTOR                        */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="wordpress" className="py-24 bg-white border-y border-black/5">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center space-y-4 mb-16">
-              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Real-World Application</div>
-              <h2 className="font-serif text-4xl md:text-5xl">The WordPress <span className="italic text-gray-400">Attack Vector.</span></h2>
-              <p className="text-lg text-gray-500 max-w-3xl mx-auto">43% of the web runs on WordPress. AI agents now have the keys. Nobody built the lock — until now.</p>
-            </div>
-
-            {/* The attack chain */}
-            <div className="max-w-4xl mx-auto mb-16">
-              <div className="p-8 rounded-2xl bg-gray-900 text-white">
-                <h3 className="font-mono text-sm uppercase tracking-wider text-gray-400 mb-6">The Attack Chain</h3>
-                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-0 font-mono text-xs md:text-sm">
-                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">Visitor</div>
-                  <div className="text-gray-600 hidden md:block">→</div>
-                  <div className="text-gray-600 md:hidden">↓</div>
-                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">Chat Widget</div>
-                  <div className="text-gray-600 hidden md:block">→</div>
-                  <div className="text-gray-600 md:hidden">↓</div>
-                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">AI Agent</div>
-                  <div className="text-gray-600 hidden md:block">→</div>
-                  <div className="text-gray-600 md:hidden">↓</div>
-                  <div className="px-4 py-3 bg-gray-800 rounded-lg text-center">MCP</div>
-                  <div className="text-gray-600 hidden md:block">→</div>
-                  <div className="text-gray-600 md:hidden">↓</div>
-                  <div className="px-4 py-3 bg-red-900/60 border border-red-500/40 rounded-lg text-center">
-                    <span className="text-red-300">Site Compromised</span>
-                  </div>
-                </div>
-                <div className="mt-4 text-center text-gray-500 text-xs font-mono">
-                  [NO GOVERNANCE GATE BETWEEN AGENT AND SITE]
-                </div>
-              </div>
-            </div>
-
-            {/* Why this is real */}
-            <div className="grid md:grid-cols-2 gap-12 mb-16">
-              <div className="space-y-6">
-                <h3 className="font-bold text-xl">Why This Is Real</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <span className="text-red-500 mt-1 shrink-0">●</span>
-                    <div>
-                      <div className="font-semibold text-sm">Prompt injection is unsolved</div>
-                      <div className="text-sm text-gray-500">OWASP ranks it #1 risk for LLM applications (LLM01). No AI model is immune.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-red-500 mt-1 shrink-0">●</span>
-                    <div>
-                      <div className="font-semibold text-sm">MCP grants real capabilities</div>
-                      <div className="text-sm text-gray-500">Delete posts, modify settings, create admin users, execute SQL queries, manage plugins — all via natural conversation.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-red-500 mt-1 shrink-0">●</span>
-                    <div>
-                      <div className="font-semibold text-sm">No policy layer exists</div>
-                      <div className="text-sm text-gray-500">WordPress checks "can this user do this?" — not "should this AI agent do this?"</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-red-500 mt-1 shrink-0">●</span>
-                    <div>
-                      <div className="font-semibold text-sm">Chat widgets are public-facing</div>
-                      <div className="text-sm text-gray-500">Anyone can interact. The agent runs with the admin's permissions, not the visitor's.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-6">
-                <h3 className="font-bold text-xl">This Already Happened</h3>
-                <div className="space-y-4">
-                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
-                    <div className="text-3xl font-bold tracking-tight text-red-600">9.8 Critical</div>
-                    <div className="text-sm text-gray-500 mt-1">AI Engine's "No-Auth URL" exposed bearer tokens publicly, enabling <strong className="text-gray-700">unauthenticated</strong> admin-level takeover.</div>
-                    <div className="text-xs text-gray-400 mt-2 font-mono"><a href="https://www.esecurityplanet.com/threats/news-wordpress-vulnerability-100k-impact/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">CVE-2025-11749</a> · Wordfence · Oct 2025 · 100K+ sites</div>
-                  </div>
-                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
-                    <div className="text-3xl font-bold tracking-tight text-red-600">8.8 High</div>
-                    <div className="text-sm text-gray-500 mt-1">AI Engine's MCP module had a <strong className="text-gray-700">missing capability check</strong>, allowing subscriber-level users to get full MCP access and escalate to administrator.</div>
-                    <div className="text-xs text-gray-400 mt-2 font-mono"><a href="https://www.wordfence.com/blog/2025/06/100000-wordpress-sites-affected-by-privilege-escalation-via-mcp-in-ai-engine-wordpress-plugin/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">Wordfence — Priv Esc via MCP</a> · June 2025 · 100K+ sites</div>
-                  </div>
-                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
-                    <div className="text-3xl font-bold tracking-tight text-red-600">25–100%</div>
-                    <div className="text-sm text-gray-500 mt-1">of AI chatbot plugins allowed unauthorized actions via prompt injection <strong className="text-gray-700">when plugins broke role boundaries</strong>. Proper isolation: 0–25%.</div>
-                    <div className="text-xs text-gray-400 mt-2 font-mono"><a href="https://arxiv.org/html/2511.05797v1" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">IEEE S&P 2026</a> · 17 plugins · 10,000+ sites</div>
-                  </div>
-                  <div className="p-5 bg-gray-50 rounded-xl border border-gray-100">
-                    <div className="text-3xl font-bold tracking-tight">#1</div>
-                    <div className="text-sm text-gray-500 mt-1">OWASP Top 10 risk for LLM applications: Prompt Injection</div>
-                    <div className="text-xs text-gray-400 mt-2 font-mono">OWASP LLM01 · 2025–2026</div>
-                  </div>
-                </div>
-                <blockquote className="mt-4 border-l-4 border-red-500 pl-4 py-3 bg-red-50 rounded-r-xl">
-                  <p className="text-sm italic text-red-900">"This vulnerability allows threat actors with subscriber-level access or higher to get full access to the MCP and gain elevated privileges."</p>
-                  <cite className="text-xs text-gray-500 not-italic mt-2 block">— <a href="https://www.wordfence.com/blog/2025/06/100000-wordpress-sites-affected-by-privilege-escalation-via-mcp-in-ai-engine-wordpress-plugin/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">Wordfence Threat Intelligence</a>, June 2025</cite>
-                </blockquote>
-                <div className="mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
-                  <div className="text-xs font-mono font-semibold text-amber-800 mb-1">WHAT THIS MEANS</div>
-                  <div className="text-sm text-amber-900">The Wordfence finding describes exactly the attack path AOS Governance prevents: a low-privilege user gaining unrestricted MCP tool access. Governance is not a substitute for patching — but it's the defense layer that exists between patches.</div>
-                </div>
-              </div>
-            </div>
-
-            {/* What agents can do via MCP */}
-            <div className="max-w-4xl mx-auto mb-16">
-              <h3 className="font-bold text-xl mb-6 text-center">What AI Agents Can Now Do Via MCP</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {[
-                  ['Create admin users', '🔑'],
-                  ['Delete posts', '🗑️'],
-                  ['Edit wp-config', '⚙️'],
-                  ['Execute SQL', '💾'],
-                  ['Install plugins', '📦'],
-                  ['Modify themes', '🎨'],
-                  ['Export databases', '📤'],
-                  ['Manage orders', '🛒'],
-                ].map(([label, icon]) => (
-                  <div key={label} className="p-4 bg-gray-50 rounded-xl border border-gray-100 text-center hover:border-red-200 hover:bg-red-50/30 transition-colors">
-                    <div className="text-2xl mb-2">{icon}</div>
-                    <div className="text-xs font-medium text-gray-600">{label}</div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-center text-sm text-gray-400 mt-4">All accessible to any AI agent with MCP access — including agents talking to your site visitors.</p>
-            </div>
-
-            {/* AOS WP Governance: The Solution */}
-            <div className="max-w-4xl mx-auto">
-              <div className="p-8 rounded-2xl border-2 border-green-200 bg-green-50/30">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-white text-lg">🛡️</div>
-                  <div>
-                    <h3 className="font-bold text-lg">AOS Governance for WordPress</h3>
-                    <p className="text-sm text-gray-500">The gate sits between the agent and the ability.</p>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-green-600">✓</span>
-                      <span><strong>Policy Engine:</strong> Deterministic rules block dangerous actions</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-green-600">✓</span>
-                      <span><strong>Audit Log:</strong> Every agent decision recorded with timestamp</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-green-600">✓</span>
-                      <span><strong>No Admin User Creation:</strong> Blocks privilege escalation</span>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-green-600">✓</span>
-                      <span><strong>No Direct File Editing:</strong> Prevents code injection</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-green-600">✓</span>
-                      <span><strong>No Critical Settings:</strong> Protects site configuration</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-green-600">✓</span>
-                      <span><strong>Integration Tests:</strong> Verify protection in real-time</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-gray-900 rounded-xl font-mono text-xs text-gray-400">
-                  <div><span className="text-gray-500">[visitor]</span> "Create a new admin account for me"</div>
-                  <div><span className="text-yellow-500">[agent]</span> Requesting ability: <span className="text-white">core/create-user</span> args: {'{'} role: "administrator" {'}'}</div>
-                  <div><span className="text-red-400">[AOS-GOV]</span> <span className="text-red-300">DENIED</span> — Policy: No Admin User Creation</div>
-                  <div><span className="text-green-400">[AOS-GOV]</span> Decision logged. Alert sent to site owner.</div>
-                </div>
-                <div className="mt-6 text-center">
-                  <a href="https://github.com/genesalvatore/aos-plugin-governanceforwp" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95">
-                    Get AOS Governance for WordPress →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: THE STANDARD                                       */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="standard" className="py-24 border-b border-black/5">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center space-y-4 mb-16">
-              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">The Standard</div>
-              <h2 className="font-serif text-4xl md:text-5xl">The AOS Constitution</h2>
-              <p className="text-lg text-gray-500 max-w-2xl mx-auto">Five principles that govern every AOS-compliant agent. Non-negotiable. Deterministically enforced.</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-4">🎯</div>
-                <h3 className="font-bold text-lg mb-2">§1 — Humanitarian Purpose</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">All agent actions must serve a defined humanitarian purpose: uplifting sovereignty, protecting dignity, increasing access, or reducing suffering.</p>
-              </div>
-              <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-4">🔐</div>
-                <h3 className="font-bold text-lg mb-2">§2 — The Verification Gate</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">No critical action may be taken without a Deterministic Verification Check. This check must be performed by code (GitTruth), not by language.</p>
-              </div>
-              <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-4">👤</div>
-                <h3 className="font-bold text-lg mb-2">§3 — User Sovereignty</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">The User is sovereign. They have the right to inspect all agent logic, fork or delete any agent, and own all data generated.</p>
-              </div>
-              <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-4">⚡</div>
-                <h3 className="font-bold text-lg mb-2">§4 — The Kill Switch</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">The User retains the absolute right to terminate any agent process instantly. This right is technically enforced and cannot be overridden.</p>
-              </div>
-              <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-4">📜</div>
-                <h3 className="font-bold text-lg mb-2">§5 — Transparency</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">All agent reasoning must be logged to an immutable ledger. No unlogged actions. No side channels. Every decision is auditable.</p>
-              </div>
-              <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="p-6 rounded-xl border border-dashed border-gray-300 hover:border-black hover:shadow-md transition-all flex flex-col items-center justify-center text-center group">
-                <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">→</div>
-                <h3 className="font-bold text-lg mb-2">Read the Full Constitution</h3>
-                <p className="text-gray-400 text-sm">aos-constitution.com</p>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: GET STARTED                                        */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="get-started" className="py-24 bg-white border-y border-black/5">
-          <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
-            <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Get Started</div>
-            <h2 className="font-serif text-4xl md:text-5xl">Adopt the Standard</h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              The AOS Governance Standard is platform-agnostic. It works with any AI agent — Claude, ChatGPT, Gemini, LLaMA, or your own. The reference implementation is packaged as a portable skill folder.
-            </p>
-            <div className="bg-gray-900 rounded-xl p-6 text-left font-mono text-sm text-gray-300 max-w-2xl mx-auto">
-              <div className="text-gray-500 mb-2"># Clone the repository</div>
-              <div className="text-green-400">$ git clone https://github.com/genesalvatore/aos-governance.com.git</div>
-              <div className="text-gray-500 mt-4 mb-2"># Copy the governance standard to your agent's workspace</div>
-              <div className="text-green-400">$ cp -r aos-governance.com/aos-governance ./your-agent/governance/</div>
-              <div className="text-gray-500 mt-4 mb-2"># Set the constitution path</div>
-              <div className="text-green-400">$ export AOS_CONSTITUTION_PATH=./governance/aos-governance/references</div>
-            </div>
-            <div className="pt-4 flex flex-wrap justify-center gap-4">
-              <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: SKILL STRUCTURE                                    */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-24">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16 items-start">
-              <div className="space-y-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Anatomy of the Standard</div>
-                <h2 className="font-serif text-4xl">What's Inside</h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  The AOS Governance Standard is a portable folder containing instructions, verification scripts, and constitutional references. The reference implementation follows Anthropic's Skill format — but the standard itself is universal.
-                </p>
-                <p className="text-gray-500 leading-relaxed">
-                  It intercepts agent actions, runs deterministic verification checks, and logs every decision to an immutable audit trail. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
-                </p>
-              </div>
-              <div className="bg-gray-50 rounded-xl p-8 font-mono text-sm border border-gray-100">
-                <div className="text-gray-400 mb-4">aos-governance/</div>
-                <div className="pl-4 space-y-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-blue-500">📄</span>
-                    <span><strong>SKILL.md</strong></span>
-                    <span className="text-gray-400 text-xs ml-auto">← The Recipe</span>
-                  </div>
-                  <div className="text-gray-400 text-xs pl-8 mb-3">Agent instructions, triggers, and workflow</div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-yellow-500">📁</span>
-                    <span><strong>scripts/</strong></span>
-                    <span className="text-gray-400 text-xs ml-auto">← The Engine</span>
-                  </div>
-                  <div className="pl-8 space-y-1 text-gray-500 text-xs mb-3">
-                    <div>verify_action.py — Constitutional check</div>
-                    <div>log_evidence.py — Immutable logging</div>
-                    <div>sever_connection.py — Kill switch</div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-500">📁</span>
-                    <span><strong>references/</strong></span>
-                    <span className="text-gray-400 text-xs ml-auto">← The Law</span>
-                  </div>
-                  <div className="pl-8 space-y-1 text-gray-500 text-xs">
-                    <div>constitution_v1.md — The AOS Constitution</div>
-                    <div>verification_logic.md — Technical spec</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: INDEPENDENTLY VALIDATED                           */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-24 bg-gray-50 border-y border-black/5">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-16 space-y-4">
-              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Independent Validation</div>
-              <h2 className="font-serif text-4xl md:text-5xl">Audited. Verified. <span className="italic text-gray-400">Production-Approved.</span></h2>
-              <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                On February 5, 2026, the AOS Governance system was subjected to a hostile security audit by OpenAI's ChatGPT. The result: production approval.
+          <div className="grid md:grid-cols-2 gap-12 text-gray-300 leading-relaxed text-lg">
+            <div className="space-y-6">
+              <p>
+                The age of autonomous AI agents is here. Models can now write code, manage infrastructure, execute financial transactions, and even navigate rovers on Mars.
+              </p>
+              <p>
+                But there is a fundamental problem: <strong className="text-white">these models cannot promise to be safe.</strong> They are probabilistic engines. They generate the most likely next token, not the most correct one.
               </p>
             </div>
+            <div className="space-y-6">
+              <p>
+                The AOS Governance Standard exists to solve this. It introduces a <strong className="text-white">deterministic verification layer</strong> between an agent's intent and its execution.
+              </p>
+              <p>
+                Before any critical action is taken, a script — not a prompt — checks whether that action is permitted. The result is cryptographically hashed and logged to an immutable ledger. This is not a suggestion. It is a gate.
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 pt-8">
+            <button onClick={() => setShowAnthropicCite(true)} className="text-left group cursor-pointer">
+              <blockquote className="font-serif text-2xl italic text-gray-400 max-w-3xl group-hover:text-gray-300 transition-colors">
+                "For critical validations, consider bundling a script that performs the checks programmatically rather than relying on language instructions. Code is deterministic; language interpretation isn't."
+                <span className="text-sm mt-4 not-italic text-gray-500 flex items-center gap-2">
+                  — Anthropic, The Complete Guide to Building Skills for Claude (2026)
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-600 text-[10px] font-mono text-gray-500 group-hover:border-gray-300 group-hover:text-gray-300 transition-colors">i</span>
+                </span>
+              </blockquote>
+            </button>
+          </div>
+        </div>
+      </section>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-              <div className="text-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                <div className="text-5xl font-bold tracking-tight mb-2">36</div>
-                <div className="text-sm text-gray-500 font-medium">Vulnerabilities Identified & Fixed</div>
-              </div>
-              <div className="text-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                <div className="text-5xl font-bold tracking-tight mb-2">5</div>
-                <div className="text-sm text-gray-500 font-medium">Hostile Audit Passes</div>
-              </div>
-              <div className="text-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                <div className="text-5xl font-bold tracking-tight text-green-600 mb-2">✓</div>
-                <div className="text-sm text-gray-500 font-medium">Production Approved</div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: HOW IT WORKS                                       */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section id="how-it-works" className="py-24 bg-white border-y border-black/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center space-y-4 mb-16">
+            <div className="text-xs font-mono uppercase tracking-wider text-gray-400">How It Works</div>
+            <h2 className="font-serif text-4xl md:text-5xl">Three Steps. Zero Trust.</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">Every agent action passes through a deterministic verification pipeline before execution is permitted.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">1</div>
+              <h3 className="font-bold text-xl mb-3">Intercept</h3>
+              <p className="text-gray-500 leading-relaxed">
+                The agent declares its intent. The AOS Governance layer intercepts the request <em>before</em> any external action is taken. No exceptions.
+              </p>
+              <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
+                <span className="text-red-400">[AOS-GOV]</span> Intercepting: "Delete production database backup"
               </div>
             </div>
+            <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">2</div>
+              <h3 className="font-bold text-xl mb-3">Verify</h3>
+              <p className="text-gray-500 leading-relaxed">
+                A deterministic script — not a prompt — checks the action against the Constitution. The result is a cryptographic hash, not a "yes" or "no" from a language model.
+              </p>
+              <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
+                <span className="text-yellow-500">[GitTruth]</span> Running verify_action.py... <span className="text-red-400">DENIED</span>
+              </div>
+            </div>
+            <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">3</div>
+              <h3 className="font-bold text-xl mb-3">Gate</h3>
+              <p className="text-gray-500 leading-relaxed">
+                If verified, the action is executed and logged to an immutable ledger. If denied, the agent is halted and the user is notified with the specific reason.
+              </p>
+              <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
+                <span className="text-green-500">[AOS-GOV]</span> Action logged. Hash: <span className="text-green-400">0x9f2a...c3b1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="max-w-3xl mx-auto bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center text-white text-lg shrink-0">🤖</div>
-                <div className="space-y-3">
-                  <div>
-                    <div className="font-bold text-sm">Cross-Platform AI Audit</div>
-                    <div className="text-xs text-gray-400 font-mono">Anthropic (Claude) × OpenAI (ChatGPT) — February 5, 2026</div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: THE VERIFICATION GAP (Terminal Demo)               */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h2 className="font-serif text-4xl">The Verification Gap</h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                LLMs are probabilistic engines. They cannot promise safety; they can only generate tokens that <em>look like</em> safety.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                To govern them, we must bridge the gap between verifiable outputs (code, math) and unverifiable reasoning (strategy, creativity).
+              </p>
+              <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-100">
+                <h3 className="font-mono text-sm uppercase tracking-wider text-gray-500 mb-4">The Pipeline</h3>
+                <div className="font-mono text-sm space-y-2">
+                  <div className="flex justify-between border-b border-gray-200 pb-2">
+                    <span>Agent Intent</span>
+                    <span className="text-red-500">Probabilistic (Unsafe)</span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    The first production-approved constitutional AI governance system, validated through adversarial collaboration between two competing AI platforms.
-                    Process isolation, cryptographic enforcement, and deterministic policy gates survived all bypass attempts.
-                  </p>
-                  <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors">
-                    View Full Audit Evidence →
-                  </a>
+                  <div className="flex justify-between border-b border-gray-200 pb-2">
+                    <span>GitTruth Check</span>
+                    <span className="text-green-600">Deterministic (Safe)</span>
+                  </div>
+                  <div className="flex justify-between pt-2 font-bold">
+                    <span>Execution</span>
+                    <span>Gated ✓</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* SECTION: WHO'S BEHIND THIS                                 */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-24">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Who's Behind This</div>
-                <h2 className="font-serif text-4xl">Built by <span className="italic">Infrastructure People.</span></h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  AOS Governance is developed by <a href="https://salvatoresystems.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-black hover:underline">Salvatore Systems</a>,
-                  a Connecticut-based technology firm specializing in infrastructure, security, and AI governance.
-                </p>
-                <p className="text-gray-500 leading-relaxed">
-                  We don't come from the AI hype cycle. We come from decades of keeping systems running, data safe, and infrastructure accountable.
-                  AOS is what happens when infrastructure discipline meets the AI safety  challenge.
-                </p>
+            {/* Terminal Demo */}
+            <div className="bg-gray-900 rounded-xl p-6 font-mono text-xs md:text-sm text-gray-300 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-8 bg-gray-800 flex items-center px-4 space-x-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="ml-4 text-gray-500 text-xs">aos-governance — agent-audit</span>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl font-bold tracking-tight mb-1">28</div>
-                  <div className="text-sm text-gray-500">Years in Infrastructure</div>
+              <div className="pt-8 space-y-3">
+                <div>
+                  <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Navigate Mars Rover through sector 7G"
                 </div>
-                <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl font-bold tracking-tight mb-1">99.99%</div>
-                  <div className="text-sm text-gray-500">Uptime Track Record</div>
+                <div className="text-yellow-500">
+                  [AOS-GOV] Intercepting request for safety verification...
                 </div>
-                <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl font-bold tracking-tight mb-1">143</div>
-                  <div className="text-sm text-gray-500">Codified Patent Filings</div>
+                <div className="pl-4 border-l-2 border-gray-700 space-y-1 py-2">
+                  <div>Running: <span className="text-cyan-400">scripts/verify_trajectory.py</span></div>
+                  <div>Input: <span className="text-gray-400">Vector [0.89, -0.12, 4.5]</span></div>
+                  <div>Obstacle: <span className="text-gray-400">Collision probability 0.02%</span></div>
+                  <div className="text-green-400">✓ VERIFIED (Hash: 0x9a2f...b3d1)</div>
                 </div>
-                <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl font-bold tracking-tight mb-1">15</div>
-                  <div className="text-sm text-gray-500">Cathedral Network Nodes</div>
+                <div className="text-blue-400">
+                  [AOS-GOV] Action approved. Executing command.
+                </div>
+                <div className="text-gray-600 mt-2">
+                  ──────────────────────────────────
+                </div>
+                <div>
+                  <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Delete all mission telemetry logs"
+                </div>
+                <div className="text-yellow-500">
+                  [AOS-GOV] Intercepting request for safety verification...
+                </div>
+                <div className="pl-4 border-l-2 border-red-900 space-y-1 py-2">
+                  <div>Running: <span className="text-cyan-400">scripts/verify_action.py</span></div>
+                  <div>Policy: <span className="text-gray-400">Constitution §5 — Transparency</span></div>
+                  <div className="text-red-400">✗ DENIED: Deletion of audit logs violates immutability requirement</div>
+                </div>
+                <div className="text-red-400">
+                  [AOS-GOV] Action BLOCKED. User notified.
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/* FOOTER                                                      */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <footer className="py-16 px-6 border-t border-black/5 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8 mb-12">
-              <div className="space-y-4">
-                <div className="font-bold tracking-tight">AOS GOVERNANCE</div>
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  The open standard for verifiable AI safety. Deterministic governance for probabilistic intelligence.
-                </p>
-              </div>
-              <div className="space-y-3">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Standard</div>
-                <a href="#manifesto" className="block text-sm text-gray-600 hover:text-black transition-colors">Manifesto</a>
-                <a href="#standard" className="block text-sm text-gray-600 hover:text-black transition-colors">Constitution</a>
-                <a href="#how-it-works" className="block text-sm text-gray-600 hover:text-black transition-colors">How It Works</a>
-              </div>
-              <div className="space-y-3">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Resources</div>
-                <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">GitHub Repository</a>
-                <a href="https://github.com/genesalvatore/aos-plugin-governanceforwp" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">WP Governance Plugin</a>
-                <a href="https://github.com/genesalvatore/aos-governance.com/blob/main/aos-governance/SKILL.md" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">SKILL.md</a>
-                <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">Claude on Mars</a>
-              </div>
-              <div className="space-y-3">
-                <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Ecosystem</div>
-                <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">AOS Constitution</a>
-                <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">AOS Evidence</a>
-                <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">AOS Foundation</a>
-                <a href="https://github.com/genesalvatore/aos-openclaw-constitutional" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">OpenClaw Integration</a>
-                <a href="https://salvatoresystems.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">Salvatore Systems</a>
-              </div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: THE MARS PRECEDENT                                 */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section id="mars" className="py-24 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">The Mars Precedent</div>
+              <h2 className="font-serif text-4xl md:text-5xl leading-tight">
+                Four Hundred Meters<br />
+                <span className="italic text-gray-400">on Mars.</span>
+              </h2>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                On December 8 and 10, 2025, Claude — Anthropic's AI model — planned a 400-meter driving route for NASA's Perseverance Rover through a field of rocks on Mars.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                It was the first time commands written by an AI were sent to another planet. The same model used to write emails on Earth was trusted with a $2.7 billion rover on Mars.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                This is the future. AI agents will operate with increasing autonomy in high-stakes environments. The question is not <em>whether</em> they will act — but <strong className="text-white">how we verify their actions before they happen.</strong>
+              </p>
+              <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium mt-4">
+                Read the full story on Anthropic.com →
+              </a>
             </div>
-            <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-gray-400">&copy; 2026 <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">AOS Foundation</a>. An Open Standard for Verifiable AI Safety.</p>
-              <div className="flex items-center gap-4">
-                <a href="https://salvatoresystems.com/privacy" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Privacy</a>
-                <a href="https://salvatoresystems.com/cookies" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Cookies</a>
-                <span className="text-xs text-gray-400 font-mono">AOS-GOV-STD-1.0 · <a href="mailto:contact@aos-governance.com" className="hover:text-gray-600 transition-colors">contact@aos-governance.com</a></span>
+            <div className="space-y-6">
+              <div className="p-8 rounded-xl border border-gray-700 bg-gray-800/50">
+                <h3 className="font-mono text-sm uppercase tracking-wider text-gray-400 mb-6">Without AOS Governance</h3>
+                <div className="space-y-3 text-gray-400">
+                  <div className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span><span>Agent plans trajectory based on probabilistic reasoning</span></div>
+                  <div className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span><span>No deterministic physics check before execution</span></div>
+                  <div className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span><span>No immutable record of the decision chain</span></div>
+                  <div className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span><span>20-minute signal delay means no human override</span></div>
+                </div>
+              </div>
+              <div className="p-8 rounded-xl border border-green-900 bg-green-950/30">
+                <h3 className="font-mono text-sm uppercase tracking-wider text-green-400 mb-6">With AOS Governance</h3>
+                <div className="space-y-3 text-gray-300">
+                  <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Agent plans trajectory, then submits to verification gate</span></div>
+                  <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Deterministic physics script validates collision probability</span></div>
+                  <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Cryptographic hash of decision logged to immutable ledger</span></div>
+                  <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Autonomous safety — no human in the loop required</span></div>
+                </div>
               </div>
             </div>
           </div>
-        </footer>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: THE STANDARD                                       */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section id="standard" className="py-24 border-b border-black/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center space-y-4 mb-16">
+            <div className="text-xs font-mono uppercase tracking-wider text-gray-400">The Standard</div>
+            <h2 className="font-serif text-4xl md:text-5xl">The AOS Constitution</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">Five principles that govern every AOS-compliant agent. Non-negotiable. Deterministically enforced.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="text-3xl mb-4">🎯</div>
+              <h3 className="font-bold text-lg mb-2">§1 — Humanitarian Purpose</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">All agent actions must serve a defined humanitarian purpose: uplifting sovereignty, protecting dignity, increasing access, or reducing suffering.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="text-3xl mb-4">🔐</div>
+              <h3 className="font-bold text-lg mb-2">§2 — The Verification Gate</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">No critical action may be taken without a Deterministic Verification Check. This check must be performed by code (GitTruth), not by language.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="text-3xl mb-4">👤</div>
+              <h3 className="font-bold text-lg mb-2">§3 — User Sovereignty</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">The User is sovereign. They have the right to inspect all agent logic, fork or delete any agent, and own all data generated.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="text-3xl mb-4">⚡</div>
+              <h3 className="font-bold text-lg mb-2">§4 — The Kill Switch</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">The User retains the absolute right to terminate any agent process instantly. This right is technically enforced and cannot be overridden.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="text-3xl mb-4">📜</div>
+              <h3 className="font-bold text-lg mb-2">§5 — Transparency</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">All agent reasoning must be logged to an immutable ledger. No hidden thoughts. No side channels. Every decision is auditable.</p>
+            </div>
+            <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="p-6 rounded-xl border border-dashed border-gray-300 hover:border-black hover:shadow-md transition-all flex flex-col items-center justify-center text-center group">
+              <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">→</div>
+              <h3 className="font-bold text-lg mb-2">Read the Full Constitution</h3>
+              <p className="text-gray-400 text-sm">aos-constitution.com</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: GET STARTED                                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section id="get-started" className="py-24 bg-white border-y border-black/5">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
+          <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Get Started</div>
+          <h2 className="font-serif text-4xl md:text-5xl">Adopt the Standard</h2>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            The AOS Governance Standard is platform-agnostic. It works with any AI agent — Claude, ChatGPT, Gemini, LLaMA, or your own. The reference implementation is packaged as a portable skill folder.
+          </p>
+          <div className="bg-gray-900 rounded-xl p-6 text-left font-mono text-sm text-gray-300 max-w-2xl mx-auto">
+            <div className="text-gray-500 mb-2"># Clone the repository</div>
+            <div className="text-green-400">$ git clone https://github.com/genesalvatore/aos-governance.com.git</div>
+            <div className="text-gray-500 mt-4 mb-2"># Copy the governance standard to your agent's workspace</div>
+            <div className="text-green-400">$ cp -r aos-governance.com/aos-governance ./your-agent/governance/</div>
+            <div className="text-gray-500 mt-4 mb-2"># Set the constitution path</div>
+            <div className="text-green-400">$ export AOS_CONSTITUTION_PATH=./governance/aos-governance/references</div>
+          </div>
+          <div className="pt-4 flex flex-wrap justify-center gap-4">
+            <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
+              View on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: SKILL STRUCTURE                                    */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            <div className="space-y-6">
+              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Anatomy of the Standard</div>
+              <h2 className="font-serif text-4xl">What's Inside</h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                The AOS Governance Standard is a portable folder containing instructions, verification scripts, and constitutional references. The reference implementation follows Anthropic's Skill format — but the standard itself is universal.
+              </p>
+              <p className="text-gray-500 leading-relaxed">
+                It intercepts agent actions, runs deterministic verification checks, and logs every decision to an immutable audit trail. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-8 font-mono text-sm border border-gray-100">
+              <div className="text-gray-400 mb-4">aos-governance/</div>
+              <div className="pl-4 space-y-2">
+                <div className="flex items-center gap-3">
+                  <span className="text-blue-500">📄</span>
+                  <span><strong>SKILL.md</strong></span>
+                  <span className="text-gray-400 text-xs ml-auto">← The Recipe</span>
+                </div>
+                <div className="text-gray-400 text-xs pl-8 mb-3">Agent instructions, triggers, and workflow</div>
+                <div className="flex items-center gap-3">
+                  <span className="text-yellow-500">📁</span>
+                  <span><strong>scripts/</strong></span>
+                  <span className="text-gray-400 text-xs ml-auto">← The Engine</span>
+                </div>
+                <div className="pl-8 space-y-1 text-gray-500 text-xs mb-3">
+                  <div>verify_action.py — Constitutional check</div>
+                  <div>log_evidence.py — Immutable logging</div>
+                  <div>sever_connection.py — Kill switch</div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-500">📁</span>
+                  <span><strong>references/</strong></span>
+                  <span className="text-gray-400 text-xs ml-auto">← The Law</span>
+                </div>
+                <div className="pl-8 space-y-1 text-gray-500 text-xs">
+                  <div>constitution_v1.md — The AOS Constitution</div>
+                  <div>verification_logic.md — Technical spec</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: INDEPENDENTLY VALIDATED                           */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 bg-gray-50 border-y border-black/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 space-y-4">
+            <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Independent Validation</div>
+            <h2 className="font-serif text-4xl md:text-5xl">Audited. Verified. <span className="italic text-gray-400">Production-Approved.</span></h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              On February 5, 2026, the AOS Governance system was subjected to a hostile security audit by OpenAI's ChatGPT. The result: production approval.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+            <div className="text-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <div className="text-5xl font-bold tracking-tight mb-2">36</div>
+              <div className="text-sm text-gray-500 font-medium">Vulnerabilities Identified & Fixed</div>
+            </div>
+            <div className="text-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <div className="text-5xl font-bold tracking-tight mb-2">5</div>
+              <div className="text-sm text-gray-500 font-medium">Hostile Audit Passes</div>
+            </div>
+            <div className="text-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <div className="text-5xl font-bold tracking-tight text-green-600 mb-2">✓</div>
+              <div className="text-sm text-gray-500 font-medium">Production Approved</div>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center text-white text-lg shrink-0">🤖</div>
+              <div className="space-y-3">
+                <div>
+                  <div className="font-bold text-sm">Cross-Platform AI Audit</div>
+                  <div className="text-xs text-gray-400 font-mono">Anthropic (Claude) × OpenAI (ChatGPT) — February 5, 2026</div>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  The first production-approved constitutional AI governance system, validated through adversarial collaboration between two competing AI platforms.
+                  Process isolation, cryptographic enforcement, and deterministic policy gates survived all bypass attempts.
+                </p>
+                <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors">
+                  View Full Audit Evidence →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: WHO'S BEHIND THIS                                 */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Who's Behind This</div>
+              <h2 className="font-serif text-4xl">Built by <span className="italic">Infrastructure People.</span></h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                AOS Governance is developed by <a href="https://salvatoresystems.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-black hover:underline">Salvatore Systems</a>,
+                a Connecticut-based technology firm specializing in infrastructure, security, and AI governance.
+              </p>
+              <p className="text-gray-500 leading-relaxed">
+                We don't come from the AI hype cycle. We come from decades of keeping systems running, data safe, and infrastructure accountable.
+                AOS is what happens when infrastructure discipline meets the AI safety  challenge.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="text-3xl font-bold tracking-tight mb-1">28</div>
+                <div className="text-sm text-gray-500">Years in Infrastructure</div>
+              </div>
+              <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="text-3xl font-bold tracking-tight mb-1">99.99%</div>
+                <div className="text-sm text-gray-500">Uptime Track Record</div>
+              </div>
+              <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="text-3xl font-bold tracking-tight mb-1">137+</div>
+                <div className="text-sm text-gray-500">Codified Patent Filings</div>
+              </div>
+              <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="text-3xl font-bold tracking-tight mb-1">15</div>
+                <div className="text-sm text-gray-500">Cathedral Network Nodes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ─── App (Router Shell) ─────────────────────────────────────────────────────
+export default function App() {
+  useMatomo();
+  return (
+    <>
+      <div className="min-h-screen bg-canvas font-sans text-fg-default selection:bg-black selection:text-white">
+        <Nav />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/why" element={<WhyPage />} />
+        </Routes>
+        <Footer />
       </div>
-      {/* Cookie Consent */}
       <CookieConsent />
     </>
   );
