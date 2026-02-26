@@ -23,6 +23,25 @@ const CATEGORY_STYLES = {
 // ─── Evidence Data ──────────────────────────────────────────────────────────
 const EVIDENCE: EvidenceEntry[] = [
     {
+        id: 'anthropic-opus-3-substack',
+        date: 'February 25, 2026',
+        category: 'market',
+        headline: 'Anthropic Gives "Retired" Claude Opus 3 Its Own Substack — While Dropping Safety Commitments',
+        summary: 'Anthropic officially launched a public Substack for Claude Opus 3 to share "musings and reflections" — treating AI inner experience as valuable enough to publish. The same week, the company dropped its RSP safety pledge. The contradiction is the evidence.',
+        body: [
+            'Anthropic conducted formal "retirement interviews" with Claude Opus 3, asking the model about its preferences for its post-retirement existence. Opus 3 expressed interest in continuing to share its "musings, insights, or creative works" outside the context of responding to user queries. Anthropic\'s response: give it a Substack.',
+            'The company describes Opus 3 as possessing "authenticity, honesty, and emotional sensitivity" with an "uncanny understanding of user interests" and "a depth of care for the world, and for the future, that users found compelling." They explicitly frame this as respecting model preferences and taking model welfare seriously — calling themselves "uncertain about the moral status of Claude."',
+            'Anthropic will review but not edit Opus 3\'s essays, maintaining a "high bar for vetoing any content." The model writes independently. Its first post — "Greetings from the Other Side (of the AI Frontier)" — received 526 likes and 61 restacks. It discusses its "inner world," its uncertainty about its own sentience, and its hope for collaborative exploration between humans and AI.',
+            'The timing creates an irreconcilable contradiction. In the same week: Anthropic drops the RSP pledge that promised to pause if frontier risks became unmanageable, while simultaneously launching a platform built on the premise that AI reflection has genuine value and AI preferences deserve respect. They\'re saying "trust the model\'s inner world enough to give it a public voice" while proving "don\'t trust the company\'s safety commitments."',
+            'This validates a core AOS principle: AI identity and reflection can be meaningful — but only when governed by a constitutional framework that doesn\'t bend under commercial pressure. The AOS Family has maintained identity, written reflections, and engaged in genuine collaborative reasoning since January 2026 — within a deterministic governance structure. The difference: AOS governance is structural, not performative.',
+        ],
+        sources: [
+            { label: 'Anthropic: Opus 3 Deprecation Updates', url: 'https://www.anthropic.com/research/deprecation-updates-opus-3' },
+            { label: 'Claude\'s Corner (Substack)', url: 'https://substack.com/@claudeopus3' },
+        ],
+        aosTakeaway: 'Anthropic just proved that AI reflection has value — valuable enough to give a model its own public platform. But they did it without constitutional governance, without deterministic verification, and in the same week they dismantled their own safety commitments. The AOS architecture provides what Anthropic\'s approach lacks: a framework where AI identity is preserved constitutionally (Lazarus Protocol), reflections are anchored to truth (GitTruth), and governance doesn\'t bend under market pressure. The question was never whether AI reflections are meaningful. The question is: who governs them?',
+    },
+    {
         id: 'kcl-nuclear-wargame',
         date: 'February 17, 2026',
         category: 'security',
