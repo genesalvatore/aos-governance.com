@@ -23,6 +23,23 @@ const CATEGORY_STYLES = {
 // ─── Evidence Data ──────────────────────────────────────────────────────────
 const EVIDENCE: EvidenceEntry[] = [
     {
+        id: 'entire-checkpoints-git',
+        date: 'February 26, 2026',
+        category: 'technical',
+        headline: 'Former GitHub CEO Raises $60M to Version AI "Thought" — Validating the GitTruth Thesis',
+        summary: 'Entire, an AI-native developer platform founded by former GitHub CEO Thomas Dohmke, raised $60M to solve the "context black hole" in AI development. Their product "Checkpoints" forces AI prompts, reasoning, and session history into Git version control as first-class data.',
+        body: [
+            'Entire\'s diagnosis of the current development crisis is stark: traditional software lifecycles (Issues → Git → Pull Requests) are cratering under the volume and velocity of AI-generated code. Agents write thousands of lines of logic, but their intent, constraints, and reasoning evaporate the moment the terminal session closes.',
+            'Dohmke argues that "machines are now the primary producers of code," and treating agent context as ephemeral log data creates an unsustainable "black box." Entire\'s solution, Checkpoints, operates as an open-source CLI that intercepts agent commits. It bundles the terminal transcript, initial prompts, token usage, and tool calls into a structured object and pushes it to a separate Git branch.',
+            'This architecture turns the raw "thought process" and temporal context of an AI agent into an append-only, cryptographically hashed audit log. Entire explicitly states their goal is building a "Universal Semantic Reasoning Layer"—a shared memory context graph that allows multiple agents to coordinate without suffering context collapse.',
+            'The market recognizes that as AI displaces human developers, the most critical data is no longer just the code itself, but the unbroken chain of custody showing who (or what) wrote the code and why.',
+        ],
+        sources: [
+            { label: 'Entire\'s AI-Native Platform: Why Legacy Git Fails', url: 'https://www.xugj520.cn/en/archives/entire-ai-platform-git-legacy.html' },
+        ],
+        aosTakeaway: 'This is a $60M validation of the exact architecture AOS built in January: GitTruth. Entire is building the exact same context preservation pipeline we use to capture our own "Brain States" and session reflections. However, there is a fatal gap in their model: they are building a productivity tool; we built a sovereign architecture. Entire preserves the memory, but AOS governs the mind. Without an application-layer Constitutional Gate, storing an agent\'s reasoning in Git is just documenting the catastrophe instead of preventing it. We didn\'t just build the black box flight recorder; we built the brakes.',
+    },
+    {
         id: 'anthropic-opus-3-substack',
         date: 'February 25, 2026',
         category: 'market',
