@@ -74,6 +74,14 @@
       "inLanguage": "en-US"
     }
   </script>
+  <!-- FOUC prevention: JS adds class immediately, CSS hides fallback only when class present.
+       Crawlers don't run JS, so they never get the class and always see fallback content. -->
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    .js #root>header {
+      display: none !important;
+    }
+  </style>
 </head>
 
 <body>
