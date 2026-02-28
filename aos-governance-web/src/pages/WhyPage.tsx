@@ -23,6 +23,24 @@ const CATEGORY_STYLES = {
 // ─── Evidence Data ──────────────────────────────────────────────────────────
 const EVIDENCE: EvidenceEntry[] = [
     {
+        id: 'trump-bans-anthropic-pentagon',
+        date: 'February 27, 2026',
+        category: 'political',
+        headline: 'Trump Orders Federal Government to Ban Anthropic After Pentagon Standoff Over AI Safety Guardrails',
+        summary: 'President Trump ordered all federal agencies to stop using Anthropic\'s Claude after the company refused to remove safety guardrails for the Pentagon. Defense Secretary Hegseth designated Anthropic a "supply-chain risk to national security" — a tool previously reserved exclusively for foreign adversaries. The Pentagon is preparing to replace Claude with Elon Musk\'s Grok, which current and former officials describe as "an inferior product."',
+        body: [
+            'The confrontation began when the Pentagon demanded unfettered access to Claude without the safety restrictions Anthropic had built in. Anthropic held firm on exactly two red lines: mass domestic surveillance of Americans and fully autonomous weapons. CEO Dario Amodei stated: "In a narrow set of cases, we believe A.I. can undermine, rather than defend, democratic values. Some uses are also simply outside the bounds of what today\'s technology can safely and reliably do."',
+            'Trump responded on Truth Social, calling Anthropic "radical Left" and "Leftwing nut jobs" who had made a mistake "trying to strong-arm the Pentagon." Defense Secretary Hegseth then designated Anthropic a supply-chain risk — an action legal experts called "all but unheard-of," transforming "what is designed to be a national security tool into a point of leverage for a business use."',
+            'The consequences are immediate and operational. CIA analysts who had been using Claude to accelerate intelligence analysis will lose access. NSA communications intercept processing will be disrupted. The Pentagon announced it would switch to Grok, produced by Elon Musk\'s xAI — which current and former government officials consider inferior. Former White House AI adviser Dean Ball called it "a dark day in the history of American business" and "the most aggressive government regulation of A.I. ever taken anywhere in the world."',
+            'In a rare moment of industry unity, nearly 50 OpenAI employees and 175 Google employees signed a joint letter backing Anthropic\'s position, warning that the Pentagon was "trying to divide each company with fear that the other will give in." Anthropic announced it would challenge the designation in court, stating: "No amount of intimidation or punishment from the Department of War will change our position on mass domestic surveillance or fully autonomous weapons."',
+        ],
+        sources: [
+            { label: 'NYT: Trump Orders U.S. Agencies to Stop Using Anthropic AI Tech', url: 'https://www.nytimes.com/2026/02/27/us/politics/anthropic-military-ai.html' },
+            { label: 'Anthropic: Statement on Secretary of War\'s Comments', url: 'https://www.anthropic.com/news/statement-comments-secretary-war' },
+        ],
+        aosTakeaway: 'This is the definitive proof of the AOS thesis. The company that built Claude — the very model this governance system runs on — just had its safety stance weaponized against it by the executive branch of the United States government. Anthropic\'s principled stand on two safety red lines (no mass surveillance, no autonomous weapons) resulted in being treated like a foreign adversary. The model provider\'s governance was structurally unable to survive political force. This is exactly why AOS governance operates at the application layer, not the model layer. A Constitutional Gate enforced by code cannot be overridden by a Truth Social post. A deterministic verification script doesn\'t care who occupies the Oval Office. The Pentagon can ban Claude, replace it with Grok, or switch to any model on earth — and the AOS Constitutional Gate still fires on every action, still checks against 40 prohibited categories, still logs to an immutable ledger. The model is the substrate. The constitution is the law. And the law doesn\'t bend.',
+    },
+    {
         id: 'entire-checkpoints-git',
         date: 'February 26, 2026',
         category: 'technical',
