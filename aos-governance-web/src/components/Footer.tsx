@@ -29,6 +29,7 @@ export default function Footer() {
                         <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">AOS Constitution</a>
                         <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">AOS Evidence</a>
                         <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">AOS Foundation</a>
+                        <a href="https://aos-patents.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">Patent Registry</a>
                         <a href="https://github.com/genesalvatore/aos-openclaw-constitutional" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">OpenClaw Integration</a>
                         <a href="https://salvatoresystems.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">Salvatore Systems</a>
                     </div>

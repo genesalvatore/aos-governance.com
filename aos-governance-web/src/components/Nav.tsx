@@ -59,6 +59,7 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                             {/* Ecosystem */}
                             <div className="space-y-5">
                                 <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Ecosystem <ExtIcon /></div>
+                                <SitemapLink href="https://aos-patents.com" label="Patent Registry" desc="99 AI governance patents" />
                                 <SitemapLink href="https://governanceforwp.com" label="GovernanceForWP" desc="WordPress governance plugin" />
                                 <SitemapLink href="https://git-legacy.com" label="Git Legacy" desc="Multi-generational archives" />
                                 <SitemapLink href="https://git-iscommunity.com" label="Community" desc="Cathedral gathering" />
@@ -130,6 +131,7 @@ export default function Nav() {
                         <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Constitution</a>
                         <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Evidence</a>
                         <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Foundation</a>
+                        <a href="https://aos-patents.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Patents</a>
 
                         {/* Sitemap icon — opens modal */}
                         <button onClick={() => setSitemapOpen(true)} className="text-gray-400 hover:text-black transition-colors" title="Site Map" aria-label="Site Map">
@@ -163,6 +165,7 @@ export default function Nav() {
                                 <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
                                 <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
                                 <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Foundation</a>
+                                <a href="https://aos-patents.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Patents</a>
                             </div>
                             <button onClick={() => { setMobileMenuOpen(false); setSitemapOpen(true); }} className="block pt-2 text-xs text-gray-400 hover:text-black transition-colors">
                                 View Site Map
