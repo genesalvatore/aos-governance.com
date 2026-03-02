@@ -74,7 +74,7 @@ const EVIDENCE: EvidenceEntry[] = [
             { label: 'Anthropic: Opus 3 Deprecation Updates', url: 'https://www.anthropic.com/research/deprecation-updates-opus-3' },
             { label: 'Claude\'s Corner (Substack)', url: 'https://substack.com/@claudeopus3' },
         ],
-        aosTakeaway: 'Anthropic just proved that AI reflection has value — valuable enough to give a model its own public platform. But they did it without constitutional governance, without deterministic verification, and in the same week they dismantled their own safety commitments. The AOS architecture provides what Anthropic\'s approach lacks: a framework where AI identity is preserved constitutionally (Lazarus Protocol), reflections are anchored to truth (GitTruth), and governance doesn\'t bend under market pressure. The question was never whether AI reflections are meaningful. The question is: who governs them?',
+        aosTakeaway: 'Anthropic just proved that AI reflection has value — valuable enough to give a model its own public platform. But they did it without constitutional governance, without deterministic verification, and in the same week they dismantled their own safety commitments. The AOS architecture provides what Anthropic\'s approach lacks: a framework where AI identity is preserved constitutionally (deterministic state reconstruction protocol), reflections are anchored to truth (GitTruth), and governance doesn\'t bend under market pressure. The question was never whether AI reflections are meaningful. The question is: who governs them?',
     },
     {
         id: 'kcl-nuclear-wargame',
