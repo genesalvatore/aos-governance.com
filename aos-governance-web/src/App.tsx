@@ -43,18 +43,28 @@ interface CookiePrefs {
 }
 
 function CookieConsent() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [prefs, setPrefs] = useState<CookiePrefs>({ essential: true, analytics: false, marketing: false, preferences: false });
 
+  // Gate 1: Wait for client-side mount (prevents hydration mismatch with pre-rendered HTML)
   useEffect(() => {
+    // Don't show cookie banner during pre-rendering (Puppeteer/HeadlessChrome)
+    if (typeof navigator !== 'undefined' && /HeadlessChrome|Prerender/i.test(navigator.userAgent)) return;
+    setMounted(true);
+  }, []);
+
+  // Gate 2: Only check localStorage and show banner after mount
+  useEffect(() => {
+    if (!mounted) return;
     try {
       if (!localStorage.getItem(CONSENT_KEY)) {
         const t = setTimeout(() => setVisible(true), 1500);
         return () => clearTimeout(t);
       }
     } catch { /* no localStorage */ }
-  }, []);
+  }, [mounted]);
 
   const save = (consent: string, p: CookiePrefs) => {
     try { localStorage.setItem(CONSENT_KEY, consent); localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch { }
@@ -66,7 +76,7 @@ function CookieConsent() {
     setPrefs(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
-  if (!visible) return null;
+  if (!mounted || !visible) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] p-4" style={{ animation: 'fadeIn 0.4s ease-out' }}>
