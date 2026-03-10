@@ -1,4 +1,15 @@
 @tailwind base;
+
+/* Smooth scrolling for anchor links — respects reduced-motion preference */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 @tailwind components;
 @tailwind utilities;
 

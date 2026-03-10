@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import WhyPage from './pages/WhyPage';
@@ -162,7 +162,7 @@ function HomePage() {
               </div>
               <div className="flex gap-2">
                 <span className="font-mono text-gray-400 w-16 shrink-0">Context:</span>
-                <span>Amodei describes his "one fundamental uncertainty" — tasks that aren't verifiable. He expresses hope that safety generalizes from verifiable domains to unverifiable ones. This is the exact mechanism AOS implements with GitTruth.</span>
+                <span>Amodei describes his "one fundamental uncertainty" — tasks that aren't verifiable. He expresses hope that safety generalizes from verifiable domains to unverifiable ones. This is the exact mechanism AOS implements with AOS Attest.</span>
               </div>
             </div>
             <div className="pt-2 border-t border-gray-100 flex gap-3">
@@ -318,7 +318,7 @@ function HomePage() {
                 A deterministic script — not a prompt — checks the action against the Constitution. The result is a cryptographic hash, not a "yes" or "no" from a language model.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                <span className="text-yellow-500">[GitTruth]</span> Running verify_action.py... <span className="text-red-400">DENIED</span>
+                <span className="text-yellow-500">[AOS Attest]</span> Running verify_action.py... <span className="text-red-400">DENIED</span>
               </div>
             </div>
             <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
@@ -357,7 +357,7 @@ function HomePage() {
                     <span className="text-red-500">Probabilistic (Unsafe)</span>
                   </div>
                   <div className="flex justify-between border-b border-gray-200 pb-2">
-                    <span>GitTruth Check</span>
+                    <span>AOS Attest Check</span>
                     <span className="text-green-600">Deterministic (Safe)</span>
                   </div>
                   <div className="flex justify-between pt-2 font-bold">
@@ -483,7 +483,7 @@ function HomePage() {
             <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
               <div className="text-3xl mb-4">🔐</div>
               <h3 className="font-bold text-lg mb-2">§2 — The Verification Gate</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">No critical action may be taken without a Deterministic Verification Check. This check must be performed by code (GitTruth), not by language.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">No critical action may be taken without a Deterministic Verification Check. This check must be performed by code (AOS Attest), not by language.</p>
             </div>
             <div className="p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
               <div className="text-3xl mb-4">👤</div>
@@ -677,11 +677,40 @@ function HomePage() {
   );
 }
 
+// ─── Scroll Restoration ─────────────────────────────────────────────────────
+// Handles two cases:
+// 1. Route change (/ ↔ /why): scroll to top
+// 2. Hash link (#manifesto, #how-it-works): scroll smoothly to target element
+function ScrollRestoration() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      // Wait a tick for the DOM to be ready, then scroll to the element
+      const timer = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          const headerOffset = 80; // Nav height
+          const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      // Route change without hash — scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
+
 // ─── App (Router Shell) ─────────────────────────────────────────────────────
 export default function App() {
   useMatomo();
   return (
     <>
+      <ScrollRestoration />
       <div className="min-h-screen bg-canvas font-sans text-fg-default selection:bg-black selection:text-white">
         <Nav />
         <Routes>
