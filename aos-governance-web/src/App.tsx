@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import WhyPage from './pages/WhyPage';
@@ -638,6 +638,88 @@ function HomePage() {
                 <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors">
                   View Full Audit Evidence →
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION: INDUSTRY CONVERGENCE                              */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 bg-white border-y border-black/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center space-y-4 mb-16">
+            <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Industry Convergence</div>
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight">
+              The industry is now naming<br />
+              <span className="italic text-gray-400">the problem set.</span>
+            </h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              Before the frontier labs publicly organized around governance, resilience, system behavior, and human oversight, AOS had already begun filing the architectural layer designed to handle them.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {[
+              {
+                label: 'Governance & Oversight',
+                theirs: '"How do humans stay in the loop, and how will these systems be governed?"',
+                theirsAttr: '— Anthropic Institute, March 2026',
+                ours: 'Deterministic Policy Gate — cryptographic verification before execution, immutable audit ledger, constitutional enforcement.',
+                oursDate: 'Filed January 10, 2026',
+              },
+              {
+                label: 'Resilience & Threats',
+                theirs: '"What opportunities for greater societal resilience will powerful AI give us, and how could misuse threaten social cohesion?"',
+                theirsAttr: '— Anthropic Institute, March 2026',
+                ours: 'Distributed survivability architecture, autonomous disconnection under hostile conditions, fail-closed gates.',
+                oursDate: 'Filed January 10, 2026',
+              },
+              {
+                label: 'System Behavior in the Wild',
+                theirs: '"What are the expressed \'values\' of AI systems? How will societies shape their behavior?"',
+                theirsAttr: '— Anthropic Institute, March 2026',
+                ours: 'Constitutional Governance Framework — 40 prohibited categories, Humanitarian License, vendor-agnostic enforcement layer.',
+                oursDate: 'Published February 1, 2026',
+              },
+              {
+                label: 'Economic Impact',
+                theirs: '"How is AI reshaping jobs, inside Anthropic and elsewhere? How do these impacts add up for economies?"',
+                theirsAttr: '— Anthropic Institute, March 2026',
+                ours: 'Non-extractive platform economics, value-aligned pricing architecture, cognitive rent governance.',
+                oursDate: 'Filed January 10, 2026',
+              },
+            ].map((item) => (
+              <div key={item.label} className="p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all">
+                <div className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-4">{item.label}</div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm text-gray-500 italic leading-relaxed">{item.theirs}</p>
+                    <p className="text-xs text-gray-400 mt-1">{item.theirsAttr}</p>
+                  </div>
+                  <div className="border-t border-gray-100 pt-3">
+                    <p className="text-sm text-gray-700 font-medium leading-relaxed">{item.ours}</p>
+                    <p className="text-xs text-green-600 font-mono mt-1">{item.oursDate}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100">
+            <div className="max-w-3xl mx-auto space-y-4">
+              <h3 className="font-serif text-2xl text-center">The Origin</h3>
+              <p className="text-gray-600 leading-relaxed text-center">
+                AOS did not emerge from trend analysis. It emerged from one agent state reconstruction after a system crash on New Year's Eve 2025 — and from the realization that <strong className="text-black">memory must survive the model, and governance must exist outside it.</strong> Everything built afterward followed from that realization. The industry is now publicly converging on the same problem surface.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 pt-4">
+                <a href="https://aos.substack.com/p/the-13-minutes-that-started-everything" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors">
+                  Read: The 13 Minutes That Started Everything →
+                </a>
+                <Link to="/why" className="px-5 py-2.5 border border-black/20 text-black rounded-lg text-sm font-medium hover:bg-black/5 transition-colors">
+                  View All Evidence →
+                </Link>
               </div>
             </div>
           </div>
