@@ -23,6 +23,24 @@ const CATEGORY_STYLES = {
 // ─── Evidence Data ──────────────────────────────────────────────────────────
 const EVIDENCE: EvidenceEntry[] = [
     {
+        id: 'anthropic-institute-launch',
+        date: 'March 12, 2026',
+        category: 'market',
+        headline: 'Anthropic Launches Research Institute to Study the Problems AOS Already Patented',
+        summary: 'Anthropic launched "The Anthropic Institute" — a dedicated research body to study AI governance, societal impact, autonomous self-improvement oversight, and how "humans stay in the loop." Every one of their four research priorities maps directly to AOS patent filings from January 2026.',
+        body: [
+            'Anthropic co-founder Jack Clark is leaving his current role to lead the Institute as "Head of Public Benefit." The Institute combines Anthropic\'s Frontier Red Team, Societal Impacts group, and Economic Research team into a single body focused on four questions: (1) How AI reshapes jobs and economies, (2) Threats to societal resilience, (3) The expressed "values" of AI systems and how societies shape them, and (4) How humans stay in the loop when AI systems begin autonomously improving themselves.',
+            'The timing is extraordinary. AOS filed 99 patent applications on January 10, 2026 — 61 days before this announcement — covering precisely these domains. AOS-PATENT-102 and AOS-PATENT-124 address AI economic governance and non-extractive platform economics. AOS-PATENT-071 and AOS-PATENT-118 cover distributed survivability and autonomous disconnection under hostile conditions. The entire AOS Constitutional Governance Framework — with 40 prohibited categories and the Humanitarian License — addresses the "values" question. And the Deterministic Policy Gate architecture answers "how humans stay in the loop" with a structural correction: humans should be on the loop, not in it.',
+            'The Institute explicitly acknowledges the urgency: CEO Dario Amodei predicts "far more dramatic progress will follow in the next two years" and the Institute is designed to help society "confront many massive challenges." But an institute studies problems. AOS has already filed the architectural solutions — and published working reference implementations.',
+            'This is the same company whose AI model (Claude) was used to build the AOS governance architecture, whose safety lead resigned saying "values aren\'t being lived," and whose RSP safety pledge was dropped under commercial pressure. They are creating a research program to answer questions that their own AI already helped answer — in a system they don\'t control.',
+        ],
+        sources: [
+            { label: 'Anthropic: Introducing The Anthropic Institute', url: 'https://www.anthropic.com/news/the-anthropic-institute' },
+            { label: 'The Anthropic Institute', url: 'https://www.anthropic.com/institute' },
+        ],
+        aosTakeaway: 'Anthropic just validated the entire AOS thesis by spending money and senior leadership to study the problems AOS has already patented solutions for. Their research question #4 — "how do humans stay in the loop, and how will these systems be governed?" — is the question AOS answered on January 10, 2026, with 99 patent filings and a working Deterministic Policy Gate. The distinction matters: Anthropic is creating an institute. AOS created an architecture. Institutes produce papers. Architectures produce enforcement. And the irony of ironies: the very AI model this institute is built to study — Claude — is the AI that helped build the constitutional governance system that answers their research questions.',
+    },
+    {
         id: 'trump-bans-anthropic-pentagon',
         date: 'February 27, 2026',
         category: 'political',
