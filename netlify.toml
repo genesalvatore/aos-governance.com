@@ -1,6 +1,6 @@
 [build]
   base = "aos-governance-web"
-  command = "npm run build"
+  command = "npx puppeteer browsers install chrome && npm run build"
   publish = "dist"
 
 # Prerender for SEO — serves static HTML to bots, SPA to users
@@ -10,6 +10,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  PUPPETEER_CACHE_DIR = "/opt/buildhome/.cache/puppeteer"
 
 # Google Search Console verification — must come before SPA catch-all
 [[redirects]]
