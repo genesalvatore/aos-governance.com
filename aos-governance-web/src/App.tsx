@@ -688,8 +688,8 @@ function HomePage() {
               },
               {
                 label: 'Risk Management & Accountability',
-                theirs: '"For critical validations, consider bundling a script that performs the checks programmatically rather than relying on language instructions."',
-                theirsAttr: '— Anthropic, The Complete Guide to Building Skills for Claude, 2026',
+                theirs: '"Because the upside of AGI is so great, we do not believe it is possible or desirable for society to stop its development forever; instead, society and the developers of AGI have to figure out how to get it right."',
+                theirsAttr: '— Sam Altman, Planning for AGI and Beyond, OpenAI, February 2023',
                 ours: 'Non-extractive platform economics, value-aligned pricing architecture, cryptographic audit trails with tamper-evident state.',
                 oursDate: 'Filed January 10, 2026',
               },
