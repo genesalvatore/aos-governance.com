@@ -469,6 +469,9 @@ function HomePage() {
                   <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Autonomous safety — no human in the loop required</span></div>
                 </div>
               </div>
+              <div className="text-xs text-gray-500 italic leading-relaxed mt-4 px-1">
+                <strong className="text-gray-400 not-italic">Note:</strong> AOS was not part of the Anthropic/NASA Mars mission. This comparison is a hypothetical illustration of how a deterministic governance layer would operate in high-stakes autonomous environments like space exploration.
+              </div>
             </div>
           </div>
         </div>
