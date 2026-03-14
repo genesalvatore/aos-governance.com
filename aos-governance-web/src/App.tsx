@@ -667,15 +667,15 @@ function HomePage() {
             {[
               {
                 label: 'Governance & Oversight',
-                theirs: '"How do humans stay in the loop, and how will these systems be governed?"',
-                theirsAttr: '— Anthropic Institute, March 2026',
+                theirs: '"We recommend shared safety principles among frontier AI labs, collaborative safety research, and mechanisms to reduce \'race dynamics\' in AI development."',
+                theirsAttr: '— OpenAI, Five Policy Recommendations, November 2025',
                 ours: 'Deterministic Policy Gate — cryptographic verification before execution, immutable audit ledger, constitutional enforcement.',
                 oursDate: 'Filed January 10, 2026',
               },
               {
-                label: 'Resilience & Threats',
-                theirs: '"What opportunities for greater societal resilience will powerful AI give us, and how could misuse threaten social cohesion?"',
-                theirsAttr: '— Anthropic Institute, March 2026',
+                label: 'Resilience & Misalignment',
+                theirs: '"We need robust training practices and monitoring mechanisms to detect unsafe actions. Interpretability and transparency are crucial to make AI decision-making processes understandable."',
+                theirsAttr: '— Google DeepMind, An Approach to Technical AGI Safety and Security, April 2025',
                 ours: 'Distributed survivability architecture, autonomous disconnection under hostile conditions, fail-closed gates.',
                 oursDate: 'Filed January 10, 2026',
               },
@@ -687,10 +687,10 @@ function HomePage() {
                 oursDate: 'Published February 1, 2026',
               },
               {
-                label: 'Economic Impact',
-                theirs: '"How is AI reshaping jobs, inside Anthropic and elsewhere? How do these impacts add up for economies?"',
-                theirsAttr: '— Anthropic Institute, March 2026',
-                ours: 'Non-extractive platform economics, value-aligned pricing architecture, cognitive rent governance.',
+                label: 'Risk Management & Accountability',
+                theirs: '"Organizations should establish clear AI risk oversight, accountability, and policies — defining responsibilities, decision rights, and escalation paths."',
+                theirsAttr: '— NIST AI Risk Management Framework (AI RMF 1.0), Govern Function',
+                ours: 'Non-extractive platform economics, value-aligned pricing architecture, cryptographic audit trails with tamper-evident state.',
                 oursDate: 'Filed January 10, 2026',
               },
             ].map((item) => (
