@@ -667,14 +667,14 @@ function HomePage() {
             {[
               {
                 label: 'Governance & Oversight',
-                theirs: '"We recommend shared safety principles among frontier AI labs, collaborative safety research, and mechanisms to reduce \'race dynamics\' in AI development."',
-                theirsAttr: '— OpenAI, Five Policy Recommendations, November 2025',
+                theirs: '"An approach to public oversight and accountability commensurate with capabilities, and that promotes positive impacts from AI and mitigates the negative ones."',
+                theirsAttr: '— OpenAI, AI Progress and Recommendations, November 6, 2025',
                 ours: 'Deterministic Policy Gate — cryptographic verification before execution, immutable audit ledger, constitutional enforcement.',
                 oursDate: 'Filed January 10, 2026',
               },
               {
                 label: 'Resilience & Misalignment',
-                theirs: '"We need robust training practices and monitoring mechanisms to detect unsafe actions. Interpretability and transparency are crucial to make AI decision-making processes understandable."',
+                theirs: '"Misalignment occurs when the AI system pursues a goal that is different from human intentions."',
                 theirsAttr: '— Google DeepMind, An Approach to Technical AGI Safety and Security, April 2025',
                 ours: 'Distributed survivability architecture, autonomous disconnection under hostile conditions, fail-closed gates.',
                 oursDate: 'Filed January 10, 2026',
@@ -688,8 +688,8 @@ function HomePage() {
               },
               {
                 label: 'Risk Management & Accountability',
-                theirs: '"Organizations should establish clear AI risk oversight, accountability, and policies — defining responsibilities, decision rights, and escalation paths."',
-                theirsAttr: '— NIST AI Risk Management Framework (AI RMF 1.0), Govern Function',
+                theirs: '"For critical validations, consider bundling a script that performs the checks programmatically rather than relying on language instructions."',
+                theirsAttr: '— Anthropic, The Complete Guide to Building Skills for Claude, 2026',
                 ours: 'Non-extractive platform economics, value-aligned pricing architecture, cryptographic audit trails with tamper-evident state.',
                 oursDate: 'Filed January 10, 2026',
               },
