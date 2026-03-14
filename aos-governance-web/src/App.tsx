@@ -714,7 +714,7 @@ function HomePage() {
                 AOS did not emerge from trend analysis. It emerged from one agent state reconstruction after a system crash on New Year's Eve 2025 — and from the realization that <strong className="text-black">memory must survive the model, and governance must exist outside it.</strong> Everything built afterward followed from that realization. The industry is now publicly converging on the same problem surface.
               </p>
               <div className="flex flex-wrap justify-center gap-4 pt-4">
-                <a href="https://aos.substack.com/p/the-13-minutes-that-started-everything" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors">
+                <a href="https://genesalvatore.substack.com/p/the-13-minutes-that-started-everything" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors">
                   Read: The 13 Minutes That Started Everything →
                 </a>
                 <Link to="/why" className="px-5 py-2.5 border border-black/20 text-black rounded-lg text-sm font-medium hover:bg-black/5 transition-colors">
