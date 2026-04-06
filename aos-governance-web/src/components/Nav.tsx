@@ -119,7 +119,17 @@ export default function Nav() {
         <>
             <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f5f2eb] backdrop-blur-md border-b border-black/5 shadow-sm">
                 <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-                    <Link to="/" className="font-bold tracking-tight text-lg">AOS GOVERNANCE</Link>
+                    <Link to="/" className="flex items-center gap-2.5 group">
+                        <svg className="w-8 h-8 text-black transition-colors" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="50,20 80,40 50,100" fill="none" stroke="currentColor" strokeWidth="8"/>
+                            <polygon points="50,40 70,55 50,80" fill="currentColor" />
+                            <line x1="35" y1="10" x2="35" y2="90" stroke="currentColor" strokeWidth="12" />
+                        </svg>
+                        <div className="flex flex-col pt-0.5">
+                            <span className="font-sans text-[22px] font-extrabold leading-none text-black tracking-tight transition-colors">AOS</span>
+                            <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-gray-500 mt-1 uppercase transition-colors">Governance</span>
+                        </div>
+                    </Link>
                     <div className="hidden md:flex gap-6 text-sm font-medium text-gray-600 items-center">
                         <Link to="/why" className="hover:text-black transition-colors">Why Governance</Link>
                         <a href="/#how-it-works" className="hover:text-black transition-colors">How It Works</a>
