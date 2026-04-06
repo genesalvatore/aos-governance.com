@@ -139,10 +139,65 @@ function CookieConsent() {
   );
 }
 
+// ─── Hero Slide Data ────────────────────────────────────────────────────────
+// Add new slides here. Types:
+//   'quote'        — Industry quote with citation modal (onClick opens modal)
+//   'policy'       — Policy response with internal link (/policy-response)
+//   'announcement' — General announcement with optional external link
+interface HeroSlide {
+  type: 'quote' | 'policy' | 'announcement';
+  badge?: string;
+  text: string;
+  attribution: string;
+  citationKey?: string;        // for quotes — maps to citation modal
+  link?: string;               // internal or external link
+  linkLabel?: string;          // button text
+  linkExternal?: boolean;      // true = external link
+}
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    type: 'quote',
+    text: '"We already see substantial generalization from things that verify to things that don\'t."',
+    attribution: '— Dario Amodei, CEO Anthropic',
+    citationKey: 'amodei',
+  },
+  {
+    type: 'policy',
+    badge: 'NEW — APRIL 6, 2026',
+    text: 'AOS Policy Response: OpenAI\'s "Industrial Policy for the Intelligence Age" — mapped to existing AOS architectural implementations and patent portfolio.',
+    attribution: '— Gene Salvatore, Founder, AOS',
+    link: '/policy-response',
+    linkLabel: 'Read the Policy Response →',
+  },
+  {
+    type: 'quote',
+    text: '"For critical validations, consider bundling a script that performs the checks programmatically rather than relying on language instructions."',
+    attribution: '— Anthropic, The Complete Guide to Building Skills for Claude',
+    citationKey: 'anthropic',
+  },
+];
+
 // ─── HomePage ───────────────────────────────────────────────────────────────
 function HomePage() {
   const [showCitation, setShowCitation] = useState(false);
   const [showAnthropicCite, setShowAnthropicCite] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Auto-rotate slides
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setActiveSlide(prev => (prev + 1) % HERO_SLIDES.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [paused]);
+
+  const handleSlideClick = (slide: HeroSlide) => {
+    if (slide.citationKey === 'amodei') setShowCitation(true);
+    else if (slide.citationKey === 'anthropic') setShowAnthropicCite(true);
+  };
 
   return (
     <>
@@ -239,14 +294,84 @@ function HomePage() {
             The Bridge Between <br />
             <span className="italic text-gray-500">Verification</span> and <span className="italic text-gray-500">Intelligence</span>.
           </h1>
-          <button onClick={() => setShowCitation(true)} className="text-left text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed group cursor-pointer hover:text-gray-800 transition-colors">
-            "We already see substantial generalization from things that verify to things that don't." <br />
-            <span className="text-base mt-2 flex items-center gap-2">
-              — Dario Amodei, CEO Anthropic
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 text-[10px] font-mono text-gray-400 group-hover:border-black group-hover:text-black transition-colors">i</span>
-            </span>
-          </button>
-          <div className="pt-8 flex flex-wrap gap-4">
+
+          {/* ─── Hero Slider ─── */}
+          <div
+            className="relative min-h-[120px]"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            {HERO_SLIDES.map((slide, i) => (
+              <div
+                key={i}
+                className="transition-all duration-700 ease-in-out absolute inset-0"
+                style={{
+                  opacity: i === activeSlide ? 1 : 0,
+                  transform: i === activeSlide ? 'translateY(0)' : 'translateY(8px)',
+                  pointerEvents: i === activeSlide ? 'auto' : 'none',
+                }}
+              >
+                {slide.badge && (
+                  <div className="inline-block px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full bg-amber-50 text-amber-700 border border-amber-200 mb-3">
+                    {slide.badge}
+                  </div>
+                )}
+
+                {slide.type === 'quote' ? (
+                  <button onClick={() => handleSlideClick(slide)} className="text-left text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed group cursor-pointer hover:text-gray-800 transition-colors">
+                    {slide.text} <br />
+                    <span className="text-base mt-2 flex items-center gap-2">
+                      {slide.attribution}
+                      <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 text-[10px] font-mono text-gray-400 group-hover:border-black group-hover:text-black transition-colors">i</span>
+                    </span>
+                  </button>
+                ) : slide.type === 'policy' ? (
+                  <div className="space-y-3">
+                    <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
+                      {slide.text}
+                    </p>
+                    <p className="text-base text-gray-500">{slide.attribution}</p>
+                    {slide.link && (
+                      <Link to={slide.link} className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors border-b border-black/20 hover:border-black pb-0.5">
+                        {slide.linkLabel}
+                      </Link>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">{slide.text}</p>
+                    <p className="text-base text-gray-500">{slide.attribution}</p>
+                    {slide.link && (
+                      <a href={slide.link} target={slide.linkExternal ? '_blank' : undefined} rel={slide.linkExternal ? 'noopener noreferrer' : undefined} className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors border-b border-black/20 hover:border-black pb-0.5">
+                        {slide.linkLabel}
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Slider Controls */}
+            <div className="absolute -bottom-8 left-0 flex items-center gap-3">
+              {HERO_SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveSlide(i)}
+                  className={`transition-all duration-300 rounded-full ${
+                    i === activeSlide
+                      ? 'w-8 h-2 bg-black'
+                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-500'
+                  }`}
+                  aria-label={`Slide ${i + 1}`}
+                />
+              ))}
+              <span className="text-[10px] font-mono text-gray-300 ml-2">
+                {activeSlide + 1}/{HERO_SLIDES.length}
+              </span>
+            </div>
+          </div>
+
+          <div className="pt-16 flex flex-wrap gap-4">
             <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
               Get the Standard
             </a>
