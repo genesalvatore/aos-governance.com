@@ -32,6 +32,7 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                             <SitemapLink href="/#standard" label="The Constitution" desc="Five governing principles" internal />
                             <SitemapLink href="/#mars" label="Mars Precedent" desc="Claude on Mars case study" internal />
                             <SitemapLink href="/#get-started" label="Get Started" desc="Adopt the standard" internal />
+                            <SitemapLink href="/policy-response" label="Policy Response" desc="OpenAI Industrial Policy alignment" internal />
                         </div>
 
                         {/* Right Column - Learn */}
@@ -71,7 +72,7 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
 
                 {/* Footer */}
                 <div className="sticky bottom-0 bg-white border-t border-gray-100 px-6 py-3 flex items-center justify-between rounded-b-2xl">
-                    <span className="text-xs text-gray-400">7 pages</span>
+                    <span className="text-xs text-gray-400">8 pages</span>
                     <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-black transition-colors flex items-center gap-1">
                         View Source <ExtIcon />
                     </a>

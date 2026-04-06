@@ -17,6 +17,7 @@ export default function Footer() {
                         <a href="/#standard" className="block text-sm text-gray-600 hover:text-black transition-colors">Constitution</a>
                         <a href="/#how-it-works" className="block text-sm text-gray-600 hover:text-black transition-colors">How It Works</a>
                         <Link to="/why" className="block text-sm text-gray-600 hover:text-black transition-colors">Why Governance</Link>
+                        <Link to="/policy-response" className="block text-sm text-gray-600 hover:text-black transition-colors">Policy Response</Link>
                     </div>
                     <div className="space-y-3">
                         <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Resources</div>

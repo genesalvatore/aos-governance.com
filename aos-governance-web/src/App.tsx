@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import WhyPage from './pages/WhyPage';
+import PolicyResponsePage from './pages/PolicyResponsePage';
 
 // ─── Matomo Analytics (Site ID: 22) ─────────────────────────────────────────
 declare global {
@@ -757,8 +758,8 @@ function HomePage() {
                 <div className="text-sm text-gray-500">Uptime Track Record</div>
               </div>
               <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="text-3xl font-bold tracking-tight mb-1">137+</div>
-                <div className="text-sm text-gray-500">Codified Patent Filings</div>
+                <div className="text-3xl font-bold tracking-tight mb-1">99</div>
+                <div className="text-sm text-gray-500">Pending Patent Filings</div>
               </div>
               <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
                 <div className="text-3xl font-bold tracking-tight mb-1">15</div>
@@ -811,6 +812,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/why" element={<WhyPage />} />
+          <Route path="/policy-response" element={<PolicyResponsePage />} />
         </Routes>
         <Footer />
       </div>

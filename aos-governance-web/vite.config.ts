@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     prerender({
-      routes: ['/', '/why'],
+      routes: ['/', '/why', '/policy-response'],
       renderer: new PuppeteerRenderer({
         renderAfterTime: 2000,
         headless: true,
@@ -22,6 +22,13 @@ export default defineConfig({
           renderedRoute.html = renderedRoute.html.replace(
             '<title>AOS Governance — The Open Standard for Verifiable AI Safety</title>',
             '<title>Why AI Governance | AOS Governance</title>'
+          );
+        }
+        // Fix title for /policy-response page
+        if (renderedRoute.route === '/policy-response') {
+          renderedRoute.html = renderedRoute.html.replace(
+            '<title>AOS Governance — The Open Standard for Verifiable AI Safety</title>',
+            '<title>AOS Policy Response — OpenAI Industrial Policy | AOS Governance</title>'
           );
         }
         return renderedRoute;
