@@ -66,9 +66,34 @@ const PAGE_SEO = {
         },
     },
     '/policy-response': {
+        title: 'Policy Responses — Institutional Engagement | AOS Governance',
+        description: 'Formal policy responses mapping industry governance proposals to existing AOS architectural implementations and patent portfolio. Evidence-based engagement with institutional AI governance frameworks.',
+        canonical: 'https://aos-governance.com/policy-response',
+        ogTitle: 'Policy Responses — Institutional Engagement',
+        ogType: 'website',
+        jsonLd: {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "AOS Policy Responses — Institutional Engagement",
+            "description": "Formal policy responses mapping industry governance proposals to existing AOS architectural implementations and patent portfolio.",
+            "url": "https://aos-governance.com/policy-response",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "AOS Governance",
+                "url": "https://aos-governance.com"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "AOS Foundation",
+                "url": "https://aos-foundation.com"
+            },
+            "inLanguage": "en-US"
+        },
+    },
+    '/policy-response/openai-industrial-policy-april-2026': {
         title: 'AOS Policy Response — OpenAI Industrial Policy for the Intelligence Age | AOS Governance',
         description: 'Formal policy response mapping OpenAI\'s April 2026 "Industrial Policy for the Intelligence Age" governance requirements to existing AOS architectural implementations and patent portfolio. Prepared by Gene Salvatore, Founder, Agentic Operating System.',
-        canonical: 'https://aos-governance.com/policy-response',
+        canonical: 'https://aos-governance.com/policy-response/openai-industrial-policy-april-2026',
         ogTitle: 'AOS Policy Response — OpenAI\'s Industrial Policy for the Intelligence Age',
         ogType: 'article',
         jsonLd: {
@@ -76,7 +101,7 @@ const PAGE_SEO = {
             "@type": "TechArticle",
             "headline": "AOS Policy Response — OpenAI's Industrial Policy for the Intelligence Age",
             "description": "Formal policy response mapping OpenAI's April 2026 governance requirements to existing AOS architectural implementations including the Deterministic Policy Gate, AOS Attest, and Constitutional Governance Framework.",
-            "url": "https://aos-governance.com/policy-response",
+            "url": "https://aos-governance.com/policy-response/openai-industrial-policy-april-2026",
             "datePublished": "2026-04-06",
             "dateModified": "2026-04-06",
             "author": {
@@ -228,6 +253,11 @@ function injectGEOContent(htmlPath, route) {
             <p>The AOS thesis, unchanged since January 2026: Governance must be deterministic, constitutional, and application-layer — never dependent on the model provider's goodwill or corporate stability.</p>
         `,
         '/policy-response': `
+            <h2>AOS Policy Responses — Institutional Engagement</h2>
+            <p>Formal policy responses mapping industry governance proposals to existing AOS architectural implementations and patent portfolio. Each response documents the alignment between stated policy requirements and available technical infrastructure.</p>
+            <p>Published responses include: AOS Policy Response to OpenAI's "Industrial Policy for the Intelligence Age" (April 6, 2026).</p>
+        `,
+        '/policy-response/openai-industrial-policy-april-2026': `
             <h2>AOS Policy Response to OpenAI's Industrial Policy for the Intelligence Age — April 2026</h2>
             <p>Prepared by Gene Salvatore, Founder, Agentic Operating System (AOS). Published April 6, 2026.</p>
             <p>This document maps specific governance requirements from OpenAI's April 2026 policy framework to existing AOS architectural implementations:</p>
@@ -272,6 +302,7 @@ function main() {
         '/': path.join(distDir, 'index.html'),
         '/why': path.join(distDir, 'why', 'index.html'),
         '/policy-response': path.join(distDir, 'policy-response', 'index.html'),
+        '/policy-response/openai-industrial-policy-april-2026': path.join(distDir, 'policy-response', 'openai-industrial-policy-april-2026', 'index.html'),
     };
 
     console.log('── SEO Meta Tags ──');

@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import WhyPage from './pages/WhyPage';
 import PolicyResponsePage from './pages/PolicyResponsePage';
+import PolicyResponseOpenAI2026 from './pages/PolicyResponseOpenAI2026';
 
 // ─── Matomo Analytics (Site ID: 22) ─────────────────────────────────────────
 declare global {
@@ -167,7 +168,7 @@ const HERO_SLIDES: HeroSlide[] = [
     badge: 'NEW — APRIL 6, 2026',
     text: 'AOS Policy Response: OpenAI\'s "Industrial Policy for the Intelligence Age" — mapped to existing AOS architectural implementations and patent portfolio.',
     attribution: '— Gene Salvatore, Founder, AOS',
-    link: '/policy-response',
+    link: '/policy-response/openai-industrial-policy-april-2026',
     linkLabel: 'Read the Policy Response →',
   },
   {
@@ -311,12 +312,6 @@ function HomePage() {
                   pointerEvents: i === activeSlide ? 'auto' : 'none',
                 }}
               >
-                {slide.badge && (
-                  <div className="inline-block px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full bg-amber-50 text-amber-700 border border-amber-200 mb-3">
-                    {slide.badge}
-                  </div>
-                )}
-
                 {slide.type === 'quote' ? (
                   <button onClick={() => handleSlideClick(slide)} className="text-left text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed group cursor-pointer hover:text-gray-800 transition-colors">
                     {slide.text} <br />
@@ -327,18 +322,32 @@ function HomePage() {
                   </button>
                 ) : slide.type === 'policy' ? (
                   <div className="space-y-3">
+                    <div className="flex flex-wrap items-center gap-3">
+                      {slide.badge && (
+                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                          {slide.badge}
+                        </span>
+                      )}
+                      {slide.link && (
+                        <Link to={slide.link} className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-black bg-black/5 hover:bg-black hover:text-white rounded-full transition-all duration-200">
+                          {slide.linkLabel}
+                        </Link>
+                      )}
+                    </div>
                     <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
                       {slide.text}
                     </p>
                     <p className="text-base text-gray-500">{slide.attribution}</p>
-                    {slide.link && (
-                      <Link to={slide.link} className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors border-b border-black/20 hover:border-black pb-0.5">
-                        {slide.linkLabel}
-                      </Link>
-                    )}
                   </div>
                 ) : (
                   <div className="space-y-3">
+                    {slide.badge && (
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                          {slide.badge}
+                        </span>
+                      </div>
+                    )}
                     <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">{slide.text}</p>
                     <p className="text-base text-gray-500">{slide.attribution}</p>
                     {slide.link && (
@@ -350,25 +359,25 @@ function HomePage() {
                 )}
               </div>
             ))}
+          </div>
 
-            {/* Slider Controls */}
-            <div className="absolute -bottom-8 left-0 flex items-center gap-3">
-              {HERO_SLIDES.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveSlide(i)}
-                  className={`transition-all duration-300 rounded-full ${
-                    i === activeSlide
-                      ? 'w-8 h-2 bg-black'
-                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-500'
-                  }`}
-                  aria-label={`Slide ${i + 1}`}
-                />
-              ))}
-              <span className="text-[10px] font-mono text-gray-300 ml-2">
-                {activeSlide + 1}/{HERO_SLIDES.length}
-              </span>
-            </div>
+          {/* Slider Controls — below the slider, not overlapping */}
+          <div className="flex items-center gap-3 pt-4">
+            {HERO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveSlide(i)}
+                className={`transition-all duration-300 rounded-full ${
+                  i === activeSlide
+                    ? 'w-8 h-2 bg-black'
+                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-500'
+                }`}
+                aria-label={`Slide ${i + 1}`}
+              />
+            ))}
+            <span className="text-[10px] font-mono text-gray-300 ml-2">
+              {activeSlide + 1}/{HERO_SLIDES.length}
+            </span>
           </div>
 
           <div className="pt-16 flex flex-wrap gap-4">
@@ -938,6 +947,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/why" element={<WhyPage />} />
           <Route path="/policy-response" element={<PolicyResponsePage />} />
+          <Route path="/policy-response/openai-industrial-policy-april-2026" element={<PolicyResponseOpenAI2026 />} />
         </Routes>
         <Footer />
       </div>
