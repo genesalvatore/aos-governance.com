@@ -140,10 +140,10 @@ export default function Nav() {
                         <div className="w-px h-4 bg-black/15 mx-1" />
 
                         {/* Ecosystem */}
-                        <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Constitution</a>
-                        <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Evidence</a>
-                        <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Foundation</a>
-                        <a href="https://aos-patents.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Patents</a>
+                        <a href="https://aos-constitution.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Constitution</a>
+                        <a href="https://aos-evidence.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Evidence</a>
+                        <a href="https://aos-foundation.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Foundation</a>
+                        <a href="https://aos-patents.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Patents</a>
 
                         {/* Sitemap icon — opens modal */}
                         <button onClick={() => setSitemapOpen(true)} className="text-gray-400 hover:text-black transition-colors" title="Site Map" aria-label="Site Map">
@@ -175,10 +175,10 @@ export default function Nav() {
                             <Link to="/policy-response" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Policy</Link>
                             <a href="/#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Standard</a>
                             <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
-                                <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
-                                <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Evidence</a>
-                                <a href="https://aos-foundation.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Foundation</a>
-                                <a href="https://aos-patents.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Patents</a>
+                                <a href="https://aos-constitution.com" className="text-gray-400 hover:text-black">Constitution</a>
+                                <a href="https://aos-evidence.com" className="text-gray-400 hover:text-black">Evidence</a>
+                                <a href="https://aos-foundation.com" className="text-gray-400 hover:text-black">Foundation</a>
+                                <a href="https://aos-patents.com" className="text-gray-400 hover:text-black">Patents</a>
                             </div>
                             <button onClick={() => { setMobileMenuOpen(false); setSitemapOpen(true); }} className="block pt-2 text-xs text-gray-400 hover:text-black transition-colors">
                                 View Site Map
