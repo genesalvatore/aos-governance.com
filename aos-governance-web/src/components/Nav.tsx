@@ -60,7 +60,7 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                             {/* Ecosystem */}
                             <div className="space-y-5">
                                 <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Ecosystem <ExtIcon /></div>
-                                <SitemapLink href="https://aos-patents.com" label="Patent Registry" desc="99 AI governance patents" />
+                                <SitemapLink href="https://aos-patents.com" label="Patent Registry" desc="145 AI governance patents" />
                                 <SitemapLink href="https://governanceforwp.com" label="GovernanceForWP" desc="WordPress governance plugin" />
                                 <SitemapLink href="https://git-legacy.com" label="Git Legacy" desc="Multi-generational archives" />
                                 <SitemapLink href="https://git-iscommunity.com" label="Community" desc="Cathedral gathering" />
@@ -174,11 +174,14 @@ export default function Nav() {
                             <a href="/#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How</a>
                             <Link to="/policy-response" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Policy</Link>
                             <a href="/#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Standard</a>
-                            <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
-                                <a href="https://aos-constitution.com" className="text-gray-400 hover:text-black">Constitution</a>
-                                <a href="https://aos-evidence.com" className="text-gray-400 hover:text-black">Evidence</a>
-                                <a href="https://aos-foundation.com" className="text-gray-400 hover:text-black">Foundation</a>
-                                <a href="https://aos-patents.com" className="text-gray-400 hover:text-black">Patents</a>
+                            <div className="pt-3 mt-1 border-t border-black/10">
+                                <div className="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-2">AOS Ecosystem</div>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <a href="https://aos-constitution.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Constitution</a>
+                                    <a href="https://aos-evidence.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Evidence</a>
+                                    <a href="https://aos-foundation.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Foundation</a>
+                                    <a href="https://aos-patents.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Patents</a>
+                                </div>
                             </div>
                             <button onClick={() => { setMobileMenuOpen(false); setSitemapOpen(true); }} className="block pt-2 text-xs text-gray-400 hover:text-black transition-colors">
                                 View Site Map

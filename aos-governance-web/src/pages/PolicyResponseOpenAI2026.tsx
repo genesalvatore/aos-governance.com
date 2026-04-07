@@ -343,7 +343,8 @@ export default function PolicyResponseOpenAI2026() {
                         </p>
                     </div>
 
-                    <div className="overflow-x-auto">
+                    {/* Desktop Table */}
+                    <div className="hidden md:block overflow-x-auto">
                         <table className="w-full text-sm border-collapse">
                             <thead>
                                 <tr className="border-b-2 border-gray-200">
@@ -364,6 +365,20 @@ export default function PolicyResponseOpenAI2026() {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+
+                    {/* Mobile Cards */}
+                    <div className="md:hidden space-y-3">
+                        {PATENT_REFS.map((ref, i) => (
+                            <div key={i} className="p-4 border border-gray-100 rounded-xl bg-white">
+                                <div className="flex items-start justify-between gap-2 mb-2">
+                                    <span className="font-mono text-xs font-bold text-black">{ref.aosId}</span>
+                                    <span className="text-xs text-gray-400 whitespace-nowrap">{ref.filingDate}</span>
+                                </div>
+                                <p className="text-sm text-gray-700 leading-relaxed mb-2">{ref.title}</p>
+                                <span className="font-mono text-xs text-gray-400">{ref.usptoNo}</span>
+                            </div>
+                        ))}
                     </div>
 
                     {/* Filing Waves */}
