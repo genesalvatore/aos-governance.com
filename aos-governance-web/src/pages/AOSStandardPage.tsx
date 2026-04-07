@@ -91,7 +91,7 @@ export default function AOSStandardPage() {
             `}} />
 
             {/* ─── SCREEN-ONLY HERO ─── */}
-            <section className="relative pt-32 pb-20 px-6 md:px-12 lg:px-24 print:hidden border-b border-black/5 bg-gray-50">
+            <section className="relative pt-32 pb-12 px-6 md:px-12 lg:px-24 print:hidden border-b border-black/5 bg-gray-50">
                 <div className="max-w-4xl mx-auto space-y-6">
                     <Link to="/policy-response" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors font-medium">
                         ← Back to Policy & Standards
@@ -143,11 +143,11 @@ export default function AOSStandardPage() {
             </div>
 
             {/* ─── DOCUMENT BODY (Used for both Print and Screen) ─── */}
-            <article className="py-16 md:py-24 px-6 md:px-12 lg:px-24 print:py-0 print:px-[0.25in]">
+            <article className="pt-10 pb-16 md:pt-16 md:pb-24 px-6 md:px-12 lg:px-24 print:py-0 print:px-[0.25in]">
                 <div className="max-w-4xl mx-auto print:max-w-[7in]">
                     
                     <div className="max-w-none print:text-black print:leading-[1.8] text-gray-800 text-lg leading-relaxed [&_p]:mb-6 print:[&_p]:mb-8 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-8 [&_li]:mb-3 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:mt-16 [&_h2]:mb-8 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:mt-12 [&_h3]:mb-6 print:[&_h2]:font-sans print:[&_h2]:font-bold print:[&_h2]:text-[2rem] print:[&_h3]:text-[1.35rem]">
-                        <h2>Abstract</h2>
+                        <h2 className="!mt-0">Abstract</h2>
                         <p>
                             This document defines the AOS governance standard for autonomous AI systems. It specifies a five-layer architecture — deterministic policy enforcement, cryptographic audit infrastructure, kernel-level containment, constitutional governance, and frontier-domain scaling — that provides verifiable governance for AI agents operating in enterprise, physical, orbital, and mass-deployment environments. The standard is model-agnostic, operates outside the model's process space, and is supported by 101 provisional patent applications filed with the USPTO beginning January 10, 2026. It is published for evaluation, criticism, and adoption.
                         </p>
