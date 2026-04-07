@@ -220,6 +220,9 @@ export default function AOSStandardPage() {
                         </p>
 
                         <h3 className="print:break-before-avoid">1.3 The Labor Transition</h3>
+                        <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
+                            Patent basis: AOS-PATENT-133 (USPTO 63/958,268, filed Jan 12, 2026)
+                        </p>
                         <p>
                             AI automation will displace workers. This is not a debate — it is a mathematical certainty as agent capabilities increase. The question is whether the transition is managed or abandoned.
                         </p>
