@@ -20,7 +20,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
         openaiRequirement: 'Secure, verifiable signatures for actions such as generating content or issuing instructions',
         sourceSection: 'AI Trust Stack',
         aosImplementation: 'Intent Declaration Protocol — Agents submit structured intent payloads to a Deterministic Policy Gate (DPG) prior to execution. Each action is evaluated against cryptographically signed policy manifests. Unsigned or non-conforming actions are rejected deterministically.',
-        status: 'Patent pending — AOS-PATENT-009 (USPTO 63/957,817, filed January 10, 2026; amended 63/957,856)',
+        status: 'Patent pending — AOS-PATENT-015 (USPTO 63/957,869, filed January 10, 2026; amended 63/957,920)',
     },
     {
         openaiRequirement: 'Governance frameworks that clarify responsibility within organizations, including how accountability could be assigned to specific roles and how delegation, monitoring, and escalation processes could function',
@@ -50,7 +50,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
         openaiRequirement: 'Harden frontier systems against corporate or insider capture by securing model weights and training infrastructure',
         sourceSection: 'Corporate Governance',
         aosImplementation: 'Process Isolation Architecture — Reasoning and execution operate in separate process spaces with distinct privilege levels. The governance layer runs with elevated kernel privileges that the agent process cannot access, modify, or observe. This separation is enforced by the operating system, not by the model.',
-        status: 'Patent pending — AOS-PATENT-015 (USPTO 63/957,869, filed January 10, 2026; amended 63/957,920), AOS-PATENT-015-A (USPTO 63/969,499, filed January 27, 2026)',
+        status: 'Patent pending — AOS-PATENT-015 (USPTO 63/957,869, filed January 10, 2026; amended 63/957,920), AOS-PATENT-012 (USPTO 63/957,820, filed January 10, 2026; amended 63/957,860)',
     },
     {
         openaiRequirement: 'Establish clear rules for how governments can and cannot use AI, with especially high standards for reliability, alignment, and safety',
