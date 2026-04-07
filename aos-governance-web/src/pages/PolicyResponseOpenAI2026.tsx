@@ -14,7 +14,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
         openaiRequirement: 'Privacy-preserving logging and audit systems capable of supporting investigation and accountability without enabling pervasive surveillance',
         sourceSection: 'AI Trust Stack',
         aosImplementation: 'AOS Attest — Merkle-tree authenticated audit trail providing tamper-evident cryptographic verification of agent actions. Telemetry pipelines are physically unmapped from the agent\'s memory space, preventing retrospective manipulation while preserving complete forensic records.',
-        status: 'Patent pending — AOS-PATENT-141 (USPTO 63/993,715, filed March 1, 2026), AOS-PATENT-142 (USPTO 63/993,716, filed March 1, 2026)',
+        status: 'Patent pending — AOS-PATENT-119 (USPTO 63/957,864, filed January 10, 2026; amended 63/957,925), AOS-PATENT-120 (USPTO 63/957,884, filed January 10, 2026; amended 63/957,915)',
     },
     {
         openaiRequirement: 'Secure, verifiable signatures for actions such as generating content or issuing instructions',
@@ -50,7 +50,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
         openaiRequirement: 'Harden frontier systems against corporate or insider capture by securing model weights and training infrastructure',
         sourceSection: 'Corporate Governance',
         aosImplementation: 'Process Isolation Architecture — Reasoning and execution operate in separate process spaces with distinct privilege levels. The governance layer runs with elevated kernel privileges that the agent process cannot access, modify, or observe. This separation is enforced by the operating system, not by the model.',
-        status: 'Patent pending — AOS-PATENT-009 (USPTO 63/957,817, filed January 10, 2026), AOS-PATENT-141 (USPTO 63/993,715, filed March 1, 2026)',
+        status: 'Patent pending — AOS-PATENT-015 (USPTO 63/957,869, filed January 10, 2026; amended 63/957,920), AOS-PATENT-015-A (USPTO 63/969,499, filed January 27, 2026)',
     },
     {
         openaiRequirement: 'Establish clear rules for how governments can and cannot use AI, with especially high standards for reliability, alignment, and safety',
@@ -62,7 +62,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
         openaiRequirement: 'Near-miss reporting could include cases where models exhibited concerning internal reasoning, unexpected capabilities, or other warning signals',
         sourceSection: 'Incident Reporting',
         aosImplementation: 'Deterministic Telemetry Pipelines — All agent actions, including rejected actions, are logged with cryptographic integrity verification. Near-miss data (actions proposed but denied by the DPG) is preserved with the same forensic rigor as executed actions, providing a complete record of both behavior and intent.',
-        status: 'Patent pending — AOS-PATENT-141 (USPTO 63/993,715, filed March 1, 2026), AOS-PATENT-142 (USPTO 63/993,716, filed March 1, 2026), AOS-PATENT-143 (USPTO 63/993,718, filed March 1, 2026)',
+        status: 'Patent pending — AOS-PATENT-119 (USPTO 63/957,864, filed January 10, 2026; amended 63/957,925), AOS-PATENT-120 (USPTO 63/957,884, filed January 10, 2026; amended 63/957,915), AOS-PATENT-015 (USPTO 63/957,869, filed January 10, 2026)',
     },
 ];
 
