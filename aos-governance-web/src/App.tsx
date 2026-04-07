@@ -381,7 +381,7 @@ function HomePage() {
           </div>
 
           <div className="pt-16 flex flex-wrap gap-4">
-            <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
+            <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
               Get the Standard
             </a>
             <a href="#manifesto" className="px-6 py-3 border border-black/20 text-black rounded-lg font-medium hover:bg-black/5 transition-colors text-center">
@@ -665,18 +665,18 @@ function HomePage() {
           <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Get Started</div>
           <h2 className="font-serif text-4xl md:text-5xl">Adopt the Standard</h2>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            The AOS Governance Standard is platform-agnostic. It works with any AI agent — Claude, ChatGPT, Gemini, LLaMA, or your own. The reference implementation is packaged as a portable skill folder.
+            The AOS Governance Standard is platform-agnostic. It works with any AI agent — Claude, ChatGPT, Gemini, LLaMA, or your own. Deploy in one command with Docker.
           </p>
           <div className="bg-gray-900 rounded-xl p-6 text-left font-mono text-sm text-gray-300 max-w-2xl mx-auto">
-            <div className="text-gray-500 mb-2"># Clone the repository</div>
-            <div className="text-green-400">$ git clone https://github.com/genesalvatore/aos-governance.com.git</div>
-            <div className="text-gray-500 mt-4 mb-2"># Copy the governance standard to your agent's workspace</div>
-            <div className="text-green-400">$ cp -r aos-governance.com/aos-governance ./your-agent/governance/</div>
-            <div className="text-gray-500 mt-4 mb-2"># Set the constitution path</div>
-            <div className="text-green-400">$ export AOS_CONSTITUTION_PATH=./governance/aos-governance/references</div>
+            <div className="text-gray-500 mb-2"># Clone the AOS Gate</div>
+            <div className="text-green-400">$ git clone https://github.com/genesalvatore/aos-gate.com.git</div>
+            <div className="text-gray-500 mt-4 mb-2"># Start the governance proxy + dashboard</div>
+            <div className="text-green-400">$ cd aos-gate.com && docker compose up -d</div>
+            <div className="text-gray-500 mt-4 mb-2"># Open the admin dashboard</div>
+            <div className="text-green-400">$ open http://localhost:3101</div>
           </div>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
-            <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
+            <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
               View on GitHub
             </a>
           </div>
@@ -693,10 +693,10 @@ function HomePage() {
               <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Anatomy of the Standard</div>
               <h2 className="font-serif text-4xl">What's Inside</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                The AOS Governance Standard is a portable folder containing instructions, verification scripts, and constitutional references. The reference implementation follows Anthropic's Skill format — but the standard itself is universal.
+                AOS Gate is a single Docker container — a transparent audit proxy with an enterprise admin dashboard. It sits between your AI workflow tools and the LLM provider, logging every exchange and enforcing your policy rules.
               </p>
               <p className="text-gray-500 leading-relaxed">
-                It intercepts agent actions, runs deterministic verification checks, and logs every decision to an immutable audit trail. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
+                It intercepts agent actions, runs deterministic verification checks, detects PII, enforces model allowlists, and exports tamper-evident audit trails. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
               </p>
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg mt-4">
                 <div className="flex items-start gap-3">
@@ -704,40 +704,43 @@ function HomePage() {
                   <div>
                     <p className="text-sm font-semibold text-amber-900">Open Methodology. Patent-Pending Enforcement.</p>
                     <p className="text-xs text-amber-700 mt-1 leading-relaxed">
-                      The governance methodology — the SKILL.md, verification scripts, and constitutional framework — is open and available for adoption. The enforcement engine underlying this standard — the Deterministic Policy Gate, Merkle-tree authenticated audit system, and kernel-level containment primitives — is protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">145 patent-pending applications</a> filed with the USPTO.
+                      The governance toolkit — proxy, dashboard, policy engine, and governance skill — is open and available for adoption. The enforcement engine underlying this standard — the Deterministic Policy Gate, Merkle-tree authenticated audit system, and kernel-level containment primitives — is protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a> filed with the USPTO.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="bg-gray-50 rounded-xl p-8 font-mono text-sm border border-gray-100">
-              <div className="text-gray-400 mb-4">aos-governance/</div>
+              <div className="text-gray-400 mb-4">aos-gate.com/</div>
               <div className="pl-4 space-y-2">
                 <div className="flex items-center gap-3">
                   <span className="text-blue-500">📄</span>
-                  <span><strong>SKILL.md</strong></span>
-                  <span className="text-gray-400 text-xs ml-auto">← The Recipe</span>
+                  <span><strong>gate.js</strong></span>
+                  <span className="text-gray-400 text-xs ml-auto">← The Gate</span>
                 </div>
-                <div className="text-gray-400 text-xs pl-8 mb-3">Agent instructions, triggers, and workflow</div>
+                <div className="text-gray-400 text-xs pl-8 mb-3">Audit proxy + admin dashboard (ports 3100/3101)</div>
                 <div className="flex items-center gap-3">
                   <span className="text-yellow-500">📁</span>
-                  <span><strong>scripts/</strong></span>
+                  <span><strong>skill/</strong></span>
                   <span className="text-gray-400 text-xs ml-auto">← The Engine</span>
                 </div>
                 <div className="pl-8 space-y-1 text-gray-500 text-xs mb-3">
-                  <div>verify_action.py — Constitutional check</div>
-                  <div>log_evidence.py — Immutable logging</div>
-                  <div>sever_connection.py — Kill switch</div>
+                  <div>SKILL.md — Agent governance instructions</div>
+                  <div>scripts/verify_action.py — Constitutional check</div>
+                  <div>scripts/log_evidence.py — Immutable logging</div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-green-500">📁</span>
-                  <span><strong>references/</strong></span>
-                  <span className="text-gray-400 text-xs ml-auto">← The Law</span>
+                  <span className="text-green-500">📄</span>
+                  <span><strong>policy.json</strong></span>
+                  <span className="text-gray-400 text-xs ml-auto">← The Rules</span>
                 </div>
-                <div className="pl-8 space-y-1 text-gray-500 text-xs">
-                  <div>constitution_v1.md — The AOS Constitution</div>
-                  <div>verification_logic.md — Technical spec</div>
+                <div className="text-gray-400 text-xs pl-8 mb-3">Model allowlists, content filters, log levels</div>
+                <div className="flex items-center gap-3">
+                  <span className="text-purple-500">📄</span>
+                  <span><strong>Dockerfile</strong></span>
+                  <span className="text-gray-400 text-xs ml-auto">← Deploy</span>
                 </div>
+                <div className="text-gray-400 text-xs pl-8 mb-1">docker compose up -d</div>
               </div>
             </div>
           </div>
@@ -903,7 +906,7 @@ function HomePage() {
                 <div className="text-sm text-gray-500">Uptime Track Record</div>
               </div>
               <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="text-3xl font-bold tracking-tight mb-1">145</div>
+                <div className="text-3xl font-bold tracking-tight mb-1">101</div>
                 <div className="text-sm text-gray-500">Pending Patent Filings</div>
               </div>
               <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
