@@ -131,8 +131,8 @@ export default function Nav() {
                         </div>
                     </Link>
                     <div className="hidden md:flex gap-6 text-sm font-medium text-gray-600 items-center">
-                        <Link to="/why" className="hover:text-black transition-colors">Why Governance</Link>
-                        <a href="/#how-it-works" className="hover:text-black transition-colors">How It Works</a>
+                        <Link to="/why" className="hover:text-black transition-colors">Why</Link>
+                        <a href="/#how-it-works" className="hover:text-black transition-colors">How</a>
                         <Link to="/policy-response" className="hover:text-black transition-colors">Policy</Link>
                         <a href="/#standard" className="hover:text-black transition-colors">The Standard</a>
 
@@ -170,8 +170,8 @@ export default function Nav() {
                 {mobileMenuOpen && (
                     <div className="md:hidden border-t border-black/5 bg-[#f5f2eb]/95 backdrop-blur-lg">
                         <div className="px-6 py-4 space-y-1">
-                            <Link to="/why" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Why Governance</Link>
-                            <a href="/#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
+                            <Link to="/why" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Why</Link>
+                            <a href="/#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How</a>
                             <Link to="/policy-response" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Policy</Link>
                             <a href="/#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Standard</a>
                             <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
