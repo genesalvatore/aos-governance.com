@@ -32,19 +32,19 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
         openaiRequirement: 'Develop and test coordinated playbooks to contain dangerous AI systems once they have been released',
         sourceSection: 'Model Containment',
         aosImplementation: 'Atomic Transactional Rollback — Kernel-level filesystem isolation using OverlayFS providing atomic agent state rollback. Corrupted or unauthorized state is discarded at the execution environment level, not at the model level. The agent cannot prevent or circumvent the rollback.',
-        status: 'Patent pending — AOS-PATENT-144 (filing April 2026)',
+        status: 'Patent pending — AOS-PATENT-144 (USPTO 64/031,242, filed April 6, 2026)',
     },
     {
         openaiRequirement: 'Pre- and post-deployment audits using the standards developed in advance',
         sourceSection: 'Auditing Regimes',
         aosImplementation: 'Syscall Trajectory Baselining — eBPF-based syscall monitoring establishing behavioral baselines during supervised operation. Deviations from established patterns trigger deterministic intervention at the kernel level, independent of the agent\'s internal reasoning.',
-        status: 'Patent pending — AOS-PATENT-145 (filing April 2026)',
+        status: 'Patent pending — AOS-PATENT-145 (USPTO 64/031,252, filed April 6, 2026)',
     },
     {
         openaiRequirement: 'Auditing models for manipulative behaviors or hidden loyalties',
         sourceSection: 'Corporate Governance',
         aosImplementation: 'Context Poisoning Detection — Syscall trajectory analysis identifies behavioral drift that may indicate context manipulation, instruction injection, or alignment degradation. Detection operates at the execution layer, not the reasoning layer, and is therefore independent of the model\'s self-reporting.',
-        status: 'Patent pending — AOS-PATENT-145 (filing April 2026)',
+        status: 'Patent pending — AOS-PATENT-145 (USPTO 64/031,252, filed April 6, 2026)',
     },
     {
         openaiRequirement: 'Harden frontier systems against corporate or insider capture by securing model weights and training infrastructure',
@@ -83,8 +83,8 @@ const PATENT_REFS: PatentRef[] = [
     { aosId: 'AOS-PATENT-141', usptoNo: '63/993,715', filingDate: 'March 1, 2026', title: 'Orbital and Interplanetary AI Infrastructure' },
     { aosId: 'AOS-PATENT-142', usptoNo: '63/993,716', filingDate: 'March 1, 2026', title: 'Mass Agent Constitutional Governance with Emergent Behavior Containment' },
     { aosId: 'AOS-PATENT-143', usptoNo: '63/993,718', filingDate: 'March 1, 2026', title: 'Constitutional Governance Framework for Embodied AI Agents' },
-    { aosId: 'AOS-PATENT-144', usptoNo: 'Filing April 2026', filingDate: 'April 2026', title: 'Atomic Transactional Rollback for Ephemeral Agent Execution Environments via Copy-on-Write (CoW) Filesystems' },
-    { aosId: 'AOS-PATENT-145', usptoNo: 'Filing April 2026', filingDate: 'April 2026', title: 'Syscall Trajectory Baselining for Zero-Day Context Poisoning Detection' },
+    { aosId: 'AOS-PATENT-144', usptoNo: '64/031,242', filingDate: 'April 6, 2026', title: 'Atomic Transactional Rollback for Ephemeral Agent Execution Environments via Copy-on-Write (CoW) Filesystems' },
+    { aosId: 'AOS-PATENT-145', usptoNo: '64/031,252', filingDate: 'April 6, 2026', title: 'Syscall Trajectory Baselining for Zero-Day Context Poisoning Detection' },
     { aosId: 'AOS-OMNIBUS-A', usptoNo: '63/969,606', filingDate: 'January 27, 2026', title: 'AOS Constitutional AI — Comprehensive Framework with Cryptographic Enforcement' },
     { aosId: 'AOS-OMNIBUS-B', usptoNo: '63/969,618', filingDate: 'January 27, 2026', title: 'AOS Extended Constitutional Innovations — Unfiled Concepts with Cryptographic Enforcement' },
 ];
@@ -374,7 +374,7 @@ export default function PolicyResponseOpenAI2026() {
                                 { wave: 'Wave 1', date: 'January 10–12, 2026', desc: 'Core portfolio — 56 provisional applications establishing prior art. Filed 11 days prior to Anthropic\'s January 21 constitutional AI disclosure.' },
                                 { wave: 'Wave 2', date: 'January 27–28, 2026', desc: 'Deterministic enforcement hardening — cryptographic execution boundary specifications. Includes Omnibus filings (USPTO 63/969,606; 63/969,618).' },
                                 { wave: 'Wave 3', date: 'March 1, 2026', desc: 'Physical sovereignty — orbital, embodied, and mass-agent governance.' },
-                                { wave: 'Wave 4', date: 'April 2026', desc: 'OS-level determinism — kernel-level enforcement primitives responding to March 31 Claude Code source disclosure.' },
+                                { wave: 'Wave 4', date: 'April 6, 2026', desc: 'OS-level determinism — kernel-level enforcement primitives responding to March 31 Claude Code source disclosure. USPTO 64/031,242; 64/031,252.' },
                             ].map((w) => (
                                 <div key={w.wave} className="p-5 bg-gray-50 rounded-xl border border-gray-100">
                                     <div className="flex items-center gap-2 mb-2">
