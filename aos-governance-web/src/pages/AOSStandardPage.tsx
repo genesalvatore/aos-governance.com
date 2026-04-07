@@ -2,7 +2,79 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function AOSStandardPage() {
-    useEffect(() => { window.scrollTo(0, 0); }, []);
+    useEffect(() => { 
+        window.scrollTo(0, 0); 
+        
+        // --- SEO & GEO Metadata Injection ---
+        document.title = "AOS Standard 1.0 | Deterministic AI Governance Architecture";
+        
+        const metaTags: Record<string, string> = {
+            'description': 'The definitive architectural specification for deterministic AI governance. Defining the five-layer stack required for safe enterprise, physical, and orbital AI deployment.',
+            'keywords': 'AOS Standard, AI Governance, Deterministic Policy Gate, AI Safety, Autonomous Agents, LLM Auditing, Constitutional AI',
+            'og:title': 'AOS Standard 1.0 | AI Governance Architecture',
+            'og:description': 'The definitive architectural specification for deterministic AI governance. Defining the five-layer stack required for safe enterprise, physical, and orbital AI deployment.',
+            'og:image': 'https://aos-governance.com/standard-cover.png',
+            'og:url': 'https://aos-governance.com/policy/aos-standard',
+            'og:type': 'article',
+            'twitter:card': 'summary_large_image',
+        };
+
+        const injectedTags: HTMLElement[] = [];
+        
+        Object.entries(metaTags).forEach(([name, content]) => {
+            const isOg = name.startsWith('og:');
+            const selector = isOg ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+            let tag = document.querySelector(selector) as HTMLMetaElement;
+            if (!tag) {
+                tag = document.createElement('meta');
+                if (isOg) tag.setAttribute('property', name);
+                else tag.setAttribute('name', name);
+                document.head.appendChild(tag);
+                injectedTags.push(tag);
+            }
+            tag.content = content;
+        });
+
+        // --- JSON-LD Schema defined for LLM / Search retrieval ---
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "AOS Standard 1.0: A Governance Architecture for the Intelligence Age",
+            "author": {
+                "@type": "Person",
+                "name": "Gene Salvatore"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "AOS Governance",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://aos-governance.com/standard-cover.png"
+                }
+            },
+            "datePublished": "2026-04-01",
+            "dateModified": new Date().toISOString().split('T')[0],
+            "description": "The definitive architectural specification for deterministic AI governance. Defining the five-layer stack required for safe enterprise, physical, and orbital deployment.",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://aos-governance.com/policy/aos-standard"
+            }
+        };
+
+        let scriptTag = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
+        if (!scriptTag) {
+            scriptTag = document.createElement('script');
+            scriptTag.setAttribute('type', 'application/ld+json');
+            document.head.appendChild(scriptTag);
+            injectedTags.push(scriptTag);
+        }
+        scriptTag.textContent = JSON.stringify(schema);
+        
+        return () => {
+            // Document title reset or other tear-down if necessary
+            injectedTags.forEach(tag => tag.remove());
+        };
+    }, []);
 
     return (
         <div className="bg-canvas min-h-screen text-fg-default font-sans print:bg-white print:text-black">
