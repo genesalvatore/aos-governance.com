@@ -14,9 +14,10 @@ export default function AOSStandardPage() {
                     /* We inject the cover page with zero margin, so we handle it precisely */
                     @page :first { margin: 0; }
                     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white !important; font-family: 'Inter', system-ui, sans-serif !important; }
+                    nav, footer, header { display: none !important; }
+                    .print-hidden-override { display: none !important; }
                     .page-break { page-break-after: always; }
                     .print-footer { position: fixed; bottom: 0; left: 0; right: 0; padding-bottom: 0.5in; padding-left: 1in; padding-right: 1in; display: flex; justify-content: space-between; font-size: 0.6rem; color: #555; }
-                    /* Hide default header/footer text often inserted by browsers */
                 }
             `}} />
 
@@ -85,15 +86,15 @@ export default function AOSStandardPage() {
                         <span className="text-[10px] uppercase tracking-widest text-gray-400">Standard 1.0 — April 2026</span>
                     </div>
 
-                    <div className="prose prose-lg prose-gray max-w-none print:prose-p:text-black print:prose-headings:text-black print:prose-h2:text-[1.8rem] print:prose-h2:mt-12 print:prose-h3:text-[1.2rem] print:leading-relaxed">
-                        <h2 className="font-serif text-3xl print:font-sans print:font-bold">Abstract</h2>
+                    <div className="max-w-none print:text-black print:leading-relaxed text-gray-800 text-lg leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_li]:mb-2 [&_h2]:font-serif [&_h2]:text-3xl [&_h2]:mt-12 [&_h2]:mb-6 [&_h3]:font-bold [&_h3]:text-xl [&_h3]:mt-10 [&_h3]:mb-4 print:[&_h2]:font-sans print:[&_h2]:font-bold print:[&_h2]:text-[1.8rem]">
+                        <h2>Abstract</h2>
                         <p>
                             This document defines the AOS governance standard for autonomous AI systems. It specifies a five-layer architecture — deterministic policy enforcement, cryptographic audit infrastructure, kernel-level containment, constitutional governance, and frontier-domain scaling — that provides verifiable governance for AI agents operating in enterprise, physical, orbital, and mass-deployment environments. The standard is model-agnostic, operates outside the model's process space, and is supported by 101 provisional patent applications filed with the USPTO beginning January 10, 2026. It is published for evaluation, criticism, and adoption.
                         </p>
 
-                        <hr className="my-10 print:my-8" />
+                        <hr className="my-10 print:my-8 border-gray-200" />
 
-                        <h2 className="font-serif text-3xl print:font-sans print:font-bold">Preamble</h2>
+                        <h2>Preamble</h2>
                         <p>
                             The deployment of autonomous AI agents into production environments — enterprise workflows, consumer applications, critical infrastructure, and physical systems — is accelerating faster than the governance infrastructure required to regulate them.
                         </p>
@@ -107,13 +108,13 @@ export default function AOSStandardPage() {
                             The standard presented here is model-agnostic. It governs the execution environment, not the model. It works equally with GPT, Claude, Gemini, open-source models, or any future architecture. It cannot be captured by any single model provider because it operates at a layer no model provider controls.
                         </p>
 
-                        <hr className="my-10 print:my-8" />
+                        <hr className="my-10 print:my-8 border-gray-200" />
 
                         {/* Force page break for print safely before major sections */}
                         <div className="print:page-break-before-always">
-                            <h2 className="font-serif text-3xl print:font-sans print:font-bold">Part I: The Problem</h2>
+                            <h2>Part I: The Problem</h2>
                             
-                            <h3 className="font-bold">1.1 The Enforcement Gap</h3>
+                            <h3>1.1 The Enforcement Gap</h3>
                             <p>
                                 The AI industry has converged on a consensus that governance is necessary. Policy frameworks from OpenAI, Anthropic, Google DeepMind, and regulatory bodies worldwide describe governance outcomes — trust verification, model containment, accountability, incident reporting — without specifying where the enforcement layer resides relative to the model.
                             </p>
@@ -135,7 +136,7 @@ export default function AOSStandardPage() {
                             </p>
                         </div>
 
-                        <h3 className="font-bold print:break-before-avoid">1.2 The Scale Problem</h3>
+                        <h3 className="print:break-before-avoid">1.2 The Scale Problem</h3>
                         <p>The governance gap is compounding. As of April 2026:</p>
                         <ul>
                             <li><strong>Enterprise "Shadow AI"</strong> — Developers are connecting raw LLM APIs to corporate networks through workflow automation tools (N8N, Make, Zapier) without governance infrastructure between the agent and the execution environment. Every one of these connections represents an ungoverned action surface.</li>
@@ -147,7 +148,7 @@ export default function AOSStandardPage() {
                             Each of these domains amplifies the enforcement gap. The governance architecture required for a single chatbot conversation is categorically insufficient for an autonomous agent operating a robotic arm, routing financial transactions, or managing a satellite constellation.
                         </p>
 
-                        <h3 className="font-bold print:break-before-avoid">1.3 The Labor Transition</h3>
+                        <h3 className="print:break-before-avoid">1.3 The Labor Transition</h3>
                         <p>
                             AI automation will displace workers. This is not a debate — it is a mathematical certainty as agent capabilities increase. The question is whether the transition is managed or abandoned.
                         </p>
@@ -155,16 +156,16 @@ export default function AOSStandardPage() {
                             Current discourse treats labor displacement as an externality — a cost to be absorbed by the workers themselves, by retraining programs that do not yet exist, or by universal basic income proposals that have no legislative pathway. No governance standard currently requires the entity deploying AI automation to fund, manage, or participate in the transition of the workers it displaces.
                         </p>
 
-                        <hr className="my-10 print:my-8" />
+                        <hr className="my-10 print:my-8 border-gray-200" />
 
                         <div className="print:page-break-before-always">
-                            <h2 className="font-serif text-3xl print:font-sans print:font-bold">Part II: The Architecture</h2>
+                            <h2>Part II: The Architecture</h2>
                             <p>
                                 The AOS standard addresses the enforcement gap through five architectural layers, each backed by specific provisional patent filings. The layers are designed to operate independently and compose into a unified governance stack.
                             </p>
 
-                            <h3 className="font-bold">2.1 Layer 1: The Deterministic Policy Gate (DPG)</h3>
-                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-2 rounded print:border print:border-gray-200 print:bg-transparent">
+                            <h3>2.1 Layer 1: The Deterministic Policy Gate (DPG)</h3>
+                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
                                 Patent basis: AOS-PATENT-015 (USPTO 63/957,869, filed Jan 10, 2026; amended 63/969,499, Jan 27, 2026)
                             </p>
                             <p>
@@ -181,8 +182,8 @@ export default function AOSStandardPage() {
                             </p>
                         </div>
 
-                        <h3 className="font-bold print:break-before-avoid">2.2 Layer 2: AOS Attest — Cryptographic Audit Infrastructure</h3>
-                        <p className="text-sm font-mono text-gray-500 bg-gray-50 p-2 rounded print:border print:border-gray-200 print:bg-transparent">
+                        <h3 className="print:break-before-avoid">2.2 Layer 2: AOS Attest — Cryptographic Audit Infrastructure</h3>
+                        <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
                             Patent basis: AOS-PATENT-119 (USPTO 63/957,864, filed Jan 10, 2026), AOS-PATENT-120 (USPTO 63/957,884)
                         </p>
                         <p>
@@ -195,8 +196,8 @@ export default function AOSStandardPage() {
                             <li><strong>Cryptographic verification</strong> — Any stakeholder (regulator, auditor, operator) can independently verify the integrity of the audit trail using standard cryptographic methods without requiring access to the original system.</li>
                         </ul>
 
-                        <h3 className="font-bold print:break-before-avoid">2.3 Layer 3: Containment — Atomic Rollback and Behavioral Baselining</h3>
-                        <p className="text-sm font-mono text-gray-500 bg-gray-50 p-2 rounded print:border print:border-gray-200 print:bg-transparent">
+                        <h3 className="print:break-before-avoid">2.3 Layer 3: Containment — Atomic Rollback and Behavioral Baselining</h3>
+                        <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
                             Patent basis: AOS-PATENT-144 (USPTO 64/031,242), AOS-PATENT-145 (USPTO 64/031,252, filed Apr 6, 2026)
                         </p>
                         <p>
@@ -207,8 +208,8 @@ export default function AOSStandardPage() {
                         </p>
 
                         <div className="print:page-break-before-always">
-                            <h3 className="font-bold print:break-before-avoid">2.4 Layer 4: Constitutional Governance — The Human Authority Layer</h3>
-                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-2 rounded print:border print:border-gray-200 print:bg-transparent">
+                            <h3 className="print:break-before-avoid">2.4 Layer 4: Constitutional Governance — The Human Authority Layer</h3>
+                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
                                 Published at: aos-constitution.com | Patent basis: AOS-PATENT-015 | License: AOS Humanitarian License v1.0.1
                             </p>
                             <p>The AOS Constitutional Framework defines the governance structure within which the DPG operates. It establishes:</p>
@@ -219,8 +220,8 @@ export default function AOSStandardPage() {
                                 <li><strong>40-Category Humanitarian Restrictions</strong> — Permanently prohibited use cases including autonomous weapons, mass surveillance, labor exploitation, and 37 additional categories. These restrictions are irrevocable and propagate through all derivative works under the copyleft license.</li>
                             </ul>
                             
-                            <h3 className="font-bold print:break-before-avoid">2.5 Layer 5: Frontier Governance — Scaling Beyond Single Instances</h3>
-                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-2 rounded print:border print:border-gray-200 print:bg-transparent">
+                            <h3 className="print:break-before-avoid">2.5 Layer 5: Frontier Governance — Scaling Beyond Single Instances</h3>
+                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
                                 Patent basis: AOS-PATENT-141 (USPTO 63/993,715), AOS-PATENT-142 (USPTO 63/993,716), AOS-PATENT-143 (USPTO 63/993,718) — filed Mar 1, 2026
                             </p>
                             <p>The AOS standard extends governance to frontier deployment domains that current frameworks do not address:</p>
@@ -231,13 +232,13 @@ export default function AOSStandardPage() {
                             </ul>
                         </div>
 
-                        <hr className="my-10 print:my-8" />
+                        <hr className="my-10 print:my-8 border-gray-200" />
 
                         <div className="print:page-break-before-always">
-                            <h2 className="font-serif text-3xl print:font-sans print:font-bold">Part III: The Human Compact</h2>
+                            <h2>Part III: The Human Compact</h2>
 
-                            <h3 className="font-bold">3.1 Labor Transition Protocol</h3>
-                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-2 rounded print:border print:border-gray-200 print:bg-transparent">
+                            <h3 className="print:break-before-avoid pt-2">3.1 Labor Transition Protocol</h3>
+                            <p className="text-sm font-mono text-gray-500 bg-gray-50 p-3 rounded print:border print:border-gray-200 print:bg-transparent !mb-6">
                                 Patent basis: AOS-PATENT-133 (USPTO 63/958,268, filed Jan 12, 2026)
                             </p>
                             <p>
@@ -254,23 +255,23 @@ export default function AOSStandardPage() {
                                 This is the AOS position: AI automation that destroys livelihoods without providing a path forward is not innovation. It is extraction.
                             </p>
 
-                            <h3 className="font-bold print:break-before-avoid">3.2 The Revenue Redistribution Model</h3>
+                            <h3 className="print:break-before-avoid">3.2 The Revenue Redistribution Model</h3>
                             <p>
                                 The AOS economic doctrine allocates 70% of commercial enterprise licensing revenue to humanitarian impact programs — environmental restoration, human dignity projects, and workforce transition support. The technology that generates market value must serve the species' survival.
                             </p>
 
-                            <h3 className="font-bold print:break-before-avoid">3.3 Open Access with Mandatory Governance</h3>
+                            <h3 className="print:break-before-avoid">3.3 Open Access with Mandatory Governance</h3>
                             <p>
                                 The AOS Humanitarian License preserves open access to governance infrastructure. Academic, personal, and research use is free and unrestricted. Commercial use requires compliance with the governance provisions, audit requirements, and humanitarian restrictions.
                             </p>
                         </div>
 
-                        <hr className="my-10 print:my-8" />
+                        <hr className="my-10 print:my-8 border-gray-200" />
 
                         <div className="print:page-break-before-always">
-                            <h2 className="font-serif text-3xl print:font-sans print:font-bold">Part IV: The Standard in Practice</h2>
+                            <h2>Part IV: The Standard in Practice</h2>
 
-                            <h3 className="font-bold">4.1 Implementations</h3>
+                            <h3 className="print:break-before-avoid pt-2">4.1 Implementations</h3>
                             <p>The AOS governance standard has been implemented across multiple deployment targets:</p>
                             <ul>
                                 <li><strong>AOS Constitutional Governance for OpenClaw</strong> — The first published implementation, integrating constitutional governance into the OpenClaw agentic relay framework.</li>
@@ -278,7 +279,7 @@ export default function AOSStandardPage() {
                                 <li><strong>AOS Gate</strong> — The current flagship implementation: a transparent deterministic audit proxy that sits between AI workflow tools (N8N, Make, Zapier) and LLM API endpoints.</li>
                             </ul>
 
-                            <h3 className="font-bold print:break-before-avoid">4.2 Production Governance Network</h3>
+                            <h3 className="print:break-before-avoid">4.2 Production Governance Network</h3>
                             <p>The AOS governance standard is published and maintained across five production sites:</p>
                             <div className="overflow-x-auto print:overflow-visible">
                                 <table className="min-w-full border border-gray-200">
@@ -293,10 +294,10 @@ export default function AOSStandardPage() {
                             </div>
                         </div>
 
-                        <hr className="my-10 print:my-8" />
+                        <hr className="my-10 print:my-8 border-gray-200" />
 
                         <div className="print:page-break-before-always">
-                            <h2 className="font-serif text-3xl print:font-sans print:font-bold">Part V: Filing Record</h2>
+                            <h2>Part V: Filing Record</h2>
                             <p>The AOS patent portfolio was filed in four waves, each responding to specific market developments:</p>
                             <div className="overflow-x-auto print:overflow-visible">
                                 <table className="min-w-full border border-gray-200 text-sm">
@@ -338,9 +339,9 @@ export default function AOSStandardPage() {
                             </div>
                             <p className="mt-4 font-bold">Total: 101 provisional patent applications filed with the USPTO.</p>
                             
-                            <hr className="my-10 print:my-8" />
+                            <hr className="my-10 print:my-8 border-gray-200" />
 
-                            <h2 className="font-serif text-3xl print:font-sans print:font-bold">Part VI: Invitation</h2>
+                            <h2>Part VI: Invitation</h2>
                             <p>
                                 The challenges described in this document are urgent. The governance gap is widening as agent capabilities increase. No single entity — including AOS — can close this gap alone.
                             </p>
