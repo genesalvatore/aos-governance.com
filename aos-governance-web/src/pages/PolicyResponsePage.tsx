@@ -137,7 +137,7 @@ export default function PolicyResponsePage() {
                         Policy frameworks describe governance requirements. AOS provides the architectural implementations. Both are necessary. Neither is sufficient alone.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 pt-4">
-                        <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
+                        <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-lg">
                             Get the Standard
                         </a>
                         <Link to="/" className="px-8 py-4 border border-black/20 text-black rounded-lg font-medium hover:bg-black/5 transition-colors text-lg">

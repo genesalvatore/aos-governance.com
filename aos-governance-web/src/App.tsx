@@ -702,9 +702,9 @@ function HomePage() {
                 <div className="flex items-start gap-3">
                   <span className="text-amber-600 text-lg mt-0.5">⚖</span>
                   <div>
-                    <p className="text-sm font-semibold text-amber-900">Open Toolkit. Licensed and Patent-Protected.</p>
+                    <p className="text-sm font-semibold text-amber-900">Open Methodology. Commercially Licensed Enforcement.</p>
                     <p className="text-xs text-amber-700 mt-1 leading-relaxed">
-                      The governance toolkit — proxy, dashboard, policy engine, and governance skill — is open and available for adoption under the <a href="https://aos-constitution.com" className="underline font-medium hover:text-amber-900">AOS Humanitarian License v1.0.1</a>. The enforcement engine underlying this standard — the Deterministic Policy Gate, Merkle-tree authenticated audit system, and kernel-level containment primitives — is further protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a> filed with the USPTO.
+                      The governance methodology — the standard, constitutional framework, and agent instructions — is open and available for adoption. The enforcement tools underlying this standard — the Deterministic Policy Gate, enterprise proxy, and cryptographic audit system — are available under a fee-based commercial license and protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a> filed with the USPTO.
                     </p>
                   </div>
                 </div>

@@ -38,8 +38,8 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                         {/* Right Column - Learn */}
                         <div className="space-y-5">
                             <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Resources</div>
-                            <SitemapLink href="https://github.com/genesalvatore/aos-governance.com" label="GitHub Repository" desc="Source code & SKILL.md" />
-                            <SitemapLink href="https://github.com/genesalvatore/aos-governance.com/blob/main/aos-governance/SKILL.md" label="SKILL.md" desc="Agent governance recipe" />
+                            <SitemapLink href="https://github.com/genesalvatore/aos-gate.com" label="GitHub Repository" desc="Source code & SKILL.md" />
+                            <SitemapLink href="https://github.com/genesalvatore/aos-gate.com/blob/main/aos-governance/SKILL.md" label="SKILL.md" desc="Agent governance recipe" />
                             <SitemapLink href="https://www.anthropic.com/features/claude-on-mars" label="Claude on Mars" desc="Anthropic announcement" />
                             <SitemapLink href="https://arxiv.org/abs/2602.14740" label="KCL Wargame Study" desc="arXiv:2602.14740" />
                         </div>
@@ -155,7 +155,7 @@ export default function Nav() {
                             </svg>
                         </button>
 
-                        <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
+                        <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
                     </div>
 
                     {/* Mobile hamburger */}
@@ -186,7 +186,7 @@ export default function Nav() {
                             <button onClick={() => { setMobileMenuOpen(false); setSitemapOpen(true); }} className="block pt-2 text-xs text-gray-400 hover:text-black transition-colors">
                                 View Site Map
                             </button>
-                            <a href="https://github.com/genesalvatore/aos-governance.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
+                            <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
                         </div>
                     </div>
                 )}

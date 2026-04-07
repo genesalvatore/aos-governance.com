@@ -35,8 +35,8 @@ const sitemapSections = [
         title: 'Resources',
         external: true,
         links: [
-            { label: 'GitHub Repository', href: 'https://github.com/genesalvatore/aos-governance.com', desc: 'Source code' },
-            { label: 'SKILL.md', href: 'https://github.com/genesalvatore/aos-governance.com/blob/main/aos-governance/SKILL.md', desc: 'Agent skill spec' },
+            { label: 'GitHub Repository', href: 'https://github.com/genesalvatore/aos-gate.com', desc: 'Source code' },
+            { label: 'SKILL.md', href: 'https://github.com/genesalvatore/aos-gate.com/blob/main/aos-governance/SKILL.md', desc: 'Agent skill spec' },
             { label: 'Claude on Mars', href: 'https://www.anthropic.com/features/claude-on-mars', desc: 'Anthropic case study' },
             { label: 'Salvatore Systems', href: 'https://salvatoresystems.com', desc: 'Infrastructure partner' },
         ],
@@ -172,7 +172,7 @@ export default function SitemapDropdown() {
                                 {sitemapSections.reduce((acc, s) => acc + s.links.length, 0)} pages
                             </span>
                             <a
-                                href="https://github.com/genesalvatore/aos-governance.com"
+                                href="https://github.com/genesalvatore/aos-gate.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-xs text-gray-400 hover:text-black transition-colors font-mono"
