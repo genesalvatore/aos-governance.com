@@ -704,7 +704,7 @@ function HomePage() {
                   <div>
                     <p className="text-sm font-semibold text-amber-900">Open Methodology. Commercially Licensed Enforcement.</p>
                     <p className="text-xs text-amber-700 mt-1 leading-relaxed">
-                      The governance methodology — the standard, constitutional framework, and agent instructions — is open and available for adoption. The enforcement tools underlying this standard — the Deterministic Policy Gate, enterprise proxy, and cryptographic audit system — are available under a fee-based commercial license and protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a> filed with the USPTO.
+                      The governance methodology — the standard, constitutional framework, and agent instructions — is open and available for adoption under the <a href="https://aos-constitution.com" className="underline font-medium hover:text-amber-900">AOS Humanitarian License v1.0.1</a>. The enforcement tools underlying this standard — the Deterministic Policy Gate, enterprise proxy, and cryptographic audit system — are available under a fee-based commercial license and protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a> filed with the USPTO.
                     </p>
                   </div>
                 </div>
