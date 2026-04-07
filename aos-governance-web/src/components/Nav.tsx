@@ -25,23 +25,23 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                         {/* Left Column - Standard */}
                         <div className="space-y-5">
                             <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Standard</div>
-                            <SitemapLink href="/" label="Home" desc="The open standard overview" internal />
-                            <SitemapLink href="/why" label="Why Governance" desc="Evidence library" internal />
-                            <SitemapLink href="/#manifesto" label="Manifesto" desc="The core thesis" internal />
-                            <SitemapLink href="/#how-it-works" label="How It Works" desc="Intercept → Verify → Gate" internal />
-                            <SitemapLink href="/#standard" label="The Constitution" desc="Five governing principles" internal />
-                            <SitemapLink href="/#mars" label="Mars Precedent" desc="Claude on Mars case study" internal />
-                            <SitemapLink href="/#get-started" label="Get Started" desc="Adopt the standard" internal />
-                            <SitemapLink href="/policy-response" label="Policy Response" desc="OpenAI Industrial Policy alignment" internal />
+                            <SitemapLink href="/" label="Home" desc="The open standard overview" internal onClick={onClose} />
+                            <SitemapLink href="/why" label="Why Governance" desc="Evidence library" internal onClick={onClose} />
+                            <SitemapLink href="/#manifesto" label="Manifesto" desc="The core thesis" internal onClick={onClose} />
+                            <SitemapLink href="/#how-it-works" label="How It Works" desc="Intercept → Verify → Gate" internal onClick={onClose} />
+                            <SitemapLink href="/#standard" label="The Constitution" desc="Five governing principles" internal onClick={onClose} />
+                            <SitemapLink href="/#mars" label="Mars Precedent" desc="Claude on Mars case study" internal onClick={onClose} />
+                            <SitemapLink href="/#get-started" label="Get Started" desc="Adopt the standard" internal onClick={onClose} />
+                            <SitemapLink href="/policy-response" label="Policy Response" desc="OpenAI Industrial Policy alignment" internal onClick={onClose} />
                         </div>
 
                         {/* Right Column - Learn */}
                         <div className="space-y-5">
                             <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Resources</div>
-                            <SitemapLink href="https://github.com/genesalvatore/aos-gate.com" label="GitHub Repository" desc="Source code & SKILL.md" />
-                            <SitemapLink href="https://github.com/genesalvatore/aos-gate.com/blob/main/aos-governance/SKILL.md" label="SKILL.md" desc="Agent governance recipe" />
-                            <SitemapLink href="https://www.anthropic.com/features/claude-on-mars" label="Claude on Mars" desc="Anthropic announcement" />
-                            <SitemapLink href="https://arxiv.org/abs/2602.14740" label="KCL Wargame Study" desc="arXiv:2602.14740" />
+                            <SitemapLink href="https://github.com/genesalvatore/aos-gate.com" label="GitHub Repository" desc="Source code & SKILL.md" onClick={onClose} />
+                            <SitemapLink href="https://github.com/genesalvatore/aos-gate.com/blob/main/skill/SKILL.md" label="SKILL.md" desc="Agent governance recipe" onClick={onClose} />
+                            <SitemapLink href="https://www.anthropic.com/features/claude-on-mars" label="Claude on Mars" desc="Anthropic announcement" onClick={onClose} />
+                            <SitemapLink href="https://arxiv.org/abs/2602.14740" label="KCL Wargame Study" desc="arXiv:2602.14740" onClick={onClose} />
                         </div>
                     </div>
 
@@ -51,20 +51,20 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                             {/* AOS Quartet */}
                             <div className="space-y-5">
                                 <div className="text-xs font-mono uppercase tracking-wider text-gray-400">AOS Quartet <ExtIcon /></div>
-                                <SitemapLink href="https://aos-governance.com" label="Governance" desc="Deterministic verification standard" highlight />
-                                <SitemapLink href="https://aos-evidence.com" label="Evidence" desc="Verifiable documentation" />
-                                <SitemapLink href="https://aos-foundation.com" label="Foundation" desc="AI safety for humanity" />
-                                <SitemapLink href="https://aos-constitution.com" label="Constitution" desc="The constitutional framework" />
+                                <SitemapLink href="https://aos-governance.com" label="Governance" desc="Deterministic verification standard" highlight onClick={onClose} />
+                                <SitemapLink href="https://aos-evidence.com" label="Evidence" desc="Verifiable documentation" onClick={onClose} />
+                                <SitemapLink href="https://aos-foundation.com" label="Foundation" desc="AI safety for humanity" onClick={onClose} />
+                                <SitemapLink href="https://aos-constitution.com" label="Constitution" desc="The constitutional framework" onClick={onClose} />
                             </div>
 
                             {/* Ecosystem */}
                             <div className="space-y-5">
                                 <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Ecosystem <ExtIcon /></div>
-                                <SitemapLink href="https://aos-patents.com" label="Patent Registry" desc="145 AI governance patents" />
-                                <SitemapLink href="https://governanceforwp.com" label="GovernanceForWP" desc="WordPress governance plugin" />
-                                <SitemapLink href="https://git-legacy.com" label="Git Legacy" desc="Multi-generational archives" />
-                                <SitemapLink href="https://git-iscommunity.com" label="Community" desc="Cathedral gathering" />
-                                <SitemapLink href="https://salvatoresystems.com" label="Salvatore Systems" desc="The developer" />
+                                <SitemapLink href="https://aos-patents.com" label="Patent Registry" desc="145 AI governance patents" onClick={onClose} />
+                                <SitemapLink href="https://governanceforwp.com" label="GovernanceForWP" desc="WordPress governance plugin" onClick={onClose} />
+                                <SitemapLink href="https://git-legacy.com" label="Git Legacy" desc="Multi-generational archives" onClick={onClose} />
+                                <SitemapLink href="https://git-iscommunity.com" label="Community" desc="Cathedral gathering" onClick={onClose} />
+                                <SitemapLink href="https://salvatoresystems.com" label="Salvatore Systems" desc="The developer" onClick={onClose} />
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
     );
 }
 
-function SitemapLink({ href, label, desc, internal, highlight }: { href: string; label: string; desc: string; internal?: boolean; highlight?: boolean }) {
+function SitemapLink({ href, label, desc, internal, highlight, onClick }: { href: string; label: string; desc: string; internal?: boolean; highlight?: boolean; onClick?: () => void }) {
     const isExternal = !internal && href.startsWith('http');
     const content = (
         <div className="group cursor-pointer">
@@ -95,9 +95,9 @@ function SitemapLink({ href, label, desc, internal, highlight }: { href: string;
     );
 
     if (internal) {
-        return <Link to={href} className="block">{content}</Link>;
+        return <Link to={href} className="block" onClick={onClick}>{content}</Link>;
     }
-    return <a href={href} target="_blank" rel="noopener noreferrer" className="block">{content}</a>;
+    return <a href={href} target="_blank" rel="noopener noreferrer" className="block" onClick={onClick}>{content}</a>;
 }
 
 function ExtIcon() {

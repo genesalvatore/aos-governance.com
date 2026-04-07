@@ -36,7 +36,7 @@ const sitemapSections = [
         external: true,
         links: [
             { label: 'GitHub Repository', href: 'https://github.com/genesalvatore/aos-gate.com', desc: 'Source code' },
-            { label: 'SKILL.md', href: 'https://github.com/genesalvatore/aos-gate.com/blob/main/aos-governance/SKILL.md', desc: 'Agent skill spec' },
+            { label: 'SKILL.md', href: 'https://github.com/genesalvatore/aos-gate.com/blob/main/skill/SKILL.md', desc: 'Agent skill spec' },
             { label: 'Claude on Mars', href: 'https://www.anthropic.com/features/claude-on-mars', desc: 'Anthropic case study' },
             { label: 'Salvatore Systems', href: 'https://salvatoresystems.com', desc: 'Infrastructure partner' },
         ],

@@ -22,7 +22,7 @@ export default function Footer() {
                     <div className="space-y-3">
                         <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Resources</div>
                         <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">GitHub Repository</a>
-                        <a href="https://github.com/genesalvatore/aos-gate.com/blob/main/aos-governance/SKILL.md" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">SKILL.md</a>
+                        <a href="https://github.com/genesalvatore/aos-gate.com/blob/main/skill/SKILL.md" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">SKILL.md</a>
                         <a href="https://www.anthropic.com/features/claude-on-mars" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-black transition-colors">Claude on Mars</a>
                     </div>
                     <div className="space-y-3">
