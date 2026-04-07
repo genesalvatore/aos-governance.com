@@ -38,9 +38,6 @@ export default function PolicyResponsePage() {
             {/* Hero */}
             <section className="relative pt-32 pb-20 px-6 md:px-12 lg:px-24">
                 <div className="max-w-4xl mx-auto space-y-6">
-                    <Link to="/" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-black transition-colors font-medium">
-                        ← Back to Standard
-                    </Link>
                     <div className="inline-block px-3 py-1 text-xs font-mono border border-black/20 rounded-full uppercase tracking-wider">
                         Policy & Standards
                     </div>
