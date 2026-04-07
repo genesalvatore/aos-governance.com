@@ -302,6 +302,18 @@ export default function PolicyResponseOpenAI2026() {
                             </div>
                         ))}
                     </div>
+
+                    <div className="mt-8 p-6 bg-amber-50 border border-amber-200 rounded-xl">
+                        <div className="flex items-start gap-4">
+                            <span className="text-amber-600 text-2xl mt-0.5">⚖</span>
+                            <div>
+                                <p className="text-base font-bold text-amber-900">The IP Boundary: Open Methodology, Patent-Pending Enforcement</p>
+                                <p className="text-sm text-amber-800 mt-2 leading-relaxed">
+                                    The governance structures, constitutional frameworks, and policy manifests discussed above are <strong>open and public</strong>. However, the exact mechanisms required to securely <em>enforce</em> them—the Deterministic Policy Gate, the kernel-level isolation, and the Merkle-tree cryptographic telemetry (the "Lock and Key")—are protected across a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">145 patent-pending applications</a>. We invite collaboration on the standards while retaining sovereignty over the enforcement infrastructure.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

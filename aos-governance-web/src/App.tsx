@@ -698,6 +698,17 @@ function HomePage() {
               <p className="text-gray-500 leading-relaxed">
                 It intercepts agent actions, runs deterministic verification checks, and logs every decision to an immutable audit trail. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
               </p>
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg mt-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-amber-600 text-lg mt-0.5">⚖</span>
+                  <div>
+                    <p className="text-sm font-semibold text-amber-900">Open Methodology. Patent-Pending Enforcement.</p>
+                    <p className="text-xs text-amber-700 mt-1 leading-relaxed">
+                      The governance methodology — the SKILL.md, verification scripts, and constitutional framework — is open and available for adoption. The enforcement engine underlying this standard — the Deterministic Policy Gate, Merkle-tree authenticated audit system, and kernel-level containment primitives — is protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">145 patent-pending applications</a> filed with the USPTO.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="bg-gray-50 rounded-xl p-8 font-mono text-sm border border-gray-100">
               <div className="text-gray-400 mb-4">aos-governance/</div>
@@ -892,7 +903,7 @@ function HomePage() {
                 <div className="text-sm text-gray-500">Uptime Track Record</div>
               </div>
               <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="text-3xl font-bold tracking-tight mb-1">99</div>
+                <div className="text-3xl font-bold tracking-tight mb-1">145</div>
                 <div className="text-sm text-gray-500">Pending Patent Filings</div>
               </div>
               <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
