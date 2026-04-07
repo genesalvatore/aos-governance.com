@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import WhyPage from './pages/WhyPage';
 import PolicyResponsePage from './pages/PolicyResponsePage';
 import PolicyResponseOpenAI2026 from './pages/PolicyResponseOpenAI2026';
+import PolicyResponseAnthropicMythos2026 from './pages/PolicyResponseAnthropicMythos2026';
 import AOSStandardPage from './pages/AOSStandardPage';
 
 // ─── Matomo Analytics (Site ID: 22) ─────────────────────────────────────────
@@ -160,7 +161,15 @@ interface HeroSlide {
 const HERO_SLIDES: HeroSlide[] = [
   {
     type: 'policy',
-    badge: 'NEW — APRIL 6, 2026',
+    badge: 'URGENT — APRIL 7, 2026',
+    text: 'AOS Policy Response: Anthropic\'s Claude Mythos Preview autonomously discovers and exploits zero-days in every major OS and browser — validating the AOS governance thesis in real time.',
+    attribution: '— AOS Governance Project',
+    link: '/policy-response/anthropic-mythos-preview-april-2026',
+    linkLabel: 'Read the Response →',
+  },
+  {
+    type: 'policy',
+    badge: 'APRIL 6, 2026',
     text: 'AOS Policy Response: OpenAI\'s "Industrial Policy for the Intelligence Age" — mapped to existing AOS architectural implementations and patent portfolio.',
     attribution: '— Gene Salvatore, Founder, AOS',
     link: '/policy-response/openai-industrial-policy-april-2026',
@@ -964,6 +973,7 @@ export default function App() {
           <Route path="/policy/aos-standard" element={<AOSStandardPage />} />
           <Route path="/policy-response" element={<PolicyResponsePage />} />
           <Route path="/policy-response/openai-industrial-policy-april-2026" element={<PolicyResponseOpenAI2026 />} />
+          <Route path="/policy-response/anthropic-mythos-preview-april-2026" element={<PolicyResponseAnthropicMythos2026 />} />
         </Routes>
         <Footer />
       </div>
