@@ -88,13 +88,14 @@ export default function AOSStandardPage() {
                     .print-hidden-override { display: none !important; }
                     .page-break { page-break-after: always; }
                     
-                    /* The persistent footer printed on every page */
+                    /* The persistent corporate footer */
                     .print-footer { 
-                        position: fixed; bottom: -0.65in; left: 0; right: 0; 
+                        position: fixed; bottom: -0.6in; left: 0; right: 0; 
                         display: flex; justify-content: space-between; align-items: center;
-                        font-size: 8pt; color: #777; font-family: 'Inter', system-ui, sans-serif;
+                        font-size: 8pt; color: #555; font-family: 'Inter', system-ui, sans-serif;
                     }
                     .page-number::after { content: counter(page); }
+                    .h-force-bleed { height: 11in !important; max-height: 11in !important; }
                 }
             `}} />
 
@@ -126,8 +127,9 @@ export default function AOSStandardPage() {
             </section>
 
             {/* ─── PRINT-ONLY COVER PAGE ─── */}
-            <div className="hidden print:flex flex-col w-[8.5in] h-[11in] relative page-break -ml-[1.25in] -mt-[1in] bg-white overflow-hidden flex-shrink-0 z-50">
-                <div className="w-full h-[50%] relative">
+            {/* Extremely precise 8.5x11 cover sheet. Negative margins match the @page margins exactly to prevent browser scale-down bugs */}
+            <div className="hidden print:flex flex-col w-[8.5in] h-force-bleed relative page-break -ml-[1.25in] -mr-[1.25in] -mt-[1in] -mb-[1in] bg-white overflow-hidden flex-shrink-0 z-50">
+                <div className="w-full h-[55%] relative">
                     <img src="/standard-cover.png" alt="AOS Standard Cover" className="w-full h-full object-cover object-center" />
                 </div>
                 <div className="flex-1 px-[1.25in] py-[0.8in] flex flex-col bg-white text-black font-sans relative z-50">
@@ -152,7 +154,11 @@ export default function AOSStandardPage() {
                     {/* Fixed footer applied to all pages */}
                     <div className="hidden print:flex print-footer">
                         <div className="flex items-center gap-2">
-                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                            <svg className="w-4 h-4 text-black" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <polygon points="50,20 80,40 50,100" fill="none" stroke="currentColor" strokeWidth="8"/>
+                                <polygon points="50,40 70,55 50,80" fill="currentColor" />
+                                <line x1="35" y1="10" x2="35" y2="90" stroke="currentColor" strokeWidth="12" />
+                            </svg>
                         </div>
                         <span className="font-medium">AOS Standard 1.0: A Governance Architecture for the Intelligence Age</span>
                         <span className="page-number font-medium"></span>
