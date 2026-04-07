@@ -82,7 +82,7 @@ export default function AOSStandardPage() {
             {/* ─── PRINT CSS GLOBALS ─── */}
             <style dangerouslySetInnerHTML={{ __html: `
                 @media print {
-                    @page { margin: 1in 1.25in; size: letter; }
+                    @page { margin: 1in 1.25in 1.25in 1.25in; size: letter; }
                     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white !important; font-family: 'Inter', system-ui, sans-serif !important; }
                     nav, footer, header { display: none !important; }
                     .print-hidden-override { display: none !important; }
@@ -90,12 +90,11 @@ export default function AOSStandardPage() {
                     
                     /* The persistent corporate footer */
                     .print-footer { 
-                        position: fixed; bottom: -0.6in; left: 0; right: 0; 
+                        position: fixed; bottom: -0.75in; left: 0; right: 0; 
                         display: flex; justify-content: space-between; align-items: center;
-                        font-size: 8pt; color: #555; font-family: 'Inter', system-ui, sans-serif;
+                        font-size: 8pt; color: #64748b; font-family: 'Inter', system-ui, sans-serif;
                     }
                     .page-number::after { content: counter(page); }
-                    .h-force-bleed { height: 11in !important; max-height: 11in !important; }
                 }
             `}} />
 
@@ -127,20 +126,20 @@ export default function AOSStandardPage() {
             </section>
 
             {/* ─── PRINT-ONLY COVER PAGE ─── */}
-            {/* Extremely precise 8.5x11 cover sheet. Negative margins match the @page margins exactly to prevent browser scale-down bugs */}
-            <div className="hidden print:flex flex-col w-[8.5in] h-force-bleed relative page-break -ml-[1.25in] -mr-[1.25in] -mt-[1in] -mb-[1in] bg-white overflow-hidden flex-shrink-0 z-50">
-                <div className="w-full h-[55%] relative">
-                    <img src="/standard-cover.png" alt="AOS Standard Cover" className="w-full h-full object-cover object-center" />
+            {/* Extremely precise cover sheet formatting resolving Chromuim scale-down overflow bugs */}
+            <div className="hidden print:flex flex-col -mx-[1.25in] -mt-[1in] -mb-[1.25in] h-[11.1in] bg-[#f2f6fa] overflow-hidden flex-shrink-0 z-50 page-break">
+                <div className="w-full h-[54%] relative flex-shrink-0">
+                    <img src="/standard-cover.png" alt="AOS Standard Cover" className="w-full h-full object-cover object-top" />
                 </div>
-                <div className="flex-1 px-[1.25in] py-[0.8in] flex flex-col bg-white text-black font-sans relative z-50">
+                <div className="flex-1 px-[1.25in] py-[0.8in] flex flex-col justify-start text-[#162a45] font-sans relative z-50">
                     <div className="mt-8">
-                        <h1 className="text-[3.5rem] font-bold leading-[1.05] tracking-tight text-[#111111]" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+                        <h1 className="text-[3.25rem] font-bold leading-[1.1] tracking-tight text-[#162a45]" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
                             AOS Standard 1.0:<br/>
                             A Governance<br/>
                             Architecture for the<br/>
                             Intelligence Age
                         </h1>
-                        <p className="mt-20 text-[1rem] font-medium text-gray-800">
+                        <p className="mt-16 text-[1.1rem] font-semibold text-[#4e6b91]">
                             April 2026
                         </p>
                     </div>
@@ -154,14 +153,14 @@ export default function AOSStandardPage() {
                     {/* Fixed footer applied to all pages */}
                     <div className="hidden print:flex print-footer">
                         <div className="flex items-center gap-2">
-                            <svg className="w-4 h-4 text-black" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="w-4 h-4 text-[#162a45]" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <polygon points="50,20 80,40 50,100" fill="none" stroke="currentColor" strokeWidth="8"/>
                                 <polygon points="50,40 70,55 50,80" fill="currentColor" />
                                 <line x1="35" y1="10" x2="35" y2="90" stroke="currentColor" strokeWidth="12" />
                             </svg>
                         </div>
-                        <span className="font-medium">AOS Standard 1.0: A Governance Architecture for the Intelligence Age</span>
-                        <span className="page-number font-medium"></span>
+                        <span className="font-semibold tracking-wide uppercase text-[7pt]">AOS Standard 1.0: A Governance Architecture for the Intelligence Age</span>
+                        <span className="page-number font-semibold"></span>
                     </div>
 
                     <div className="max-w-none print:text-black print:leading-[1.8] text-gray-800 text-lg leading-relaxed [&_p]:mb-6 print:[&_p]:mb-8 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-8 [&_li]:mb-3 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:mt-16 [&_h2]:mb-8 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:mt-12 [&_h3]:mb-6 print:[&_h2]:font-sans print:[&_h2]:font-bold print:[&_h2]:text-[1.8rem] print:[&_h3]:text-[1.2rem] print:[&_h3]:font-bold font-sans">
