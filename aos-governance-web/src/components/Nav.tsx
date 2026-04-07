@@ -133,6 +133,7 @@ export default function Nav() {
                     <div className="hidden md:flex gap-6 text-sm font-medium text-gray-600 items-center">
                         <Link to="/why" className="hover:text-black transition-colors">Why Governance</Link>
                         <a href="/#how-it-works" className="hover:text-black transition-colors">How It Works</a>
+                        <Link to="/policy-response" className="hover:text-black transition-colors">Policy</Link>
                         <a href="/#standard" className="hover:text-black transition-colors">The Standard</a>
 
                         {/* Divider */}
@@ -171,6 +172,7 @@ export default function Nav() {
                         <div className="px-6 py-4 space-y-1">
                             <Link to="/why" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Why Governance</Link>
                             <a href="/#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">How It Works</a>
+                            <Link to="/policy-response" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">Policy</Link>
                             <a href="/#standard" onClick={() => setMobileMenuOpen(false)} className="block py-3 text-sm font-medium text-gray-700 hover:text-black transition-colors border-b border-black/5">The Standard</a>
                             <div className="pt-2 flex gap-3 text-xs font-mono uppercase tracking-wider">
                                 <a href="https://aos-constitution.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black">Constitution</a>
