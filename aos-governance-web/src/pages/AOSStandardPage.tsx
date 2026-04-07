@@ -133,8 +133,8 @@ export default function AOSStandardPage() {
                 <div className="flex-1 px-[1.25in] py-[0.8in] flex flex-col bg-white text-black font-sans relative z-50">
                     <div className="mt-8">
                         <h1 className="text-[3.5rem] font-bold leading-[1.05] tracking-tight text-[#111111]" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-                            AOS Standard<br/>
-                            1.0: A Governance<br/>
+                            AOS Standard 1.0:<br/>
+                            A Governance<br/>
                             Architecture for the<br/>
                             Intelligence Age
                         </h1>
