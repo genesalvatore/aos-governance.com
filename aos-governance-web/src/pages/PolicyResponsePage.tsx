@@ -42,15 +42,43 @@ export default function PolicyResponsePage() {
                         ← Back to Standard
                     </Link>
                     <div className="inline-block px-3 py-1 text-xs font-mono border border-black/20 rounded-full uppercase tracking-wider">
-                        Policy Responses
+                        Policy & Standards
                     </div>
                     <h1 className="font-serif text-4xl md:text-6xl leading-[1.1] tracking-tight">
                         Institutional<br />
-                        <span className="italic text-gray-500">Engagement.</span>
+                        <span className="italic text-gray-500">Governance.</span>
                     </h1>
                     <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-                        Formal policy responses mapping industry governance proposals to existing AOS architectural implementations and patent portfolio. Each response documents the alignment between stated policy requirements and available technical infrastructure.
+                        The definitive source for the AOS Application Layer Governance Standard and formal policy responses mapping industry frameworks to existing architectural implementations.
                     </p>
+                </div>
+            </section>
+
+            {/* The Standard CTA */}
+            <section className="py-12 bg-white -mt-10 relative z-10">
+                <div className="max-w-4xl mx-auto px-6">
+                    <Link to="/policy/aos-standard" className="block group">
+                        <div className="border-2 border-black rounded-2xl p-8 bg-[#f5f2eb] hover:bg-[#eae6d9] transition-colors relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-black/5 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-black/10 transition-colors"></div>
+                            
+                            <div className="flex flex-wrap md:flex-nowrap items-start justify-between gap-6 relative z-10">
+                                <div className="space-y-4">
+                                    <div className="inline-block px-3 py-1 text-[10px] font-mono border border-black rounded-full uppercase tracking-wider bg-black text-white">
+                                        OFFICIAL DOCUMENT
+                                    </div>
+                                    <h2 className="font-serif text-3xl text-black">AOS Standard 1.0</h2>
+                                    <p className="text-gray-700 max-w-xl leading-relaxed">
+                                        The definitive architectural specification for deterministic AI governance. Defining the five-layer stack required for safe enterprise, physical, and orbital deployment.
+                                    </p>
+                                </div>
+                                <div className="shrink-0 flex items-center justify-center mt-2 md:mt-0">
+                                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border border-gray-300 text-black group-hover:scale-110 group-hover:bg-black group-hover:text-white transition-all shadow-sm">
+                                        →
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
             </section>
 

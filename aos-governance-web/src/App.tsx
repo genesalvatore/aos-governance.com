@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import WhyPage from './pages/WhyPage';
 import PolicyResponsePage from './pages/PolicyResponsePage';
 import PolicyResponseOpenAI2026 from './pages/PolicyResponseOpenAI2026';
+import AOSStandardPage from './pages/AOSStandardPage';
 
 // ─── Matomo Analytics (Site ID: 22) ─────────────────────────────────────────
 declare global {
@@ -960,6 +961,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/why" element={<WhyPage />} />
+          <Route path="/policy/aos-standard" element={<AOSStandardPage />} />
           <Route path="/policy-response" element={<PolicyResponsePage />} />
           <Route path="/policy-response/openai-industrial-policy-april-2026" element={<PolicyResponseOpenAI2026 />} />
         </Routes>
