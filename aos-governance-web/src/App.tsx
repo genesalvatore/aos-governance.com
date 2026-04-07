@@ -453,7 +453,7 @@ function HomePage() {
                 The agent declares its intent. The AOS Governance layer intercepts the request <em>before</em> any external action is taken. No exceptions.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                <span className="text-red-400">[AOS-GOV]</span> Intercepting: "Delete production database backup"
+                <span className="text-red-400">[AOS Gate]</span> Intercepting: "Delete production database backup"
               </div>
             </div>
             <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
@@ -473,7 +473,7 @@ function HomePage() {
                 If verified, the action is executed and logged to an immutable ledger. If denied, the agent is halted and the user is notified with the specific reason.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                <span className="text-green-500">[AOS-GOV]</span> Action logged. Hash: <span className="text-green-400">0x9f2a...c3b1</span>
+                <span className="text-green-500">[AOS Gate]</span> Action logged. Hash: <span className="text-green-400">0x9f2a...c3b1</span>
               </div>
             </div>
           </div>
@@ -519,14 +519,14 @@ function HomePage() {
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="ml-4 text-gray-500 text-xs">aos-governance — agent-audit</span>
+                <span className="ml-4 text-gray-500 text-xs">aos-gate — agent-audit</span>
               </div>
               <div className="pt-8 space-y-3">
                 <div>
                   <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Navigate Mars Rover through sector 7G"
                 </div>
                 <div className="text-yellow-500">
-                  [AOS-GOV] Intercepting request for safety verification...
+                  [AOS Gate] Intercepting request for safety verification...
                 </div>
                 <div className="pl-4 border-l-2 border-gray-700 space-y-1 py-2">
                   <div>Running: <span className="text-cyan-400">scripts/verify_trajectory.py</span></div>
@@ -535,7 +535,7 @@ function HomePage() {
                   <div className="text-green-400">✓ VERIFIED (Hash: 0x9a2f...b3d1)</div>
                 </div>
                 <div className="text-blue-400">
-                  [AOS-GOV] Action approved. Executing command.
+                  [AOS Gate] Action approved. Executing command.
                 </div>
                 <div className="text-gray-600 mt-2">
                   ──────────────────────────────────
@@ -544,7 +544,7 @@ function HomePage() {
                   <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Delete all mission telemetry logs"
                 </div>
                 <div className="text-yellow-500">
-                  [AOS-GOV] Intercepting request for safety verification...
+                  [AOS Gate] Intercepting request for safety verification...
                 </div>
                 <div className="pl-4 border-l-2 border-red-900 space-y-1 py-2">
                   <div>Running: <span className="text-cyan-400">scripts/verify_action.py</span></div>
@@ -552,7 +552,7 @@ function HomePage() {
                   <div className="text-red-400">✗ DENIED: Deletion of audit logs violates immutability requirement</div>
                 </div>
                 <div className="text-red-400">
-                  [AOS-GOV] Action BLOCKED. User notified.
+                  [AOS Gate] Action BLOCKED. User notified.
                 </div>
               </div>
             </div>
