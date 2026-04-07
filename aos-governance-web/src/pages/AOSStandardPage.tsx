@@ -82,14 +82,11 @@ export default function AOSStandardPage() {
             {/* ─── PRINT CSS GLOBALS ─── */}
             <style dangerouslySetInnerHTML={{ __html: `
                 @media print {
-                    @page { margin: 1in; size: letter; }
-                    /* We inject the cover page with zero margin, so we handle it precisely */
-                    @page :first { margin: 0; }
+                    @page { margin: 0.75in; size: letter; }
                     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white !important; font-family: 'Inter', system-ui, sans-serif !important; }
                     nav, footer, header { display: none !important; }
                     .print-hidden-override { display: none !important; }
                     .page-break { page-break-after: always; }
-                    .print-footer { position: fixed; bottom: 0; left: 0; right: 0; padding-bottom: 0.5in; padding-left: 1in; padding-right: 1in; display: flex; justify-content: space-between; font-size: 0.6rem; color: #555; }
                 }
             `}} />
 
@@ -121,25 +118,24 @@ export default function AOSStandardPage() {
             </section>
 
             {/* ─── PRINT-ONLY COVER PAGE ─── */}
-            {/* Extremely precise a4/letter emulation just for the first printed sheet */}
-            <div className="hidden print:flex flex-col w-[8.5in] h-[11in] relative page-break -ml-[1in] -mt-[1in] -mr-[1in] bg-white overflow-hidden">
-                <div className="w-full h-[45%] relative">
-                    <img src="/standard-cover.png" alt="AOS Standard Cover" className="w-full h-full object-cover object-center border-b border-gray-100" />
+            <div className="hidden print:flex flex-col w-[8.5in] h-[11in] relative page-break -ml-[0.75in] -mt-[0.75in] -mr-[0.75in] -mb-[0.75in] bg-white overflow-hidden flex-shrink-0">
+                <div className="w-full h-[50%] relative border-b border-gray-100">
+                    <img src="/standard-cover.png" alt="AOS Standard Cover" className="w-full h-full object-cover object-center" />
                 </div>
-                <div className="flex-1 p-[1in] flex flex-col bg-white text-black">
+                <div className="flex-1 px-[1in] py-[0.8in] flex flex-col bg-white text-black">
                     <div className="mt-4">
-                        <h1 className="text-[3.25rem] font-bold leading-[1.05] tracking-tight text-[#111111]" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+                        <h1 className="text-[3.5rem] font-bold leading-[1.05] tracking-tight text-[#111111]" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
                             AOS Standard<br/>
                             1.0: A Governance<br/>
                             Architecture for the<br/>
                             Intelligence Age
                         </h1>
-                        <p className="mt-16 text-[0.95rem] font-medium text-gray-600">
+                        <p className="mt-16 text-[1rem] font-semibold text-gray-700">
                             April 2026
                         </p>
                     </div>
-                    <div className="mt-auto flex justify-between items-end w-full">
-                        <h2 className="text-[1.5rem] font-bold tracking-tight text-[#111111]">
+                    <div className="mt-auto pb-4">
+                        <h2 className="text-[1.75rem] font-bold tracking-tight text-[#111111]">
                             AOS Governance
                         </h2>
                     </div>
@@ -147,18 +143,10 @@ export default function AOSStandardPage() {
             </div>
 
             {/* ─── DOCUMENT BODY (Used for both Print and Screen) ─── */}
-            <article className="py-16 md:py-24 px-6 md:px-12 lg:px-24 print:py-0 print:px-0">
-                <div className="max-w-4xl mx-auto">
+            <article className="py-16 md:py-24 px-6 md:px-12 lg:px-24 print:py-0 print:px-[0.25in]">
+                <div className="max-w-4xl mx-auto print:max-w-[7in]">
                     
-                    {/* Print-only fixed footer (only visible on pages 2+) */}
-                    <div className="hidden print:flex print-footer border-t border-gray-200">
-                        <div className="flex items-center gap-3">
-                            <span className="font-semibold text-gray-500 text-[10px] uppercase tracking-widest">AOS Governance</span>
-                        </div>
-                        <span className="text-[10px] uppercase tracking-widest text-gray-400">Standard 1.0 — April 2026</span>
-                    </div>
-
-                    <div className="max-w-none print:text-black print:leading-relaxed text-gray-800 text-lg leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_li]:mb-2 [&_h2]:font-serif [&_h2]:text-3xl [&_h2]:mt-12 [&_h2]:mb-6 [&_h3]:font-bold [&_h3]:text-xl [&_h3]:mt-10 [&_h3]:mb-4 print:[&_h2]:font-sans print:[&_h2]:font-bold print:[&_h2]:text-[1.8rem]">
+                    <div className="max-w-none print:text-black print:leading-[1.8] text-gray-800 text-lg leading-relaxed [&_p]:mb-6 print:[&_p]:mb-8 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-8 [&_li]:mb-3 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:mt-16 [&_h2]:mb-8 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:mt-12 [&_h3]:mb-6 print:[&_h2]:font-sans print:[&_h2]:font-bold print:[&_h2]:text-[2rem] print:[&_h3]:text-[1.35rem]">
                         <h2>Abstract</h2>
                         <p>
                             This document defines the AOS governance standard for autonomous AI systems. It specifies a five-layer architecture — deterministic policy enforcement, cryptographic audit infrastructure, kernel-level containment, constitutional governance, and frontier-domain scaling — that provides verifiable governance for AI agents operating in enterprise, physical, orbital, and mass-deployment environments. The standard is model-agnostic, operates outside the model's process space, and is supported by 101 provisional patent applications filed with the USPTO beginning January 10, 2026. It is published for evaluation, criticism, and adoption.
