@@ -83,8 +83,6 @@ export default function AOSStandardPage() {
             <style dangerouslySetInnerHTML={{ __html: `
                 @media print {
                     @page { margin: 1in 1.25in; size: letter; }
-                    /* Remove margins specifically on the cover sheet so the image bleeds to the edge */
-                    @page :first { margin: 0; }
                     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white !important; font-family: 'Inter', system-ui, sans-serif !important; }
                     nav, footer, header { display: none !important; }
                     .print-hidden-override { display: none !important; }
@@ -92,8 +90,7 @@ export default function AOSStandardPage() {
                     
                     /* The persistent footer printed on every page */
                     .print-footer { 
-                        position: fixed; bottom: 0; left: 0; right: 0; 
-                        padding-bottom: 0.5in; padding-left: 1.25in; padding-right: 1.25in; 
+                        position: fixed; bottom: -0.65in; left: 0; right: 0; 
                         display: flex; justify-content: space-between; align-items: center;
                         font-size: 8pt; color: #777; font-family: 'Inter', system-ui, sans-serif;
                     }
@@ -129,7 +126,7 @@ export default function AOSStandardPage() {
             </section>
 
             {/* ─── PRINT-ONLY COVER PAGE ─── */}
-            <div className="hidden print:flex flex-col w-[8.5in] h-[11in] relative page-break bg-white overflow-hidden flex-shrink-0 z-50">
+            <div className="hidden print:flex flex-col w-[8.5in] h-[11in] relative page-break -ml-[1.25in] -mt-[1in] bg-white overflow-hidden flex-shrink-0 z-50">
                 <div className="w-full h-[50%] relative">
                     <img src="/standard-cover.png" alt="AOS Standard Cover" className="w-full h-full object-cover object-center" />
                 </div>
