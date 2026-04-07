@@ -430,7 +430,7 @@ export default function AOSStandardPage() {
                                 The governance infrastructure exists. The patent filings are public. The constitutional framework is published. The implementations are available.
                             </p>
                             <p className="font-serif text-xl border-l-4 border-black pl-4 my-6 italic text-gray-700 print:text-black print:font-sans print:not-italic print:border-none print:pl-0 font-bold">
-                                The question is no longer whether AI governance is necessary. The question is whether the governance architecture will be built before the consequences of its absence become irreversible.
+                                The question is no longer whether AI governance is necessary, or whether the architecture can be built. We built it. The question is whether the industry will adopt it before the consequences of its absence become irreversible.
                             </p>
                         </div>
                         
