@@ -158,18 +158,18 @@ interface HeroSlide {
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    type: 'quote',
-    text: '"We already see substantial generalization from things that verify to things that don\'t."',
-    attribution: '— Dario Amodei, CEO Anthropic',
-    citationKey: 'amodei',
-  },
-  {
     type: 'policy',
     badge: 'NEW — APRIL 6, 2026',
     text: 'AOS Policy Response: OpenAI\'s "Industrial Policy for the Intelligence Age" — mapped to existing AOS architectural implementations and patent portfolio.',
     attribution: '— Gene Salvatore, Founder, AOS',
     link: '/policy-response/openai-industrial-policy-april-2026',
     linkLabel: 'Read the Policy Response →',
+  },
+  {
+    type: 'quote',
+    text: '"We already see substantial generalization from things that verify to things that don\'t."',
+    attribution: '— Dario Amodei, CEO Anthropic',
+    citationKey: 'amodei',
   },
   {
     type: 'quote',
