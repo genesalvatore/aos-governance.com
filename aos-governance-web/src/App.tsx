@@ -296,19 +296,19 @@ function HomePage() {
       )}
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24">
+      <section className="relative pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-12 lg:px-24">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="inline-block px-3 py-1 text-xs font-mono border border-black/20 rounded-full uppercase tracking-wider">
             AOS STANDARD 1.0
           </div>
-          <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] tracking-tight">
-            The Bridge Between <br />
+          <h1 className="font-serif text-4xl md:text-7xl leading-[1.1] tracking-tight">
+            The Bridge Between <br className="hidden md:block" />
             <span className="italic text-gray-500">Verification</span> and <span className="italic text-gray-500">Intelligence</span>.
           </h1>
 
           {/* ─── Hero Slider ─── */}
           <div
-            className="relative min-h-[120px]"
+            className="relative min-h-[180px] md:min-h-[140px]"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
@@ -344,7 +344,7 @@ function HomePage() {
                         </Link>
                       )}
                     </div>
-                    <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
+                    <p className="text-lg md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
                       {slide.text}
                     </p>
                     <p className="text-base text-gray-500">{slide.attribution}</p>
@@ -390,7 +390,7 @@ function HomePage() {
             </span>
           </div>
 
-          <div className="pt-16 flex flex-wrap gap-4">
+          <div className="pt-8 md:pt-16 flex flex-wrap gap-3 md:gap-4">
             <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
               Get the Standard
             </a>
