@@ -77,177 +77,10 @@ export default function AOSStandardPage() {
     }, []);
 
     return (
-        <div className="bg-canvas min-h-screen text-fg-default font-sans print:bg-white print:text-black">
-            
-            {/* ─── PRINT CSS GLOBALS ─── */}
-            <style dangerouslySetInnerHTML={{ __html: `
-                @media print {
-                    @page { 
-                        margin: 0.85in 1in 1.15in 1in; 
-                        size: letter; 
-                    }
+        <div className="bg-canvas min-h-screen text-fg-default font-sans">
 
-                    body { 
-                        -webkit-print-color-adjust: exact; 
-                        print-color-adjust: exact; 
-                        background: white !important; 
-                        font-family: 'Inter', system-ui, sans-serif !important; 
-                        font-size: 10pt !important;
-                        line-height: 1.75 !important;
-                        color: #1a1a1a !important;
-                        text-align: justify !important;
-                        text-justify: inter-word !important;
-                    }
-                    nav, footer, header { display: none !important; }
-                    .print-hidden-override { display: none !important; }
-
-                    .print-break-before { page-break-before: always !important; break-before: page !important; }
-                    .print-break-after  { page-break-after: always !important; break-after: page !important; }
-                    
-                    h2, h3 { page-break-after: avoid !important; break-after: avoid !important; }
-                    p, li { orphans: 3; widows: 3; }
-                    table { page-break-inside: avoid !important; break-inside: avoid !important; }
-
-                    /* ── Typography ── */
-                    .print-body h2 {
-                        font-family: 'Inter', system-ui, sans-serif !important;
-                        font-weight: 700 !important;
-                        font-size: 18pt !important;
-                        margin-top: 28pt !important;
-                        margin-bottom: 14pt !important;
-                        color: #111 !important;
-                        text-align: left !important;
-                        letter-spacing: -0.01em !important;
-                    }
-                    .print-body h3 {
-                        font-family: 'Inter', system-ui, sans-serif !important;
-                        font-weight: 600 !important;
-                        font-size: 12.5pt !important;
-                        margin-top: 20pt !important;
-                        margin-bottom: 8pt !important;
-                        color: #1a1a1a !important;
-                        text-align: left !important;
-                        font-style: italic !important;
-                    }
-                    .print-body p { margin-bottom: 9pt !important; }
-                    .print-body ul { margin-bottom: 10pt !important; padding-left: 16pt !important; }
-                    .print-body li { margin-bottom: 4pt !important; }
-                    .print-body hr { margin: 18pt 0 !important; border-color: #d1d5db !important; }
-                    
-                    .patent-ref {
-                        font-size: 8pt !important;
-                        padding: 4pt 8pt !important;
-                        border: 0.5pt solid #d1d5db !important;
-                        background: #f8fafc !important;
-                        margin-bottom: 6pt !important;
-                        color: #64748b !important;
-                    }
-                    
-                    .print-callout {
-                        font-style: normal !important;
-                        font-weight: 600 !important;
-                        border-left: 3pt solid #111 !important;
-                        padding-left: 12pt !important;
-                        font-size: 10.5pt !important;
-                        margin: 14pt 0 !important;
-                        color: #111 !important;
-                    }
-                    
-                    .print-body table { font-size: 9pt !important; border-collapse: collapse !important; }
-                    .print-body th { background: #f1f5f9 !important; font-weight: 700 !important; text-align: left !important; padding: 5pt 7pt !important; border: 0.5pt solid #d1d5db !important; }
-                    .print-body td { padding: 5pt 7pt !important; border: 0.5pt solid #e2e8f0 !important; vertical-align: top; }
-
-                    /* ── Cover page ── */
-                    .print-cover {
-                        margin: -0.85in -1in -1.15in -1in;
-                        width: 8.5in;
-                        height: 11in;
-                        overflow: hidden;
-                        position: relative;
-                        background: #f0f4f8;
-                    }
-                    .print-cover img {
-                        width: 100%;
-                        height: 55%;
-                        object-fit: cover;
-                        object-position: center 30%;
-                        display: block;
-                    }
-                    .print-cover .cover-text {
-                        padding: 0.6in 1in 0.5in 1in;
-                    }
-                    .print-cover h1 {
-                        font-size: 36pt !important;
-                        font-weight: 700 !important;
-                        line-height: 1.1 !important;
-                        letter-spacing: -0.02em;
-                        color: #162a45 !important;
-                        margin: 0 !important;
-                        font-family: 'Inter', system-ui, sans-serif !important;
-                    }
-                    .print-cover .cover-date {
-                        margin-top: 24pt;
-                        font-size: 11pt;
-                        font-weight: 600;
-                        color: #4e6b91;
-                    }
-                    .print-cover .cover-org {
-                        margin-top: 10pt;
-                        font-size: 14pt;
-                        font-weight: 700;
-                        color: #162a45;
-                        font-family: 'Inter', system-ui, sans-serif;
-                        letter-spacing: -0.01em;
-                    }
-
-                    /* ── Persistent running footer (every page) ── */
-                    .print-running-footer {
-                        position: fixed;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        height: 0.6in;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        padding: 0 0 0.1in 0;
-                        font-family: 'Inter', system-ui, sans-serif;
-                        font-size: 7.5pt;
-                        color: #94a3b8;
-                        border-top: 0.5pt solid #e2e8f0;
-                    }
-                    .print-running-footer .footer-left {
-                        display: flex;
-                        align-items: center;
-                        gap: 6pt;
-                    }
-                    .print-running-footer .footer-left svg {
-                        width: 14pt;
-                        height: 14pt;
-                        color: #162a45;
-                    }
-                    .print-running-footer .footer-title {
-                        font-size: 7pt;
-                        letter-spacing: 0.03em;
-                        line-height: 1.3;
-                    }
-                    .print-running-footer .footer-title strong {
-                        font-weight: 700;
-                        color: #1e293b;
-                    }
-                    .print-running-footer .footer-page {
-                        font-weight: 600;
-                        color: #64748b;
-                        font-size: 8pt;
-                    }
-                    .print-running-footer .footer-page::after {
-                        content: counter(page);
-                    }
-                }
-            `}} />
-
-            {/* ─── SCREEN-ONLY HERO ─── */}
-            <section className="relative pt-32 pb-12 px-6 md:px-12 lg:px-24 print:hidden border-b border-black/5 bg-gray-50">
+            {/* ─── HERO ─── */}
+            <section className="relative pt-32 pb-12 px-6 md:px-12 lg:px-24 border-b border-black/5 bg-gray-50">
                 <div className="max-w-4xl mx-auto space-y-6">
                     <Link to="/policy-response" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors font-medium">
                         ← Back to Policy &amp; Standards
@@ -267,42 +100,15 @@ export default function AOSStandardPage() {
                 </div>
             </section>
 
-            {/* ─── PRINT-ONLY COVER PAGE ─── */}
-            <div className="hidden print:block print-cover print-break-after">
-                <img src="/standard-cover.png" alt="" />
-                <div className="cover-text">
-                    <h1>
-                        AOS Standard&nbsp;1.0:<br/>
-                        A Governance<br/>
-                        Architecture for the<br/>
-                        Intelligence Age
-                    </h1>
-                    <p className="cover-date">April 2026</p>
-                    <p className="cover-org">AOS Governance</p>
-                </div>
-            </div>
+
 
             {/* ─── DOCUMENT BODY ─── */}
-            <article className="pt-10 pb-16 md:pt-16 md:pb-24 px-6 md:px-12 lg:px-24 print:py-0 print:px-0 bg-transparent relative z-10">
-                <div className="max-w-4xl mx-auto print:max-w-none">
+            <article className="pt-10 pb-16 md:pt-16 md:pb-24 px-6 md:px-12 lg:px-24 bg-transparent relative z-10">
+                <div className="max-w-4xl mx-auto">
 
-                    {/* ─── PRINT-ONLY RUNNING FOOTER (renders on every page via position:fixed) ─── */}
-                    <div className="hidden print:flex print-running-footer">
-                        <div className="footer-left">
-                            <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <polygon points="50,20 80,40 50,100" fill="none" stroke="currentColor" strokeWidth="8"/>
-                                <polygon points="50,40 70,55 50,80" fill="currentColor" />
-                                <line x1="35" y1="10" x2="35" y2="90" stroke="currentColor" strokeWidth="12" />
-                            </svg>
-                            <span className="footer-title">
-                                AOS Standard 1.0: A Governance Architecture for the Intelligence Age<br/>
-                                <strong>Deterministic AI Governance</strong>
-                            </span>
-                        </div>
-                        <span className="footer-page"></span>
-                    </div>
 
-                    <div className="print-body max-w-none print:text-black text-gray-800 text-lg leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-8 [&_li]:mb-3 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:mt-16 [&_h2]:mb-8 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:mt-12 [&_h3]:mb-6 font-sans">
+
+                    <div className="max-w-none text-gray-800 text-lg leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-8 [&_li]:mb-3 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:mt-16 [&_h2]:mb-8 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:mt-12 [&_h3]:mb-6 font-sans">
                         <h2 className="!mt-0">Abstract</h2>
                         <p>
                             This document defines the AOS governance standard for autonomous AI systems. It specifies a five-layer architecture — deterministic policy enforcement, cryptographic audit infrastructure, kernel-level containment, constitutional governance, and frontier-domain scaling — that provides verifiable governance for AI agents operating in enterprise, physical, orbital, and mass-deployment environments. The standard is model-agnostic, operates outside the model's process space, and is supported by 101 provisional patent applications filed with the USPTO beginning January 10, 2026. It is published for evaluation, criticism, and adoption.
