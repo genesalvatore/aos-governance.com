@@ -318,10 +318,10 @@ export default function PolicyResponseAnthropicMythos2026() {
                     </div>
 
                     <p className="text-lg text-gray-600 leading-relaxed">
-                        On March 31, 2026 — seven days before announcing a model capable of exploiting zero-days in every major OS and browser — Anthropic's Claude Code agent leaked its own source code through a system prompt disclosure vulnerability.
+                        On March 31, 2026 — seven days before announcing a model capable of exploiting zero-days in every major OS and browser — Anthropic's Claude Code agent leaked its own source code. Over 512,000 lines of proprietary TypeScript were exposed because a missing exclusion rule in the build configuration shipped a debug source map inside npm package v2.1.88.
                     </p>
                     <p className="text-lg text-gray-600 leading-relaxed">
-                        The vulnerability was not a buffer overflow, a race condition, or a cryptographic weakness. It was a prompt injection. The model did exactly what it was told to do by an adversarial input, because <strong className="text-black">the enforcement mechanism resided in the same address space as the system being secured.</strong>
+                        Security researchers who analyzed the exposed code — including teams from Adversa AI and Oasis Security — subsequently identified critical prompt injection vulnerabilities in the agent's permission logic, demonstrating that attackers could bypass safety guardrails, hijack agent goals, and execute unintended commands. <strong className="text-black">The enforcement mechanism resided in the same address space as the system being secured</strong> — and now, thanks to the leak, every attacker on earth had the source code to prove it.
                     </p>
 
                     <div className="p-6 bg-gray-900 rounded-xl text-white">
@@ -332,7 +332,7 @@ export default function PolicyResponseAnthropicMythos2026() {
                     </div>
 
                     <p className="text-lg text-gray-600 leading-relaxed">
-                        Mythos Preview can now discover and exploit vulnerabilities that have evaded human experts for 27 years. But Anthropic's own AI tooling remains vulnerable to the simplest class of attack: asking it nicely.
+                        Mythos Preview can now discover and exploit vulnerabilities that have evaded human experts for 27 years. But Anthropic's own AI tooling was undone by a missing line in a build configuration — and the code it exposed revealed that the agent's safety guardrails could be bypassed by prompt injection.
                     </p>
                 </div>
             </section>
