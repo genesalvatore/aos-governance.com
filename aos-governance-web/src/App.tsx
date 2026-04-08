@@ -162,7 +162,7 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     type: 'policy',
     badge: 'URGENT — APRIL 7, 2026',
-    text: 'AOS Policy Response: Anthropic\'s Claude Mythos Preview autonomously discovers and exploits zero-days in every major OS and browser — validating the AOS governance thesis in real time.',
+    text: 'Anthropic\'s Claude Mythos Preview exploits zero-days in every major OS and browser — validating the AOS governance thesis.',
     attribution: '— AOS Governance Project',
     link: '/policy-response/anthropic-mythos-preview-april-2026',
     linkLabel: 'Read the Response →',
@@ -170,7 +170,7 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     type: 'policy',
     badge: 'APRIL 6, 2026',
-    text: 'AOS Policy Response: OpenAI\'s "Industrial Policy for the Intelligence Age" — mapped to existing AOS architectural implementations and patent portfolio.',
+    text: 'OpenAI\'s "Industrial Policy for the Intelligence Age" — mapped to AOS implementations and patent portfolio.',
     attribution: '— Gene Salvatore, Founder, AOS',
     link: '/policy-response/openai-industrial-policy-april-2026',
     linkLabel: 'Read the Policy Response →',
@@ -308,7 +308,7 @@ function HomePage() {
 
           {/* ─── Hero Slider ─── */}
           <div
-            className="relative min-h-[180px] md:min-h-[140px]"
+            className="relative min-h-[140px] md:min-h-[160px]"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
@@ -372,7 +372,7 @@ function HomePage() {
           </div>
 
           {/* Slider Controls — below the slider, not overlapping */}
-          <div className="flex items-center gap-3 pt-4">
+          <div className="flex items-center gap-3 pt-1">
             {HERO_SLIDES.map((_, i) => (
               <button
                 key={i}
@@ -390,7 +390,7 @@ function HomePage() {
             </span>
           </div>
 
-          <div className="pt-8 md:pt-16 flex flex-wrap gap-3 md:gap-4">
+          <div className="pt-4 md:pt-6 flex flex-wrap gap-3 md:gap-4">
             <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-transform active:scale-95 text-center">
               Get the Standard
             </a>
