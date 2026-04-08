@@ -8,7 +8,14 @@ export default defineConfig({
   plugins: [
     react(),
     prerender({
-      routes: ['/', '/why', '/policy-response', '/policy-response/openai-industrial-policy-april-2026'],
+      routes: [
+        '/',
+        '/why',
+        '/policy/aos-standard',
+        '/policy-response',
+        '/policy-response/openai-industrial-policy-april-2026',
+        '/policy-response/anthropic-mythos-preview-april-2026',
+      ],
       renderer: new PuppeteerRenderer({
         renderAfterTime: 2000,
         headless: true,
@@ -24,6 +31,13 @@ export default defineConfig({
             '<title>Why AI Governance | AOS Governance</title>'
           );
         }
+        // Fix title for /policy/aos-standard
+        if (renderedRoute.route === '/policy/aos-standard') {
+          renderedRoute.html = renderedRoute.html.replace(
+            '<title>AOS Governance — The Open Standard for Verifiable AI Safety</title>',
+            '<title>AOS Standard 1.0 — Deterministic AI Governance Architecture | AOS Governance</title>'
+          );
+        }
         // Fix title for /policy-response index
         if (renderedRoute.route === '/policy-response') {
           renderedRoute.html = renderedRoute.html.replace(
@@ -31,11 +45,18 @@ export default defineConfig({
             '<title>Policy Responses — Institutional Engagement | AOS Governance</title>'
           );
         }
-        // Fix title for specific OpenAI response
+        // Fix title for OpenAI response
         if (renderedRoute.route === '/policy-response/openai-industrial-policy-april-2026') {
           renderedRoute.html = renderedRoute.html.replace(
             '<title>AOS Governance — The Open Standard for Verifiable AI Safety</title>',
             '<title>AOS Policy Response — OpenAI Industrial Policy for the Intelligence Age | AOS Governance</title>'
+          );
+        }
+        // Fix title for Anthropic Mythos response
+        if (renderedRoute.route === '/policy-response/anthropic-mythos-preview-april-2026') {
+          renderedRoute.html = renderedRoute.html.replace(
+            '<title>AOS Governance — The Open Standard for Verifiable AI Safety</title>',
+            '<title>AOS Policy Response — Anthropic Claude Mythos Preview & Project Glasswing | AOS Governance</title>'
           );
         }
         return renderedRoute;
