@@ -144,6 +144,7 @@ export default function Nav() {
                         <a href="https://aos-evidence.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Evidence</a>
                         <a href="https://aos-foundation.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Foundation</a>
                         <a href="https://aos-patents.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Patents</a>
+                        <a href="https://aos-gate.com" className="text-gray-400 hover:text-black transition-colors text-[13px] font-mono uppercase tracking-wider">Gate</a>
 
                         {/* Sitemap icon — opens modal */}
                         <button onClick={() => setSitemapOpen(true)} className="text-gray-400 hover:text-black transition-colors" title="Site Map" aria-label="Site Map">
@@ -155,7 +156,7 @@ export default function Nav() {
                             </svg>
                         </button>
 
-                        <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
+                        <a href="https://aos-gate.com" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">Get the Standard</a>
                     </div>
 
                     {/* Mobile hamburger */}
@@ -181,12 +182,13 @@ export default function Nav() {
                                     <a href="https://aos-evidence.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Evidence</a>
                                     <a href="https://aos-foundation.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Foundation</a>
                                     <a href="https://aos-patents.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Patents</a>
+                                    <a href="https://aos-gate.com" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 text-sm font-medium text-gray-600 hover:text-black hover:bg-black/5 rounded-lg transition-colors">Gate</a>
                                 </div>
                             </div>
                             <button onClick={() => { setMobileMenuOpen(false); setSitemapOpen(true); }} className="block pt-2 text-xs text-gray-400 hover:text-black transition-colors">
                                 View Site Map
                             </button>
-                            <a href="https://github.com/genesalvatore/aos-gate.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
+                            <a href="https://aos-gate.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-center py-3 bg-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">Get the Standard</a>
                         </div>
                     </div>
                 )}
