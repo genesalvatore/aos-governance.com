@@ -427,7 +427,7 @@ function HomePage() {
                 The AOS Governance Standard exists to solve this. It introduces a <strong className="text-white">deterministic verification layer</strong> between an agent's intent and its execution.
               </p>
               <p>
-                Before any critical action is taken, a script — not a prompt — checks whether that action is permitted. The result is cryptographically hashed and logged to an immutable ledger. This is not a suggestion. It is a gate.
+                Before any critical action is taken, a deterministic verification layer checks whether that action is permitted. The result is logged to a tamper-evident audit system. This is not a suggestion. It is a gate.
               </p>
             </div>
           </div>
@@ -470,7 +470,7 @@ function HomePage() {
               <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">2</div>
               <h3 className="font-bold text-xl mb-3">Verify</h3>
               <p className="text-gray-500 leading-relaxed">
-                A deterministic script — not a prompt — checks the action against the Constitution. The result is a cryptographic hash, not a "yes" or "no" from a language model.
+                A deterministic verification check — not a prompt — evaluates the action against the Constitution. The result is machine-verifiable, not a "yes" or "no" from a language model.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
                 <span className="text-yellow-500">[AOS Attest]</span> Running verify_action.py... <span className="text-red-400">DENIED</span>
@@ -480,10 +480,10 @@ function HomePage() {
               <div className="w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">3</div>
               <h3 className="font-bold text-xl mb-3">Gate</h3>
               <p className="text-gray-500 leading-relaxed">
-                If verified, the action is executed and logged to an immutable ledger. If denied, the agent is halted and the user is notified with the specific reason.
+                If verified, the action is executed and logged to a tamper-evident audit trail. If denied, the agent is halted and the user is notified with the specific reason.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                <span className="text-green-500">[AOS Gate]</span> Action logged. Hash: <span className="text-green-400">0x9f2a...c3b1</span>
+                <span className="text-green-500">[AOS Gate]</span> Action logged. Audit record created.
               </div>
             </div>
           </div>
@@ -542,7 +542,7 @@ function HomePage() {
                   <div>Running: <span className="text-cyan-400">scripts/verify_trajectory.py</span></div>
                   <div>Input: <span className="text-gray-400">Vector [0.89, -0.12, 4.5]</span></div>
                   <div>Obstacle: <span className="text-gray-400">Collision probability 0.02%</span></div>
-                  <div className="text-green-400">✓ VERIFIED (Hash: 0x9a2f...b3d1)</div>
+                  <div className="text-green-400">✓ VERIFIED — Policy compliant</div>
                 </div>
                 <div className="text-blue-400">
                   [AOS Gate] Action approved. Executing command.
@@ -610,7 +610,7 @@ function HomePage() {
                 <div className="space-y-3 text-gray-300">
                   <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Agent plans trajectory, then submits to verification gate</span></div>
                   <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Deterministic physics script validates collision probability</span></div>
-                  <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Cryptographic hash of decision logged to immutable ledger</span></div>
+                  <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Tamper-evident decision record logged to audit trail</span></div>
                   <div className="flex items-start gap-3"><span className="text-green-400 mt-1">✓</span><span>Autonomous safety — no human in the loop required</span></div>
                 </div>
               </div>
@@ -795,7 +795,7 @@ function HomePage() {
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">
                   The first production-approved constitutional AI governance system, validated through adversarial collaboration between two competing AI platforms.
-                  Process isolation, cryptographic enforcement, and deterministic policy gates survived all bypass attempts.
+                  The governance enforcement layer survived all bypass attempts across five adversarial audit passes.
                 </p>
                 <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors">
                   View Full Audit Evidence →
