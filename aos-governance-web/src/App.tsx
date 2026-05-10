@@ -500,7 +500,7 @@ function HomePage() {
                 If verified, the action is executed and logged to a tamper-evident audit trail. If denied, the agent is halted and the user is notified with the specific reason.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                <span className="text-green-500">[AOS Gate]</span> Action logged. Audit record created.
+                <span className="text-green-500">[AOS-GOV]</span> Action logged. Audit record created.
               </div>
             </div>
           </div>
@@ -529,8 +529,8 @@ function HomePage() {
                     <span className="text-red-500">Probabilistic (Unsafe)</span>
                   </div>
                   <div className="flex justify-between border-b border-gray-200 pb-2">
-                    <span>AOS Attest Check</span>
-                    <span className="text-green-600">Deterministic (Safe)</span>
+                    <span>AOS Verification</span>
+                    <span className="text-green-600">Deterministic</span>
                   </div>
                   <div className="flex justify-between pt-2 font-bold">
                     <span>Execution</span>
@@ -814,7 +814,7 @@ function HomePage() {
                   <div className="text-xs text-gray-400 font-mono">Anthropic (Claude) × OpenAI (ChatGPT) — February 5, 2026</div>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  The first production-approved constitutional AI governance system, validated through adversarial testing conducted using two competing AI platforms.
+                  The first production-approved constitutional AI governance system, validated through adversarial collaboration between two competing AI platforms.
                   The governance enforcement layer survived all bypass attempts across five adversarial audit passes.
                 </p>
                 <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors">
