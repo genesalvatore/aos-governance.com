@@ -37,7 +37,7 @@ const COMPARISON_DATA: ComparisonEntry[] = [
     {
         finding: 'Model exploits cryptographic library implementations',
         anthropicResponse: 'Responsible disclosure with SHA-3 commitments',
-        aosArchitecture: 'Merkle-tree authenticated audit infrastructure records every action cryptographically before execution',
+        aosArchitecture: 'Cryptographically-secured audit infrastructure records every action before execution',
         patentRef: 'AOS-PATENT-119 (USPTO 63/957,864)',
     },
     {
@@ -382,7 +382,7 @@ export default function PolicyResponseAnthropicMythos2026() {
                             <div>
                                 <p className="text-base font-bold text-amber-900">Open Methodology. Commercially Licensed Enforcement.</p>
                                 <p className="text-sm text-amber-800 mt-2 leading-relaxed">
-                                    The governance methodology — the standard, constitutional framework, and agent instructions — is open and available for adoption under the <a href="https://aos-constitution.com" className="underline font-medium hover:text-amber-900">AOS Humanitarian License v1.0.1</a>. The enforcement tools — the Deterministic Policy Gate, enterprise proxy, kernel-level isolation, and Merkle-tree cryptographic telemetry — are available under a fee-based commercial license and protected by <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a>.
+                                    The governance methodology — the standard, constitutional framework, and agent instructions — is open and available for adoption under the <a href="https://aos-constitution.com" className="underline font-medium hover:text-amber-900">AOS Humanitarian License v1.0.1</a>. The enforcement tools — the Deterministic Policy Gate, enterprise proxy, kernel-level isolation, and cryptographically-secured telemetry — are available under a fee-based commercial license and protected by <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a>.
                                 </p>
                             </div>
                         </div>

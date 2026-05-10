@@ -28,7 +28,7 @@ function SitemapModal({ onClose }: { onClose: () => void }) {
                             <SitemapLink href="/" label="Home" desc="The open standard overview" internal onClick={onClose} />
                             <SitemapLink href="/why" label="Why Governance" desc="Evidence library" internal onClick={onClose} />
                             <SitemapLink href="/#manifesto" label="Manifesto" desc="The core thesis" internal onClick={onClose} />
-                            <SitemapLink href="/#how-it-works" label="How It Works" desc="Intercept → Verify → Gate" internal onClick={onClose} />
+                            <SitemapLink href="/#how-it-works" label="How It Works" desc="Verifiable Safety Pipeline" internal onClick={onClose} />
                             <SitemapLink href="/#standard" label="The Constitution" desc="Five governing principles" internal onClick={onClose} />
                             <SitemapLink href="/#mars" label="Mars Precedent" desc="Claude on Mars case study" internal onClick={onClose} />
                             <SitemapLink href="/#get-started" label="Get Started" desc="Adopt the standard" internal onClick={onClose} />

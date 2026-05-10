@@ -5,7 +5,7 @@ const sitemapSections = [
         title: 'This Site',
         links: [
             { label: 'Manifesto', href: '#manifesto', desc: 'Why deterministic governance matters' },
-            { label: 'How It Works', href: '#how-it-works', desc: 'Intercept → Verify → Gate' },
+            { label: 'How It Works', href: '#how-it-works', desc: 'Verifiable Safety Pipeline' },
             { label: 'The Mars Precedent', href: '#mars', desc: 'AI on another planet' },
             { label: 'The Standard', href: '#standard', desc: 'Five constitutional principles' },
             { label: 'Get Started', href: '#get-started', desc: 'Adopt the governance standard' },

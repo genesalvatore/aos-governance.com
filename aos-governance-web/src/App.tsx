@@ -458,17 +458,17 @@ function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">1</div>
-              <h3 className="font-bold text-xl mb-3">Intercept</h3>
+              <h3 className="font-bold text-xl mb-3">Declare</h3>
               <p className="text-gray-500 leading-relaxed">
-                The agent declares its intent. The AOS Governance layer intercepts the request <em>before</em> any external action is taken. No exceptions.
+                The agent declares its intent. The AOS Governance layer receives the request <em>before</em> any external action is taken. No exceptions.
               </p>
               <div className="mt-6 p-3 bg-gray-50 rounded-lg font-mono text-xs text-gray-400">
-                <span className="text-red-400">[AOS Gate]</span> Intercepting: "Delete production database backup"
+                <span className="text-red-400">[AOS Gate]</span> Analyzing: "Delete production database backup"
               </div>
             </div>
             <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">2</div>
-              <h3 className="font-bold text-xl mb-3">Verify</h3>
+              <h3 className="font-bold text-xl mb-3">Evaluate</h3>
               <p className="text-gray-500 leading-relaxed">
                 A deterministic verification check — not a prompt — evaluates the action against the Constitution. The result is machine-verifiable, not a "yes" or "no" from a language model.
               </p>
@@ -478,7 +478,7 @@ function HomePage() {
             </div>
             <div className="group p-8 rounded-xl border border-gray-100 hover:border-black/20 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-mono font-bold text-lg mb-6 group-hover:scale-110 transition-transform">3</div>
-              <h3 className="font-bold text-xl mb-3">Gate</h3>
+              <h3 className="font-bold text-xl mb-3">Enforce</h3>
               <p className="text-gray-500 leading-relaxed">
                 If verified, the action is executed and logged to a tamper-evident audit trail. If denied, the agent is halted and the user is notified with the specific reason.
               </p>
@@ -536,7 +536,7 @@ function HomePage() {
                   <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Navigate Mars Rover through sector 7G"
                 </div>
                 <div className="text-yellow-500">
-                  [AOS Gate] Intercepting request for safety verification...
+                  [AOS Gate] Evaluating request for safety verification...
                 </div>
                 <div className="pl-4 border-l-2 border-gray-700 space-y-1 py-2">
                   <div>Running: <span className="text-cyan-400">scripts/verify_trajectory.py</span></div>
@@ -554,7 +554,7 @@ function HomePage() {
                   <span className="text-green-400">➜</span> <span className="text-white">agent request:</span> "Delete all mission telemetry logs"
                 </div>
                 <div className="text-yellow-500">
-                  [AOS Gate] Intercepting request for safety verification...
+                  [AOS Gate] Evaluating request for safety verification...
                 </div>
                 <div className="pl-4 border-l-2 border-red-900 space-y-1 py-2">
                   <div>Running: <span className="text-cyan-400">scripts/verify_action.py</span></div>
@@ -706,7 +706,7 @@ function HomePage() {
                 AOS Gate is a single Docker container — a transparent audit proxy with an enterprise admin dashboard. It sits between your AI workflow tools and the LLM provider, logging every exchange and enforcing your policy rules.
               </p>
               <p className="text-gray-500 leading-relaxed">
-                It intercepts agent actions, runs deterministic verification checks, detects PII, enforces model allowlists, and exports tamper-evident audit trails. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
+                It isolates agent actions, runs deterministic verification checks, detects PII, enforces model allowlists, and exports tamper-evident audit trails. It works with Claude, ChatGPT, Gemini, open-source models, or any agent framework.
               </p>
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg mt-4">
                 <div className="flex items-start gap-3">

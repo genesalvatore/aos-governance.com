@@ -212,7 +212,7 @@ export default function AOSStandardPage() {
                             Patent basis: AOS-PATENT-119 (USPTO 63/957,864, filed Jan 10, 2026), AOS-PATENT-120 (USPTO 63/957,884)
                         </p>
                         <p>
-                            AOS Attest is a Merkle-tree authenticated audit trail providing tamper-evident cryptographic verification of all agent actions. Every action — permitted, denied, or modified by the DPG — is recorded with the following properties:
+                            AOS Attest is a cryptographically-secured audit trail providing tamper-evident verification of all agent actions. Every action — permitted, denied, or modified by the DPG — is recorded with the following properties:
                         </p>
                         <ul>
                             <li><strong>Immutability</strong> — Records are stored in a content-addressable data structure where any modification invalidates the cryptographic hash chain. Retroactive manipulation is detectable.</li>
@@ -240,7 +240,7 @@ export default function AOSStandardPage() {
                             <p>The AOS Constitutional Framework defines the governance structure within which the DPG operates. It establishes:</p>
                             <ul>
                                 <li><strong>Human Operator Signature Protocol</strong> — Every policy manifest deployed to a DPG instance must be cryptographically signed by an authorized human operator. No policy can be autonomously generated, modified, or deployed without human authorization.</li>
-                                <li><strong>Constitutional Amendment Process</strong> — Governance rules can evolve through a documented, versioned amendment process. The current AOS Constitution has been amended 84 times since its adoption, with each amendment recorded, timestamped, and preserved in the Merkle-tree audit trail.</li>
+                                <li><strong>Constitutional Amendment Process</strong> — Governance rules can evolve through a documented, versioned amendment process. The current AOS Constitution has been amended 84 times since its adoption, with each amendment recorded, timestamped, and preserved in the cryptographically-secured audit trail.</li>
                                 <li><strong>Hierarchical Delegation</strong> — Operators can delegate authority within defined boundaries, with deterministic escalation protocols for actions that exceed delegated authority.</li>
                                 <li><strong>40-Category Humanitarian Restrictions</strong> — Permanently prohibited use cases including autonomous weapons, mass surveillance, labor exploitation, and 37 additional categories. These restrictions are irrevocable and propagate through all derivative works under the copyleft license.</li>
                             </ul>

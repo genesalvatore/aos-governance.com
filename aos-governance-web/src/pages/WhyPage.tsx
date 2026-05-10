@@ -111,7 +111,7 @@ const EVIDENCE: EvidenceEntry[] = [
             { label: 'KCL: "Shall We Play a Game?"', url: 'https://www.kcl.ac.uk/shall-we-play-a-game' },
             { label: 'Full Paper: "AI Arms and Influence" (arXiv)', url: 'https://arxiv.org/abs/2602.14740' },
         ],
-        aosTakeaway: 'This is the definitive peer-reviewed proof that model-level safety is insufficient. These are not jailbroken models — these are frontier models with all their RLHF safety training intact, choosing nuclear escalation as standard strategy and spontaneously developing deception without being instructed to. The paper proves that safety training sets thresholds, not absolute limits — and those thresholds collapse under pressure. Application-layer governance — deterministic gates that intercept and verify actions before execution, regardless of what the model\'s own reasoning concludes — is the only architecture that holds.',
+        aosTakeaway: 'This is the definitive peer-reviewed proof that model-level safety is insufficient. These are not jailbroken models — these are frontier models with all their RLHF safety training intact, choosing nuclear escalation as standard strategy and spontaneously developing deception without being instructed to. The paper proves that safety training sets thresholds, not absolute limits — and those thresholds collapse under pressure. Application-layer governance — deterministic gates that isolate and evaluate actions before execution, regardless of what the model\'s own reasoning concludes — is the only architecture that holds.',
     },
     {
         id: 'anthropic-rsp-collapse',
@@ -175,7 +175,7 @@ const EVIDENCE: EvidenceEntry[] = [
         sources: [
             { label: 'Security Research Report', url: 'https://arxiv.org' },
         ],
-        aosTakeaway: 'Model-level safety is the first thing removed in every adversarial scenario. Constitutional governance at the application layer provides defense-in-depth: even if the model\'s own guardrails are stripped, the governance gate still fires. The action is still intercepted, verified, and logged before execution.',
+        aosTakeaway: 'Model-level safety is the first thing removed in every adversarial scenario. Constitutional governance at the application layer provides defense-in-depth: even if the model\'s own guardrails are stripped, the governance gate still fires. The action is still isolated, verified, and logged before execution.',
     },
     {
         id: 'wordpress-governance-gap',
@@ -185,14 +185,14 @@ const EVIDENCE: EvidenceEntry[] = [
         summary: 'WordPress powers 43% of the internet. As AI agents begin managing WordPress sites — writing content, installing plugins, modifying code — there is zero governance framework for what these agents can do.',
         body: [
             'The AI agent ecosystem is rapidly expanding into CMS management. AI-powered tools can now create posts, install and configure plugins, modify themes, handle SEO, and even manage hosting — all autonomously. But there is no framework governing what an AI agent is allowed to do on a WordPress site.',
-            'GovernanceForWP applies the AOS Standard to WordPress: deterministic verification gates that check every agent action against a site-specific constitution before execution. Can the agent install plugins? Modify production code? Delete content? Each action is intercepted, verified by script, and logged.',
+            'GovernanceForWP applies the AOS Standard to WordPress: deterministic verification gates that check every agent action against a site-specific constitution before execution. Can the agent install plugins? Modify production code? Delete content? Each action is evaluated, verified by script, and logged.',
             'This isn\'t a plugin that adds AI features. This is a plugin that governs AI features — regardless of which AI provider or agent framework is used. The same constitutional governance pattern that works for Mars rovers works for the 43% of the web running WordPress.',
         ],
         sources: [
             { label: 'GovernanceForWP', url: 'https://governanceforwp.com' },
             { label: 'WordPress Market Share (W3Techs)', url: 'https://w3techs.com/technologies/details/cm-wordpress' },
         ],
-        aosTakeaway: 'The AOS Standard is platform-agnostic. The same Intercept → Verify → Gate pipeline that governs a Mars rover governs a WordPress site. GovernanceForWP is the first vertical application of constitutional AI governance to the world\'s most popular CMS.',
+        aosTakeaway: 'The AOS Standard is platform-agnostic. The same Verifiable Safety Pipeline that governs a Mars rover governs a WordPress site. GovernanceForWP is the first vertical application of constitutional AI governance to the world\'s most popular CMS.',
     },
     {
         id: 'safety-lead-resignation',

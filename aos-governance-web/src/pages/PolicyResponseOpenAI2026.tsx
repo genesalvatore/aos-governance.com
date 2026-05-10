@@ -13,7 +13,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
     {
         openaiRequirement: 'Privacy-preserving logging and audit systems capable of supporting investigation and accountability without enabling pervasive surveillance',
         sourceSection: 'AI Trust Stack',
-        aosImplementation: 'AOS Attest — Merkle-tree authenticated audit trail providing tamper-evident cryptographic verification of agent actions. Telemetry pipelines are physically unmapped from the agent\'s memory space, preventing retrospective manipulation while preserving complete forensic records.',
+        aosImplementation: 'AOS Attest — cryptographically-secured audit trail providing tamper-evident verification of agent actions. Telemetry pipelines are physically unmapped from the agent\'s memory space, preventing retrospective manipulation while preserving complete forensic records.',
         status: 'Patent pending — AOS-PATENT-119 (USPTO 63/957,864, filed January 10, 2026; amended 63/957,925), AOS-PATENT-120 (USPTO 63/957,884, filed January 10, 2026; amended 63/957,915)',
     },
     {
@@ -246,7 +246,7 @@ export default function PolicyResponseOpenAI2026() {
                         </p>
                         <div className="space-y-3">
                             {[
-                                { policy: 'Provenance and verification standards', impl: 'AOS implements through Merkle-tree hash chains providing cryptographic verification of action lineage.' },
+                                { policy: 'Provenance and verification standards', impl: 'AOS implements through cryptographically-secured hash chains providing verification of action lineage.' },
                                 { policy: 'Privacy-preserving logging', impl: 'AOS implements through telemetry pipelines physically unmapped from agent memory, preventing the agent from accessing or modifying its own audit trail.' },
                                 { policy: 'Mechanisms for public input on alignment', impl: 'AOS implements a Constitutional Amendment process with documented governance procedures, published at aos-constitution.com.' },
                             ].map((item, i) => (
@@ -309,7 +309,7 @@ export default function PolicyResponseOpenAI2026() {
                             <div>
                                 <p className="text-base font-bold text-amber-900">The IP Boundary: Open Methodology, Commercially Licensed Enforcement</p>
                                 <p className="text-sm text-amber-800 mt-2 leading-relaxed">
-                                    The governance structures, constitutional frameworks, and policy manifests discussed above are open and available for adoption under the <a href="https://aos-constitution.com" className="underline font-medium hover:text-amber-900">AOS Humanitarian License v1.0.1</a>. However, the exact mechanisms required to securely <em>enforce</em> them—the Deterministic Policy Gate, the enterprise proxy, the kernel-level isolation, and the Merkle-tree cryptographic telemetry (the "Lock and Key")—are available under a fee-based commercial license and protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a>. We invite collaboration on the standards while commercializing the enforcement infrastructure.
+                                    The governance structures, constitutional frameworks, and policy manifests discussed above are open and available for adoption under the <a href="https://aos-constitution.com" className="underline font-medium hover:text-amber-900">AOS Humanitarian License v1.0.1</a>. However, the exact mechanisms required to securely <em>enforce</em> them—the Deterministic Policy Gate, the enterprise proxy, the kernel-level isolation, and the cryptographically-secured telemetry (the "Lock and Key")—are available under a fee-based commercial license and protected by a portfolio of <a href="https://aos-patents.com" className="underline font-medium hover:text-amber-900">101 patent-pending applications</a>. We invite collaboration on the standards while commercializing the enforcement infrastructure.
                                 </p>
                             </div>
                         </div>
