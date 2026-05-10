@@ -721,36 +721,39 @@ function HomePage() {
               </div>
             </div>
             <div className="bg-gray-50 rounded-xl p-8 font-mono text-sm border border-gray-100">
-              <div className="text-gray-400 mb-4">aos-gate.com/</div>
-              <div className="pl-4 space-y-2">
-                <div className="flex items-center gap-3">
-                  <span className="text-blue-500">📄</span>
-                  <span><strong>gate.js</strong></span>
-                  <span className="text-gray-400 text-xs ml-auto">← The Gate</span>
+              <div className="text-gray-400 mb-4">Governance Architecture</div>
+              <div className="pl-4 space-y-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-3">
+                    <span className="text-blue-500">🛡️</span>
+                    <span><strong>Intercept Layer</strong></span>
+                  </div>
+                  <div className="text-gray-500 text-xs pl-8">Enterprise proxy and administrative dashboard</div>
                 </div>
-                <div className="text-gray-400 text-xs pl-8 mb-3">Audit proxy + admin dashboard (ports 3100/3101)</div>
-                <div className="flex items-center gap-3">
-                  <span className="text-yellow-500">📁</span>
-                  <span><strong>skill/</strong></span>
-                  <span className="text-gray-400 text-xs ml-auto">← The Engine</span>
+                
+                <div className="space-y-1">
+                  <div className="flex items-center gap-3">
+                    <span className="text-yellow-500">⚙️</span>
+                    <span><strong>Verification Engine</strong></span>
+                  </div>
+                  <div className="text-gray-500 text-xs pl-8">Constitutional checks and immutable logging</div>
                 </div>
-                <div className="pl-8 space-y-1 text-gray-500 text-xs mb-3">
-                  <div>SKILL.md — Agent governance instructions</div>
-                  <div>scripts/verify_action.py — Constitutional check</div>
-                  <div>scripts/log_evidence.py — Immutable logging</div>
+
+                <div className="space-y-1">
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-500">📜</span>
+                    <span><strong>Policy Framework</strong></span>
+                  </div>
+                  <div className="text-gray-500 text-xs pl-8">Model allowlists, content filters, and rulesets</div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-500">📄</span>
-                  <span><strong>policy.json</strong></span>
-                  <span className="text-gray-400 text-xs ml-auto">← The Rules</span>
+
+                <div className="space-y-1 pt-2 border-t border-gray-200">
+                  <div className="flex items-center gap-3">
+                    <span className="text-purple-500">🚀</span>
+                    <span><strong>Containerized Deployment</strong></span>
+                  </div>
+                  <div className="text-gray-500 text-xs pl-8">Standardized, portable execution environment</div>
                 </div>
-                <div className="text-gray-400 text-xs pl-8 mb-3">Model allowlists, content filters, log levels</div>
-                <div className="flex items-center gap-3">
-                  <span className="text-purple-500">📄</span>
-                  <span><strong>Dockerfile</strong></span>
-                  <span className="text-gray-400 text-xs ml-auto">← Deploy</span>
-                </div>
-                <div className="text-gray-400 text-xs pl-8 mb-1">docker compose up -d</div>
               </div>
             </div>
           </div>
@@ -794,7 +797,7 @@ function HomePage() {
                   <div className="text-xs text-gray-400 font-mono">Anthropic (Claude) × OpenAI (ChatGPT) — February 5, 2026</div>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  The first production-approved constitutional AI governance system, validated through adversarial collaboration between two competing AI platforms.
+                  The first production-approved constitutional AI governance system, validated through adversarial testing conducted using two competing AI platforms.
                   The governance enforcement layer survived all bypass attempts across five adversarial audit passes.
                 </p>
                 <a href="https://aos-evidence.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors">

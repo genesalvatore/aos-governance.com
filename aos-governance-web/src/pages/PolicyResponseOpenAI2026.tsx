@@ -19,7 +19,7 @@ const ALIGNMENT_DATA: AlignmentEntry[] = [
     {
         openaiRequirement: 'Secure, verifiable signatures for actions such as generating content or issuing instructions',
         sourceSection: 'AI Trust Stack',
-        aosImplementation: 'Intent Declaration Protocol — Agents submit structured intent payloads to a Deterministic Policy Gate (DPG) prior to execution. Each action is evaluated against cryptographically signed policy manifests. Unsigned or non-conforming actions are rejected deterministically.',
+        aosImplementation: 'Intent Declaration Protocol — Agents submit structured intent payloads to a Deterministic Policy Gate (DPG) prior to execution. Each action is evaluated against secure and verifiable policy frameworks. Unsigned or non-conforming actions are rejected deterministically.',
         status: 'Patent pending — AOS-PATENT-015 (USPTO 63/957,869, filed January 10, 2026; amended 63/957,920)',
     },
     {

@@ -194,7 +194,7 @@ export default function AOSStandardPage() {
                                 Patent basis: AOS-PATENT-015 (USPTO 63/957,869, filed Jan 10, 2026; amended 63/969,499, Jan 27, 2026)
                             </p>
                             <p>
-                                The Deterministic Policy Gate is the core enforcement mechanism of the AOS architecture. It operates as a mandatory intermediary between an AI agent's intent and its execution, evaluating every proposed action against a cryptographically signed policy manifest before permitting execution.
+                                The Deterministic Policy Gate is the core enforcement mechanism of the AOS architecture. It operates as a mandatory intermediary between an AI agent's intent and its execution, evaluating every proposed action against a secure and verifiable policy framework before permitting execution.
                             </p>
                             <ul>
                                 <li><strong>Process isolation</strong> — The DPG runs in a separate process space from the agent with elevated kernel privileges. The agent cannot observe, modify, or circumvent the gate.</li>
