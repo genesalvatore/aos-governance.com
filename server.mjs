@@ -1495,7 +1495,31 @@ const server = http.createServer(async (req, res) => {
     }
 
         // Compute strict session authentication before Admin/Portal/Feedback routes
-    // (isAuthenticated computed above Step 3)
+    const isAuthenticated = checkRequestAuth(req);
+
+        // Unified Spoke Security Guard (Blocks unauthenticated access to Portal, Feedback, Social & Lead Read/Mutate APIs)
+    const isProtectedSpokeApi =
+      pathname === "/api/spoke-portal-data" ||
+      pathname === "/api/command/spoke-portal-data" ||
+      pathname === "/api/feedback" ||
+      pathname === "/api/feedback/" ||
+      pathname === "/api/feedback/binary" ||
+      pathname === "/api/command/pin-action" ||
+      pathname.startsWith("/api/social/") ||
+      ((pathname === "/api/submissions" ||
+        pathname === "/.netlify/functions/submissions" ||
+        pathname === "/api/rfq") &&
+        (req.method === "GET" || req.method === "PATCH" || req.method === "DELETE"));
+
+    if (isProtectedSpokeApi && !isAuthenticated && !verifyHubSyncAuth(req, "")) {
+      res.writeHead(401, {
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow",
+      });
+      res.end(JSON.stringify({ ok: false, error: "Unauthorized" }));
+      return;
+    }
 
     // ========================================================================
     // 3. Universal Spoke Admin Portal (`/admin` -> `MOD-ADMIN-PORTAL`)
