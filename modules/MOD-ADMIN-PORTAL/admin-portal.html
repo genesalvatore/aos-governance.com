@@ -737,7 +737,8 @@
       const hiddenSet = new Set(lic.hiddenModules || []);
       const visibleCatalog = STATE.catalog.filter(m => !hiddenSet.has(m.code));
       const activeCount = visibleCatalog.filter(m => enabledSet.has(m.code)).length;
-      document.getElementById('navLeadsCount').textContent = STATE.submissions.length;
+      const activeSubsCount = STATE.submissions.filter(s => s.status !== 'spam' && s.status !== 'trash').length;
+      document.getElementById('navLeadsCount').textContent = activeSubsCount;
       document.getElementById('navPinsCount').textContent = STATE.pins.length;
       document.getElementById('navModulesCount').textContent = `${activeCount}/${visibleCatalog.length}`;
 
@@ -835,7 +836,8 @@
       const activeMods = visibleMods.filter(m => enabledSet.has(m.code));
       const tierObj = STATE.planTiers.find(t => t.id === lic.planTier) || STATE.planTiers[0] || { name: previewMode ? 'Executive Concept Preview' : 'Growth Retainer' };
 
-      const recentSubs = STATE.submissions.slice(0, 6);
+      const activeSubs = STATE.submissions.filter(s => s.status !== 'spam' && s.status !== 'trash');
+      const recentSubs = activeSubs.slice(0, 6);
 
       return `
         <!-- Active Plan & License Status Strip (Customer Brand Colors) -->
@@ -859,7 +861,7 @@
         <div class="kpiGrid">
           <div class="kpiCard">
             <div class="kpiLabel">Total Form Leads & Quotes</div>
-            <div class="kpiVal">${STATE.submissions.length}</div>
+            <div class="kpiVal">${activeSubs.length}</div>
             <div class="kpiSub" style="color:#16a34a;">Stored in isolated PostgreSQL 16</div>
           </div>
           <div class="kpiCard">
@@ -921,30 +923,122 @@
         .replace(/'/g, '&#39;');
     }
 
+    if (!STATE.leadFolder) STATE.leadFolder = 'all';
+
+    function isPortalLeadSpam(s) {
+      return s.status === 'spam' || s.status === 'trash';
+    }
+
+    async function updatePortalLeadStatus(id, status) {
+      const sub = STATE.submissions.find(x => x.id === id);
+      if (sub) sub.status = status;
+      updateSidebarCounts();
+      renderActiveTab();
+      try {
+        await fetch('/api/gt-sync/v1/submissions', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, status })
+        });
+        showToast(status === 'spam' ? '🚫 Moved to Spam / Trash (Synced to Command Center)' : `✓ Lead status updated to ${status.toUpperCase()}`);
+      } catch (e) {
+        showToast('Failed to update lead status: ' + e.message);
+      }
+    }
+
+    async function deletePortalLeadPermanently(id) {
+      if (!confirm('Permanently delete this message from the PostgreSQL database? This cannot be undone.')) return;
+      STATE.submissions = STATE.submissions.filter(x => x.id !== id);
+      updateSidebarCounts();
+      renderActiveTab();
+      try {
+        await fetch('/api/gt-sync/v1/submissions', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, action: 'delete' })
+        });
+        showToast('🗑️ Permanently deleted from PostgreSQL');
+      } catch (e) {
+        showToast('Failed to delete message: ' + e.message);
+      }
+    }
+
+    async function emptyPortalSpamTrash() {
+      const trashItems = STATE.submissions.filter(isPortalLeadSpam);
+      if (trashItems.length === 0) return;
+      if (!confirm(`Permanently delete all ${trashItems.length} spam/trash message(s)? This cannot be undone.`)) return;
+      for (const item of trashItems) {
+        await fetch('/api/gt-sync/v1/submissions', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: item.id, action: 'delete' })
+        }).catch(() => {});
+      }
+      STATE.submissions = STATE.submissions.filter(s => !isPortalLeadSpam(s));
+      updateSidebarCounts();
+      renderActiveTab();
+      showToast(`🗑️ Emptied ${trashItems.length} message(s) from Spam / Trash`);
+    }
+
     function renderSubmissionsTab() {
+      const activeCount = STATE.submissions.filter(s => !isPortalLeadSpam(s)).length;
+      const newCount = STATE.submissions.filter(s => (s.status || 'new') === 'new').length;
+      const contactedCount = STATE.submissions.filter(s => s.status === 'contacted').length;
+      const archivedCount = STATE.submissions.filter(s => s.status === 'archived').length;
+      const spamCount = STATE.submissions.filter(isPortalLeadSpam).length;
+      const inTrash = STATE.leadFolder === 'spam';
+
+      const filtered = STATE.submissions.filter(s => {
+        const st = s.status || 'new';
+        if (STATE.leadFolder === 'all') return !isPortalLeadSpam(s);
+        if (STATE.leadFolder === 'spam') return isPortalLeadSpam(s);
+        return st === STATE.leadFolder;
+      });
+
       return `
         <div class="panelCard">
-          <div class="panelHeader">
+          <div class="panelHeader" style="flex-wrap:wrap;gap:12px;">
             <div>
-              <div class="panelTitle">Customer Leads, Quotes & Dispatch Inbox (${STATE.submissions.length})</div>
-              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Backed by dedicated PostgreSQL 16 (form_submissions table) and SmarterMail instant alerts</div>
+              <div class="panelTitle">Customer Leads, Quotes &amp; Dispatch Inbox (${activeCount} Active / ${spamCount} Spam)</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">2-way synced with GreenTree Master Command Center · Spam items sit in Trash until manually deleted</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+              ${[
+                { key: 'all', label: `📥 All Active (${activeCount})` },
+                { key: 'new', label: `🔵 New (${newCount})` },
+                { key: 'contacted', label: `🟢 Contacted (${contactedCount})` },
+                { key: 'archived', label: `📁 Archived (${archivedCount})` },
+                { key: 'spam', label: `🚫 Spam / Trash (${spamCount})` },
+              ].map(t => `
+                <button class="btnOutline" onclick="STATE.leadFolder='${t.key}';renderActiveTab();" style="padding:6px 11px;font-size:0.74rem;${STATE.leadFolder === t.key ? 'background:#0f172a;color:#fff;border-color:#0f172a;' : ''}">
+                  ${t.label}
+                </button>
+              `).join('')}
+              ${inTrash && spamCount > 0 ? `
+                <button class="btnOutline" onclick="emptyPortalSpamTrash()" style="padding:6px 11px;font-size:0.74rem;background:#dc2626;color:#fff;border-color:#dc2626;">
+                  🗑️ Empty Trash (${spamCount})
+                </button>
+              ` : ''}
             </div>
           </div>
-          ${STATE.submissions.length === 0 ? `<div style="padding:32px; text-align:center; color:#64748b;">No submissions recorded yet.</div>` : `
+          ${filtered.length === 0 ? `<div style="padding:32px; text-align:center; color:#64748b;">${inTrash ? 'Spam / Trash folder is clean.' : 'No active submissions in this folder.'}</div>` : `
             <table>
               <thead>
                 <tr>
                   <th>ID / Timestamp</th>
                   <th>Customer Name</th>
-                  <th>Email & Phone</th>
+                  <th>Email &amp; Phone</th>
                   <th>Form / Service</th>
                   <th>Message / Details</th>
                   <th>Status</th>
+                  <th>Actions (2-Way Sync)</th>
                 </tr>
               </thead>
               <tbody>
-                ${STATE.submissions.map(s => `
-                  <tr>
+                ${filtered.map(s => {
+                  const isSpam = isPortalLeadSpam(s);
+                  return `
+                  <tr style="${isSpam ? 'background:#fef2f2;' : ''}">
                     <td class="mono" style="font-size:0.72rem; color:#64748b;">
                       <div>${escHtml(s.id || '')}</div>
                       <div>${escHtml(new Date(s.createdAt || Date.now()).toLocaleString())}</div>
@@ -956,9 +1050,27 @@
                     </td>
                     <td><span class="badge badgeBlue">${escHtml(s.service || s.formName || 'Inquiry')}</span></td>
                     <td style="max-width:340px; font-size:0.78rem; color:#334155;">${escHtml(s.message || JSON.stringify(s.payload || {}).slice(0, 160))}</td>
-                    <td><span class="badge badgeGreen">${escHtml((s.status || 'new').toUpperCase())}</span></td>
+                    <td><span class="badge ${isSpam ? 'badgeAmber' : 'badgeGreen'}">${escHtml(isSpam ? 'SPAM / TRASH' : (s.status || 'new').toUpperCase())}</span></td>
+                    <td style="white-space:nowrap;">
+                      ${isSpam ? `
+                        <div style="display:flex;gap:6px;">
+                          <button class="btnOutline" style="padding:5px 9px;font-size:0.72rem;color:#15803d;border-color:#16a34a;" onclick="updatePortalLeadStatus('${escHtml(s.id)}','new')">↩️ Not Spam</button>
+                          <button class="btnOutline" style="padding:5px 9px;font-size:0.72rem;background:#dc2626;color:#fff;border-color:#dc2626;" onclick="deletePortalLeadPermanently('${escHtml(s.id)}')">❌ Delete</button>
+                        </div>
+                      ` : `
+                        <div style="display:flex;gap:6px;align-items:center;">
+                          <select style="padding:5px 8px;border-radius:6px;border:1px solid #cbd5e1;font-size:0.74rem;font-weight:700;" onchange="updatePortalLeadStatus('${escHtml(s.id)}',this.value)">
+                            <option value="new" ${(s.status || 'new') === 'new' ? 'selected' : ''}>New</option>
+                            <option value="contacted" ${s.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                            <option value="archived" ${s.status === 'archived' ? 'selected' : ''}>Archived</option>
+                            <option value="spam">🚫 Spam / Trash</option>
+                          </select>
+                          <button class="btnOutline" style="padding:5px 9px;font-size:0.72rem;color:#b91c1c;border-color:#fca5a5;background:#fef2f2;" onclick="updatePortalLeadStatus('${escHtml(s.id)}','spam')">🚫 Spam</button>
+                        </div>
+                      `}
+                    </td>
                   </tr>
-                `).join('')}
+                `;}).join('')}
               </tbody>
             </table>
           `}

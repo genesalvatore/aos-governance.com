@@ -495,7 +495,9 @@ function inspectWafAndBotShield(req, rawBody, fields) {
     return { spamDrop: true, reason: "gibberish_cluster_bot" };
   }
 
-  return { ok: true, candidateName, candidateEmail, candidatePhone, candidateMsg };
+    const combinedText = [candidateName, candidateEmail, candidatePhone, candidateMsg].join(" ");
+  const isColdOutreachSpam = /\b(SEO\s*\+\s*AEO|AEO\s*\+\s*GEO|AI\s+SEO|rank\s+higher\s+on\s+Google|AI-powered\s+search\s+platforms|ChatGPT,\s*Gemini,\s*Claude|impactful\s+video\s+to\s+advertise|30-second\s+video|mapmybiz\.mkt|jameswashington\.dev|21326260124)\b/i.test(combinedText);
+  return { ok: true, autoSpamStatus: isColdOutreachSpam ? "spam" : null, candidateName, candidateEmail, candidatePhone, candidateMsg };
 }
 
 // ============================================================================
@@ -1207,7 +1209,7 @@ const server = http.createServer(async (req, res) => {
           ? await readRequestBody(req)
           : "";
 
-      if (!verifyHubSyncAuth(req, rawBody)) {
+      if (!verifyHubSyncAuth(req, rawBody) && !checkRequestAuth(req)) {
         res.writeHead(401, syncHeaders);
         res.end(
           JSON.stringify({
@@ -2289,7 +2291,7 @@ const server = http.createServer(async (req, res) => {
         submitterName: candidateName.slice(0, 120),
         submitterEmail: candidateEmail.slice(0, 160),
         submitterPhone: candidatePhone.slice(0, 60),
-        status: "new",
+        status: shield.autoSpamStatus || "new",
         payload: {
           ...fields,
           referenceNumber: refNumber,
@@ -2305,7 +2307,7 @@ const server = http.createServer(async (req, res) => {
       const { meta } = await loadMetaAndPins();
 
       try {
-        const info = await sendSubmissionEmail(subRecord, meta?.settings);
+        const info = subRecord.status === "spam" ? null : await sendSubmissionEmail(subRecord, meta?.settings);
         if (info) {
           emailSent = true;
           smtpMessageId = info.messageId || null;
