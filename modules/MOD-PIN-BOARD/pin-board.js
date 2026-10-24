@@ -842,6 +842,15 @@
       });
     }
 
+    function escHtml(v) {
+      return String(v ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     const repliesHtml =
       item.replies && item.replies.length
         ? item.replies
@@ -850,12 +859,12 @@
                 '<div style="padding:10px;border-radius:10px;background:#F8FAFC;border:1px solid #E2E8F0;margin-bottom:8px;">' +
                 '<div style="display:flex;justify-content:space-between;font-family:monospace;font-size:11px;">' +
                 '<strong>' +
-                rep.author +
+                escHtml(rep.author) +
                 '</strong><span style="color:#64748B;">' +
-                (rep.createdAt || '').slice(0, 16).replace('T', ' ') +
+                escHtml((rep.createdAt || '').slice(0, 16).replace('T', ' ')) +
                 '</span></div>' +
                 '<div style="margin-top:4px;font-size:12px;color:#334155;">' +
-                rep.text +
+                escHtml(rep.text) +
                 '</div></div>'
               );
             })
@@ -866,8 +875,8 @@
       <div style="width:100%;max-width:512px;background:#FFFFFF;border-radius:16px;border:2px solid #F59E0B;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,0.6);max-height:90vh;overflow-y:auto;" onclick="event.stopPropagation()">
         <div style="background:#0F172A;color:#FFFFFF;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
           <div>
-            <div style="font-family:monospace;font-size:10px;text-transform:uppercase;color:#FBBF24;font-weight:700;">Pin #${item.pinNumber} &bull; ${formatPageLabel(item.pagePath)} &bull; ${item.category}</div>
-            <div style="font-size:15px;font-weight:800;margin-top:2px;">Posted by ${item.reviewerName}</div>
+            <div style="font-family:monospace;font-size:10px;text-transform:uppercase;color:#FBBF24;font-weight:700;">Pin #${escHtml(item.pinNumber)} &bull; ${escHtml(formatPageLabel(item.pagePath))} &bull; ${escHtml(item.category)}</div>
+            <div style="font-size:15px;font-weight:800;margin-top:2px;">Posted by ${escHtml(item.reviewerName)}</div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <select id="modzThreadStatusSelect" style="background:#1E293B;color:#FBBF24;border:1px solid #475569;border-radius:8px;padding:4px 8px;font-family:monospace;font-size:11px;font-weight:700;">
@@ -880,8 +889,8 @@
         </div>
         <div style="padding:20px;display:flex;flex-direction:column;gap:14px;font-size:12px;color:#1E293B;">
           <div style="padding:12px;border-radius:10px;background:#FFFBEB;border:1px solid #FDE68A;">
-            <div style="font-size:14px;font-weight:600;color:#0F172A;">${item.commentText}</div>
-            <div style="font-family:monospace;font-size:10px;color:#64748B;margin-top:4px;">Target: ${item.elementSnippet || item.elementSelector}</div>
+            <div style="font-size:14px;font-weight:600;color:#0F172A;">${escHtml(item.commentText)}</div>
+            <div style="font-family:monospace;font-size:10px;color:#64748B;margin-top:4px;">Target: ${escHtml(item.elementSnippet || item.elementSelector)}</div>
           </div>
           ${
             item.screenshotDataUrl

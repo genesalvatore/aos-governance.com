@@ -21,6 +21,15 @@
   let viewMode = 'summary'; // 'summary' | 'complete'
   let searchQuery = '';
 
+  function escHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   const style = document.createElement('style');
   style.textContent = `
     .gt-dh-fab {
@@ -87,30 +96,30 @@
       <div class="gt-dh-modal">
         <div style="padding:18px 26px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;">
           <div>
-            <div style="font-size:22px;font-weight:800;color:#0f172a;">${catalogData.docTitle}</div>
-            <div style="font-size:13px;color:#64748b;margin-top:2px;">${catalogData.docSubtitle}</div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;">${escHtml(catalogData.docTitle)}</div>
+            <div style="font-size:13px;color:#64748b;margin-top:2px;">${escHtml(catalogData.docSubtitle)}</div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
-            <span style="padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;background:#ede9fe;color:#6d28d9;text-transform:uppercase;">Role: ${userRole}</span>
+            <span style="padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;background:#ede9fe;color:#6d28d9;text-transform:uppercase;">Role: ${escHtml(userRole)}</span>
             <button id="gt-dh-close" style="padding:7px 14px;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#334155;font-weight:700;cursor:pointer;">✕ Close</button>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:280px 1fr;flex:1;overflow:hidden;">
           <div style="border-right:1px solid #e2e8f0;padding:16px;overflow-y:auto;background:#fcfcfd;">
             <div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:8px;">Contents</div>
-            <input id="gt-dh-search" type="text" placeholder="Search documentation..." value="${searchQuery}" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:12.5px;margin-bottom:14px;box-sizing:border-box;" />
+            <input id="gt-dh-search" type="text" placeholder="Search documentation..." value="${escHtml(searchQuery)}" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:12.5px;margin-bottom:14px;box-sizing:border-box;" />
             ${catalogData.categories.map(cat => {
               const filtered = cat.topics.filter(t => !searchQuery || t.title.toLowerCase().includes(searchQuery.toLowerCase()) || t.subtitle.toLowerCase().includes(searchQuery.toLowerCase()));
               if (!filtered.length) return '';
               return `
                 <div style="margin-bottom:14px;">
-                  <div style="font-size:10.5px;font-weight:800;color:#64748b;letter-spacing:0.06em;padding:4px 8px;margin-bottom:4px;">${cat.label}</div>
+                  <div style="font-size:10.5px;font-weight:800;color:#64748b;letter-spacing:0.06em;padding:4px 8px;margin-bottom:4px;">${escHtml(cat.label)}</div>
                   ${filtered.map(t => {
                     const isActive = t.id === (activeTopic && activeTopic.id);
                     return `
-                      <button data-topic-id="${t.id}" style="width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:${isActive ? '700' : '500'};background:${isActive ? 'linear-gradient(90deg,#9333ea,#7c3aed)' : 'transparent'};color:${isActive ? '#fff' : '#334155'};margin-bottom:2px;">
-                        <span><span style="margin-right:7px;">${t.icon || '📘'}</span>${t.title}</span>
-                        ${t.badge ? `<span style="font-size:10px;padding:1px 6px;border-radius:99px;background:${isActive ? 'rgba(255,255,255,0.22)' : '#f3e8ff'};color:${isActive ? '#fff' : '#7c3aed'};">${t.badge}</span>` : ''}
+                      <button data-topic-id="${escHtml(t.id)}" style="width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:${isActive ? '700' : '500'};background:${isActive ? 'linear-gradient(90deg,#9333ea,#7c3aed)' : 'transparent'};color:${isActive ? '#fff' : '#334155'};margin-bottom:2px;">
+                        <span><span style="margin-right:7px;">${escHtml(t.icon || '📘')}</span>${escHtml(t.title)}</span>
+                        ${t.badge ? `<span style="font-size:10px;padding:1px 6px;border-radius:99px;background:${isActive ? 'rgba(255,255,255,0.22)' : '#f3e8ff'};color:${isActive ? '#fff' : '#7c3aed'};">${escHtml(t.badge)}</span>` : ''}
                       </button>
                     `;
                   }).join('')}
@@ -135,19 +144,19 @@
                 </button>
               </div>
               <div style="text-align:center;margin-bottom:28px;">
-                <div style="width:56px;height:56px;border-radius:50%;background:#f3e8ff;color:#7c3aed;display:inline-flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px;">${activeTopic.icon || '📘'}</div>
-                <h2 style="margin:0;font-size:28px;font-weight:800;color:#0f172a;">${activeTopic.title}</h2>
-                <p style="margin:6px auto 0;max-width:640px;font-size:14.5px;color:#64748b;">${activeTopic.subtitle}</p>
+                <div style="width:56px;height:56px;border-radius:50%;background:#f3e8ff;color:#7c3aed;display:inline-flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px;">${escHtml(activeTopic.icon || '📘')}</div>
+                <h2 style="margin:0;font-size:28px;font-weight:800;color:#0f172a;">${escHtml(activeTopic.title)}</h2>
+                <p style="margin:6px auto 0;max-width:640px;font-size:14.5px;color:#64748b;">${escHtml(activeTopic.subtitle)}</p>
               </div>
               ${!isComplete ? `
                 <div style="padding:20px;border-radius:12px;background:#faf5ff;border:1px solid #e9d5ff;margin-bottom:20px;">
-                  <div style="font-size:16px;font-weight:800;color:#1e1b4b;margin-bottom:6px;">📖 ${activeTopic.summary.leadTitle}</div>
-                  <p style="margin:0 0 14px;font-size:14px;color:#334155;line-height:1.6;">${activeTopic.summary.leadText}</p>
+                  <div style="font-size:16px;font-weight:800;color:#1e1b4b;margin-bottom:6px;">📖 ${escHtml(activeTopic.summary.leadTitle)}</div>
+                  <p style="margin:0 0 14px;font-size:14px;color:#334155;line-height:1.6;">${escHtml(activeTopic.summary.leadText)}</p>
                   <div style="display:grid;gap:12px;">
                     ${(activeTopic.summary.highlights || []).map(h => `
                       <div style="padding:14px 16px;border-radius:10px;background:#ffffff;border:1px solid #ddd6fe;">
-                        <div style="font-size:14px;font-weight:700;color:#5b21b6;margin-bottom:4px;">${h.icon || '✨'} ${h.title}</div>
-                        <div style="font-size:13.5px;color:#475569;line-height:1.55;">${h.text}</div>
+                        <div style="font-size:14px;font-weight:700;color:#5b21b6;margin-bottom:4px;">${escHtml(h.icon || '✨')} ${escHtml(h.title)}</div>
+                        <div style="font-size:13.5px;color:#475569;line-height:1.55;">${escHtml(h.text)}</div>
                       </div>
                     `).join('')}
                   </div>
@@ -155,13 +164,13 @@
               ` : `
                 <div style="padding:20px;border-radius:12px;background:#f8fafc;border:1px solid #e2e8f0;margin-bottom:20px;">
                   <div style="font-size:15px;font-weight:800;color:#0f172a;margin-bottom:8px;">📚 Complete Operational Guide</div>
-                  <p style="margin:0 0 16px;font-size:14px;color:#334155;line-height:1.65;">${activeTopic.complete.overview}</p>
+                  <p style="margin:0 0 16px;font-size:14px;color:#334155;line-height:1.65;">${escHtml(activeTopic.complete.overview)}</p>
                   ${(activeTopic.complete.steps || []).map(s => `
                     <div style="padding:14px 16px;border-radius:10px;background:#ffffff;border:1px solid #e2e8f0;margin-bottom:10px;display:flex;gap:12px;">
-                      <div style="width:28px;height:28px;border-radius:50%;background:#7c3aed;color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${s.step}</div>
+                      <div style="width:28px;height:28px;border-radius:50%;background:#7c3aed;color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${escHtml(s.step)}</div>
                       <div>
-                        <div style="font-size:14px;font-weight:700;color:#0f172a;">${s.title}</div>
-                        <div style="font-size:13.5px;color:#475569;margin-top:3px;line-height:1.55;">${s.detail}</div>
+                        <div style="font-size:14px;font-weight:700;color:#0f172a;">${escHtml(s.title)}</div>
+                        <div style="font-size:13.5px;color:#475569;margin-top:3px;line-height:1.55;">${escHtml(s.detail)}</div>
                       </div>
                     </div>
                   `).join('')}
