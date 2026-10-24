@@ -1,0 +1,25 @@
+{
+  "id": "EVEAICORE-2026-03-02-mm9j5itm",
+  "url": "https://eveaicore.com",
+  "subject": "eveaicore",
+  "reason": "potential infringement of AOS patents and theory",
+  "category": "website",
+  "tags": [],
+  "capturedAt": "2026-03-02T18:46:27.466Z",
+  "capturedBy": "AOS Legal Archives — Netlify Function",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d629076487e3d57-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 18:46:27 GMT",
+    "last-modified": "Fri, 27 Feb 2026 05:27:55 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=XU3xJQ83W%2F1ViUZFqPksGai37MpD%2BCdDMYTqlLkyPnOJvpSYGh%2FxcvsC%2Fz3hWu%2B8UlwOw9PA77Hxh0eEXo68CEpPwVAtl45cJ%2FhA16M%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 291223,
+  "userAgent": "Mozilla/5.0 (AOS Legal Evidence Archiver) AppleWebKit/537.36",
+  "note": "This archive was captured for legal evidence purposes related to potential IP infringement of AOS patents."
+}

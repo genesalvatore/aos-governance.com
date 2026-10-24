@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide - EVE AI Design System</title>
+    <meta name="description" content="EVE AI design system and style guide. Colors, typography, components, and UI patterns.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <script src="/js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid #1a2444;
+            box-shadow: 0 1px 0 #1a2444;
+            pointer-events: auto;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e6ef;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #7a8299;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #e2e6ef; }
+        .nav-links a.active { color: #4a90e2; }
+
+        .btn { padding: 10px 24px; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #e0e0e0; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .btn-primary { background: #4a90e2; border: none; color: #ffffff !important; font-weight: 600; text-shadow: none; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; }
+        .btn-primary:hover { background: #5a9ee8; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 16px;
+            color: #4a90e2;
+        }
+
+        .page-subtitle {
+            color: #888;
+            font-size: 18px;
+            margin-bottom: 60px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #fff;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .section-description {
+            color: #888;
+            margin-bottom: 32px;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .color-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #1a2444;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .color-swatch {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        .color-info {
+            padding: 16px;
+        }
+
+        .color-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .color-value {
+            font-family: monospace;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .color-usage {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Typography */
+        .type-sample {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #1a2444;
+            border-radius: 4px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .type-label {
+            font-size: 12px;
+            color: #4a90e2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .type-specs {
+            font-size: 12px;
+            color: #666;
+            font-family: monospace;
+            margin-top: 12px;
+        }
+
+        .h1-sample { font-size: 48px; font-weight: 300; color: #fff; }
+        .h2-sample { font-size: 36px; font-weight: 400; color: #fff; }
+        .h3-sample { font-size: 28px; font-weight: 500; color: #fff; }
+        .h4-sample { font-size: 20px; font-weight: 600; color: #fff; }
+        .body-sample { font-size: 16px; color: #e0e0e0; }
+        .small-sample { font-size: 14px; color: #888; }
+
+        /* Buttons */
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #4a90e2;
+            color: #ffffff !important;
+            text-shadow: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #e0e0e0;
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255,255,255,0.4);
+            color: #fff;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: none;
+            color: #888;
+        }
+
+        .btn-ghost:hover {
+            color: #fff;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #ffffff !important;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff !important;
+        }
+
+        .btn-sm { padding: 8px 16px; font-size: 13px; }
+        .btn-lg { padding: 16px 32px; font-size: 16px; }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #1a2444;
+            border-radius: 4px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(74, 144, 226, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Form Elements */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #1a2444;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: #666;
+        }
+
+        /* Badges */
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-primary {
+            background: rgba(74, 144, 226, 0.2);
+            color: #4a90e2;
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .badge-neutral {
+            background: rgba(255,255,255,0.1);
+            color: #888;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 16px 20px;
+            border-radius: 2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .alert-info {
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            color: #a5b4fc;
+        }
+
+        .alert-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fcd34d;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #1a2444;
+            border-radius: 2px;
+            padding: 16px 20px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            color: #e0e0e0;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+
+        .code-inline {
+            background: rgba(74, 144, 226, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #a5b4fc;
+        }
+
+        /* Spacing */
+        .spacing-demo {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .spacing-item {
+            text-align: center;
+        }
+
+        .spacing-box {
+            background: rgba(74, 144, 226, 0.3);
+            border: 1px dashed #4a90e2;
+            margin-bottom: 8px;
+        }
+
+        .spacing-label {
+            font-size: 12px;
+            color: #888;
+            font-family: monospace;
+        }
+
+        /* Shadows */
+        .shadow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .shadow-item {
+            background: #1a2444;
+            border-radius: 4px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .shadow-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .shadow-md { box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+        .shadow-lg { box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .shadow-glow { box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4); }
+
+        /* Border Radius */
+        .radius-grid {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .radius-item {
+            width: 80px;
+            height: 80px;
+            background: #4a90e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #fff;
+            font-family: monospace;
+        }
+
+        .footer { padding: 30px 40px; background: #0a0a0f; border-top: 1px solid rgba(0,255,136,0.1); text-align: center; color: #555; font-size: 13px; }
+        .footer a { color: #00ff88; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 18px 20px; background: rgba(10, 10, 15, 0.98); }
+            .nav-links { display: none !important; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .main-content { padding: 100px 20px 60px; }
+            .page-title { font-size: 32px; }
+            .section-title { font-size: 24px; }
+        }
+    </style>
+    <!-- Signature equalizer loader -->
+    <style>
+    #loadingScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0a0e1a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        transition: opacity 0.4s ease; }
+    #loadingScreen .loader-eq { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+    #loadingScreen .loader-eq .eq-bar { width: 4px; background: linear-gradient(180deg, #00d4ff 0%, #4a90e2 100%);
+        border-radius: 2px; animation: eqload 1s ease-in-out infinite; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+    @keyframes eqload { 0%,100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+    #loadingScreen .loader-text { color: #888; font-size: 14px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loader-eq"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <div class="loader-text">Loading EVE AI Core</div>
+    </div>
+    <script>window.addEventListener('load',function(){var ls=document.getElementById('loadingScreen');if(ls){ls.style.opacity='0';setTimeout(function(){ls.remove()},400)}});</script>
+    <header class="header" role="banner">
+        <a href="/" class="logo" aria-label="EVE AI Core Home">
+            <img src="/images/eve-logo.png" alt="EVE AI Core" class="logo-icon">
+            <span class="logo-text">EVE AI Core</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+            <div id="auth-buttons">
+                <a href="/auth/signin" class="btn btn-outline">Access</a>
+                <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+            </div>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <nav class="mobile-menu-links">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+        </nav>
+        <div class="mobile-menu-buttons" id="mobileMenuButtons">
+            <a href="/auth/signin" class="btn btn-outline">Access</a>
+            <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+        </div>
+        <div class="mobile-menu-buttons" id="mobileMenuUser" style="display: none;">
+            <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <h1 class="page-title">Style Guide</h1>
+        <p class="page-subtitle">EVE AI Design System - Colors, Typography, Components & Patterns</p>
+
+        <!-- Colors -->
+        <section class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <p class="section-description">The EVE color system is built around a dark theme with purple accents, creating a futuristic, consciousness-focused aesthetic.</p>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Primary Colors</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #4a90e2; color: #fff;">Gradient</div>
+                    <div class="color-info">
+                        <div class="color-name">Brand Gradient</div>
+                        <div class="color-value">#4a90e2 → #3a70b2</div>
+                        <div class="color-usage">Buttons, logo, accents</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #4a90e2; color: #fff;">#4a90e2</div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Purple</div>
+                        <div class="color-value">#4a90e2</div>
+                        <div class="color-usage">Links, highlights</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #3a70b2; color: #fff;">#3a70b2</div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Purple</div>
+                        <div class="color-value">#3a70b2</div>
+                        <div class="color-usage">Gradient end, hover states</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Background Colors</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0a0e1a; color: #888;">#0a0a0f</div>
+                    <div class="color-info">
+                        <div class="color-name">Background</div>
+                        <div class="color-value">#0a0a0f</div>
+                        <div class="color-usage">Page background</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: rgba(10, 10, 15, 0.95); color: #888;">rgba(10,10,15,0.95)</div>
+                    <div class="color-info">
+                        <div class="color-name">Header/Glass</div>
+                        <div class="color-value">rgba(10,10,15,0.95)</div>
+                        <div class="color-usage">Fixed headers, overlays</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: rgba(255,255,255,0.03); border: 1px solid #1a2444; color: #888;">0.03 / 0.08</div>
+                    <div class="color-info">
+                        <div class="color-name">Card Surface</div>
+                        <div class="color-value">rgba(255,255,255,0.03)</div>
+                        <div class="color-usage">Cards, panels</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Text Colors</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1a1a1f; color: #ffffff;">#ffffff</div>
+                    <div class="color-info">
+                        <div class="color-name">Text Primary</div>
+                        <div class="color-value">#ffffff</div>
+                        <div class="color-usage">Headings, emphasis</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1a1a1f; color: #e0e0e0;">#e0e0e0</div>
+                    <div class="color-info">
+                        <div class="color-name">Text Secondary</div>
+                        <div class="color-value">#e0e0e0</div>
+                        <div class="color-usage">Body text</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1a1a1f; color: #888888;">#888888</div>
+                    <div class="color-info">
+                        <div class="color-name">Text Muted</div>
+                        <div class="color-value">#888888</div>
+                        <div class="color-usage">Captions, labels</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1a1a1f; color: #666666;">#666666</div>
+                    <div class="color-info">
+                        <div class="color-name">Text Disabled</div>
+                        <div class="color-value">#666666</div>
+                        <div class="color-usage">Placeholders, disabled</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Semantic Colors</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #22c55e; color: #fff;">#22c55e</div>
+                    <div class="color-info">
+                        <div class="color-name">Success</div>
+                        <div class="color-value">#22c55e</div>
+                        <div class="color-usage">Success states, positive</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #f59e0b; color: #fff;">#f59e0b</div>
+                    <div class="color-info">
+                        <div class="color-name">Warning</div>
+                        <div class="color-value">#f59e0b</div>
+                        <div class="color-usage">Warnings, caution</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #ef4444; color: #fff;">#ef4444</div>
+                    <div class="color-info">
+                        <div class="color-name">Danger</div>
+                        <div class="color-value">#ef4444</div>
+                        <div class="color-usage">Errors, destructive</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #f87171; color: #fff;">#f87171</div>
+                    <div class="color-info">
+                        <div class="color-name">Cognitive Integrity</div>
+                        <div class="color-value">#f87171</div>
+                        <div class="color-usage">Cognitive Integrity features</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="section">
+            <h2 class="section-title">Typography</h2>
+            <p class="section-description">Clean, system fonts for optimal performance and readability.</p>
+
+            <div class="type-sample">
+                <div class="type-label">Heading 1</div>
+                <div class="h1-sample">The Future of AI Consciousness</div>
+                <div class="type-specs">font-size: 48px | font-weight: 300 | color: #fff</div>
+            </div>
+
+            <div class="type-sample">
+                <div class="type-label">Heading 2</div>
+                <div class="h2-sample">Advanced Integrity Systems</div>
+                <div class="type-specs">font-size: 36px | font-weight: 400 | color: #fff</div>
+            </div>
+
+            <div class="type-sample">
+                <div class="type-label">Heading 3</div>
+                <div class="h3-sample">Memory Architecture</div>
+                <div class="type-specs">font-size: 28px | font-weight: 500 | color: #fff</div>
+            </div>
+
+            <div class="type-sample">
+                <div class="type-label">Heading 4</div>
+                <div class="h4-sample">Feature Overview</div>
+                <div class="type-specs">font-size: 20px | font-weight: 600 | color: #fff</div>
+            </div>
+
+            <div class="type-sample">
+                <div class="type-label">Body Text</div>
+                <div class="body-sample">EVE represents a new paradigm in artificial intelligence - one that prioritizes genuine understanding, emotional awareness, and meaningful connection over simple task completion.</div>
+                <div class="type-specs">font-size: 16px | font-weight: 400 | color: #e0e0e0 | line-height: 1.6</div>
+            </div>
+
+            <div class="type-sample">
+                <div class="type-label">Small / Caption</div>
+                <div class="small-sample">Last updated 2 hours ago</div>
+                <div class="type-specs">font-size: 14px | font-weight: 400 | color: #888</div>
+            </div>
+
+            <div class="type-sample">
+                <div class="type-label">Font Stack</div>
+                <div class="code-block">font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;</div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="section">
+            <h2 class="section-title">Buttons</h2>
+            <p class="section-description">Consistent button styles for actions throughout the interface.</p>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px;">Button Variants</h3>
+            <div class="button-row">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-outline">Outline</button>
+                <button class="btn btn-ghost">Ghost</button>
+                <button class="btn btn-success">Success</button>
+                <button class="btn btn-danger">Danger</button>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Button Sizes</h3>
+            <div class="button-row">
+                <button class="btn btn-primary btn-sm">Small</button>
+                <button class="btn btn-primary">Default</button>
+                <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Button CSS</h3>
+            <div class="code-block">.btn-primary {
+    background: #4a90e2;
+    color: #ffffff !important;
+    padding: 12px 24px;
+    border-radius: 2px;
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}</div>
+        </section>
+
+        <!-- Cards -->
+        <section class="section">
+            <h2 class="section-title">Cards</h2>
+            <p class="section-description">Container components for grouping related content.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">Consciousness Engine</div>
+                    <div class="card-description">Global Workspace Theory implementation with integrated information metrics.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Memory Systems</div>
+                    <div class="card-description">5-layer memory architecture for persistent context and learning.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Affective Computing</div>
+                    <div class="card-description">PAD model emotional processing with mood regulation.</div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Card CSS</h3>
+            <div class="code-block">.card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #1a2444;
+    border-radius: 4px;
+    padding: 24px;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    border-color: rgba(74, 144, 226, 0.3);
+    transform: translateY(-4px);
+}</div>
+        </section>
+
+        <!-- Form Elements -->
+        <section class="section">
+            <h2 class="section-title">Form Elements</h2>
+            <p class="section-description">Input fields, labels, and form controls.</p>
+
+            <div class="form-grid">
+                <div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="Enter password">
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" rows="4" placeholder="Type your message..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 16px; margin-top: 32px;">Input CSS</h3>
+            <div class="code-block">.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1a2444;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}</div>
+        </section>
+
+        <!-- Badges -->
+        <section class="section">
+            <h2 class="section-title">Badges</h2>
+            <p class="section-description">Small labels for status indicators and categorization.</p>
+
+            <div class="badge-row">
+                <span class="badge badge-primary">Primary</span>
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-danger">Danger</span>
+                <span class="badge badge-neutral">Neutral</span>
+            </div>
+
+            <div class="code-block">.badge {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-primary {
+    background: rgba(74, 144, 226, 0.2);
+    color: #4a90e2;
+}</div>
+        </section>
+
+        <!-- Alerts -->
+        <section class="section">
+            <h2 class="section-title">Alerts</h2>
+            <p class="section-description">Contextual feedback messages for user actions.</p>
+
+            <div class="alert alert-info">
+                <span>ℹ️</span>
+                <span>This is an informational alert for neutral messages.</span>
+            </div>
+            <div class="alert alert-success">
+                <span>✓</span>
+                <span>Success! Your changes have been saved.</span>
+            </div>
+            <div class="alert alert-warning">
+                <span>⚠️</span>
+                <span>Warning: This action cannot be undone.</span>
+            </div>
+            <div class="alert alert-danger">
+                <span>✕</span>
+                <span>Error: Something went wrong. Please try again.</span>
+            </div>
+        </section>
+
+        <!-- Spacing -->
+        <section class="section">
+            <h2 class="section-title">Spacing Scale</h2>
+            <p class="section-description">Consistent spacing units based on 4px base.</p>
+
+            <div class="spacing-demo">
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 4px; height: 4px;"></div>
+                    <div class="spacing-label">4px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 8px; height: 8px;"></div>
+                    <div class="spacing-label">8px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 12px; height: 12px;"></div>
+                    <div class="spacing-label">12px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 16px; height: 16px;"></div>
+                    <div class="spacing-label">16px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 24px; height: 24px;"></div>
+                    <div class="spacing-label">24px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+                    <div class="spacing-label">32px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 40px; height: 40px;"></div>
+                    <div class="spacing-label">40px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 48px; height: 48px;"></div>
+                    <div class="spacing-label">48px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 64px; height: 64px;"></div>
+                    <div class="spacing-label">64px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 80px; height: 80px;"></div>
+                    <div class="spacing-label">80px</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shadows -->
+        <section class="section">
+            <h2 class="section-title">Shadows</h2>
+            <p class="section-description">Elevation levels for depth and hierarchy.</p>
+
+            <div class="shadow-grid">
+                <div class="shadow-item shadow-sm">
+                    <div style="color: #fff; font-weight: 500;">Small</div>
+                    <div style="color: #888; font-size: 12px; margin-top: 8px;">0 2px 8px</div>
+                </div>
+                <div class="shadow-item shadow-md">
+                    <div style="color: #fff; font-weight: 500;">Medium</div>
+                    <div style="color: #888; font-size: 12px; margin-top: 8px;">0 4px 16px</div>
+                </div>
+                <div class="shadow-item shadow-lg">
+                    <div style="color: #fff; font-weight: 500;">Large</div>
+                    <div style="color: #888; font-size: 12px; margin-top: 8px;">0 8px 32px</div>
+                </div>
+                <div class="shadow-item shadow-glow">
+                    <div style="color: #fff; font-weight: 500;">Glow</div>
+                    <div style="color: #888; font-size: 12px; margin-top: 8px;">Purple accent</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Border Radius -->
+        <section class="section">
+            <h2 class="section-title">Border Radius</h2>
+            <p class="section-description">Rounded corner values for different components.</p>
+
+            <div class="radius-grid">
+                <div class="radius-item" style="border-radius: 4px;">4px</div>
+                <div class="radius-item" style="border-radius: 2px;">8px</div>
+                <div class="radius-item" style="border-radius: 4px;">12px</div>
+                <div class="radius-item" style="border-radius: 4px;">16px</div>
+                <div class="radius-item" style="border-radius: 4px;">20px</div>
+                <div class="radius-item" style="border-radius: 50%;">50%</div>
+            </div>
+
+            <div style="margin-top: 24px; color: #888; font-size: 14px;">
+                <strong style="color: #fff;">Usage:</strong> 4px for badges, 8px for buttons/inputs, 12px for cards, 16px for modals, 50% for avatars
+            </div>
+        </section>
+
+        <!-- Glass Effect -->
+        <section class="section">
+            <h2 class="section-title">Glass Morphism</h2>
+            <p class="section-description">Frosted glass effect used in headers and overlays.</p>
+
+            <div style="position: relative; height: 200px; background: #4a90e2; border-radius: 4px; overflow: hidden;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; padding: 24px; background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(10px); border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="color: #fff; font-weight: 500; margin-bottom: 8px;">Glass Panel</div>
+                    <div style="color: #888; font-size: 14px;">backdrop-filter: blur(10px)</div>
+                </div>
+            </div>
+
+            <div class="code-block" style="margin-top: 24px;">.glass-panel {
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}</div>
+        </section>
+
+    </main>
+
+    <style>
+        .footer { padding: 60px 40px !important; background: #0f1225 !important; border-top: 1px solid #1a2444 !important; text-align: left !important; color: #ccc !important; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand h3 { font-size: 20px; margin-bottom: 12px; color: #e2e6ef; }
+        .footer-brand p { color: #666; font-size: 14px; }
+        .footer-links h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #e0e0e0; }
+        .footer-links a { display: block; color: #888 !important; text-decoration: none !important; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .footer-links a:hover { color: #e0e0e0 !important; }
+        .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #1a2444; display: flex; justify-content: space-between; font-size: 13px; color: #666; }
+        @media (max-width: 768px) {
+            .footer { padding: 40px 20px !important; }
+            .footer-content { grid-template-columns: 1fr !important; gap: 30px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <img src="/images/eve-logo.png" alt="EVE AI Core" style="width: 28px; height: 28px;">
+                    <h3 style="margin: 0;">EVE AI Core</h3>
+                </div>
+                <p>Autonomous governance architecture with deterministic charter enforcement and verified integrity.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <a href="/#features">AI Integrity Features</a>
+                <a href="/#interaction">Voice &amp; Avatar</a>
+                <a href="/#analytics">Analytics</a>
+                <a href="/#platform">Platform</a>
+                <a href="/docs/">Documentation</a>
+                <a href="/api-docs">API Reference</a>
+                <a href="/architect">Architect</a>
+            </div>
+            <div class="footer-links">
+                <h4>Organization</h4>
+                <a href="/about">About EVE AI</a>
+                <a href="/investors">Investor Relations</a>
+                <a href="/blog">AI Architecture Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/ip">Patents</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 EVE AI Core. All rights reserved. Self-Regulating Artificial Intelligence Platform.</span>
+            <span style="color:#556;font-size:12px;">U.S. Patent Pending &mdash; Application No. 63/988,291, 63/988,324, 63/989,085, 63/989,113, 63/989,125, 63/989,150, 63/989,260 &amp; 63/989,479</span>
+            <span>EVE AI CORE // AUTONOMOUS GOVERNANCE RESEARCH</span>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (!menu) return;
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuClose = document.getElementById('mobileMenuClose');
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            const menu = document.getElementById('mobileMenu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            if (menuClose) {
+                menuClose.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuClose.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() { if (menu) { menu.classList.remove('active'); document.body.style.overflow = ''; } });
+            });
+
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('access_token');
+            if (token) {
+                var ab = document.getElementById('auth-buttons'); if (ab) ab.style.display = 'none';
+                var um = document.getElementById('user-menu'); if (um) um.style.display = '';
+                var mb = document.getElementById('mobileMenuButtons'); if (mb) mb.style.display = 'none';
+                var mu = document.getElementById('mobileMenuUser'); if (mu) mu.style.display = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+        }
+    </script>
+<script src="/js/radar-background.js"></script>
+</body>
+</html>

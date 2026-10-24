@@ -1,0 +1,23 @@
+{
+  "id": "EVEAICORE-mm9jo6zu",
+  "url": "https://eveaicore.com/docs/affective-system.html",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:00:58.759Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a5ba4a56405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:00:58 GMT",
+    "last-modified": "Thu, 26 Feb 2026 15:16:06 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=rTmyIBNYGC9BwbN4KBc0acBrwHoJfM6egdrwZq7P0oj223WJGelBjwGLzuH%2FyyJLrXSWX7GHiQfD0VsgAcSPEpCXZl2lg%2BoaWKOlpZI%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 31980,
+  "crawlSource": "sitemap"
+}

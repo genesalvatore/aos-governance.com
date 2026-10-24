@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ─── Primary SEO ─── -->
+    <title>AOS Gate — Open-Source AI Governance Proxy for Workflow Audit & Policy Enforcement</title>
+    <meta name="description" content="AOS Gate is a transparent audit proxy that sits between your AI tools and the provider. Logs every exchange, detects PII, enforces policy rules. Single Docker container. Free and open source under the AOS Humanitarian License v1.0.1." />
+    <meta name="keywords" content="AI governance, AI audit proxy, AI policy enforcement, PII detection, AI workflow security, deterministic policy gate, AOS, open source AI governance, AI compliance, GDPR AI, SOC2 AI, AI audit trail, N8N governance, LLM proxy" />
+    <meta name="author" content="Gene Salvatore" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://aos-gate.com/" />
+
+    <!-- ─── Open Graph ─── -->
+    <meta property="og:title" content="AOS Gate — Open-Source AI Governance Proxy" />
+    <meta property="og:description" content="Transparent audit proxy with enterprise dashboard. Logs every AI call, detects PII, enforces policy rules. Single Docker container. Free forever." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aos-gate.com/" />
+    <meta property="og:site_name" content="AOS Gate" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ─── Twitter Card ─── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AOS Gate — Open-Source AI Governance Proxy" />
+    <meta name="twitter:description" content="Transparent audit proxy for AI workflows. Logs every exchange, detects PII, enforces policy. Free and open source." />
+
+    <!-- ─── Geo / Local SEO ─── -->
+    <meta name="geo.region" content="US-CT" />
+    <meta name="geo.placename" content="Southbury, Connecticut" />
+    <meta name="geo.position" content="41.4812;-73.2131" />
+    <meta name="ICBM" content="41.4812, -73.2131" />
+
+    <!-- ─── Performance ─── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- ─── JSON-LD Structured Data ─── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AOS Gate",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS, Windows (Docker)",
+      "description": "A transparent audit proxy that sits between AI automation tools and LLM providers. Logs every exchange, detects PII, enforces policy rules, and provides an enterprise admin dashboard.",
+      "url": "https://aos-gate.com",
+      "downloadUrl": "https://github.com/genesalvatore/aos-gate.com",
+      "softwareVersion": "1.0.0",
+      "license": "https://aos-constitution.com",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Community Edition — Free forever"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Gene Salvatore",
+        "url": "https://salvatoresystems.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AOS (Agentic Operating System)",
+        "url": "https://aos-governance.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Southbury",
+          "addressRegion": "CT",
+          "addressCountry": "US"
+        }
+      },
+      "featureList": [
+        "Transparent API audit proxy",
+        "PII detection (SSN, Credit Card, Email, Phone)",
+        "Model allowlist enforcement",
+        "Blocked content pattern matching",
+        "Enterprise admin dashboard (port 3101)",
+        "JSONL audit trail logging",
+        "One-click JSON/CSV log export",
+        "Visual policy editor",
+        "14-day usage analytics with charts",
+        "Single Docker container deployment"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AOS (Agentic Operating System)",
+      "url": "https://aos-governance.com",
+      "logo": "https://aos-gate.com/favicon.svg",
+      "sameAs": [
+        "https://github.com/genesalvatore/aos-gate.com",
+        "https://aos-governance.com",
+        "https://aos-constitution.com",
+        "https://aos-patents.com",
+        "https://aos-evidence.com",
+        "https://aos-foundation.com"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Gene Salvatore"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Southbury",
+        "addressRegion": "CT",
+        "addressCountry": "US"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does AOS Gate modify my prompts or responses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. AOS Gate is a transparent proxy. It forwards your exact request to the AI provider and returns the exact response. It only reads the data to log it and evaluate your policy rules. Your API keys pass through untouched."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does AOS Gate use AI to make governance decisions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely not. AOS Gate is 100% deterministic. Policies are pattern-matched rules evaluated in sub-millisecond time. No AI model is consulted during governance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI providers does AOS Gate support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any provider with a REST API. Out of the box it supports Anthropic (Claude) and OpenAI (GPT) endpoints. Since AOS Gate is a transparent proxy, any HTTP-based AI API can be routed through it by changing the base URL."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the free version limited?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The Community edition includes the full proxy, all audit logging, PII detection, policy enforcement, the complete dashboard, and log export. There are no rate limits, no feature locks, no trial period."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Humanitarian License?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The AOS Humanitarian License v1.0.1 allows free use for peaceful civilian purposes — personal projects, business operations, research, education. It prohibits use in weapons, military applications, surveillance, or any purpose that causes measurable harm to human welfare."
+          }
+        }
+      ]
+      ]
+    }
+    </script>
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      _paq.push(['disableCookies']);
+      _paq.push(['setDoNotTrack', true]);
+      (function() {
+        var u="https://stats.greentreehosting.net/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '31']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+    <script type="module" crossorigin src="/assets/index-BR5cC0DK.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DAlBHF8-.css">
+  </head>
+  <body>
+    <!-- Netlify form detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="inquiry" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <!-- Crawler & AI Fetcher Fallback (Claude/ChatGPT web fetch tools) -->
+    <noscript>
+      <div style="padding: 2rem; max-width: 800px; margin: 0 auto; font-family: sans-serif;">
+        <h1>AOS Gate — Sovereign Control & Deterministic AI Governance</h1>
+        <p><strong>AOS Gate</strong> is not an API wrapped in promises—it is a physical network bottleneck running locally within your infrastructure. The proxy sits <em>before</em> the outbound HTTP request ever leaves the server. If the payload fails a configured regex policy, the outbound request is instantly aborted. The upstream API is never called.</p>
+        
+        <h2>Core Features & Architectural Mechanics</h2>
+        <ul>
+          <li><strong>The Physical Bottleneck (It Blocks):</strong> Instantly aborts hostile egress before reaching upstream APIs. Returns strict 403 Forbidden on policy match.</li>
+          <li><strong>Absolute Auditability (It Logs & Records):</strong> Burns immortal, line-delimited .jsonl files tracking precise native prompts, timestamps, PII, and model latency.</li>
+          <li><strong>Instant Incident Analysis (It Highlights):</strong> Built-in Enterprise Dashboard running locally to visualize policy violations and PII triggers.</li>
+          <li><strong>Seamless Implementation:</strong> Deploys in one line of Docker code as a transparent proxy, forwarding authorization headers untouched.</li>
+        </ul>
+        
+        <h3>From Experimental to Institutional</h3>
+        <p>By open-sourcing the Gate as an easy-to-deploy Docker image, we provide a turnkey solution for developers struggling with unpredictable, vibe-coded agents. AOS Gate shifts the paradigm from probabilistic guardrails to deterministic, audited enforcement—because that is the prerequisite for deploying autonomous AI in production environments.</p>
+        
+        <p><strong>License:</strong> Licensed under the AOS Humanitarian License v1.0.1.</p>
+        <p><strong>Repository:</strong> <a href="https://github.com/genesalvatore/aos-gate.com">github.com/genesalvatore/aos-gate.com</a></p>
+        <p><strong>Website:</strong> <a href="https://aos-gate.com">aos-gate.com</a></p>
+        <p><strong>Governance:</strong> <a href="https://aos-governance.com">aos-governance.com</a></p>
+      </div>
+    </noscript>
+
+    <div id="root"></div>
+  </body>
+</html>

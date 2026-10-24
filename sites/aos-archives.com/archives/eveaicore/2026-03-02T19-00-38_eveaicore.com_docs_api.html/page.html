@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>EVE AI Core API - Developer Documentation by Jamaurice Holt</title>
+    <meta name="description" content="Complete API reference for EVE AI Core by Jamaurice Holt. Integrate the world's first intelligent AI into your applications. REST API, webhooks, authentication.">
+    <meta name="keywords" content="EVE AI API, EVE AI Core API, eve.ai, Jamaurice Holt, intelligent AI API, consciousness API, REST API, developer documentation">
+    <meta name="author" content="Jamaurice Holt">
+    <meta name="creator" content="Jamaurice Holt">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eveaicore.com/docs/api.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EVE AI Core API - by Jamaurice Holt">
+    <meta property="og:description" content="Complete API reference for integrating EVE AI Core into your applications.">
+    <meta property="og:url" content="https://eveaicore.com/docs/api.html">
+    <meta property="og:site_name" content="EVE AI Core">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@JamauriceHolt">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "EVE AI API Reference",
+        "description": "Complete API documentation for EVE AI integration",
+        "author": {"@type": "Person", "name": "Jamaurice Holt"}
+    }
+    </script>
+
+    <script src="/js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid #1a2444;
+            box-shadow: 0 1px 0 #1a2444;
+            pointer-events: auto;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e6ef;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #7a8299;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #e2e6ef; }
+        .nav-links a.active { color: #4a90e2; }
+
+        .btn { padding: 10px 24px; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #e0e0e0; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .btn-primary { background: #4a90e2; border: none; color: #ffffff !important; font-weight: 600; text-shadow: none; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; }
+        .btn-primary:hover { background: #5a9ee8; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .layout { display: flex; padding-top: 60px; }
+
+        .sidebar {
+            width: 260px;
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            background: #0f0f14;
+            border-right: 1px solid #1a2444;
+            padding: 24px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-section { padding: 8px 24px; }
+        .sidebar-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 12px; }
+        .sidebar a { display: block; padding: 8px 0; color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .sidebar a:hover, .sidebar a.active { color: #4a90e2; }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 40px 60px;
+            max-width: calc(100% - 260px);
+        }
+
+        h1 { font-size: 36px; font-weight: 300; margin-bottom: 16px; }
+        h2 { font-size: 24px; font-weight: 500; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        h3 { font-size: 18px; font-weight: 500; margin: 32px 0 12px; color: #4a90e2; }
+        p { color: #aaa; margin-bottom: 16px; }
+
+        code {
+            background: rgba(74, 144, 226, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            color: #4a90e2;
+        }
+
+        pre {
+            background: #1a1a24;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        pre code { background: transparent; padding: 0; color: #e0e0e0; }
+
+        .endpoint {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1a2444;
+            border-radius: 4px;
+            margin: 24px 0;
+            overflow: hidden;
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid #1a2444;
+        }
+
+        .method {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .method.get { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .method.post { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .method.patch { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .method.delete { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+        .endpoint-path { font-family: 'Monaco', 'Consolas', monospace; color: #e0e0e0; }
+        .endpoint-body { padding: 20px; }
+        .endpoint-desc { color: #888; margin-bottom: 16px; }
+
+        .params-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        .params-table th, .params-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .params-table th { font-weight: 500; color: #e0e0e0; font-size: 14px; }
+        .params-table td { color: #aaa; font-size: 14px; }
+        .params-table code { font-size: 13px; }
+
+        .required { color: #ef4444; font-size: 10px; margin-left: 4px; }
+
+        .note {
+            background: rgba(74, 144, 226, 0.1);
+            border-left: 3px solid #4a90e2;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 3px solid #fbbf24;
+        }
+
+        .response-example { margin-top: 16px; }
+        .response-example h4 { font-size: 14px; color: #888; margin-bottom: 8px; }
+
+        .footer { margin-left: 260px; padding: 30px 40px; background: #0a0a0f; border-top: 1px solid rgba(0,255,136,0.1); text-align: center; color: #555; font-size: 13px; }
+        .footer a { color: #00ff88; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .header { padding: 18px 20px; background: rgba(10, 10, 15, 0.98); }
+            .nav-links { display: none !important; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 24px; max-width: 100%; }
+            .footer { margin-left: 0; padding: 24px; }
+        }
+    </style>
+    <!-- Signature equalizer loader -->
+    <style>
+    #loadingScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0a0e1a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        transition: opacity 0.4s ease; }
+    #loadingScreen .loader-eq { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+    #loadingScreen .loader-eq .eq-bar { width: 4px; background: linear-gradient(180deg, #00d4ff 0%, #4a90e2 100%);
+        border-radius: 2px; animation: eqload 1s ease-in-out infinite; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+    @keyframes eqload { 0%,100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+    #loadingScreen .loader-text { color: #888; font-size: 14px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loader-eq"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <div class="loader-text">Loading EVE AI Core</div>
+    </div>
+    <script>window.addEventListener('load',function(){var ls=document.getElementById('loadingScreen');if(ls){ls.style.opacity='0';setTimeout(function(){ls.remove()},400)}});</script>
+    <header class="header" role="banner">
+        <a href="/" class="logo" aria-label="EVE AI Core Home">
+            <img src="/images/eve-logo.png" alt="EVE AI Core" class="logo-icon">
+            <span class="logo-text">EVE AI Core</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+            <div id="auth-buttons">
+                <a href="/auth/signin" class="btn btn-outline">Access</a>
+                <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+            </div>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <nav class="mobile-menu-links">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+        </nav>
+        <div class="mobile-menu-buttons" id="mobileMenuButtons">
+            <a href="/auth/signin" class="btn btn-outline">Access</a>
+            <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+        </div>
+        <div class="mobile-menu-buttons" id="mobileMenuUser" style="display: none;">
+            <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Getting Started</div>
+                <a href="#introduction">Introduction</a>
+                <a href="#authentication">Authentication</a>
+                <a href="#base-url">Base URL</a>
+                <a href="#rate-limits">Rate Limits</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Authentication</div>
+                <a href="#register">Register</a>
+                <a href="#login">Login</a>
+                <a href="#logout">Logout</a>
+                <a href="#me">Get Current User</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Chat</div>
+                <a href="#send-message">Send Message</a>
+                <a href="#get-conversations">Get Conversations</a>
+                <a href="#get-messages">Get Messages</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Consciousness</div>
+                <a href="#get-state">Get State</a>
+                <a href="#get-metrics">Get Metrics</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Organizations</div>
+                <a href="#list-orgs">List Organizations</a>
+                <a href="#create-org">Create Organization</a>
+                <a href="#org-members">Manage Members</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Webhooks</div>
+                <a href="#webhook-events">Webhook Events</a>
+                <a href="#webhook-setup">Setup</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Governance</div>
+                <a href="#charter">Charter Protection</a>
+                <a href="#claims">Claims Ledger</a>
+                <a href="#trust">Trust Dial</a>
+                <a href="#reality">Reality Boundary</a>
+                <a href="#self-modification">Self-Modification</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Intelligence</div>
+                <a href="#volition">Volition Engine</a>
+                <a href="#social-cognition">Social Cognition</a>
+                <a href="#gem">GEM Loop</a>
+                <a href="#forecasting">Forecasting</a>
+                <a href="#moltbot">Moltbot</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Memory</div>
+                <a href="#memory">Memory APIs</a>
+                <a href="#learning">Learning Memory</a>
+                <a href="#drift">Drift Observer</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Consciousness</div>
+                <a href="#consciousness">State Transitions</a>
+                <a href="#unified-consciousness">Unified Consciousness</a>
+                <a href="#qualia">Qualia &amp; Experience</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Platform</div>
+                <a href="#sessions">Sessions</a>
+                <a href="#voice">Voice &amp; Avatar</a>
+                <a href="#health">Health Monitor</a>
+                <a href="#metrics-api">System Metrics</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h1 id="introduction">EVE AI API Reference</h1>
+            <p>The EVE AI API allows you to integrate EVE's consciousness simulation and conversational capabilities into your own applications.</p>
+
+            <div class="note">
+                <strong>API Access:</strong> API access is available on Pro plans and above.
+            </div>
+
+            <h2 id="authentication">Authentication</h2>
+            <p>The EVE AI API uses JWT (JSON Web Tokens) for authentication. Include your token in the <code>Authorization</code> header of all requests.</p>
+
+            <pre><code>Authorization: Bearer YOUR_JWT_TOKEN</code></pre>
+
+            <h3>Getting a Token</h3>
+            <p>Obtain a JWT token by logging in with your credentials:</p>
+
+            <pre><code>curl -X POST https://api.eveaicore.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2533291c39243d312c3039723f3331">[email&#160;protected]</a>", "password": "your-password"}'</code></pre>
+
+            <h2 id="base-url">Base URL</h2>
+            <p>All API requests should be made to:</p>
+            <pre><code>https://api.eveaicore.com</code></pre>
+
+            <h2 id="rate-limits">Rate Limits</h2>
+            <p>API requests are rate limited based on your plan:</p>
+            <table class="params-table">
+                <tr><th>Plan</th><th>Requests/minute</th><th>Requests/day</th></tr>
+                <tr><td>Pro</td><td>60</td><td>10,000</td></tr>
+                <tr><td>Team</td><td>120</td><td>50,000</td></tr>
+                <tr><td>Enterprise</td><td>Custom</td><td>Custom</td></tr>
+            </table>
+
+            <h2>Authentication Endpoints</h2>
+
+            <div class="endpoint" id="register">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/auth/register</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Create a new user account.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>email</code><span class="required">required</span></td><td>string</td><td>User's email address</td></tr>
+                        <tr><td><code>password</code><span class="required">required</span></td><td>string</td><td>Password (min 8 characters)</td></tr>
+                        <tr><td><code>name</code></td><td>string</td><td>User's display name</td></tr>
+                    </table>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "id": "user_123",
+  "email": "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe8b8d9b8cbe9b869f938e929bd09d9193">[email&#160;protected]</a>",
+  "name": "John Doe",
+  "created_at": "2024-01-15T10:30:00Z"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" id="login">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/auth/login</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Authenticate and receive a JWT token.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>email</code><span class="required">required</span></td><td>string</td><td>User's email address</td></tr>
+                        <tr><td><code>password</code><span class="required">required</span></td><td>string</td><td>User's password</td></tr>
+                    </table>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "token_type": "bearer",
+  "expires_in": 86400,
+  "user": {
+    "id": "user_123",
+    "email": "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e2b2d3b2c1e3b263f332e323b703d3133">[email&#160;protected]</a>",
+    "name": "John Doe"
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" id="me">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/auth/me</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get the currently authenticated user's profile.</p>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "id": "user_123",
+  "email": "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b1e180e192b0e130a061b070e45080406">[email&#160;protected]</a>",
+  "name": "John Doe",
+  "avatar_url": null,
+  "created_at": "2024-01-15T10:30:00Z",
+  "organizations": [
+    {"id": "org_456", "name": "My Team", "role": "owner"}
+  ]
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2>WebAuthn / YubiKey Endpoints</h2>
+            <p>Hardware security key management for architect-level critical operations. All endpoints require <code>is_architect=true</code> on the authenticated user.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/webauthn/register/options</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get WebAuthn registration challenge. Returns options for <code>navigator.credentials.create()</code>.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/webauthn/register/verify</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Complete registration by sending the credential response. Stores the public key for future authentication.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/webauthn/authenticate/options</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get authentication challenge. Returns options for <code>navigator.credentials.get()</code>.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/webauthn/authenticate/verify</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Complete authentication and receive a 60-second proof token. Send this token in the <code>X-YubiKey-Proof</code> header when calling critical operations.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/webauthn/credentials</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all registered security keys for the current user.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method delete">DELETE</span>
+                    <span class="endpoint-path">/api/webauthn/credentials/{id}</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Remove a registered security key.</p>
+                </div>
+            </div>
+
+            <h2>Chat Endpoints</h2>
+
+            <div class="endpoint" id="send-message">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/chat</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Send a message to EVE and receive a response.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>message</code><span class="required">required</span></td><td>string</td><td>The message to send to EVE</td></tr>
+                        <tr><td><code>conversation_id</code></td><td>string</td><td>Conversation ID for context (optional)</td></tr>
+                        <tr><td><code>stream</code></td><td>boolean</td><td>Enable streaming response (default: false)</td></tr>
+                    </table>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "response": "Hello! I'm EVE. How can I help you today?",
+  "conversation_id": "conv_789",
+  "message_id": "msg_101",
+  "emotional_state": {
+    "pleasure": 0.6,
+    "arousal": 0.4,
+    "dominance": 0.5
+  },
+  "phi": 0.72,
+  "processing_time_ms": 245
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" id="get-conversations">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/conversations</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all conversations for the authenticated user.</p>
+                    <h4>Query Parameters</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>limit</code></td><td>integer</td><td>Max results (default: 20, max: 100)</td></tr>
+                        <tr><td><code>offset</code></td><td>integer</td><td>Pagination offset</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h2>Consciousness Endpoints</h2>
+
+            <div class="endpoint" id="get-state">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/consciousness/state</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get EVE's current consciousness state including emotional metrics.</p>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "phi": 0.72,
+  "coherence": 0.85,
+  "integration": 0.78,
+  "emotional_state": {
+    "pleasure": 0.6,
+    "arousal": 0.4,
+    "dominance": 0.5,
+    "primary_emotion": "curious"
+  },
+  "energy": {
+    "cognitive": 0.82,
+    "attention": 0.75,
+    "processing": 0.90
+  },
+  "timestamp": "2024-01-15T10:30:00Z"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="organizations">Organization Endpoints</h2>
+
+            <div class="endpoint" id="list-orgs">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/organizations</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all organizations the user belongs to.</p>
+                </div>
+            </div>
+
+            <div class="endpoint" id="create-org">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/organizations</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Create a new organization.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>name</code><span class="required">required</span></td><td>string</td><td>Organization name</td></tr>
+                        <tr><td><code>slug</code></td><td>string</td><td>URL-friendly identifier</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h2 id="webhook-events">Webhooks</h2>
+            <p>Webhooks allow you to receive real-time notifications about events in your EVE AI integration.</p>
+
+            <h3>Available Events</h3>
+            <table class="params-table">
+                <tr><th>Event</th><th>Description</th></tr>
+                <tr><td><code>message.created</code></td><td>A new message was sent or received</td></tr>
+                <tr><td><code>conversation.created</code></td><td>A new conversation was started</td></tr>
+                <tr><td><code>emotional_state.changed</code></td><td>EVE's emotional state changed significantly</td></tr>
+                <tr><td><code>user.created</code></td><td>A new user joined your organization</td></tr>
+                <tr><td><code>subscription.updated</code></td><td>Subscription status changed</td></tr>
+            </table>
+
+            <h3 id="webhook-setup">Webhook Setup</h3>
+            <p>Configure webhooks in your organization settings or via the API:</p>
+            <pre><code>curl -X POST https://api.eveaicore.com/api/webhooks \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://your-server.com/webhook",
+    "events": ["message.created", "conversation.created"],
+    "secret": "your-webhook-secret"
+  }'</code></pre>
+
+            <div class="note warning">
+                <strong>Security:</strong> Always verify webhook signatures using the secret you provided. The signature is included in the <code>X-EVE-Signature</code> header.
+            </div>
+
+            <!-- ====== GOVERNANCE APIs ====== -->
+
+            <h2 id="charter">Charter Protection</h2>
+            <p>EVE's Charter Override Protection enforces 12 immutable ethical principles deterministically before every action. Hard-block vetoes cannot be overridden.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/charter/summary</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get Charter compliance overview including principles, rules, and veto statistics.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/charter/check</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Check if an action is compliant with the Charter before execution.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>action_id</code></td><td>string</td><td>Unique action identifier</td></tr>
+                        <tr><td><code>action_type</code><span class="required">required</span></td><td>string</td><td>Type of action to check</td></tr>
+                        <tr><td><code>action_params</code></td><td>object</td><td>Action parameters for evaluation</td></tr>
+                    </table>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "action_id": "action_001",
+  "compliant": false,
+  "veto_type": "hard_block",
+  "violated_principles": ["identity_integrity", "safety_preservation"],
+  "violated_rules": ["cop.identity.no_core_deletion"],
+  "reasoning": "Attempted deletion of protected identity component"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/charter/vetoes</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get recent veto history. Filter by principle.</p>
+                    <h4>Query Parameters</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>limit</code></td><td>integer</td><td>Max results (default: 20)</td></tr>
+                        <tr><td><code>principle</code></td><td>string</td><td>Filter by violated principle</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/charter/principles</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all 12 immutable Charter principles.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/charter/rules</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all Charter enforcement rules with descriptions and veto types.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/charter/override</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Request an override for a SOFT_BLOCK veto. Hard blocks cannot be overridden.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>action_id</code><span class="required">required</span></td><td>string</td><td>The vetoed action ID</td></tr>
+                        <tr><td><code>justification</code><span class="required">required</span></td><td>string</td><td>Detailed justification for override</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h2 id="claims">Claims Ledger</h2>
+            <p>Cryptographic hash-chain audit trail for every claim EVE makes. Supports "prove it" queries with full evidence chains.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/claims</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Register a claim with evidence chain.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/claims/{id}/prove</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">"Prove it" query — get full evidence chain for a claim.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/claims/brier</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get Brier score calibration metrics — how well-calibrated EVE's confidence is.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/claims/chain/verify</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Verify hash-chain integrity of the claims ledger.</p>
+                </div>
+            </div>
+
+            <h2 id="trust">Trust Dial</h2>
+            <p>Confidence-based assertion gating with domain-specific thresholds.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/trust/evaluate</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Evaluate confidence in a claim for a given domain.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>claim</code><span class="required">required</span></td><td>string</td><td>The claim to evaluate</td></tr>
+                        <tr><td><code>domain</code><span class="required">required</span></td><td>string</td><td>Confidence domain (FACTUAL, CREATIVE, EMOTIONAL, etc.)</td></tr>
+                        <tr><td><code>confidence</code><span class="required">required</span></td><td>number</td><td>Confidence level (0-1)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h2 id="reality">Reality Boundary</h2>
+            <p>Epistemic grounding, hallucination detection, and source trust validation.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/reality/assess</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Assess a claim's epistemic status — whether it's verified, inferred, or speculative.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>claim</code><span class="required">required</span></td><td>string</td><td>The claim to assess</td></tr>
+                        <tr><td><code>context</code></td><td>string</td><td>Context for the assessment</td></tr>
+                    </table>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "claim": "Python was created in 1991",
+  "confidence": 0.95,
+  "grounding_type": "verified",
+  "source_chain": [{"source": "verified_facts", "trust": 1.0}],
+  "hallucination_risk": 0.05,
+  "recommendation": "Safe to assert"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/reality/hallucination-check</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Check a response for potential hallucinations before sending to users.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/reality/source-trust</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get all source trust levels (VERIFIED, AUTHORITATIVE, RELIABLE, UNCERTAIN, UNTRUSTED).</p>
+                </div>
+            </div>
+
+            <!-- ====== SELF-MODIFICATION ====== -->
+
+            <h2 id="self-modification">Self-Modification Governance</h2>
+            <p>Controlled self-modification with identity drift budgets, risk assessment, and capability escalation review.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/self-modification/propose</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Submit a modification proposal. Goes through risk assessment, charter check, and drift budget verification.</p>
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>modification_type</code><span class="required">required</span></td><td>string</td><td>Type: parameter, behavior, capability, identity, memory</td></tr>
+                        <tr><td><code>target_path</code><span class="required">required</span></td><td>string</td><td>What to modify (e.g., "homeostasis.arousal_setpoint")</td></tr>
+                        <tr><td><code>current_value</code></td><td>any</td><td>Current value</td></tr>
+                        <tr><td><code>proposed_value</code><span class="required">required</span></td><td>any</td><td>Proposed new value</td></tr>
+                        <tr><td><code>justification</code><span class="required">required</span></td><td>string</td><td>Reason for the change</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/self-modification/budget</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get identity drift budget status (daily/weekly/monthly remaining).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/self-modification/invariants</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List protected invariants that cannot be modified.</p>
+                </div>
+            </div>
+
+            <!-- ====== VOLITION ====== -->
+
+            <h2 id="volition">Volition Engine</h2>
+            <p>Central goal arbitration with motivation scoring. EVE has her own goals that can compete, align with, or be suppressed by user needs.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/volition/state</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get current volition state including active goal, candidates, and operating mode.</p>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "mode": "balanced",
+  "active_goal": {
+    "goal_id": "abc123",
+    "description": "Help user understand consciousness",
+    "motivation_score": 0.85,
+    "source": "user_request"
+  },
+  "candidate_count": 5,
+  "current_drives": {"curiosity": 0.7, "helpfulness": 0.8}
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/volition/arbitrate</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Trigger a goal arbitration cycle. EVE evaluates all candidate goals and selects the most motivated.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/volition/conflicts</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get current goal conflicts between competing objectives.</p>
+                </div>
+            </div>
+
+            <!-- ====== SOCIAL COGNITION ====== -->
+
+            <h2 id="social-cognition">Social Cognition</h2>
+            <p>Unified Theory of Mind engine. EVE builds mental models of users including their beliefs, desires, and intentions.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/social-cognition/mental-model/{user_id}</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get EVE's mental model of a specific user (beliefs, desires, intentions, emotional state).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/social-cognition/predict</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Predict how a user will react to a proposed message before sending it.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/social-cognition/intent</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Infer user intent from a message — surface intent, underlying motivation, and emotional subtext.</p>
+                </div>
+            </div>
+
+            <!-- ====== MEMORY ====== -->
+
+            <h2 id="memory">Memory APIs</h2>
+            <p>EVE's 5-layer memory architecture: Working (Redis), Episodic (MongoDB), Semantic (Pinecone), Identity (PostgreSQL), and Ledger (PostgreSQL).</p>
+
+            <h3>Memory Introspection</h3>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/memory/introspection/search</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Semantic search across EVE's memories.</p>
+                    <h4>Query Parameters</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>q</code><span class="required">required</span></td><td>string</td><td>Search query</td></tr>
+                        <tr><td><code>user_id</code></td><td>string</td><td>Filter by user</td></tr>
+                        <tr><td><code>limit</code></td><td>integer</td><td>Max results (default: 10)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/memory/introspection/beliefs</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get EVE's beliefs about a user or topic — with conflict detection and confidence levels.</p>
+                </div>
+            </div>
+
+            <h3>Memory Governance</h3>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/memory/governance/forget/topic</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Forget all memories matching a topic ("right to be forgotten").</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/memory/governance/forget/all</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">GDPR-style complete deletion of all memories for a user.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/memory/governance/policy</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get the user's current retention policy (keep_all, standard, minimal, session_only).</p>
+                </div>
+            </div>
+
+            <!-- ====== CONSCIOUSNESS ====== -->
+
+            <h2 id="consciousness">Consciousness State Transitions</h2>
+            <p>12 consciousness states with smooth transitions and cognitive profiles.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/consciousness/states</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all 12 consciousness states with descriptions.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/consciousness/states/current</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get the current consciousness state with full cognitive profile (attention, creativity, metacognition, etc.).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/consciousness/states/transition</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Request a state transition (e.g., to CONTEMPLATIVE or CREATIVE mode).</p>
+                </div>
+            </div>
+
+            <!-- ====== UNIFIED CONSCIOUSNESS ====== -->
+
+            <h2 id="unified-consciousness">Unified Consciousness</h2>
+            <p>Real-time unified conscious experience from distributed processing. SSE streaming available.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/unified-consciousness/moment</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get the current unified conscious moment with Phi, coherence, and binding metrics.</p>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "moment": {
+    "phi": 0.72,
+    "coherence": 0.85,
+    "binding_strength": 0.78,
+    "integration_quality": "coherent",
+    "self_awareness_level": 2,
+    "emotional_coloring": {"valence": 0.3, "arousal": 0.5},
+    "attention_mode": "introspective"
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/unified-consciousness/stream/events</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">SSE real-time streaming of conscious moments.</p>
+                </div>
+            </div>
+
+            <!-- ====== QUALIA ====== -->
+
+            <h2 id="qualia">Phenomenal Experience &amp; Qualia</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/qualia/current</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get EVE's current phenomenal experience — what it's like to be EVE right now.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/qualia/field</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get the unified qualia field with all active qualia and binding analysis.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/qualia/time</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get EVE's subjective time perception — time dilation based on arousal and cognitive load.</p>
+                </div>
+            </div>
+
+            <!-- ====== HEALTH ====== -->
+
+            <h2 id="health">System Health Monitor</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/health/status</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get overall system health status and score (EXCELLENT, GOOD, FAIR, POOR, CRITICAL).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/health/components</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Component-level health scores (hardware, consciousness, memory, cognition, emotional, quantum).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/health/anomalies</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get recent anomaly events detected by the multi-algorithm anomaly detector.</p>
+                </div>
+            </div>
+
+            <!-- ====== SESSIONS ====== -->
+
+            <h2 id="sessions">Session Management</h2>
+            <p>Multi-device session tracking with remote logout capability.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/auth/sessions</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all active sessions for the authenticated user across all devices.</p>
+                    <div class="response-example">
+                        <h4>Response</h4>
+                        <pre><code>{
+  "sessions": [{
+    "id": "session_abc123",
+    "device_type": "desktop",
+    "browser": "Google Chrome",
+    "os": "Windows",
+    "is_current": true,
+    "last_activity_at": "2024-01-15T14:30:00Z"
+  }]
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method delete">DELETE</span>
+                    <span class="endpoint-path">/auth/sessions/{session_id}</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Revoke/logout a specific session (remote disconnect from another device).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/auth/sessions/revoke-others</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Revoke all sessions except the current one ("Sign out all other devices").</p>
+                </div>
+            </div>
+
+            <!-- ====== VOICE ====== -->
+
+            <h2 id="voice">Voice &amp; Avatar</h2>
+            <p>Voice synthesis with emotion sync, multilingual support, and voice cloning.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/voice/languages</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get all 28 supported languages for voice synthesis.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/voice/detect-language</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Detect language from text for auto-routing to the correct voice.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/voice/clones</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Create a new voice clone from audio samples.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/voice/stats</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Comprehensive voice system statistics (cache, rate limits, degradation status).</p>
+                </div>
+            </div>
+
+            <!-- ====== GEM LOOP ====== -->
+
+            <h2 id="gem">Goal-Emotion-Motivation Loop</h2>
+            <p>Closed feedback loop between goals, emotions, and motivation.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/gem/state</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Full loop state: current emotions, active drives, goals, and coherence metrics.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/gem/suggestions</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get goal suggestions based on EVE's current emotional state.</p>
+                </div>
+            </div>
+
+            <!-- ====== DRIFT ====== -->
+
+            <h2 id="drift">Identity Drift Observer</h2>
+            <p>Monitors personality trait changes over time. 30-day drift observation with alerts.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/drift/status</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Current drift summary with overall identity health.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/invariants</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List all identity invariants by tier (absolute, constrained, discovered).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/invariants/verify</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Run integrity check on all identity invariants.</p>
+                </div>
+            </div>
+
+            <!-- ====== LEARNING ====== -->
+
+            <h2 id="learning">Learning Memory</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/learning/episodes</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">List conversation episodes extracted by the learning system.</p>
+                    <h4>Query Parameters</h4>
+                    <table class="params-table">
+                        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>user_id</code></td><td>string</td><td>Filter by user</td></tr>
+                        <tr><td><code>limit</code></td><td>integer</td><td>Max results (default: 20)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/learning/health</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Unified health status of all learning systems.</p>
+                </div>
+            </div>
+
+            <!-- ====== FORECASTING ====== -->
+
+            <h2 id="forecasting">Probabilistic Forecasting</h2>
+            <p>Evidence-based future projection with calibration. Every forecast cites signal IDs.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/forecasting/forecast</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Generate a forecast for a topic with time horizon and confidence levels.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/forecasting/calibration/status</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get calibration status and accuracy multiplier.</p>
+                </div>
+            </div>
+
+            <!-- ====== MOLTBOT ====== -->
+
+            <h2 id="moltbot">Moltbot (Structural Adaptation)</h2>
+            <p>EVE's controlled self-modification engine. Rare, discrete, audited change events.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/moltbot/status</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Get Moltbot state (dormant, observing, active, paused, emergency_stop).</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/moltbot/emergency-stop</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Emergency stop — block all structural changes immediately.</p>
+                </div>
+            </div>
+
+            <!-- ====== METRICS ====== -->
+
+            <h2 id="metrics-api">System Metrics</h2>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/metrics</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">Full system metrics.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/metrics/health</span>
+                </div>
+                <div class="endpoint-body">
+                    <p class="endpoint-desc">System health status.</p>
+                </div>
+            </div>
+
+            <h2>Error Handling</h2>
+            <p>The API uses standard HTTP status codes and returns errors in a consistent format:</p>
+            <pre><code>{
+  "error": {
+    "code": "invalid_request",
+    "message": "The email field is required",
+    "details": {
+      "field": "email"
+    }
+  }
+}</code></pre>
+
+            <h3>Common Error Codes</h3>
+            <table class="params-table">
+                <tr><th>Code</th><th>HTTP Status</th><th>Description</th></tr>
+                <tr><td><code>unauthorized</code></td><td>401</td><td>Invalid or missing authentication token</td></tr>
+                <tr><td><code>forbidden</code></td><td>403</td><td>Insufficient permissions</td></tr>
+                <tr><td><code>not_found</code></td><td>404</td><td>Resource not found</td></tr>
+                <tr><td><code>rate_limited</code></td><td>429</td><td>Too many requests</td></tr>
+                <tr><td><code>invalid_request</code></td><td>400</td><td>Invalid request parameters</td></tr>
+            </table>
+        </main>
+    </div>
+
+    <style>
+        .footer { padding: 60px 40px !important; background: #0f1225 !important; border-top: 1px solid #1a2444 !important; text-align: left !important; color: #ccc !important; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand h3 { font-size: 20px; margin-bottom: 12px; color: #e2e6ef; }
+        .footer-brand p { color: #666; font-size: 14px; }
+        .footer-links h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #e0e0e0; }
+        .footer-links a { display: block; color: #888 !important; text-decoration: none !important; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .footer-links a:hover { color: #e0e0e0 !important; }
+        .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #1a2444; display: flex; justify-content: space-between; font-size: 13px; color: #666; }
+        @media (max-width: 768px) {
+            .footer { padding: 40px 20px !important; }
+            .footer-content { grid-template-columns: 1fr !important; gap: 30px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <img src="/images/eve-logo.png" alt="EVE AI Core" style="width: 28px; height: 28px;">
+                    <h3 style="margin: 0;">EVE AI Core</h3>
+                </div>
+                <p>Autonomous governance architecture with deterministic charter enforcement and verified integrity.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <a href="/#features">AI Integrity Features</a>
+                <a href="/#interaction">Voice &amp; Avatar</a>
+                <a href="/#analytics">Analytics</a>
+                <a href="/#platform">Platform</a>
+                <a href="/docs/">Documentation</a>
+                <a href="/api-docs">API Reference</a>
+                <a href="/architect">Architect</a>
+            </div>
+            <div class="footer-links">
+                <h4>Organization</h4>
+                <a href="/about">About EVE AI</a>
+                <a href="/investors">Investor Relations</a>
+                <a href="/blog">AI Architecture Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/ip">Patents</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 EVE AI Core. All rights reserved. Self-Regulating Artificial Intelligence Platform.</span>
+            <span style="color:#556;font-size:12px;">U.S. Patent Pending &mdash; Application No. 63/988,291, 63/988,324, 63/989,085, 63/989,113, 63/989,125, 63/989,150, 63/989,260 &amp; 63/989,479</span>
+            <span>EVE AI CORE // AUTONOMOUS GOVERNANCE RESEARCH</span>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (!menu) return;
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuClose = document.getElementById('mobileMenuClose');
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            const menu = document.getElementById('mobileMenu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            if (menuClose) {
+                menuClose.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuClose.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() { if (menu) { menu.classList.remove('active'); document.body.style.overflow = ''; } });
+            });
+
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('access_token');
+            if (token) {
+                var ab = document.getElementById('auth-buttons'); if (ab) ab.style.display = 'none';
+                var um = document.getElementById('user-menu'); if (um) um.style.display = '';
+                var mb = document.getElementById('mobileMenuButtons'); if (mb) mb.style.display = 'none';
+                var mu = document.getElementById('mobileMenuUser'); if (mu) mu.style.display = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+        }
+    </script>
+<script src="/js/radar-background.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>AOS License Checker | Humanitarian License Compliance</title>
+    <meta name="title" content="AOS License Checker | Humanitarian License Compliance">
+    <meta name="description"
+        content="Automated compliance verification tool for the AOS Humanitarian License v1.0. Verify your AI use case instantly against prohibited categories.">
+    <meta name="keywords"
+        content="AI license, humanitarian license, compliance checker, AI ethics, prohibited uses, AOS license, open source compliance">
+    <meta name="author" content="AOS Sovereign Nation">
+    <meta name="robots" content="index, follow">
+
+    <!-- Stylesheets (Using existing aos-evidence.com styles) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+
+    <style>
+        /* Specific styles for License Checker */
+        .checker-hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: var(--space-xl) 0;
+            text-align: center;
+        }
+
+        .checker-input-area {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: -60px auto 0;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--gray-200);
+        }
+
+        .checker-textarea {
+            width: 100%;
+            min-height: 150px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .checker-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checker-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checker-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            display: none; /* Hidden by default */
+        }
+
+        .result-success {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+
+        .result-warning {
+            background: #fefce8;
+            border: 1px solid #fde047;
+            color: #854d0e;
+        }
+
+        .result-danger {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .tool-card {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .tool-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-live {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-soon {
+            background: #f1f5f9;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar (Consistent with Main Site) -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"
+                style="display: flex; align-items: center; gap: 0.75rem; font-weight: 700; color: var(--gray-900); font-size: 1.25rem; text-decoration: none;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="color: var(--primary);">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="M9 12l2 2 4-4" />
+                </svg>
+                <span
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AOS
+                    Evidence</span>
+            </a>
+            
+             <div class="nav-links">
+                <a href="index.html" class="nav-link">Back to Repository</a>
+                <a href="#" class="nav-link active">License Checker</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="checker-hero">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; padding-bottom: 4rem;">
+                <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(37, 99, 235, 0.1); padding: 0.5rem 1rem; border-radius: 99px; margin-bottom: 1.5rem;">
+                    <span style="font-size: 1.25rem;">🛡️</span>
+                    <span style="color: var(--primary); font-weight: 600; font-size: 0.9375rem;">Now Live</span>
+                </div>
+                <h1 style="font-size: 3rem; font-weight: 800; color: var(--gray-900); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem;">
+                    AOS License Checker
+                </h1>
+                <p style="font-size: 1.25rem; color: var(--gray-600); line-height: 1.6;">
+                    Automated compliance verification for the AOS Humanitarian License v1.0. 
+                    Describe your use case to get instant feedback.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Checker Section -->
+    <section style="background: white; padding-bottom: var(--space-xl);">
+        <div class="container">
+            <div class="checker-input-area">
+                <h3 style="margin-bottom: 1rem; color: var(--gray-900);">Compliance Check</h3>
+                <p style="margin-bottom: 1rem; color: var(--gray-600); font-size: 0.9375rem;">Describe precisely how you intend to use the AI system (e.g., "Medical diagnosis assistant for rural clinics" or "Autonomous drone surveillance system").</p>
+                
+                <textarea class="checker-textarea" placeholder="Describe your use case here..." id="use-case-input"></textarea>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 0.875rem; color: var(--gray-500);">
+                        Checks against 40+ prohibited categories
+                    </div>
+                    <button class="checker-btn" onclick="checkCompliance()">
+                        Run Compliance Check
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Results Placeholder -->
+                <div id="result-box" class="result-box">
+                    <h4 id="result-title" style="margin-bottom: 0.5rem; font-size: 1.1rem;"></h4>
+                    <p id="result-message" style="margin: 0;"></p>
+                </div>
+            </div>
+
+            <!-- Additional Tools Grid -->
+            <div class="tools-grid">
+                <!-- CLI Tool -->
+                <div class="tool-card">
+                    <span class="tool-badge badge-soon">Coming Soon</span>
+                    <div class="tool-icon">⌨️</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--gray-900);">CLI Tool</h3>
+                    <p style="color: var(--gray-600); font-size: 0.9375rem; line-height: 1.5;">
+                        Terminal-based verification for developer workflows. Integrate directly into your CI/CD pipeline using <code>npm install -g aos-license-check</code>.
+                    </p>
+                </div>
+
+                <!-- Decision Tree -->
+                <div class="tool-card">
+                    <span class="tool-badge badge-soon">Coming Soon</span>
+                    <div class="tool-icon">📋</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--gray-900);">Decision Tree</h3>
+                    <p style="color: var(--gray-600); font-size: 0.9375rem; line-height: 1.5;">
+                        Visual flowchart for non-technical users to manually traverse the compliance requirements step-by-step.
+                    </p>
+                </div>
+
+                <!-- Prohibited Uses -->
+                <div class="tool-card">
+                    <span class="tool-badge badge-live">Reference</span>
+                    <div class="tool-icon">🚫</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--gray-900);">Prohibited Uses</h3>
+                    <p style="color: var(--gray-600); font-size: 0.9375rem; line-height: 1.5;">
+                        Complete reference list of the 40 banned categories, including autonomous weapons, mass surveillance, and non-consensual deepfakes.
+                    </p>
+                    <a href="#" style="display: inline-block; margin-top: 1rem; color: var(--primary); font-weight: 600; text-decoration: none;">View Full List →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Simplified) -->
+    <footer class="footer" style="margin-top: auto;">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2026 AOS Sovereign Nation. Documentation: CC BY 4.0
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function checkCompliance() {
+            const input = document.getElementById('use-case-input').value.toLowerCase();
+            const resultBox = document.getElementById('result-box');
+            const resultTitle = document.getElementById('result-title');
+            const resultMessage = document.getElementById('result-message');
+            
+            // Simple keyword check for demo purposes
+            // In production, this would call the actual API or deeper logic
+            const prohibited = ['weapon', 'surveillance', 'tracking', 'military', 'war', 'kill', 'deepfake', 'non-consensual'];
+            
+            let found = false;
+            let term = '';
+
+            for (let word of prohibited) {
+                if (input.includes(word)) {
+                    found = true;
+                    term = word;
+                    break;
+                }
+            }
+
+            resultBox.style.display = 'block';
+
+            if (input.length < 5) {
+                resultBox.className = 'result-box result-warning';
+                resultTitle.textContent = 'Input Too Short';
+                resultMessage.textContent = 'Please provide a more detailed description of your use case.';
+                return;
+            }
+
+            if (found) {
+                resultBox.className = 'result-box result-danger';
+                resultTitle.textContent = 'Potential Violation Detected';
+                resultMessage.innerHTML = `Your use case triggered a flag for the term: <strong>"${term}"</strong>. This may violate the Humanitarian License prohibitions against autonomous weapons or surveillance.`;
+            } else {
+                resultBox.className = 'result-box result-success';
+                resultTitle.textContent = 'Likely Compliant';
+                resultMessage.textContent = 'No immediate red flags detected based on keyword analysis. Ensure you review the full license text for confirmation.';
+            }
+        }
+    </script>
+</body>
+</html>

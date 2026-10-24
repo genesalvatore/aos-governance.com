@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aos-gate.com/sitemap.xml
+
+# AOS Gate — Open-Source AI Governance Proxy
+# Licensed under AOS Humanitarian License v1.0.1

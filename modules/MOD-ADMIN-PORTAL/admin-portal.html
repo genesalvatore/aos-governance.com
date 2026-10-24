@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executive Operations & Licensing Portal | Powered by GreenTree OS</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-primary: #2563eb;
+      --brand-primary-rgb: 37, 99, 235;
+      --sidebar-bg: #1b1b1f;
+      --topbar-bg: #0f172a;
+      --main-bg: #f5f6f8;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--main-bg);
+      color: var(--text-primary);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Sidebar (#1b1b1f GreenTree OS Standard) */
+    .sidebar {
+      width: 264px;
+      background: var(--sidebar-bg);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 40;
+    }
+    .brandBox {
+      padding: 16px 16px 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(0,0,0,0.18);
+    }
+    .brandLogoWrap {
+      width: 100%;
+      min-height: 64px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.28);
+    }
+    .brandLogoImg {
+      width: 100%;
+      max-height: 54px;
+      object-fit: contain;
+      display: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45));
+    }
+    .brandWordmarkFallback {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand-primary) 0%, rgba(0,0,0,0.45) 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 6px 10px;
+      font-weight: 900;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .brandMeta {
+      min-width: 0;
+      width: 100%;
+    }
+    .brandPortalTitle {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brandAccentDot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+      box-shadow: 0 0 8px var(--brand-primary);
+      flex-shrink: 0;
+    }
+    .brandSub {
+      font-size: 0.7rem;
+      color: #cbd5e1;
+      font-weight: 600;
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .navScroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 10px;
+    }
+    .navSectionLabel {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      padding: 12px 10px 6px;
+    }
+    .navBtn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+      margin-bottom: 2px;
+    }
+    .navBtn:hover {
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
+    }
+    .navBtn.active {
+      background: var(--brand-primary);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .navPill {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.12);
+      color: #ffffff;
+    }
+    .sidebarFooter {
+      padding: 14px 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.2);
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+
+    /* Main Shell */
+    .mainShell {
+      flex: 1;
+      margin-left: 264px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Topbar (#0f172a GreenTree OS Standard) */
+    .topbar {
+      height: 62px;
+      background: var(--topbar-bg);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      border-bottom: 1px solid #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+    .topbarLeft {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .topbarTitle {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .topbarSubtitle {
+      font-size: 0.76rem;
+      color: #94a3b8;
+    }
+    .topbarRight {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .roleToggleBtn {
+      background: rgba(255,255,255,0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .roleToggleBtn.super {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+      color: #93c5fd;
+    }
+    .visitSiteBtn {
+      background: var(--brand-primary);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Content Area */
+    .workspace {
+      padding: 28px;
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .kpiGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpiCard {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .kpiLabel {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    .kpiVal {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-top: 6px;
+    }
+    .kpiSub {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .panelCard {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .panelHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .panelTitle {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      background: #f8fafc;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .badgeGreen { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .badgeBlue { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .badgeAmber { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .badgeSlate { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+
+    /* Module Grid */
+    .moduleGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .moduleCard {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.15s;
+    }
+    .moduleCard.enabled {
+      border-color: var(--brand-primary);
+      background: linear-gradient(180deg, rgba(37,99,235,0.02) 0%, #ffffff 100%);
+    }
+    .moduleCard.hiddenMod {
+      opacity: 0.55;
+      border-style: dashed;
+    }
+    .btnPrimary {
+      background: var(--brand-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .btnOutline {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 7px 13px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .toastBanner {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      border-left: 4px solid #22c55e;
+      z-index: 100;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Sidebar (Customer Brand Theme + GreenTree OS Standard) -->
+  <aside class="sidebar">
+    <div class="brandBox">
+      <div class="brandLogoWrap" id="brandLogoWrap">
+        <img class="brandLogoImg" id="sidebarBrandLogo" src="" alt="Customer Logo" />
+        <div class="brandWordmarkFallback" id="brandWordmarkFallback">
+          <span id="brandInitials">GT</span>
+        </div>
+      </div>
+      <div class="brandMeta">
+        <div class="brandPortalTitle">
+          <span class="brandAccentDot"></span>
+          <span id="sidebarPortalTitle">Loading Portal...</span>
+        </div>
+        <div class="brandSub" id="sidebarDomain">greentreehosting.com</div>
+      </div>
+    </div>
+
+    <div class="navScroll">
+      <div class="navSectionLabel">Operations & Telemetry</div>
+      <button class="navBtn active" data-tab="overview" onclick="switchTab('overview')">
+        <span>📊 Overview Dashboard</span>
+      </button>
+      <button class="navBtn" id="navLeadsBtn" data-tab="submissions" onclick="switchTab('submissions')">
+        <span>📥 Leads & Quote CRM</span>
+        <span class="navPill" id="navLeadsCount">0</span>
+      </button>
+      <button class="navBtn" data-tab="pins" onclick="switchTab('pins')">
+        <span>📌 Visual Pin Board</span>
+        <span class="navPill" id="navPinsCount">0</span>
+      </button>
+      <button class="navBtn" id="navAppUsersBtn" data-tab="app-users" onclick="switchTab('app-users')">
+        <span>☑️ User Pinboard Access</span>
+        <span class="navPill">Matrix</span>
+      </button>
+      <button class="navBtn" id="navDeepHelpBtn" data-tab="deep-help" onclick="switchTab('deep-help')">
+        <span>❓ Help &amp; Documentation</span>
+        <span class="navPill">Guide</span>
+      </button>
+      <button class="navBtn" id="navSocialBtn" data-tab="social" onclick="switchTab('social')">
+        <span>📣 Social &amp; FB Command</span>
+        <span class="navPill">v21.0</span>
+      </button>
+
+      <div class="navSectionLabel" id="navCommercialLabel">Platform & Commercial</div>
+      <button class="navBtn" id="navFeaturesBtn" data-tab="features" onclick="switchTab('features')">
+        <span>🧩 Licensing & Modules</span>
+        <span class="navPill" id="navModulesCount">0/18</span>
+      </button>
+      <button class="navBtn" id="navBillingBtn" data-tab="billing" onclick="switchTab('billing')">
+        <span>💳 Billing & Gateways</span>
+      </button>
+      <button class="navBtn" id="navHealthBtn" data-tab="health" onclick="switchTab('health')">
+        <span>🛡️ Database & SMTP Health</span>
+      </button>
+    </div>
+
+    <div class="sidebarFooter">
+      <div style="font-weight:800; color:#e2e8f0;">Powered by GreenTree OS</div>
+      <div style="margin-top:2px;">Isolated PostgreSQL 16 + SmarterMail</div>
+    </div>
+  </aside>
+
+  <!-- Main Workspace -->
+  <div class="mainShell">
+    <header class="topbar">
+      <div class="topbarLeft">
+        <div>
+          <div class="topbarTitle" id="topbarTitle">Executive Operations Dashboard</div>
+          <div class="topbarSubtitle" id="topbarSubtitle">Real-time lead telemetry, active modules, and sovereign infrastructure</div>
+        </div>
+      </div>
+      <div class="topbarRight">
+        <button class="roleToggleBtn" id="roleToggleBtn" onclick="toggleSuperAdminMode()">
+          🔒 Customer License View
+        </button>
+        <a class="visitSiteBtn" id="visitLiveSiteBtn" href="/" target="_blank" rel="noopener">
+          Visit Live Website ↗
+        </a>
+      </div>
+    </header>
+
+    <main class="workspace" id="workspaceContent">
+      <!-- Dynamic view rendered by JS -->
+    </main>
+  </div>
+
+  <div class="toastBanner" id="toastBanner">✓ Saved</div>
+
+  <script>
+    let STATE = {
+      activeTab: 'overview',
+      isSuperAdmin: false,
+      pricingView: 'tiers',
+      categoryFilter: 'all',
+      license: null,
+      catalog: [],
+      planTiers: [],
+      paymentGateways: [],
+      submissions: [],
+      pins: [],
+      backendSummary: null,
+      deepHelpCatalog: null,
+      deepHelpRole: 'admin',
+      deepHelpTopicId: 'getting-started',
+      deepHelpMode: 'summary',
+      deepHelpSearch: '',
+      appUsers: []
+    };
+
+    function showToast(msg) {
+      const el = document.getElementById('toastBanner');
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 2800);
+    }
+
+    function applyBrandTheme(lic) {
+      if (!lic) return;
+      const color = lic.brandColor || '#2563eb';
+      const sidebarBg = lic.sidebarBg || '#1b1b1f';
+      const topbarBg = lic.topbarBg || '#0f172a';
+      document.documentElement.style.setProperty('--brand-primary', color);
+      document.documentElement.style.setProperty('--sidebar-bg', sidebarBg);
+      document.documentElement.style.setProperty('--topbar-bg', topbarBg);
+
+      const logoImg = document.getElementById('sidebarBrandLogo');
+      const fallbackEl = document.getElementById('brandWordmarkFallback');
+      const initialsEl = document.getElementById('brandInitials');
+      const initials = (lic.siteName || 'GT')
+        .split(/\s+/)
+        .slice(0, 2)
+        .map(w => w[0])
+        .join('')
+        .toUpperCase();
+      if (initialsEl) initialsEl.textContent = lic.siteName || initials;
+
+      if (lic.logoUrl && logoImg) {
+        // If running on the customer domain directly, prefer relative path if same host to avoid CORS/mixed-host delay
+        let resolvedLogo = lic.logoUrl;
+        try {
+          const u = new URL(lic.logoUrl, window.location.origin);
+          if (u.hostname === window.location.hostname) {
+            resolvedLogo = u.pathname + u.search;
+          }
+        } catch {}
+        logoImg.onload = () => {
+          logoImg.style.display = 'block';
+          if (fallbackEl) fallbackEl.style.display = 'none';
+        };
+        logoImg.onerror = () => {
+          logoImg.style.display = 'none';
+          if (fallbackEl) fallbackEl.style.display = 'flex';
+        };
+        logoImg.src = resolvedLogo;
+        logoImg.alt = `${lic.siteName || 'Customer'} Official Logo`;
+      } else {
+        if (logoImg) logoImg.style.display = 'none';
+        if (fallbackEl) fallbackEl.style.display = 'flex';
+      }
+    }
+
+    function isPreviewLicense(lic = STATE.license) {
+      if (!lic) return false;
+      return (
+        lic.planTier === 'executive_preview' ||
+        lic.billingStatus === 'preview' ||
+        lic.primaryGateway === 'none' ||
+        Number(lic.monthlyRate ?? 0) === 0
+      );
+    }
+
+    function toggleSuperAdminMode() {
+      STATE.isSuperAdmin = !STATE.isSuperAdmin;
+      const btn = document.getElementById('roleToggleBtn');
+      if (STATE.isSuperAdmin) {
+        btn.textContent = '👑 Super-Admin Mode (Gene)';
+        btn.classList.add('super');
+      } else {
+        btn.textContent = '🔒 Customer License View';
+        btn.classList.remove('super');
+        if (isPreviewLicense() && STATE.activeTab === 'billing') {
+          switchTab('overview');
+          return;
+        }
+      }
+      updateSidebarCounts();
+      renderActiveTab();
+    }
+
+    function switchTab(tab) {
+      STATE.activeTab = tab;
+      document.querySelectorAll('.navBtn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-tab') === tab);
+      });
+      const portalName = STATE.license?.portalTitle || (STATE.license?.siteName ? `${STATE.license.siteName} Portal` : 'Executive Operations Dashboard');
+      const titles = {
+        overview: [portalName, 'Real-time lead telemetry, active modules, and sovereign infrastructure'],
+        submissions: ['Leads, Quotes & CRM Inbox', 'All customer quote requests, bookings, and inquiries stored in your dedicated PostgreSQL 16 database'],
+        pins: ['Visual Pin Board & Review Center', 'Point-and-click page annotations and GreenTree engineering support threads'],
+        'app-users': ['User Pinboard Access & Role Checkboxes', 'Select which users in your application can use the Visual Pin Board and view team pins'],
+        'deep-help': ['Help & Documentation', 'Multi-level Universal + Custom Application Help with Quick Summary View and Complete Full Guide'],
+        social: ['Social & Facebook Graph API Command (MOD-SOCIAL-COMMAND)', 'Official Meta Graph API v21.0 Page Publisher, Automated First-Comment Link Injector, and Privacy Controls'],
+        features: ['Licensing & Modules', 'Manage modular platform capabilities, SEO engines, and commercial subscription tiers'],
+        billing: ['Subscription Billing & Payment Gateways', 'Active retainer plan, WHMCS invoice portal, and Stripe / Square / PayPal / Authorize.Net gateways'],
+        health: ['Sovereign Infrastructure & SMTP Health', 'Dedicated PostgreSQL 16 container status, SmarterMail STARTTLS relay, and WAF Bot Shield']
+      };
+      const [t, s] = titles[tab] || titles.overview;
+      document.getElementById('topbarTitle').textContent = t;
+      document.getElementById('topbarSubtitle').textContent = s;
+      renderActiveTab();
+    }
+
+    async function loadPortalData() {
+      const params = new URLSearchParams(window.location.search);
+      const siteKey = params.get('siteKey') || window.GREENTREE_SITE_KEY || '';
+      if (params.get('super') === '1') {
+        STATE.isSuperAdmin = true;
+        const btn = document.getElementById('roleToggleBtn');
+        btn.textContent = '👑 Super-Admin Mode (Gene)';
+        btn.classList.add('super');
+      }
+
+      try {
+        // Fetch from Command Center preview API if siteKey is passed, or local /api/spoke-portal-data
+        const endpoint = siteKey
+          ? `/api/command/spoke-portal-data?siteKey=${encodeURIComponent(siteKey)}`
+          : `/api/spoke-portal-data`;
+        const res = await fetch(endpoint, { credentials: 'same-origin' });
+        let data = null;
+        try {
+          data = await res.json();
+        } catch {}
+
+        // Resilient fallback if /api/spoke-portal-data failed or returned ok:false
+        if (!data || !data.ok) {
+          const fbRes = await fetch('/api/feedback', { credentials: 'same-origin' }).catch(() => null);
+          const fbData = fbRes && fbRes.ok ? await fbRes.json().catch(() => ({})) : {};
+          const host = window.location.hostname || 'greentreehosting.com';
+          const isModzTowing = host.includes('modztowing');
+          const isModzAuto = host.includes('modzautobody');
+          data = {
+            ok: true,
+            license: {
+              siteKey: isModzTowing ? 'modz-review-board' : (isModzAuto ? 'modz-autobody-review-board' : host),
+              siteName: isModzTowing ? "Modzelewski's Recovery & Heavy Hauling" : (isModzAuto ? "Modzelewski's Auto Body Works" : (fbData.siteName || host)),
+              portalTitle: isModzTowing ? "Modzelewski's Recovery Portal" : (isModzAuto ? "Modzelewski's Auto Body Portal" : `${fbData.siteName || host} Portal`),
+              logoUrl: isModzTowing
+                ? '/assets/images/modzelewskis-recovery-danbury-ct-official-logo-emblem.png'
+                : (isModzAuto ? '/assets/images/modzelewskis-auto-body-danbury-ct-official-oval-logo.png' : ''),
+              domain: host,
+              vertical: isModzTowing ? 'Heavy Recovery & Towing' : (isModzAuto ? 'Collision & Auto Body' : 'Commercial Enterprise'),
+              brandColor: isModzTowing ? '#d97706' : '#2563eb',
+              sidebarBg: isModzTowing ? '#130D24' : (isModzAuto ? '#0B192C' : '#1b1b1f'),
+              topbarBg: isModzTowing ? '#1B1233' : (isModzAuto ? '#0f223d' : '#0f172a'),
+              planTier: (isModzTowing || isModzAuto) ? 'executive_preview' : 'category_authority',
+              monthlyRate: (isModzTowing || isModzAuto) ? 0 : 599,
+              billingStatus: (isModzTowing || isModzAuto) ? 'preview' : 'active',
+              primaryGateway: (isModzTowing || isModzAuto) ? 'none' : 'whmcs',
+              gateways: (isModzTowing || isModzAuto) ? {} : { whmcsUrl: 'https://customers.greentreehosting.com/clientarea.php' },
+              enabledModules: [
+                'MOD-PG16-VAULT','MOD-SMARTERMAIL-SMTP','MOD-WAF-SHIELD','MOD-LEAD-CRM',
+                'MOD-PIN-BOARD','MOD-PREVIEW-GATE','MOD-TOWN-SEO-MATRIX','MOD-AI-CRAWLER-PACK',
+                'MOD-MATOMO-TELEMETRY','MOD-PROJECT-SHOWCASE','MOD-FLEET-REGISTRY'
+              ],
+              hiddenModules: []
+            },
+            catalog: [],
+            planTiers: [
+              { id: 'sovereign_base', name: 'Sovereign Hosting Base', priceMonthly: 99, badge: 'Core Infrastructure', capacityLabel: 'PostgreSQL 16 + SmarterMail', features: ['Isolated PostgreSQL 16', 'SmarterMail SMTP Relay'] },
+              { id: 'growth_retainer', name: 'Growth & SEO Retainer Suite', priceMonthly: 299, badge: 'Most Popular', capacityLabel: 'Regional Search Dominance', features: ['Multi-Town SEO Matrix', 'AI Crawler Pack'] },
+              { id: 'category_authority', name: 'Category Authority Pro Suite', priceMonthly: 599, badge: 'Full Operating System', capacityLabel: 'Custom Vertical Modules', features: ['Full Vertical Modules', 'Visual Pin Board Concierge'] }
+            ],
+            paymentGateways: [
+              { id: 'whmcs', name: 'WHMCS Billing Portal', shortLabel: 'WHMCS', description: 'GreenTree Hosting Central Client Area & Invoice Ledger' },
+              { id: 'stripe', name: 'Stripe Billing & Checkout', shortLabel: 'Stripe', description: 'Automated Credit Card & ACH Subscriptions' }
+            ],
+            submissions: [],
+            pins: fbData.items || [],
+            backendSummary: { storageEngine: fbData.storageEngine || 'postgres', smtp: fbData.settings || {} }
+          };
+        }
+
+        if (data && data.ok) {
+          STATE.license = data.license;
+          STATE.catalog = data.catalog || [];
+          STATE.planTiers = data.planTiers || [];
+          STATE.paymentGateways = data.paymentGateways || [];
+          STATE.submissions = data.submissions || [];
+          STATE.pins = data.pins || [];
+          STATE.backendSummary = data.backendSummary || {};
+
+          applyBrandTheme(STATE.license);
+          const portalTitle = STATE.license.portalTitle || `${STATE.license.siteName} Portal`;
+          document.getElementById('sidebarPortalTitle').textContent = portalTitle;
+          document.getElementById('sidebarDomain').textContent = `${STATE.license.siteName} · ${STATE.license.domain}`;
+          document.getElementById('topbarTitle').textContent = portalTitle;
+          document.getElementById('visitLiveSiteBtn').href = `https://${STATE.license.domain}`;
+          document.title = `${portalTitle} | Powered by GreenTree OS`;
+
+          updateSidebarCounts();
+          if (window.location.hash === '#feedback-board' || window.location.hash === '#pins') {
+            switchTab('pins');
+          } else {
+            renderActiveTab();
+          }
+        }
+      } catch (err) {
+        document.getElementById('workspaceContent').innerHTML = `<div class="panelCard">Failed to load portal telemetry: ${err.message}</div>`;
+      }
+    }
+
+    function updateSidebarCounts() {
+      const lic = STATE.license || {};
+      const isWebApp = lic.appType === 'web_app' || (lic.siteKey && lic.siteKey.includes('sonitor'));
+      const enabledSet = new Set(lic.enabledModules || []);
+      const hiddenSet = new Set(lic.hiddenModules || []);
+      const visibleCatalog = STATE.catalog.filter(m => !hiddenSet.has(m.code));
+      const activeCount = visibleCatalog.filter(m => enabledSet.has(m.code)).length;
+      document.getElementById('navLeadsCount').textContent = STATE.submissions.length;
+      document.getElementById('navPinsCount').textContent = STATE.pins.length;
+      document.getElementById('navModulesCount').textContent = `${activeCount}/${visibleCatalog.length}`;
+
+      // Granular Web App Filtering: Leads, Quotes, Social, Commercial & Billing do NOT belong in view for Web App admins unless Super-Admin turns them on
+      const navLeadsBtn = document.getElementById('navLeadsBtn');
+      if (navLeadsBtn) {
+        navLeadsBtn.style.display = (isWebApp && !STATE.isSuperAdmin && !lic.adminShowLeads) ? 'none' : 'flex';
+      }
+      const navSocialBtn = document.getElementById('navSocialBtn');
+      if (navSocialBtn) {
+        navSocialBtn.style.display = ((!isWebApp && enabledSet.has('MOD-SOCIAL-COMMAND')) || STATE.isSuperAdmin || lic.adminShowSocial) ? 'flex' : 'none';
+      }
+      const navFeaturesBtn = document.getElementById('navFeaturesBtn');
+      const navCommercialLabel = document.getElementById('navCommercialLabel');
+      if (navFeaturesBtn) {
+        navFeaturesBtn.style.display = (isWebApp && !STATE.isSuperAdmin && !lic.adminShowCommercial) ? 'none' : 'flex';
+      }
+      const navBillingBtn = document.getElementById('navBillingBtn');
+      if (navBillingBtn) {
+        navBillingBtn.style.display = ((isPreviewLicense(lic) || isWebApp) && !STATE.isSuperAdmin) ? 'none' : 'flex';
+      }
+      if (navCommercialLabel) {
+        navCommercialLabel.style.display = (isWebApp && !STATE.isSuperAdmin) ? 'none' : 'block';
+      }
+    }
+
+    async function saveLicenseUpdate(pushToSpoke = false) {
+      if (!STATE.license) return;
+      try {
+        const res = await fetch('/api/command/licenses', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            license: STATE.license,
+            pushToSpoke
+          })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showToast(pushToSpoke ? '✓ License Saved & Pushed Live to Spoke' : '✓ License Updated');
+          updateSidebarCounts();
+          renderActiveTab();
+        }
+      } catch (err) {
+        showToast('Error saving license: ' + err.message);
+      }
+    }
+
+    function toggleModuleCode(code) {
+      if (!STATE.isSuperAdmin) return;
+      const list = new Set(STATE.license.enabledModules || []);
+      if (list.has(code)) list.delete(code);
+      else list.add(code);
+      STATE.license.enabledModules = Array.from(list);
+      saveLicenseUpdate(true);
+    }
+
+    function toggleHideModuleCode(code) {
+      if (!STATE.isSuperAdmin) return;
+      const list = new Set(STATE.license.hiddenModules || []);
+      if (list.has(code)) list.delete(code);
+      else list.add(code);
+      STATE.license.hiddenModules = Array.from(list);
+      saveLicenseUpdate(true);
+    }
+
+    function requestModuleUpgrade(code, name) {
+      showToast(`✓ Upgrade Request Sent to GreenTree Command for ${name} (${code})`);
+    }
+
+    function renderActiveTab() {
+      const container = document.getElementById('workspaceContent');
+      if (!STATE.license) return;
+      if (STATE.activeTab === 'overview') container.innerHTML = renderOverviewTab();
+      else if (STATE.activeTab === 'submissions') container.innerHTML = renderSubmissionsTab();
+      else if (STATE.activeTab === 'pins') container.innerHTML = renderPinsTab();
+      else if (STATE.activeTab === 'app-users') container.innerHTML = renderAppUsersTab();
+      else if (STATE.activeTab === 'deep-help') container.innerHTML = renderDeepHelpTab();
+      else if (STATE.activeTab === 'social') container.innerHTML = renderSocialTab();
+      else if (STATE.activeTab === 'features') container.innerHTML = renderFeaturesTab();
+      else if (STATE.activeTab === 'billing') container.innerHTML = renderBillingTab();
+      else if (STATE.activeTab === 'health') container.innerHTML = renderHealthTab();
+    }
+
+    function renderOverviewTab() {
+      const lic = STATE.license;
+      const previewMode = isPreviewLicense(lic);
+      const enabledSet = new Set(lic.enabledModules || []);
+      const hiddenSet = new Set(lic.hiddenModules || []);
+      const visibleMods = STATE.catalog.filter(m => !hiddenSet.has(m.code));
+      const activeMods = visibleMods.filter(m => enabledSet.has(m.code));
+      const tierObj = STATE.planTiers.find(t => t.id === lic.planTier) || STATE.planTiers[0] || { name: previewMode ? 'Executive Concept Preview' : 'Growth Retainer' };
+
+      const recentSubs = STATE.submissions.slice(0, 6);
+
+      return `
+        <!-- Active Plan & License Status Strip (Customer Brand Colors) -->
+        <div style="background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--topbar-bg) 100%); border-left: 5px solid var(--brand-primary); color:#ffffff; border-radius:14px; padding:22px 26px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.14);">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="badge ${previewMode ? 'badgeAmber' : 'badgeGreen'}">${previewMode ? '● EXECUTIVE CONCEPT PREVIEW' : '● ACTIVE LICENSE'}</span>
+              <span class="mono" style="font-size:0.74rem; color:#94a3b8;">${lic.domain} · ${lic.vertical || 'Enterprise'}</span>
+            </div>
+            <h2 style="font-size:1.35rem; font-weight:900; margin-top:8px;">${lic.siteName} — ${previewMode ? 'Executive Concept Preview' : tierObj.name}</h2>
+            <p style="font-size:0.82rem; color:#cbd5e1; margin-top:4px;">
+              Running on dedicated PostgreSQL 16 container + SmarterMail STARTTLS relay with ${activeMods.length} active platform modules.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btnPrimary" onclick="switchTab('features')">🧩 View Licensed Modules (${activeMods.length}/${visibleMods.length})</button>
+            ${!previewMode ? `<button class="btnOutline" style="background:rgba(255,255,255,0.08); color:#ffffff; border-color:rgba(255,255,255,0.2);" onclick="switchTab('billing')">💳 Billing & Plan</button>` : ''}
+          </div>
+        </div>
+
+        <div class="kpiGrid">
+          <div class="kpiCard">
+            <div class="kpiLabel">Total Form Leads & Quotes</div>
+            <div class="kpiVal">${STATE.submissions.length}</div>
+            <div class="kpiSub" style="color:#16a34a;">Stored in isolated PostgreSQL 16</div>
+          </div>
+          <div class="kpiCard">
+            <div class="kpiLabel">Licensed Platform Modules</div>
+            <div class="kpiVal">${activeMods.length} <span style="font-size:1rem; color:#64748b;">/ ${visibleMods.length}</span></div>
+            <div class="kpiSub">${previewMode ? 'Executive Concept Preview · Staging Mode' : `${tierObj.name} ($${lic.monthlyRate}/mo)`}</div>
+          </div>
+          <div class="kpiCard">
+            <div class="kpiLabel">Visual Review Pins</div>
+            <div class="kpiVal">${STATE.pins.length}</div>
+            <div class="kpiSub">${STATE.pins.filter(p => p.status === 'open').length} open items</div>
+          </div>
+          <div class="kpiCard">
+            <div class="kpiLabel">WAF & Bot Shield</div>
+            <div class="kpiVal" style="color:#16a34a;">ACTIVE</div>
+            <div class="kpiSub">RCE & Gibberish Filters Enforced</div>
+          </div>
+        </div>
+
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div class="panelTitle">Recent Customer Leads & Submissions</div>
+            <button class="btnOutline" onclick="switchTab('submissions')">View All Leads →</button>
+          </div>
+          ${recentSubs.length === 0 ? `<div style="padding:24px; text-align:center; color:#64748b; font-size:0.85rem;">No customer leads recorded yet. All form submissions land here in real time.</div>` : `
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>Contact</th>
+                  <th>Service / Form</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${recentSubs.map(s => `
+                  <tr>
+                    <td class="mono" style="font-size:0.75rem; color:#64748b;">${new Date(s.createdAt || Date.now()).toLocaleDateString()}</td>
+                    <td style="font-weight:700;">${s.name || s.submitterName || 'Website Visitor'}</td>
+                    <td>${s.email || s.submitterEmail || ''} ${s.phone || s.submitterPhone ? `· ${s.phone || s.submitterPhone}` : ''}</td>
+                    <td><span class="badge badgeBlue">${s.service || s.formName || 'Lead'}</span></td>
+                    <td><span class="badge badgeGreen">${(s.status || 'new').toUpperCase()}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          `}
+        </div>
+      `;
+    }
+
+    function renderSubmissionsTab() {
+      return `
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div>
+              <div class="panelTitle">Customer Leads, Quotes & Dispatch Inbox (${STATE.submissions.length})</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Backed by dedicated PostgreSQL 16 (form_submissions table) and SmarterMail instant alerts</div>
+            </div>
+          </div>
+          ${STATE.submissions.length === 0 ? `<div style="padding:32px; text-align:center; color:#64748b;">No submissions recorded yet.</div>` : `
+            <table>
+              <thead>
+                <tr>
+                  <th>ID / Timestamp</th>
+                  <th>Customer Name</th>
+                  <th>Email & Phone</th>
+                  <th>Form / Service</th>
+                  <th>Message / Details</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${STATE.submissions.map(s => `
+                  <tr>
+                    <td class="mono" style="font-size:0.72rem; color:#64748b;">
+                      <div>${s.id || ''}</div>
+                      <div>${new Date(s.createdAt || Date.now()).toLocaleString()}</div>
+                    </td>
+                    <td style="font-weight:800;">${s.name || s.submitterName || 'Visitor'}</td>
+                    <td>
+                      <div>${s.email || s.submitterEmail || '-'}</div>
+                      <div class="mono" style="font-size:0.75rem; color:#475569;">${s.phone || s.submitterPhone || ''}</div>
+                    </td>
+                    <td><span class="badge badgeBlue">${s.service || s.formName || 'Inquiry'}</span></td>
+                    <td style="max-width:340px; font-size:0.78rem; color:#334155;">${s.message || JSON.stringify(s.payload || {}).slice(0, 160)}</td>
+                    <td><span class="badge badgeGreen">${(s.status || 'new').toUpperCase()}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          `}
+        </div>
+      `;
+    }
+
+    function renderPinsTab() {
+      const filterStatus = STATE.pinFilterStatus || 'all';
+      const filteredPins = filterStatus === 'all'
+        ? STATE.pins
+        : STATE.pins.filter(p => (p.status || 'open') === filterStatus);
+      const openCount = STATE.pins.filter(p => (p.status || 'open') === 'open').length;
+      const progCount = STATE.pins.filter(p => p.status === 'in_progress').length;
+      const resCount = STATE.pins.filter(p => p.status === 'resolved').length;
+      const siteDomain = STATE.license?.domain ? `https://${STATE.license.domain}` : '';
+
+      return `
+        <div class="panelCard">
+          <div class="panelHeader" style="flex-wrap:wrap;gap:12px;">
+            <div>
+              <div class="panelTitle">📌 Visual Pin Board &amp; Engineering Review (${STATE.pins.length} Total &middot; ${openCount} Open)</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Module <span class="mono" style="font-weight:700;">MOD-PIN-BOARD v2</span> &middot; Synchronized bi-directionally with GreenTree Central Command Center</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+              <button class="btnOutline" style="padding:6px 10px;font-size:0.74rem;${filterStatus==='all'?'background:#0f172a;color:#fff;':''}" onclick="STATE.pinFilterStatus='all';renderActiveTab();">All (${STATE.pins.length})</button>
+              <button class="btnOutline" style="padding:6px 10px;font-size:0.74rem;${filterStatus==='open'?'background:#d97706;color:#fff;border-color:#d97706;':''}" onclick="STATE.pinFilterStatus='open';renderActiveTab();">Open (${openCount})</button>
+              <button class="btnOutline" style="padding:6px 10px;font-size:0.74rem;${filterStatus==='in_progress'?'background:#2563eb;color:#fff;border-color:#2563eb;':''}" onclick="STATE.pinFilterStatus='in_progress';renderActiveTab();">In Progress (${progCount})</button>
+              <button class="btnOutline" style="padding:6px 10px;font-size:0.74rem;${filterStatus==='resolved'?'background:#16a34a;color:#fff;border-color:#16a34a;':''}" onclick="STATE.pinFilterStatus='resolved';renderActiveTab();">Resolved (${resCount})</button>
+              <button class="btnPrimary" style="padding:7px 12px;font-size:0.75rem;" onclick="copySpokeAiBrief()">🤖 Copy AI Brief (${openCount + progCount})</button>
+            </div>
+          </div>
+          ${filteredPins.length === 0 ? `<div style="padding:32px; text-align:center; color:#64748b;">No visual pins match the selected filter.</div>` : `
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              ${filteredPins.map(p => {
+                const shotUrl = p.proxyScreenshotUrl || (p.hasScreenshot ? `/api/feedback?screenshot=${encodeURIComponent(p.id)}` : '');
+                const pageUrl = `${siteDomain}${p.pagePath || '/'}?pin=${encodeURIComponent(p.id)}`;
+                const replies = Array.isArray(p.replies) ? p.replies : [];
+                return `
+                  <div style="border:1px solid #e2e8f0;border-radius:12px;padding:16px;background:#f8fafc;display:grid;grid-template-columns:${shotUrl ? '180px 1fr' : '1fr'};gap:16px;align-items:start;">
+                    ${shotUrl ? `
+                      <a href="${shotUrl}" target="_blank" rel="noopener" style="display:block;border-radius:8px;overflow:hidden;border:1px solid #cbd5e1;background:#0f172a;">
+                        <img src="${shotUrl}" alt="Pin #${p.pinNumber || 1}" style="width:100%;height:120px;object-fit:cover;display:block;" loading="lazy" />
+                        <div class="mono" style="font-size:0.65rem;color:#cbd5e1;padding:4px 8px;text-align:center;">🔍 View Snapshot ↗</div>
+                      </a>
+                    ` : ''}
+                    <div>
+                      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+                        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                          <span class="mono" style="background:#0f172a;color:#fbbf24;font-weight:800;font-size:0.78rem;padding:3px 9px;border-radius:6px;">#${p.pinNumber || 1}</span>
+                          <span class="badge badgeSlate">${p.category || 'Content / Copy'}</span>
+                          <span style="font-weight:800;font-size:0.84rem;color:#0f172a;">${p.reviewerName || 'Reviewer'}</span>
+                          <a href="${pageUrl}" target="_blank" rel="noopener" class="mono" style="font-size:0.74rem;color:#2563eb;font-weight:700;text-decoration:none;">${p.pageTitle || p.pagePath || '/'} (${p.pagePath || '/'}) ↗</a>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                          <select style="padding:5px 10px;border-radius:7px;border:1px solid #cbd5e1;font-size:0.75rem;font-weight:800;background:#fff;" onchange="updatePortalPinStatus('${p.id}', this.value)">
+                            <option value="open" ${(p.status || 'open') === 'open' ? 'selected' : ''}>🟠 OPEN</option>
+                            <option value="in_progress" ${p.status === 'in_progress' ? 'selected' : ''}>🔵 IN PROGRESS</option>
+                            <option value="resolved" ${p.status === 'resolved' ? 'selected' : ''}>🟢 RESOLVED</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div style="font-size:0.9rem;color:#0f172a;font-weight:600;background:#fff;border:1px solid #e2e8f0;padding:10px 12px;border-radius:8px;margin-bottom:8px;">
+                        ${p.commentText || p.note || ''}
+                      </div>
+                      ${p.elementSnippet ? `<div class="mono" style="font-size:0.7rem;color:#64748b;margin-bottom:8px;">Target Element: ${p.elementSnippet} ${p.elementSelector ? `(${p.elementSelector})` : ''}</div>` : ''}
+                      ${replies.length > 0 ? `
+                        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;padding-left:10px;border-left:2px solid #cbd5e1;">
+                          ${replies.map(r => `
+                            <div style="font-size:0.78rem;color:#334155;">
+                              <strong style="color:#0f172a;">${r.author || 'Team'}:</strong> ${r.text || ''}
+                            </div>
+                          `).join('')}
+                        </div>
+                      ` : ''}
+                      <form onsubmit="submitPortalPinReply(event, '${p.id}')" style="display:flex;gap:8px;">
+                        <input type="text" id="pinReplyInput-${p.id}" placeholder="Write a reply or resolution note..." style="flex:1;padding:6px 10px;border-radius:7px;border:1px solid #cbd5e1;font-size:0.78rem;" />
+                        <button type="submit" class="btnOutline" style="padding:6px 12px;font-size:0.74rem;">Reply</button>
+                      </form>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    async function updatePortalPinStatus(pinId, status) {
+      const pin = STATE.pins.find(p => p.id === pinId);
+      if (pin) pin.status = status;
+      renderActiveTab();
+      const params = new URLSearchParams(window.location.search);
+      const siteKey = params.get('siteKey') || '';
+      try {
+        if (siteKey) {
+          await fetch('/api/command/pin-action', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ siteKey, id: pinId, action: 'status', status })
+          });
+        } else {
+          await fetch('/api/feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'status', id: pinId, status })
+          });
+        }
+        showToast(`✓ Pin status updated to ${status.toUpperCase()}`);
+      } catch (e) {
+        showToast('Error updating pin: ' + e.message);
+      }
+    }
+
+    async function submitPortalPinReply(e, pinId) {
+      e.preventDefault();
+      const inp = document.getElementById(`pinReplyInput-${pinId}`);
+      const text = (inp?.value || '').trim();
+      if (!text) return;
+      const pin = STATE.pins.find(p => p.id === pinId);
+      if (pin) {
+        if (!Array.isArray(pin.replies)) pin.replies = [];
+        pin.replies.push({ author: STATE.isSuperAdmin ? 'Gene Salvatore' : 'Admin', text, createdAt: new Date().toISOString() });
+      }
+      renderActiveTab();
+      const params = new URLSearchParams(window.location.search);
+      const siteKey = params.get('siteKey') || '';
+      try {
+        if (siteKey) {
+          await fetch('/api/command/pin-action', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ siteKey, id: pinId, action: 'reply', author: 'Gene Salvatore', text })
+          });
+        } else {
+          await fetch('/api/feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'reply', id: pinId, author: 'Admin', text })
+          });
+        }
+        showToast('✓ Reply posted to pin thread');
+      } catch (err) {
+        showToast('Error posting reply: ' + err.message);
+      }
+    }
+
+    function copySpokeAiBrief() {
+      const openItems = STATE.pins.filter(p => (p.status || 'open') !== 'resolved');
+      const lines = [
+        `# AI Implementation Brief — ${STATE.license?.siteName || 'Spoke Site'} (${STATE.license?.domain || ''})`,
+        `Generated: ${new Date().toISOString()}`,
+        `Open / In-Progress Pins: ${openItems.length}`,
+        ``
+      ];
+      openItems.forEach(p => {
+        lines.push(`## Pin #${p.pinNumber || 1} [${(p.status || 'open').toUpperCase()}] — ${p.pagePath || '/'}`);
+        lines.push(`- **Reviewer:** ${p.reviewerName || 'Client'} (${p.category || 'Feedback'})`);
+        if (p.elementSelector) lines.push(`- **Selector:** \`${p.elementSelector}\``);
+        if (p.elementSnippet) lines.push(`- **Target Snippet:** "${p.elementSnippet}"`);
+        lines.push(`- **Instruction:** ${p.commentText || p.note || ''}`);
+        lines.push(``);
+      });
+      navigator.clipboard.writeText(lines.join('\n')).then(() => {
+        showToast(`✓ Copied ${openItems.length} Open Pins to Clipboard as AI Brief`);
+      });
+    }
+
+    function renderFeaturesTab() {
+      const lic = STATE.license;
+      const previewMode = isPreviewLicense(lic);
+      const enabledSet = new Set(lic.enabledModules || []);
+      const hiddenSet = new Set(lic.hiddenModules || []);
+
+      const displayedModules = STATE.catalog.filter(m => STATE.isSuperAdmin || !hiddenSet.has(m.code));
+      const filteredModules = STATE.categoryFilter === 'all'
+        ? displayedModules
+        : displayedModules.filter(m => m.category === STATE.categoryFilter);
+
+      const visibleCount = STATE.catalog.filter(m => !hiddenSet.has(m.code)).length;
+      const activeCount = STATE.catalog.filter(m => !hiddenSet.has(m.code) && enabledSet.has(m.code)).length;
+      const tierObj = STATE.planTiers.find(t => t.id === lic.planTier) || STATE.planTiers[0] || { name: previewMode ? 'Executive Concept Preview' : 'Growth Retainer' };
+
+      const categories = ['all', 'Core Infrastructure', 'Growth & SEO', 'Vertical Operations'];
+
+      return `
+        <!-- Top Status Bar (TrackDayOS / RaceDayOS Standard) -->
+        <div class="panelCard" style="padding:14px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <span class="badge ${previewMode ? 'badgeAmber' : 'badgeGreen'}" style="font-size:0.78rem; padding:5px 12px;">
+              ● ${previewMode ? 'Executive Concept Preview' : tierObj.name} (${activeCount}/${visibleCount} Modules Enabled)
+            </span>
+            ${STATE.isSuperAdmin ? `
+              <span class="badge badgeBlue" style="font-size:0.76rem; padding:5px 12px;">
+                👑 Super-Admin Mode (${hiddenSet.size} hidden from client)
+              </span>
+            ` : `
+              <span class="badge badgeSlate" style="font-size:0.76rem; padding:5px 12px;">
+                🔒 ${previewMode ? 'Executive Preview Environment' : 'Active Operator License'}
+              </span>
+            `}
+            <span style="font-size:0.82rem; color:#64748b;">
+              Property: <strong style="color:#0f172a;">${lic.siteName} (${lic.domain})</strong>
+            </span>
+          </div>
+          ${STATE.isSuperAdmin ? `
+            <div style="display:flex; gap:8px;">
+              <button class="btnPrimary" onclick="saveLicenseUpdate(true)">🚀 Push Signed License to Spoke</button>
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Commercial Modular Architecture Banner (TrackDayOS / RaceDayOS Design in Customer Brand Colors) -->
+        <div style="background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--topbar-bg) 100%); border-left: 5px solid var(--brand-primary); border-radius:14px; padding:24px 28px; color:#ffffff; margin-bottom:24px; border-top:1px solid rgba(255,255,255,0.12);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:0.72rem; font-weight:800; background:var(--brand-primary); color:#ffffff; padding:3px 8px; border-radius:4px; text-transform:uppercase;">
+                  ${previewMode ? 'Executive Concept Preview' : 'Operational Licensing & Modules'}
+                </span>
+                <span style="font-size:0.74rem; color:#94a3b8; font-weight:700;">
+                  Configured for <strong style="color:#38bdf8;">${lic.siteName}</strong>
+                </span>
+              </div>
+              <h2 style="font-size:1.35rem; font-weight:900; margin:8px 0 4px;">Modular Capability & Sovereign Hosting Architecture</h2>
+              <p style="color:#cbd5e1; font-size:0.84rem; max-width:840px; line-height:1.5;">
+                Every GreenTree property runs on an isolated PostgreSQL 16 database vault and dedicated SmarterMail relay, with plug-and-play SEO, conversion telemetry, and vertical operating modules managed from Central Command.
+              </p>
+            </div>
+          </div>
+
+          ${(previewMode && !STATE.isSuperAdmin) ? `
+            <!-- Preview Mode Status Strip (Zero Pricing Shown) -->
+            <div style="margin-top:16px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <div style="font-size:0.86rem; font-weight:800; color:#ffffff;">✓ Executive Concept Preview &amp; Module Evaluation Active</div>
+                <div style="font-size:0.76rem; color:#cbd5e1; margin-top:3px;">Explore your active and available platform modules below. No billing or commercial gateway is connected during staging review.</div>
+              </div>
+              <span class="badge badgeAmber" style="font-size:0.72rem; padding:4px 10px;">Preview Mode · No Billing Connected</span>
+            </div>
+          ` : `
+            <!-- Tier Cards -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:18px;">
+              ${STATE.planTiers.map(t => {
+                const isCurrent = t.id === lic.planTier;
+                const isPrevTier = t.id === 'executive_preview' || t.isPreview || Number(t.priceMonthly ?? 0) === 0;
+                return `
+                  <div style="background:${isCurrent ? 'rgba(37, 99, 235, 0.16)' : 'rgba(255,255,255,0.04)'}; border:${isCurrent ? '1.5px solid #3b82f6' : '1px solid rgba(255,255,255,0.09)'}; border-radius:10px; padding:16px; position:relative;">
+                    ${isCurrent ? `<div style="position:absolute; top:-10px; right:14px; background:#16a34a; color:#ffffff; font-size:0.65rem; font-weight:900; padding:2px 8px; border-radius:4px; text-transform:uppercase;">✓ Current Active Tier</div>` : ''}
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                      <span style="font-weight:800; color:${isCurrent ? '#60a5fa' : '#e2e8f0'}; font-size:0.9rem;">${t.name}</span>
+                      <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; background:rgba(255,255,255,0.08); padding:2px 8px; border-radius:4px;">${t.badge}</span>
+                    </div>
+                    <div style="font-size:1.15rem; font-weight:900; color:#ffffff; margin-top:6px;">
+                      ${isPrevTier ? 'No Pricing · Preview' : `$${t.priceMonthly} <span style="font-size:0.75rem; color:#94a3b8; font-weight:500;">/ month</span>`}
+                    </div>
+                    <div style="font-size:0.74rem; color:#38bdf8; font-weight:700; margin-top:4px;">${t.capacityLabel}</div>
+                    <div style="margin-top:10px; font-size:0.74rem; color:#cbd5e1; line-height:1.45;">
+                      ${t.features.map(f => `✓ ${f}`).join('<br/>')}
+                    </div>
+                    ${STATE.isSuperAdmin && !isCurrent ? `
+                      <button class="btnPrimary" style="margin-top:12px; width:100%;" onclick="STATE.license.planTier='${t.id}'; STATE.license.monthlyRate=${t.priceMonthly || 0}; STATE.license.billingStatus='${isPrevTier ? 'preview' : 'active'}'; if('${isPrevTier}'==='true'){STATE.license.primaryGateway='none';} saveLicenseUpdate(true);">
+                        Switch Tenant to ${t.name}
+                      </button>
+                    ` : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `}
+        </div>
+
+        <!-- Category Filter Bar -->
+        <div style="display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;">
+          ${categories.map(cat => `
+            <button
+              class="${STATE.categoryFilter === cat ? 'btnPrimary' : 'btnOutline'}"
+              onclick="STATE.categoryFilter='${cat}'; renderActiveTab();"
+            >
+              ${cat === 'all' ? `All Modules (${displayedModules.length})` : cat}
+            </button>
+          `).join('')}
+        </div>
+
+        <!-- Module Cards Grid -->
+        <div class="moduleGrid">
+          ${filteredModules.map(m => {
+            const isEnabled = enabledSet.has(m.code);
+            const isHidden = hiddenSet.has(m.code);
+            const inactiveBadgeLabel = previewMode
+              ? 'Available Module'
+              : (m.priceAddon > 0 ? `+$${m.priceAddon}/mo Add-On` : 'Available Module');
+            return `
+              <div class="moduleCard ${isEnabled ? 'enabled' : ''} ${isHidden ? 'hiddenMod' : ''}">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+                    <span class="mono" style="font-size:0.7rem; font-weight:800; color:#475569; background:#f1f5f9; padding:3px 8px; border-radius:6px;">${m.code}</span>
+                    <div style="display:flex; gap:6px;">
+                      ${isHidden ? `<span class="badge badgeAmber">Hidden from Client</span>` : ''}
+                      <span class="badge ${isEnabled ? 'badgeGreen' : 'badgeSlate'}">
+                        ${isEnabled ? '✓ Enabled' : inactiveBadgeLabel}
+                      </span>
+                    </div>
+                  </div>
+                  <div style="font-size:0.96rem; font-weight:800; color:#0f172a; margin-bottom:6px;">${m.name}</div>
+                  <div style="font-size:0.78rem; color:#475569; line-height:1.45; margin-bottom:14px;">${m.description}</div>
+                </div>
+
+                <div style="padding-top:12px; border-top:1px solid #f1f5f9; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                  <span style="font-size:0.72rem; font-weight:700; color:#64748b;">${m.category} · ${m.tier}</span>
+                  ${STATE.isSuperAdmin ? `
+                    <div style="display:flex; gap:6px;">
+                      <button class="btnOutline" style="padding:5px 10px; font-size:0.72rem;" onclick="toggleHideModuleCode('${m.code}')">
+                        ${isHidden ? 'Unhide' : 'Hide'}
+                      </button>
+                      <button class="${isEnabled ? 'btnOutline' : 'btnPrimary'}" style="padding:5px 10px; font-size:0.72rem;" onclick="toggleModuleCode('${m.code}')">
+                        ${isEnabled ? 'Disable' : 'Enable Module'}
+                      </button>
+                    </div>
+                  ` : `
+                    ${isEnabled
+                      ? `<span style="font-size:0.75rem; font-weight:800; color:#15803d;">✓ Active on License</span>`
+                      : `<button class="btnPrimary" style="padding:6px 12px; font-size:0.74rem;" onclick="requestModuleUpgrade('${m.code}', '${m.name.replace(/'/g, '')}')">Request Activation →</button>`
+                    }
+                  `}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderBillingTab() {
+      const lic = STATE.license;
+      const previewMode = isPreviewLicense(lic);
+      const gw = lic.gateways || {};
+      const tierObj = STATE.planTiers.find(t => t.id === lic.planTier) || STATE.planTiers[0] || { name: 'Executive Concept Preview' };
+
+      if (previewMode) {
+        return `
+          <div class="panelCard">
+            <div class="panelHeader">
+              <div>
+                <div class="panelTitle">Executive Concept Preview — Billing &amp; Gateways Disconnected</div>
+                <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">This property is running in Executive Concept Preview mode with no pricing and no billing gateway connection.</div>
+              </div>
+              <span class="badge badgeAmber">● PREVIEW MODE · NO BILLING</span>
+            </div>
+
+            <div class="kpiGrid">
+              <div class="kpiCard">
+                <div class="kpiLabel">Environment Mode</div>
+                <div class="kpiVal" style="font-size:1.25rem;">Executive Concept Preview</div>
+                <div class="kpiSub">${lic.domain}</div>
+              </div>
+              <div class="kpiCard">
+                <div class="kpiLabel">Billing &amp; Pricing</div>
+                <div class="kpiVal" style="font-size:1.25rem;">No Pricing</div>
+                <div class="kpiSub">Staging &amp; Evaluation Environment</div>
+              </div>
+              <div class="kpiCard">
+                <div class="kpiLabel">Payment Gateway Connection</div>
+                <div class="kpiVal" style="font-size:1.25rem; color:#64748b;">Not Connected</div>
+                <div class="kpiSub">No WHMCS or Merchant Gateway Linked</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div>
+              <div class="panelTitle">Subscription & Multi-Gateway Billing Hub</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Direct integration with GreenTree WHMCS Client Area, Stripe, Square, PayPal, and Authorize.Net</div>
+            </div>
+            <span class="badge badgeGreen">● ${(lic.billingStatus || 'active').toUpperCase()}</span>
+          </div>
+
+          <div class="kpiGrid">
+            <div class="kpiCard">
+              <div class="kpiLabel">Active Subscription Plan</div>
+              <div class="kpiVal" style="font-size:1.3rem;">${tierObj.name}</div>
+              <div class="kpiSub">${lic.domain}</div>
+            </div>
+            <div class="kpiCard">
+              <div class="kpiLabel">Monthly Recurring Rate</div>
+              <div class="kpiVal">$${lic.monthlyRate || 299}<span style="font-size:0.9rem; color:#64748b;">/mo</span></div>
+              <div class="kpiSub">Includes PostgreSQL 16 + SmarterMail</div>
+            </div>
+            <div class="kpiCard">
+              <div class="kpiLabel">Primary Settlement Gateway</div>
+              <div class="kpiVal" style="font-size:1.3rem; text-transform:uppercase;">${lic.primaryGateway || 'WHMCS'}</div>
+              <div class="kpiSub">Supported: WHMCS · Stripe · Square · PayPal · Auth.Net</div>
+            </div>
+          </div>
+
+          <h3 style="font-size:0.92rem; font-weight:800; margin:18px 0 12px;">Available Payment & Invoice Portals</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px;">
+            ${STATE.paymentGateways.map(g => {
+              const urlKey = g.id + 'Url';
+              const targetUrl = gw[urlKey] || (g.id === 'whmcs' ? 'https://customers.greentreehosting.com/clientarea.php' : '');
+              const isPrimary = lic.primaryGateway === g.id;
+              return `
+                <div style="border:${isPrimary ? '2px solid var(--brand-primary)' : '1px solid #e2e8f0'}; border-radius:12px; padding:16px; background:#ffffff;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:800; font-size:0.9rem;">${g.name}</span>
+                    ${isPrimary ? `<span class="badge badgeBlue">Primary</span>` : ''}
+                  </div>
+                  <p style="font-size:0.76rem; color:#64748b; margin:6px 0 14px;">${g.description}</p>
+                  ${targetUrl ? `
+                    <a href="${targetUrl}" target="_blank" rel="noopener" class="btnPrimary" style="display:inline-block; text-decoration:none;">
+                      Open ${g.shortLabel} Portal ↗
+                    </a>
+                  ` : `
+                    <span style="font-size:0.74rem; color:#94a3b8; font-weight:600;">Ready for activation</span>
+                  `}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleSpokePrivacySetting(field) {
+      if (!STATE.license) return;
+      STATE.license[field] = !STATE.license[field];
+      STATE.license.gateways = {
+        ...(STATE.license.gateways || {}),
+        [field]: Boolean(STATE.license[field])
+      };
+      saveLicenseUpdate(false);
+    }
+
+    function renderSocialTab() {
+      const lic = STATE.license || {};
+      const socialOptOut = Boolean(lic.socialContentOptOut || lic.gateways?.socialContentOptOut);
+      return `
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div>
+              <div class="panelTitle">📣 Facebook Page Graph API v21.0 &amp; First-Comment Syndication (MOD-SOCIAL-COMMAND)</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Customer-bound Meta Graph API publisher for <strong>${lic.siteName}</strong> (${lic.domain})</div>
+            </div>
+            <span class="badge badgeGreen">● MOD-SOCIAL-COMMAND READY</span>
+          </div>
+
+          <div style="padding:14px 16px; border-radius:10px; background:${socialOptOut ? '#fffbeb' : '#f0fdf4'}; border:1px solid ${socialOptOut ? '#fde68a' : '#bbf7d0'}; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+            <div>
+              <div style="font-weight:800; font-size:0.86rem; color:#0f172a;">
+                ${socialOptOut ? '🔒 Local-Only Content Privacy Active (Master Command Receives Health Telemetry Only)' : '● Connected to GreenTree Master Social Command'}
+              </div>
+              <div style="font-size:0.75rem; color:#475569; margin-top:2px;">
+                ${socialOptOut
+                  ? 'Your Facebook Page tokens and post copy remain exclusively inside your spoke portal. GreenTree Command only receives anonymized module health telemetry to verify your scheduler is working.'
+                  : 'Your social queue is synchronized with GreenTree Command for managed campaign publishing and Automated First-Comment link injection.'}
+              </div>
+            </div>
+            <button class="${socialOptOut ? 'btnOutline' : 'btnPrimary'}" onclick="toggleSpokePrivacySetting('socialContentOptOut')">
+              ${socialOptOut ? '🔒 Opted Out of Content Sync (Click to Enable Full Sync)' : '🛡️ Opt Out of Central Content Aggregation'}
+            </button>
+          </div>
+
+          <div class="kpiGrid">
+            <div class="kpiCard">
+              <div class="kpiLabel">Bound Customer Account</div>
+              <div class="kpiVal" style="font-size:1.15rem;">${lic.siteName}</div>
+              <div class="kpiSub">Key: ${lic.siteKey}</div>
+            </div>
+            <div class="kpiCard">
+              <div class="kpiLabel">Meta Graph API Engine</div>
+              <div class="kpiVal" style="font-size:1.15rem; color:#15803d;">v21.0 Ready</div>
+              <div class="kpiSub">POST /{page-id}/feed + /{post-id}/comments</div>
+            </div>
+            <div class="kpiCard">
+              <div class="kpiLabel">Aggregation Privacy Mode</div>
+              <div class="kpiVal" style="font-size:1.15rem; color:${socialOptOut ? '#b45309' : '#1d4ed8'};">${socialOptOut ? 'Telemetry Only' : 'Managed Sync'}</div>
+              <div class="kpiSub">${socialOptOut ? 'Post Copy Private to Spoke' : 'Synced with Master Command'}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHealthTab() {
+      const sum = STATE.backendSummary || {};
+      const smtp = sum.smtp || {};
+      const lic = STATE.license || {};
+      const leadsOptOut = Boolean(lic.leadsPiiOptOut || lic.gateways?.leadsPiiOptOut);
+      const socialOptOut = Boolean(lic.socialContentOptOut || lic.gateways?.socialContentOptOut);
+      return `
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div>
+              <div class="panelTitle">🛡️ Customer Data Privacy &amp; Central Aggregation Controls (PII Opt-Out)</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Control whether customer PII and social content are aggregated into GreenTree Master Command or restricted to anonymized operational health telemetry</div>
+            </div>
+            <span class="badge badgeBlue">ZERO-TRUST PRIVACY</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:14px;">
+            <div style="border:1px solid #cbd5e1; border-radius:10px; padding:16px; background:${leadsOptOut ? '#fffbeb' : '#ffffff'};">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-weight:800; font-size:0.9rem; color:#0f172a;">📬 Forms &amp; Leads PII Aggregation</span>
+                <span class="badge ${leadsOptOut ? 'badgeAmber' : 'badgeGreen'}">${leadsOptOut ? '🔒 PII Opt-Out Active' : '● Full Sync'}</span>
+              </div>
+              <p style="font-size:0.76rem; color:#475569; line-height:1.45; margin-bottom:12px;">
+                When opted out, customer names, phone numbers, emails, and inquiry notes stay exclusively in your isolated PostgreSQL 16 spoke database and direct email inbox. GreenTree Command receives only an <strong>anonymized SHA-256 operational receipt</strong> so we can verify your forms and SMTP relay are working properly.
+              </p>
+              <button class="${leadsOptOut ? 'btnOutline' : 'btnPrimary'}" onclick="toggleSpokePrivacySetting('leadsPiiOptOut')">
+                ${leadsOptOut ? '🔒 Anonymized Telemetry Only (Click to Enable Full Sync)' : 'Opt Out of Leads PII Aggregation'}
+              </button>
+            </div>
+
+            <div style="border:1px solid #cbd5e1; border-radius:10px; padding:16px; background:${socialOptOut ? '#fffbeb' : '#ffffff'};">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-weight:800; font-size:0.9rem; color:#0f172a;">📣 Social &amp; FB Command Aggregation</span>
+                <span class="badge ${socialOptOut ? 'badgeAmber' : 'badgeGreen'}">${socialOptOut ? '🔒 Content Opt-Out Active' : '● Full Sync'}</span>
+              </div>
+              <p style="font-size:0.76rem; color:#475569; line-height:1.45; margin-bottom:12px;">
+                When opted out, your Facebook Page tokens and post copy are managed locally on your spoke. GreenTree Command receives only <strong>remote module health telemetry</strong> (Graph API v21.0 status, scheduler heartbeat, and queue counts) to ensure your remote social module is functioning.
+              </p>
+              <button class="${socialOptOut ? 'btnOutline' : 'btnPrimary'}" onclick="toggleSpokePrivacySetting('socialContentOptOut')">
+                ${socialOptOut ? '🔒 Health Telemetry Only (Click to Enable Full Sync)' : 'Opt Out of Social Content Aggregation'}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div class="panelTitle">Sovereign Container, Database & SmarterMail Telemetry</div>
+            <span class="badge badgeGreen">● ALL SYSTEMS HEALTHY</span>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td style="font-weight:800; width:260px;">Database Storage Engine</td>
+                <td><span class="badge badgeGreen">PostgreSQL 16 (Dedicated Container)</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;">SmarterMail Outbound Relay</td>
+                <td class="mono">${smtp.host || 'east.greentreemail.com'}:${smtp.port || 587} (STARTTLS)</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;">Authenticated Mailbox</td>
+                <td class="mono">${smtp.user || 'Configured in Coolify Vault'}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;">Lead Notification Recipient</td>
+                <td class="mono">${smtp.notificationEmail || smtp.to || 'Configured'}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;">WAF Exploit & Spam Bot Shield</td>
+                <td><span class="badge badgeGreen">Enforced (Blocks Next-Action, WebKitFormBoundary, Gibberish & Dot-Stuffed Bots)</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;">Container Runtime Secret Policy</td>
+                <td><span class="badge badgeBlue">Runtime-Only (is_buildtime=false · AES-256-CBC Encrypted at Rest)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    async function loadSpokeDeepHelp() {
+      const siteKey = STATE.license?.siteKey || 'oneem-sonitor';
+      const role = STATE.isSuperAdmin ? 'super_admin' : (STATE.deepHelpRole || 'admin');
+      try {
+        const res = await fetch(`https://command.greentreehosting.com/api/command/deep-help?siteKey=${encodeURIComponent(siteKey)}&role=${encodeURIComponent(role)}`).catch(() =>
+          fetch(`/api/command/deep-help?siteKey=${encodeURIComponent(siteKey)}&role=${encodeURIComponent(role)}`)
+        );
+        if (res && res.ok) {
+          const data = await res.json();
+          if (data.ok) {
+            STATE.deepHelpCatalog = data.catalog;
+            // Strict per-site isolation: never load other sites' users into a customer portal
+            STATE.appUsers = (data.appUsers || []).filter(u => u.siteKey === siteKey);
+            if (STATE.activeTab === 'deep-help' || STATE.activeTab === 'app-users') renderActiveTab();
+          }
+        }
+      } catch {}
+    }
+
+    function renderAppUsersTab() {
+      if (!STATE.appUsers || STATE.appUsers.length === 0) {
+        loadSpokeDeepHelp();
+      }
+      const siteKey = STATE.license?.siteKey || 'oneem-sonitor';
+      const siteName = STATE.license?.siteName || siteKey;
+      // Strict per-site filter even in Super-Admin Mode — zero cross-platform user leakage
+      let users = (STATE.appUsers || []).filter(u => u.siteKey === siteKey);
+      if (users.length === 0) {
+        users = [{
+          userId: `usr-primary-${siteKey}`,
+          name: `${siteName} (Primary Account Holder)`,
+          email: `admin@${STATE.license?.domain || siteKey + '.com'}`,
+          title: `Primary Account Holder (${STATE.license?.domain || siteKey})`,
+          siteKey,
+          role: 'admin',
+          pinboardAccess: true,
+          pinboardTeamView: true
+        }];
+      }
+      return `
+        <div class="panelCard">
+          <div class="panelHeader">
+            <div>
+              <div class="panelTitle">☑️ Primary Account &amp; User Pinboard Access (${siteName})</div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Strictly isolated to <strong>${siteName}</strong> · Check or uncheck which users on this site/app are authorized to use the Visual Pin Board (<span class="mono">MOD-PIN-BOARD</span>)</div>
+            </div>
+            <span class="badge badgeGreen">TENANT ISOLATED</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Account / User</th>
+                <th>Role &amp; Help Tier</th>
+                <th>📌 Pinboard Access</th>
+                <th>👥 View All Team Pins</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${users.map(u => `
+                <tr>
+                  <td>
+                    <div style="font-weight:800;">${u.name}</div>
+                    <div style="font-size:0.74rem;color:#64748b;">${u.email} · ${u.title || ''}</div>
+                  </td>
+                  <td><span class="badge badgeBlue">${(u.role || 'admin').toUpperCase()}</span></td>
+                  <td>
+                    <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-weight:700;">
+                      <input type="checkbox" ${u.pinboardAccess ? 'checked' : ''} onchange="u.pinboardAccess=this.checked;showToast('✓ Updated Pinboard Access for ' + '${u.name.replace(/'/g, "\\'")}');" style="width:16px;height:16px;accent-color:var(--brand-primary);" />
+                      <span>${u.pinboardAccess ? 'Enabled' : 'Disabled'}</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;">
+                      <input type="checkbox" ${u.pinboardTeamView ? 'checked' : ''} style="width:15px;height:15px;accent-color:var(--brand-primary);" />
+                      <span>${u.pinboardTeamView ? 'All Team Pins' : 'Own Pins Only'}</span>
+                    </label>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderDeepHelpTab() {
+      const cat = STATE.deepHelpCatalog;
+      if (!cat) {
+        loadSpokeDeepHelp();
+        return `<div class="panelCard" style="padding:36px;text-align:center;color:#64748b;">Loading Help &amp; Documentation (Summary View + Complete Full Guide)...</div>`;
+      }
+      const allTopics = [];
+      (cat.categories || []).forEach(c => (c.topics || []).forEach(t => allTopics.push(t)));
+      const activeTopic = allTopics.find(t => t.id === STATE.deepHelpTopicId) || allTopics[0];
+      const isComplete = STATE.deepHelpMode === 'complete';
+      const brandColor = STATE.license?.brandColor || cat.accentColor || 'var(--brand-primary)';
+
+      return `
+        <div class="panelCard" style="padding:26px 30px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+            <div>
+              <h2 style="margin:0;font-size:1.65rem;font-weight:800;color:#0f172a;">❓ ${cat.docTitle || 'Help & Documentation'}</h2>
+              <p style="margin:4px 0 0;font-size:0.9rem;color:#64748b;">${cat.docSubtitle}</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <select onchange="STATE.deepHelpRole=this.value;loadSpokeDeepHelp();" style="padding:6px 10px;border-radius:8px;border:1px solid #cbd5e1;font-size:0.78rem;font-weight:700;">
+                <option value="user" ${STATE.deepHelpRole==='user'?'selected':''}>Role View: Standard User</option>
+                <option value="pm" ${STATE.deepHelpRole==='pm'?'selected':''}>Role View: Project Manager</option>
+                <option value="admin" ${STATE.deepHelpRole==='admin'?'selected':''}>Role View: App Admin</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start;">
+            <div style="border:1px solid #e2e8f0;border-radius:12px;padding:16px 12px;background:#fcfcfd;">
+              <div style="font-size:0.8rem;font-weight:700;color:#0f172a;margin-bottom:8px;padding:0 4px;">Contents</div>
+              ${(cat.categories || []).map(c => `
+                <div style="margin-bottom:12px;">
+                  <div style="font-size:0.66rem;font-weight:800;color:#64748b;letter-spacing:0.06em;padding:4px 8px;">${c.label}</div>
+                  ${(c.topics || []).map(t => {
+                    const isActive = activeTopic && activeTopic.id === t.id;
+                    return `
+                      <button onclick="STATE.deepHelpTopicId='${t.id}';renderActiveTab();" style="width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:0.81rem;font-weight:${isActive?'700':'500'};background:${isActive ? brandColor : 'transparent'};color:${isActive?'#fff':'#1e293b'};margin-bottom:2px;box-shadow:${isActive ? '0 3px 10px rgba(15,23,42,0.16)' : 'none'};">
+                        <span><span style="margin-right:7px;">${t.icon || '📘'}</span>${t.title}</span>
+                      </button>
+                    `;
+                  }).join('')}
+                </div>
+              `).join('')}
+            </div>
+
+            <div style="border:1px solid #e2e8f0;border-radius:14px;padding:24px 28px;background:#ffffff;">
+              ${activeTopic ? `
+                <div style="padding:14px 18px;border-radius:12px;background:color-mix(in srgb, ${brandColor} 8%, #ffffff);border:1px solid color-mix(in srgb, ${brandColor} 28%, #e2e8f0);display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:12px;">
+                  <div>
+                    <div style="font-size:0.9rem;font-weight:800;color:#0f172a;">✨ ${isComplete ? '📚 Complete Guide' : '📖 Summary View'}</div>
+                    <div style="font-size:0.78rem;color:#475569;margin-top:2px;">${isComplete ? 'In-depth documentation with step-by-step instructions and troubleshooting' : 'Quick overview with key points and essential information'}</div>
+                    <div style="font-size:0.72rem;color:${brandColor};margin-top:5px;">ⓘ 💡 <strong>Complete Guide available:</strong> Toggle on the right for detailed documentation with examples and best practices</div>
+                  </div>
+                  <button onclick="STATE.deepHelpMode=STATE.deepHelpMode==='summary'?'complete':'summary';renderActiveTab();" style="padding:8px 14px;border-radius:999px;border:1.5px solid ${brandColor};background:${isComplete ? brandColor : '#ffffff'};color:${isComplete ? '#ffffff' : brandColor};font-weight:800;font-size:0.78rem;cursor:pointer;">
+                    ${isComplete ? '● Switch to Summary View' : '○ Toggle to view Full Guide →'}
+                  </button>
+                </div>
+
+                <div style="text-align:center;margin-bottom:24px;">
+                  <div style="width:58px;height:58px;border-radius:50%;background:color-mix(in srgb, ${brandColor} 14%, #ffffff);color:${brandColor};border:1px solid color-mix(in srgb, ${brandColor} 28%, #ffffff);display:inline-flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:10px;">${activeTopic.icon || '📘'}</div>
+                  <h3 style="margin:0;font-size:1.7rem;font-weight:800;color:#0f172a;">${activeTopic.title}</h3>
+                  <p style="margin:6px auto 0;max-width:600px;font-size:0.9rem;color:#64748b;">${activeTopic.subtitle}</p>
+                </div>
+
+                ${!isComplete ? `
+                  <div style="padding:20px;border-radius:12px;background:color-mix(in srgb, ${brandColor} 6%, #ffffff);border:1px solid color-mix(in srgb, ${brandColor} 22%, #e2e8f0);">
+                    <div style="font-size:0.95rem;font-weight:800;color:#0f172a;margin-bottom:6px;">📖 ${activeTopic.summary?.leadTitle || activeTopic.title}</div>
+                    <p style="margin:0 0 14px;font-size:0.86rem;color:#334155;line-height:1.6;">${activeTopic.summary?.leadText || ''}</p>
+                    ${(activeTopic.summary?.highlights || []).map(h => `
+                      <div style="padding:14px 16px;border-radius:10px;background:#ffffff;border:1px solid color-mix(in srgb, ${brandColor} 24%, #e2e8f0);border-left:4px solid ${brandColor};margin-bottom:10px;">
+                        <div style="font-size:0.85rem;font-weight:800;color:#0f172a;margin-bottom:4px;">${h.icon || '🔄'} ${h.title}</div>
+                        <div style="font-size:0.82rem;color:#334155;line-height:1.55;">${h.text}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                ` : `
+                  <div style="display:flex;flex-direction:column;gap:14px;">
+                    <div style="padding:18px;border-radius:12px;background:#f8fafc;border:1px solid #e2e8f0;font-size:0.86rem;color:#334155;line-height:1.6;">
+                      ${activeTopic.complete?.overview || ''}
+                    </div>
+                    ${(activeTopic.complete?.steps || []).map(s => `
+                      <div style="padding:14px 16px;border-radius:10px;border:1px solid #e2e8f0;display:flex;gap:12px;">
+                        <div style="width:28px;height:28px;border-radius:50%;background:${brandColor};color:#fff;font-weight:800;font-size:0.76rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${s.step}</div>
+                        <div>
+                          <div style="font-weight:800;font-size:0.86rem;color:#0f172a;">${s.title}</div>
+                          <div style="font-size:0.82rem;color:#475569;margin-top:3px;">${s.detail}</div>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                `}
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    loadPortalData();
+  </script>
+</body>
+</html>

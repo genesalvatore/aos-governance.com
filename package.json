@@ -1,0 +1,13 @@
+{
+  "name": "aos-governance-network",
+  "private": true,
+  "version": "3.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.3"
+  }
+}

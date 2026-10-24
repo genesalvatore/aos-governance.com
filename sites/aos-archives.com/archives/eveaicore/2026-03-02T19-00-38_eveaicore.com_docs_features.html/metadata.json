@@ -1,0 +1,23 @@
+{
+  "id": "EVEAICORE-mm9jnztn",
+  "url": "https://eveaicore.com/docs/features.html",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:00:49.512Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a5802a30405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:00:49 GMT",
+    "last-modified": "Thu, 26 Feb 2026 17:19:13 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=u903FAnH3A1RmSj4NqYTLyS5HgN0eA%2Bnz8JVL8rn6z6r3AJuO7eA9mRJTt7MmHrXPz%2FRXPAmZXMdy01h7KxwnqSy%2BMnzU0TrZ60fO8U%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 89168,
+  "crawlSource": "sitemap"
+}

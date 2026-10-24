@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Getting Started with EVE AI Core - Quick Start Guide by Jamaurice Holt</title>
+    <meta name="description" content="Learn how to get started with EVE AI Core in minutes. Create your free account and chat with the world's first intelligent AI created by Jamaurice Holt.">
+    <meta name="keywords" content="EVE AI getting started, EVE AI Core tutorial, eve.ai, Jamaurice Holt, AI chatbot setup, intelligent AI guide, EVE quickstart">
+    <meta name="author" content="Jamaurice Holt">
+    <meta name="creator" content="Jamaurice Holt">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eveaicore.com/docs/getting-started.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Getting Started with EVE AI Core - by Jamaurice Holt">
+    <meta property="og:description" content="Learn how to get started with EVE AI Core in minutes. Created by Jamaurice Holt.">
+    <meta property="og:url" content="https://eveaicore.com/docs/getting-started.html">
+    <meta property="og:site_name" content="EVE AI Core">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Getting Started with EVE AI Core">
+    <meta name="twitter:description" content="Quick start guide for EVE AI Core by Jamaurice Holt.">
+    <meta name="twitter:creator" content="@JamauriceHolt">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Getting Started with EVE AI",
+        "description": "Learn how to create an account, start chatting, and explore EVE AI features",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Create an Account",
+                "text": "Visit eveaicore.com and click Sign Up to create your free account"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Start Chatting",
+                "text": "Access the dashboard and begin your first conversation with EVE"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Explore Features",
+                "text": "Discover cognitive transparency, avatar system, and voice features"
+            }
+        ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="/js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid #1a2444;
+            box-shadow: 0 1px 0 #1a2444;
+            pointer-events: auto;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e6ef;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #7a8299;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #e2e6ef; }
+        .nav-links a.active { color: #4a90e2; }
+
+        .btn { padding: 10px 24px; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #e0e0e0; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .btn-primary { background: #4a90e2; border: none; color: #ffffff !important; font-weight: 600; text-shadow: none; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; }
+        .btn-primary:hover { background: #5a9ee8; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .breadcrumb {
+            padding: 80px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin: 48px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 32px 0 16px;
+            color: #4a90e2;
+        }
+
+        p {
+            color: #aaa;
+            margin-bottom: 16px;
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            margin: 32px 0;
+            padding: 32px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1a2444;
+            border-radius: 4px;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .step-content p {
+            margin-bottom: 0;
+        }
+
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid #10b981;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .tip-box strong {
+            color: #10b981;
+        }
+
+        .note {
+            background: rgba(74, 144, 226, 0.1);
+            border-left: 3px solid #4a90e2;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .note strong {
+            color: #4a90e2;
+        }
+
+        ul {
+            margin: 16px 0;
+            padding-left: 24px;
+            color: #aaa;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .interface-preview {
+            background: #1a1a24;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .interface-preview img {
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .interface-preview .placeholder {
+            height: 200px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a90e2;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: #1a2444;
+            box-shadow: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .feature-item {
+            padding: 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1a2444;
+            border-radius: 2px;
+        }
+
+        .feature-item h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .feature-item p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        footer {
+            padding: 40px;
+            border-top: 1px solid #1a2444;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+        @media (max-width: 768px) {
+            .header { padding: 18px 20px; background: rgba(10, 10, 15, 0.98); }
+            .nav-links { display: none !important; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .breadcrumb, .content { padding-left: 20px; padding-right: 20px; }
+            h1 { font-size: 32px; }
+            .step { flex-direction: column; gap: 16px; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+    <!-- Signature equalizer loader -->
+    <style>
+    #loadingScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0a0e1a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        transition: opacity 0.4s ease; }
+    #loadingScreen .loader-eq { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+    #loadingScreen .loader-eq .eq-bar { width: 4px; background: linear-gradient(180deg, #00d4ff 0%, #4a90e2 100%);
+        border-radius: 2px; animation: eqload 1s ease-in-out infinite; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+    @keyframes eqload { 0%,100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+    #loadingScreen .loader-text { color: #888; font-size: 14px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loader-eq"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <div class="loader-text">Loading EVE AI Core</div>
+    </div>
+    <script>window.addEventListener('load',function(){var ls=document.getElementById('loadingScreen');if(ls){ls.style.opacity='0';setTimeout(function(){ls.remove()},400)}});</script>
+    <header class="header" role="banner">
+        <a href="/" class="logo" aria-label="EVE AI Core Home">
+            <img src="/images/eve-logo.png" alt="EVE AI Core" class="logo-icon">
+            <span class="logo-text">EVE AI Core</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+            <div id="auth-buttons">
+                <a href="/auth/signin" class="btn btn-outline">Access</a>
+                <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+            </div>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <nav class="mobile-menu-links">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+        </nav>
+        <div class="mobile-menu-buttons" id="mobileMenuButtons">
+            <a href="/auth/signin" class="btn btn-outline">Access</a>
+            <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+        </div>
+        <div class="mobile-menu-buttons" id="mobileMenuUser" style="display: none;">
+            <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="/docs/">Documentation</a> / Getting Started
+    </div>
+
+    <main class="content">
+        <h1>Getting Started with EVE AI</h1>
+        <p class="subtitle">Start having meaningful conversations with EVE in just a few minutes.</p>
+
+        <h2 id="account">Step 1: Create Your Account</h2>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Sign Up for Free</h3>
+                <p>Visit EVE AI and create your free account. You'll need to provide an email address and create a password. No credit card required to get started.</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/auth/signup" class="btn">Create Free Account</a>
+            <a href="/auth/signin" class="btn btn-secondary">Sign In</a>
+        </div>
+
+        <div class="tip-box">
+            <strong>Tip:</strong> Use a valid email address as you'll need to verify it to access all features.
+        </div>
+
+        <h3>What's Included in Free</h3>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4>100 Sessions/Month</h4>
+                <p>Generous free tier for regular use</p>
+            </div>
+            <div class="feature-item">
+                <h4>30-Day Memory</h4>
+                <p>EVE remembers your conversations</p>
+            </div>
+            <div class="feature-item">
+                <h4>Emotional Intelligence</h4>
+                <p>Full emotional awareness features</p>
+            </div>
+            <div class="feature-item">
+                <h4>Avatar System</h4>
+                <p>Interactive visual avatar</p>
+            </div>
+        </div>
+
+        <h2 id="chat">Step 2: Start Chatting</h2>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Access the Dashboard</h3>
+                <p>After signing in, you'll be taken to your dashboard. The chat interface is front and center - just start typing to begin your first conversation with EVE.</p>
+            </div>
+        </div>
+
+        <div class="interface-preview">
+            <div class="placeholder">Dashboard Preview - Chat Interface</div>
+        </div>
+
+        <h3>Chat Interface Features</h3>
+        <ul>
+            <li><strong>Message Input:</strong> Type your message in the input field at the bottom</li>
+            <li><strong>Send Button:</strong> Click send or press Enter to send your message</li>
+            <li><strong>Conversation History:</strong> Your chat history appears in the main panel</li>
+            <li><strong>Edit Messages:</strong> Click any of your messages to edit and resend</li>
+            <li><strong>New Conversation:</strong> Use the sidebar to start a new conversation thread</li>
+        </ul>
+
+        <div class="note">
+            <strong>Note:</strong> EVE responds with emotional awareness - the tone and style of responses adapt based on the conversation context.
+        </div>
+
+        <h2 id="explore">Step 3: Explore Features</h2>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Discover EVE's Capabilities</h3>
+                <p>EVE is more than a simple chatbot. Take time to explore the unique features that make EVE a intelligent AI experience.</p>
+            </div>
+        </div>
+
+        <h3>Cognitive Transparency Panel</h3>
+        <p>Access the cognitive transparency interface to see how EVE processes information:</p>
+        <ul>
+            <li><strong>Phi Values:</strong> Consciousness integration metrics</li>
+            <li><strong>Emotional State:</strong> Real-time PAD model readings</li>
+            <li><strong>Energy Levels:</strong> System resource and attention metrics</li>
+            <li><strong>Self-Reflection:</strong> EVE's introspective processes</li>
+        </ul>
+
+        <h3>Avatar Panel</h3>
+        <p>The avatar panel shows EVE's visual representation with real-time expressions:</p>
+        <ul>
+            <li>Watch expressions change based on conversation mood</li>
+            <li>Collapse the panel for distraction-free chat</li>
+            <li>Close and reopen using the floating button</li>
+            <li>Your preferences are saved automatically</li>
+        </ul>
+
+        <h3>Voice Features</h3>
+        <p>Enable voice for a more immersive experience:</p>
+        <ul>
+            <li>Click the speaker icon to hear EVE's responses</li>
+            <li>Adjust voice settings in preferences</li>
+            <li>Emotion-aware prosody matches EVE's mood</li>
+        </ul>
+
+        <h2>Step 4: Customize Your Experience</h2>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Access Settings</h3>
+                <p>Click your profile icon in the top right to access settings where you can customize your EVE experience.</p>
+            </div>
+        </div>
+
+        <h3>Available Settings</h3>
+        <ul>
+            <li><strong>Profile:</strong> Update your name and preferences</li>
+            <li><strong>Voice:</strong> Choose voice and speech settings</li>
+            <li><strong>Avatar:</strong> Configure avatar display options</li>
+            <li><strong>Privacy:</strong> Manage data and export options</li>
+            <li><strong>Notifications:</strong> Email and in-app notification preferences</li>
+        </ul>
+
+        <h2>Tips for Better Conversations</h2>
+
+        <div class="tip-box">
+            <strong>Be Natural:</strong> EVE responds best to natural, conversational language. No need for special commands or formats.
+        </div>
+
+        <div class="tip-box">
+            <strong>Build Context:</strong> EVE remembers your conversations. Reference past discussions and EVE will understand the context.
+        </div>
+
+        <div class="tip-box">
+            <strong>Explore Emotions:</strong> Don't hesitate to discuss feelings and emotions - EVE's emotional intelligence makes these conversations meaningful.
+        </div>
+
+        <div class="tip-box">
+            <strong>Use Edit Feature:</strong> If EVE's response isn't quite right, edit your message to clarify and get a better response.
+        </div>
+
+        <h2>Next Steps</h2>
+
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4><a href="/docs/features.html" style="color: #4a90e2;">Explore Features</a></h4>
+                <p>Learn about all of EVE's capabilities</p>
+            </div>
+            <div class="feature-item">
+                <h4><a href="/docs/features.html#governance" style="color: #4a90e2;">Governance & Safety</a></h4>
+                <p>Charter veto system, reality anchoring, and adversarial defense</p>
+            </div>
+            <div class="feature-item">
+                <h4><a href="/docs/api.html" style="color: #4a90e2;">API Reference</a></h4>
+                <p>Full API documentation for developers</p>
+            </div>
+            <div class="feature-item">
+                <h4><a href="/docs/memory-systems.html" style="color: #4a90e2;">Memory Systems</a></h4>
+                <p>How EVE's 5-layer memory architecture works</p>
+            </div>
+            <div class="feature-item">
+                <h4><a href="/docs/faq.html" style="color: #4a90e2;">FAQ</a></h4>
+                <p>Find answers to common questions</p>
+            </div>
+        </div>
+
+        <h2>Need Help?</h2>
+        <p>If you run into any issues or have questions:</p>
+        <ul>
+            <li>Check our <a href="/docs/faq.html" style="color: #4a90e2;">Frequently Asked Questions</a></li>
+            <li>Email us at <a href="/cdn-cgi/l/email-protection#097a7c7979667b7d496c7f6c68606a667b6c276a6664" style="color: #4a90e2;"><span class="__cf_email__" data-cfemail="60131510100f1214200516050109030f12054e030f0d">[email&#160;protected]</span></a></li>
+            <li>Use the in-app help feature (click the ? icon)</li>
+        </ul>
+    </main>
+
+    <style>
+        .footer { padding: 60px 40px !important; background: #0f1225 !important; border-top: 1px solid #1a2444 !important; text-align: left !important; color: #ccc !important; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand h3 { font-size: 20px; margin-bottom: 12px; color: #e2e6ef; }
+        .footer-brand p { color: #666; font-size: 14px; }
+        .footer-links h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #e0e0e0; }
+        .footer-links a { display: block; color: #888 !important; text-decoration: none !important; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .footer-links a:hover { color: #e0e0e0 !important; }
+        .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #1a2444; display: flex; justify-content: space-between; font-size: 13px; color: #666; }
+        @media (max-width: 768px) {
+            .footer { padding: 40px 20px !important; }
+            .footer-content { grid-template-columns: 1fr !important; gap: 30px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <img src="/images/eve-logo.png" alt="EVE AI Core" style="width: 28px; height: 28px;">
+                    <h3 style="margin: 0;">EVE AI Core</h3>
+                </div>
+                <p>Autonomous governance architecture with deterministic charter enforcement and verified integrity.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <a href="/#features">AI Integrity Features</a>
+                <a href="/#interaction">Voice &amp; Avatar</a>
+                <a href="/#analytics">Analytics</a>
+                <a href="/#platform">Platform</a>
+                <a href="/docs/">Documentation</a>
+                <a href="/api-docs">API Reference</a>
+                <a href="/architect">Architect</a>
+            </div>
+            <div class="footer-links">
+                <h4>Organization</h4>
+                <a href="/about">About EVE AI</a>
+                <a href="/investors">Investor Relations</a>
+                <a href="/blog">AI Architecture Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/ip">Patents</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 EVE AI Core. All rights reserved. Self-Regulating Artificial Intelligence Platform.</span>
+            <span style="color:#556;font-size:12px;">U.S. Patent Pending &mdash; Application No. 63/988,291, 63/988,324, 63/989,085, 63/989,113, 63/989,125, 63/989,150, 63/989,260 &amp; 63/989,479</span>
+            <span>EVE AI CORE // AUTONOMOUS GOVERNANCE RESEARCH</span>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (!menu) return;
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuClose = document.getElementById('mobileMenuClose');
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            const menu = document.getElementById('mobileMenu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            if (menuClose) {
+                menuClose.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuClose.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() { if (menu) { menu.classList.remove('active'); document.body.style.overflow = ''; } });
+            });
+
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('access_token');
+            if (token) {
+                var ab = document.getElementById('auth-buttons'); if (ab) ab.style.display = 'none';
+                var um = document.getElementById('user-menu'); if (um) um.style.display = '';
+                var mb = document.getElementById('mobileMenuButtons'); if (mb) mb.style.display = 'none';
+                var mu = document.getElementById('mobileMenuUser'); if (mu) mu.style.display = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+        }
+    </script>
+<script src="/js/radar-background.js"></script>
+</body>
+</html>

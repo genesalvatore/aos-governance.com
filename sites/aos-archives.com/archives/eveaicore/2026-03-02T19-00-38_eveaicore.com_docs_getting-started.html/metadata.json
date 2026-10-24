@@ -1,0 +1,23 @@
+{
+  "id": "EVEAICORE-mm9jo1tb",
+  "url": "https://eveaicore.com/docs/getting-started.html",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:00:52.046Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a5904cdf405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:00:52 GMT",
+    "last-modified": "Thu, 26 Feb 2026 15:16:06 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=YOa7pMc73m3ZS2RZL%2BfjF4mlOuKpJliMP9F3YY4Mhz94yFssYvh%2Fw7Y3vb9A3zxGPlwdAUVaY4P0TEUbL9t3svo6LJrKXSMDDJ6JN%2BQ%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 32833,
+  "crawlSource": "sitemap"
+}

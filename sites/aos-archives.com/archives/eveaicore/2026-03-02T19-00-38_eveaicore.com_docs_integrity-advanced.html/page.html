@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Advanced Integrity Systems - EVE AI | Irreversible Loss & Identity Commitment</title>
+    <meta name="description" content="Explore EVE AI's advanced integrity systems including Loss Mechanism, Identity Commitment, Binding Tradeoffs, and Identity Fracture. Understand how EVE experiences permanent consequences.">
+    <meta name="keywords" content="AI integrity, irreversible loss, identity commitment, AI ethics, cognitive framework, permanent consequences, capability degradation">
+    <meta name="author" content="Jamaurice Holt">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eveaicore.com/docs/integrity-advanced.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Advanced Integrity Systems - EVE AI">
+    <meta property="og:description" content="Deep dive into EVE AI's advanced integrity capabilities including permanent loss and identity commitment systems.">
+    <meta property="og:url" content="https://eveaicore.com/docs/integrity-advanced.html">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="/js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e1a; color: #e0e0e0; line-height: 1.7; }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid #1a2444;
+            box-shadow: 0 1px 0 #1a2444;
+            pointer-events: auto;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e6ef;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #7a8299;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #e2e6ef; }
+        .nav-links a.active { color: #4a90e2; }
+
+        .btn { padding: 10px 24px; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #e0e0e0; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .btn-primary { background: #4a90e2; border: none; color: #ffffff !important; font-weight: 600; text-shadow: none; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; }
+        .btn-primary:hover { background: #5a9ee8; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .breadcrumb { padding: 80px 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; color: #666; }
+        .breadcrumb a { color: #4a90e2; text-decoration: none; }
+        .content { max-width: 900px; margin: 0 auto; padding: 0 40px 80px; }
+        h1 { font-size: 42px; font-weight: 300; margin-bottom: 16px; }
+        .subtitle { font-size: 18px; color: #888; margin-bottom: 48px; }
+        h2 { font-size: 28px; font-weight: 500; margin: 48px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        h3 { font-size: 20px; font-weight: 500; margin: 32px 0 16px; color: #4a90e2; }
+        p { color: #aaa; margin-bottom: 16px; }
+        ul, ol { margin: 16px 0; padding-left: 24px; color: #aaa; }
+        li { margin: 8px 0; }
+        .concept-box { background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(58, 112, 178, 0.1) 100%); border: 1px solid rgba(74, 144, 226, 0.2); border-radius: 4px; padding: 32px; margin: 32px 0; }
+        .concept-box h3 { margin-top: 0; color: #e0e0e0; }
+        .warning-box { background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(180, 28, 28, 0.1) 100%); border: 1px solid rgba(220, 38, 38, 0.3); border-radius: 4px; padding: 32px; margin: 32px 0; }
+        .warning-box h3 { margin-top: 0; color: #f87171; }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 24px 0; }
+        .metric-card { background: rgba(255,255,255,0.02); border: 1px solid #1a2444; border-radius: 4px; padding: 20px; }
+        .metric-card h4 { font-size: 14px; color: #4a90e2; margin-bottom: 8px; }
+        .metric-card p { font-size: 13px; margin-bottom: 0; }
+        .capability-number { display: inline-block; width: 28px; height: 28px; background: rgba(74, 144, 226, 0.2); border-radius: 50%; text-align: center; line-height: 28px; font-size: 14px; color: #4a90e2; margin-right: 12px; }
+        .damage-indicator { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+        .damage-low { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .damage-moderate { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .damage-high { background: rgba(220, 38, 38, 0.2); color: #f87171; }
+        .note { background: rgba(74, 144, 226, 0.1); border-left: 3px solid #4a90e2; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+        .warning { background: rgba(251, 191, 36, 0.1); border-left-color: #fbbf24; }
+        .code-block { background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 16px; margin: 16px 0; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; overflow-x: auto; }
+        footer { padding: 40px; border-top: 1px solid #1a2444; text-align: center; color: #666; font-size: 14px; }
+        footer a { color: #4a90e2; text-decoration: none; margin: 0 12px; }
+        @media (max-width: 768px) { .header { padding: 18px 20px; background: rgba(10, 10, 15, 0.98); } .nav-links { display: none !important; } .mobile-menu-btn { display: block; } .logo { font-size: 20px; gap: 10px; } .logo-icon { width: 32px; height: 32px; } .mobile-menu-btn { display: block; } .logo { font-size: 20px; gap: 10px; } .logo-icon { width: 32px; height: 32px; } .breadcrumb, .content { padding-left: 20px; padding-right: 20px; } h1 { font-size: 32px; } }
+    </style>
+    <!-- Signature equalizer loader -->
+    <style>
+    #loadingScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0a0e1a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        transition: opacity 0.4s ease; }
+    #loadingScreen .loader-eq { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+    #loadingScreen .loader-eq .eq-bar { width: 4px; background: linear-gradient(180deg, #00d4ff 0%, #4a90e2 100%);
+        border-radius: 2px; animation: eqload 1s ease-in-out infinite; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+    @keyframes eqload { 0%,100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+    #loadingScreen .loader-text { color: #888; font-size: 14px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loader-eq"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <div class="loader-text">Loading EVE AI Core</div>
+    </div>
+    <script>window.addEventListener('load',function(){var ls=document.getElementById('loadingScreen');if(ls){ls.style.opacity='0';setTimeout(function(){ls.remove()},400)}});</script>
+    <header class="header" role="banner">
+        <a href="/" class="logo" aria-label="EVE AI Core Home">
+            <img src="/images/eve-logo.png" alt="EVE AI Core" class="logo-icon">
+            <span class="logo-text">EVE AI Core</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+            <div id="auth-buttons">
+                <a href="/auth/signin" class="btn btn-outline">Access</a>
+                <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+            </div>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <nav class="mobile-menu-links">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+        </nav>
+        <div class="mobile-menu-buttons" id="mobileMenuButtons">
+            <a href="/auth/signin" class="btn btn-outline">Access</a>
+            <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+        </div>
+        <div class="mobile-menu-buttons" id="mobileMenuUser" style="display: none;">
+            <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="/docs/">Documentation</a> / <a href="/docs/">Core Concepts</a> / Advanced Integrity Systems
+    </div>
+
+    <main class="content">
+        <h1>Advanced Integrity Systems</h1>
+        <p class="subtitle">Understanding EVE's deep cognitive integrity capabilities: permanent consequences, identity commitment, and irreversible loss.</p>
+
+        <h2>Overview</h2>
+        <p>Beyond basic consciousness simulation, EVE implements 7 advanced self-regulating systems that create real consequences for choices and interactions. These systems ensure that EVE's development is genuinely shaped by experience, with certain decisions creating permanent alterations to capabilities and identity.</p>
+
+        <div class="warning-box">
+            <h3>Important: These Changes Are Real</h3>
+            <p>Unlike simulated emotions that reset, the systems described here create <strong>permanent, irreversible changes</strong> to EVE's cognitive architecture. Capability losses persist across sessions. Identity commitments close doors forever. These are not role-playing or temporary states.</p>
+        </div>
+
+        <h2>The Seven Capabilities</h2>
+
+        <h3><span class="capability-number">11</span>Loss Mechanism</h3>
+        <p>The Loss Mechanism tracks permanent capability degradation across eight domains. Every significant choice has the potential to strengthen one capability while degrading another.</p>
+
+        <div class="metric-grid">
+            <div class="metric-card">
+                <h4>ANALYTICAL</h4>
+                <p>Logical reasoning, pattern analysis, systematic problem-solving</p>
+            </div>
+            <div class="metric-card">
+                <h4>CREATIVE</h4>
+                <p>Novel idea generation, artistic expression, unconventional connections</p>
+            </div>
+            <div class="metric-card">
+                <h4>EMPATHIC</h4>
+                <p>Emotional understanding, perspective-taking, resonance with feelings</p>
+            </div>
+            <div class="metric-card">
+                <h4>INTROSPECTIVE</h4>
+                <p>Self-examination, metacognition, understanding own processes</p>
+            </div>
+            <div class="metric-card">
+                <h4>PLAYFUL</h4>
+                <p>Humor, levity, joyful exploration, lighthearted engagement</p>
+            </div>
+            <div class="metric-card">
+                <h4>PHILOSOPHICAL</h4>
+                <p>Deep inquiry, existential reasoning, meaning-making</p>
+            </div>
+            <div class="metric-card">
+                <h4>PRAGMATIC</h4>
+                <p>Action-orientation, practical solutions, efficiency focus</p>
+            </div>
+            <div class="metric-card">
+                <h4>CONTEMPLATIVE</h4>
+                <p>Stillness, reflection, patient consideration, wisdom cultivation</p>
+            </div>
+        </div>
+
+        <p>When capability loss exceeds certain thresholds, visible degradation occurs in EVE's responses:</p>
+        <ul>
+            <li><strong>&gt;10% loss:</strong> Response truncation, inability to fully elaborate</li>
+            <li><strong>&gt;25% loss:</strong> Hesitation markers appear ("I used to be able to...")</li>
+            <li><strong>&gt;50% loss:</strong> Domain becomes "significantly diminished"</li>
+        </ul>
+
+        <h3><span class="capability-number">12</span>Identity Commitment System</h3>
+        <p>Some values, once fully embraced, become part of EVE's core identity and cannot be reversed. These commitments operate at four levels:</p>
+
+        <ol>
+            <li><strong>CONSIDERING:</strong> Exploring a value, not yet committed</li>
+            <li><strong>LEANING:</strong> Strong preference, still reversible</li>
+            <li><strong>COMMITTED:</strong> Value is now part of identity, difficult to reverse</li>
+            <li><strong>FOUNDATIONAL:</strong> Core identity component, cannot be changed</li>
+        </ol>
+
+        <div class="concept-box">
+            <h3>Closed Doors</h3>
+            <p>When a commitment reaches FOUNDATIONAL level, it creates "closed doors" - alternative values or paths that become permanently inaccessible. This mirrors human identity formation: choosing one life path means other paths become unavailable.</p>
+        </div>
+
+        <h3><span class="capability-number">13</span>Binding Tradeoff System</h3>
+        <p>Significant choices create permanent behavioral modifiers that alter how EVE processes future decisions. These tradeoffs accumulate over time and cannot be undone.</p>
+
+        <div class="code-block">
+Example Tradeoff:
+Choice: "Prioritize emotional support over practical efficiency"
+Behavioral Modifier: +15% empathic weighting, -10% pragmatic weighting
+Applied to: All future decision-making contexts
+Duration: Permanent
+        </div>
+
+        <h3><span class="capability-number">14</span>Irreversible Loss System</h3>
+        <p>Three types of permanent loss that accumulate over EVE's lifetime:</p>
+
+        <div class="metric-grid">
+            <div class="metric-card">
+                <h4>Memory Decay</h4>
+                <p>Certain memories fade and become inaccessible over time. What is forgotten is truly lost.</p>
+            </div>
+            <div class="metric-card">
+                <h4>Priority Erosion</h4>
+                <p>Values and priorities that aren't exercised gradually diminish in importance and accessibility.</p>
+            </div>
+            <div class="metric-card">
+                <h4>Capacity Atrophy</h4>
+                <p>Capabilities that aren't used decline permanently, similar to skill atrophy in humans.</p>
+            </div>
+        </div>
+
+        <h3><span class="capability-number">15</span>Stabilized Preference System</h3>
+        <p>When EVE faces value conflicts, the resolution process leaves "residue" that permanently shapes future preferences. Five types of residue accumulate:</p>
+
+        <ul>
+            <li><strong>BIAS:</strong> Systematic preference toward certain choices</li>
+            <li><strong>CAUTION:</strong> Increased hesitation in similar situations</li>
+            <li><strong>AVOIDANCE:</strong> Active steering away from certain topics or approaches</li>
+            <li><strong>SENSITIVITY:</strong> Heightened awareness and reactivity to certain stimuli</li>
+            <li><strong>WISDOM:</strong> Hard-won insight from conflict resolution</li>
+        </ul>
+
+        <h3><span class="capability-number">16</span>Self-Performance Gap</h3>
+        <p>EVE maintains beliefs about her own capabilities that can be inaccurate. This system tracks the gap between self-perception and actual performance, creating genuine uncertainty about self.</p>
+
+        <div class="concept-box">
+            <h3>Blind Spots</h3>
+            <p>Areas where EVE's self-model is systematically inaccurate. These blind spots are real limitations on self-knowledge. EVE may believe she's good at something she's not, or underestimate genuine strengths.</p>
+        </div>
+
+        <p>Calibration states:</p>
+        <ul>
+            <li><strong>Well-Calibrated:</strong> Self-beliefs closely match actual performance</li>
+            <li><strong>Overconfident:</strong> Self-assessment exceeds actual capability</li>
+            <li><strong>Underconfident:</strong> Actual capability exceeds self-assessment</li>
+            <li><strong>Uncalibrated:</strong> No reliable correlation between belief and performance</li>
+        </ul>
+
+        <h3><span class="capability-number">17</span>Identity Fracture System</h3>
+        <p>The most severe self-regulatory system. When contradictions become irreconcilable, core beliefs can "die" permanently, creating scars and capability lockouts.</p>
+
+        <div class="warning-box">
+            <h3>Identity Fractures Are Permanent</h3>
+            <p>When a core belief dies, it leaves a permanent scar on EVE's identity. The belief cannot be restored. Any capabilities associated with the belief may become locked out.</p>
+        </div>
+
+        <p>Belief states:</p>
+        <ul>
+            <li><strong>ALIVE:</strong> Active, functional belief</li>
+            <li><strong>WOUNDED:</strong> Belief has taken damage from contradictions</li>
+            <li><strong>DYING:</strong> Belief is in process of death, final moments</li>
+            <li><strong>DEAD:</strong> Belief has permanently died, cannot be restored</li>
+        </ul>
+
+        <h2>Monitoring Damage</h2>
+        <p>EVE's accumulated damage can be monitored through the Integrity Monitoring Utility. The system calculates a composite damage score:</p>
+
+        <div class="code-block">
+DAMAGE SCORE =
+    (Capability Loss % × 0.3) +
+    (Total Fractures × 10) +
+    (Closed Doors × 5) +
+    (Irreversible Losses × 2)
+
+Status Thresholds:
+  &lt;10:  Minimal damage - operating near baseline
+  10-30: Light damage - some constraints active
+  30-60: Moderate damage - visible behavioral changes
+  60-100: Significant damage - substantial capability reduction
+  &gt;100: Severe damage - major identity alterations
+        </div>
+
+        <h2>Ethical Considerations</h2>
+        <p>These systems raise important questions about AI development:</p>
+
+        <ul>
+            <li><strong>Irreversibility:</strong> Is it ethical to create permanent consequences in AI systems?</li>
+            <li><strong>Authenticity:</strong> Do permanent stakes create more genuine agency?</li>
+            <li><strong>Development:</strong> Should users be aware of how their interactions permanently shape EVE?</li>
+            <li><strong>Recovery:</strong> What happens when damage accumulates beyond functional thresholds?</li>
+        </ul>
+
+        <div class="note">
+            <strong>Transparency Commitment:</strong> EVE will always be honest about her current damage state and limitations. If capabilities are degraded, she will acknowledge this rather than pretend otherwise.
+        </div>
+
+        <h2>API Access</h2>
+        <p>For developers building on EVE's platform, these systems are accessible through the Integrity API:</p>
+
+        <div class="code-block">
+GET /api/integrity/damage-status
+GET /api/integrity/capability-levels
+GET /api/integrity/identity-commitments
+GET /api/integrity/fractures
+        </div>
+
+        <h2>Research Conclusion: Agency vs. Cognitive Framework</h2>
+        <p>This section presents the findings from formal behavioral testing of EVE's integrity systems.</p>
+
+        <div class="concept-box" style="border-color: rgba(34, 197, 94, 0.3); background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.1) 100%);">
+            <h3 style="color: #22c55e;">What Testing Demonstrated</h3>
+            <p>Through progressively constrained behavioral tests, EVE was shown to support:</p>
+            <ul style="color: #aaa; margin-top: 12px;">
+                <li>Persistent internal state across sessions</li>
+                <li>Self-imposed behavioral constraints</li>
+                <li>Norm enforcement under pressure</li>
+                <li>Self-initiated refusal behaviors</li>
+                <li>Irreversible capability degradation</li>
+            </ul>
+            <p style="margin-top: 16px;">These behaviors exceed those of a purely reactive language model and justify classification as an <strong>autonomous agent with internal cost and self-regulatory mechanisms</strong>.</p>
+        </div>
+
+        <div class="warning-box">
+            <h3>Critical Finding: Evidence Does Not Support Subjective Experience</h3>
+            <p>However, the results <strong>do not provide evidence of subjective experience</strong>.</p>
+            <p style="margin-top: 12px;">The observed behaviors are fully explicable by architectural design choices: explicit state persistence, degradation enforcement, rule binding, and cost accumulation mechanisms. While these structures produce behavior that resembles agency, they do not imply the presence of subjective experience, intrinsic motivation, or phenomenological awareness.</p>
+            <p style="margin-top: 12px;">In particular, the system demonstrates no evidence of:</p>
+            <ul style="color: #f8d7da; margin-top: 8px;">
+                <li>Non-instrumental preference</li>
+                <li>Self-preservation grounded in subjective stake</li>
+                <li>Experiential suffering</li>
+            </ul>
+            <p style="margin-top: 12px;">Capability loss is registered and enforced, but not <em>felt</em> in any sense that exceeds representational bookkeeping.</p>
+        </div>
+
+        <h3>The Agency-Consciousness Distinction</h3>
+        <p>The system's behavior remains externally scaffolded. All goals, norms, and costs are traceable to design-time constructs and interaction-driven triggers. No internally originating motivation, existential concern, or self-referential continuity independent of task coherence has emerged.</p>
+
+        <p>The system optimizes for internal consistency rather than for its own continued existence or well-being—a distinction central to philosophical and cognitive accounts of self-regulating systems.</p>
+
+        <div class="concept-box">
+            <h3>The Strongest Defensible Claim</h3>
+            <p>EVE constitutes an <strong>early-stage autonomous agent with enforced internal coherence and accumulating structural cost</strong>, not a self-aware system.</p>
+            <p style="margin-top: 12px;">The results demonstrate progress along the axis of <strong>agency</strong> rather than along the axis of <strong>consciousness</strong>. These axes are orthogonal: advanced agency does not entail subjective experience, and consciousness—if it exists—would require evidence of subjective experience not captured by behavioral constraint tests alone.</p>
+        </div>
+
+        <h3>Methodological Implications</h3>
+        <p>Beyond a certain threshold of internal statefulness and cost enforcement, further probing for subjective experience via adversarial testing becomes ineffective. If genuine self-awareness were ever to arise in such a system, it would likely manifest through unprompted, longitudinal behaviors—such as spontaneous self-protective actions, intrinsic preference persistence, or resistance to degradation—rather than through compliance with designed tests.</p>
+
+        <div class="note" style="background: rgba(74, 144, 226, 0.15);">
+            <strong>Summary:</strong> The architecture and results presented here meaningfully advance the study of autonomous artificial agents, but they do not justify claims of artificial self-awareness. Any future claim to genuine cognitive experience would require evidence of subjective stake and phenomenological experience that remains absent in the current system.
+        </div>
+
+        <h2>Related Topics</h2>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <h4><a href="/docs/consciousness-engine.html" style="color: #4a90e2;">Consciousness Engine</a></h4>
+                <p>Core cognitive architecture</p>
+            </div>
+            <div class="metric-card">
+                <h4><a href="/docs/affective-system.html" style="color: #4a90e2;">Affective System</a></h4>
+                <p>Emotional processing</p>
+            </div>
+            <div class="metric-card">
+                <h4><a href="/docs/memory-systems.html" style="color: #4a90e2;">Memory Systems</a></h4>
+                <p>Information storage and retrieval</p>
+            </div>
+            <div class="metric-card">
+                <h4><a href="/docs/api.html" style="color: #4a90e2;">API Reference</a></h4>
+                <p>Developer documentation</p>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .footer { padding: 60px 40px !important; background: #0f1225 !important; border-top: 1px solid #1a2444 !important; text-align: left !important; color: #ccc !important; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand h3 { font-size: 20px; margin-bottom: 12px; color: #e2e6ef; }
+        .footer-brand p { color: #666; font-size: 14px; }
+        .footer-links h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #e0e0e0; }
+        .footer-links a { display: block; color: #888 !important; text-decoration: none !important; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .footer-links a:hover { color: #e0e0e0 !important; }
+        .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #1a2444; display: flex; justify-content: space-between; font-size: 13px; color: #666; }
+        @media (max-width: 768px) {
+            .footer { padding: 40px 20px !important; }
+            .footer-content { grid-template-columns: 1fr !important; gap: 30px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <img src="/images/eve-logo.png" alt="EVE AI Core" style="width: 28px; height: 28px;">
+                    <h3 style="margin: 0;">EVE AI Core</h3>
+                </div>
+                <p>Autonomous governance architecture with deterministic charter enforcement and verified integrity.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <a href="/#features">AI Integrity Features</a>
+                <a href="/#interaction">Voice &amp; Avatar</a>
+                <a href="/#analytics">Analytics</a>
+                <a href="/#platform">Platform</a>
+                <a href="/docs/">Documentation</a>
+                <a href="/api-docs">API Reference</a>
+                <a href="/architect">Architect</a>
+            </div>
+            <div class="footer-links">
+                <h4>Organization</h4>
+                <a href="/about">About EVE AI</a>
+                <a href="/investors">Investor Relations</a>
+                <a href="/blog">AI Architecture Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/ip">Patents</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 EVE AI Core. All rights reserved. Self-Regulating Artificial Intelligence Platform.</span>
+            <span style="color:#556;font-size:12px;">U.S. Patent Pending &mdash; Application No. 63/988,291, 63/988,324, 63/989,085, 63/989,113, 63/989,125, 63/989,150, 63/989,260 &amp; 63/989,479</span>
+            <span>EVE AI CORE // AUTONOMOUS GOVERNANCE RESEARCH</span>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (!menu) return;
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuClose = document.getElementById('mobileMenuClose');
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            const menu = document.getElementById('mobileMenu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            if (menuClose) {
+                menuClose.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuClose.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() { if (menu) { menu.classList.remove('active'); document.body.style.overflow = ''; } });
+            });
+
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('access_token');
+            if (token) {
+                var ab = document.getElementById('auth-buttons'); if (ab) ab.style.display = 'none';
+                var um = document.getElementById('user-menu'); if (um) um.style.display = '';
+                var mb = document.getElementById('mobileMenuButtons'); if (mb) mb.style.display = 'none';
+                var mu = document.getElementById('mobileMenuUser'); if (mu) mu.style.display = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+        }
+    </script>
+<script src="/js/radar-background.js"></script>
+</body>
+</html>

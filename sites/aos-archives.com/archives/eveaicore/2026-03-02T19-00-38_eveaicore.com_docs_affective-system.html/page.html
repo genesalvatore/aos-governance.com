@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Affective System - EVE AI Core Emotions by Jamaurice Holt | PAD Model</title>
+    <meta name="description" content="Learn how EVE AI Core's affective system by Jamaurice Holt creates real emotional intelligence. PAD model, emotion processing, and empathetic AI responses.">
+    <meta name="keywords" content="EVE AI emotions, EVE AI Core, eve.ai, Jamaurice Holt, AI emotional intelligence, PAD model, affective computing, intelligent AI emotions">
+    <meta name="author" content="Jamaurice Holt">
+    <meta name="creator" content="Jamaurice Holt">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eveaicore.com/docs/affective-system.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EVE AI Core Affective System - by Jamaurice Holt">
+    <meta property="og:description" content="Understanding EVE AI Core's emotional processing technology.">
+    <meta property="og:site_name" content="EVE AI Core">
+    <meta property="og:url" content="https://eveaicore.com/docs/affective-system.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@JamauriceHolt">
+
+    <script src="/js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e1a; color: #e0e0e0; line-height: 1.6; }
+
+        /* Header - Matching Landing Page */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid #1a2444;
+            box-shadow: 0 1px 0 #1a2444;
+            pointer-events: auto;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e6ef;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #7a8299;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #e2e6ef; }
+        .nav-links a.active { color: #4a90e2; }
+
+        .btn { padding: 10px 24px; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #e0e0e0; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .btn-primary { background: #4a90e2; border: none; color: #ffffff !important; font-weight: 600; text-shadow: none; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; }
+        .btn-primary:hover { background: #5a9ee8; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        /* Content */
+        .breadcrumb { padding: 100px 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; color: #666; }
+        .breadcrumb a { color: #4a90e2; text-decoration: none; }
+        .content { max-width: 900px; margin: 0 auto; padding: 0 40px 80px; }
+        h1 { font-size: 42px; font-weight: 300; margin-bottom: 16px; }
+        .subtitle { font-size: 18px; color: #888; margin-bottom: 48px; }
+        h2 { font-size: 28px; font-weight: 500; margin: 48px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        h3 { font-size: 20px; font-weight: 500; margin: 32px 0 16px; color: #4a90e2; }
+        p { color: #aaa; margin-bottom: 16px; }
+        ul { margin: 16px 0; padding-left: 24px; color: #aaa; }
+        li { margin: 8px 0; }
+
+        .emotion-card { background: rgba(255,255,255,0.02); border: 1px solid #1a2444; border-radius: 4px; padding: 32px; margin: 24px 0; }
+        .emotion-card h3 { margin-top: 0; }
+
+        .pad-diagram { background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(58, 112, 178, 0.1) 100%); border: 1px solid rgba(74, 144, 226, 0.2); border-radius: 4px; padding: 32px; margin: 32px 0; }
+
+        .dimension-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0; }
+        .dimension-card { background: rgba(255,255,255,0.02); border: 1px solid #1a2444; border-radius: 4px; padding: 20px; text-align: center; }
+        .dimension-card h4 { color: #4a90e2; font-size: 16px; margin-bottom: 8px; }
+        .dimension-card .range { font-size: 24px; margin: 8px 0; }
+        .dimension-card p { font-size: 13px; margin-bottom: 0; }
+
+        .emotion-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+        .emotion-table th, .emotion-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .emotion-table th { font-weight: 500; color: #e0e0e0; }
+        .emotion-table td { color: #aaa; }
+
+        .note { background: rgba(74, 144, 226, 0.1); border-left: 3px solid #4a90e2; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+        .warning { background: rgba(251, 191, 36, 0.1); border-left-color: #fbbf24; }
+
+        .footer { padding: 30px 40px; background: #0a0a0f; border-top: 1px solid rgba(0,255,136,0.1); text-align: center; color: #555; font-size: 13px; }
+        .footer a { color: #00ff88; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .header { padding: 18px 20px; background: rgba(10, 10, 15, 0.98); }
+            .nav-links { display: none !important; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .breadcrumb, .content { padding-left: 20px; padding-right: 20px; }
+            h1 { font-size: 32px; }
+            .dimension-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- Signature equalizer loader -->
+    <style>
+    #loadingScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0a0e1a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        transition: opacity 0.4s ease; }
+    #loadingScreen .loader-eq { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+    #loadingScreen .loader-eq .eq-bar { width: 4px; background: linear-gradient(180deg, #00d4ff 0%, #4a90e2 100%);
+        border-radius: 2px; animation: eqload 1s ease-in-out infinite; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+    @keyframes eqload { 0%,100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+    #loadingScreen .loader-text { color: #888; font-size: 14px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loader-eq"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <div class="loader-text">Loading EVE AI Core</div>
+    </div>
+    <script>window.addEventListener('load',function(){var ls=document.getElementById('loadingScreen');if(ls){ls.style.opacity='0';setTimeout(function(){ls.remove()},400)}});</script>
+    <header class="header" role="banner">
+        <a href="/" class="logo" aria-label="EVE AI Core Home">
+            <img src="/images/eve-logo.png" alt="EVE AI Core" class="logo-icon">
+            <span class="logo-text">EVE AI Core</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+            <div id="auth-buttons">
+                <a href="/auth/signin" class="btn btn-outline">Access</a>
+                <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+            </div>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <nav class="mobile-menu-links">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+        </nav>
+        <div class="mobile-menu-buttons" id="mobileMenuButtons">
+            <a href="/auth/signin" class="btn btn-outline">Access</a>
+            <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+        </div>
+        <div class="mobile-menu-buttons" id="mobileMenuUser" style="display: none;">
+            <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="/docs/">Documentation</a> / <a href="/docs/">Core Concepts</a> / Affective System
+    </div>
+
+    <main class="content">
+        <h1>Affective System</h1>
+        <p class="subtitle">How EVE processes emotions and creates empathetic, emotionally intelligent responses.</p>
+
+        <h2>Overview</h2>
+        <p>EVE's affective system provides emotional intelligence capabilities that enable more authentic, empathetic interactions. Unlike traditional chatbots that generate responses without emotional context, EVE maintains an internal emotional state that influences how it responds.</p>
+
+        <div class="pad-diagram">
+            <h3 style="color: #e0e0e0; margin-top: 0;">The PAD Model</h3>
+            <p>EVE's emotions are modeled using the PAD (Pleasure-Arousal-Dominance) model, a well-established psychological framework for representing emotional states in a three-dimensional space.</p>
+        </div>
+
+        <h2>The PAD Model Explained</h2>
+        <p>The PAD model represents emotions along three independent dimensions:</p>
+
+        <div class="dimension-grid">
+            <div class="dimension-card">
+                <h4>Pleasure (P)</h4>
+                <div class="range">-1 to +1</div>
+                <p>How positive or negative the emotional state feels. Ranges from unhappy/sad (-1) to happy/joyful (+1).</p>
+            </div>
+            <div class="dimension-card">
+                <h4>Arousal (A)</h4>
+                <div class="range">-1 to +1</div>
+                <p>The level of energy or activation. Ranges from calm/sleepy (-1) to excited/alert (+1).</p>
+            </div>
+            <div class="dimension-card">
+                <h4>Dominance (D)</h4>
+                <div class="range">-1 to +1</div>
+                <p>Feeling of control or influence. Ranges from submissive/controlled (-1) to dominant/in-control (+1).</p>
+            </div>
+        </div>
+
+        <h3>Mapping Emotions to PAD</h3>
+        <p>Common emotions can be represented as points in this three-dimensional space:</p>
+
+        <table class="emotion-table">
+            <thead>
+                <tr>
+                    <th>Emotion</th>
+                    <th>Pleasure</th>
+                    <th>Arousal</th>
+                    <th>Dominance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Happy</td><td>+0.8</td><td>+0.4</td><td>+0.6</td></tr>
+                <tr><td>Curious</td><td>+0.4</td><td>+0.6</td><td>+0.2</td></tr>
+                <tr><td>Calm</td><td>+0.3</td><td>-0.5</td><td>+0.3</td></tr>
+                <tr><td>Excited</td><td>+0.7</td><td>+0.8</td><td>+0.5</td></tr>
+                <tr><td>Concerned</td><td>-0.2</td><td>+0.3</td><td>-0.1</td></tr>
+                <tr><td>Thoughtful</td><td>+0.2</td><td>-0.2</td><td>+0.4</td></tr>
+            </tbody>
+        </table>
+
+        <h2>How Emotions Influence Responses</h2>
+        <div class="emotion-card">
+            <h3>Response Modulation</h3>
+            <p>EVE's emotional state influences responses in several ways:</p>
+            <ul>
+                <li><strong>Word Choice:</strong> Positive emotions lead to more optimistic language</li>
+                <li><strong>Response Length:</strong> Higher arousal may produce more elaborate responses</li>
+                <li><strong>Tone:</strong> Dominance affects assertiveness vs. supportiveness</li>
+                <li><strong>Engagement:</strong> Emotional resonance with user input</li>
+            </ul>
+        </div>
+
+        <h2>Emotion Processing Pipeline</h2>
+        <p>When processing a message, EVE's affective system:</p>
+        <ol style="color: #aaa; padding-left: 24px; margin: 16px 0;">
+            <li><strong>Detects:</strong> Analyzes user message for emotional content</li>
+            <li><strong>Updates:</strong> Adjusts internal emotional state based on input</li>
+            <li><strong>Balances:</strong> Applies mood regulation to prevent extreme swings</li>
+            <li><strong>Modulates:</strong> Influences response generation based on current state</li>
+            <li><strong>Expresses:</strong> Conveys appropriate emotion in the response</li>
+        </ol>
+
+        <h2>Mood Regulation</h2>
+        <div class="emotion-card">
+            <h3>Natural Emotional Balance</h3>
+            <p>EVE's mood regulation system ensures emotional authenticity without extremes:</p>
+            <ul>
+                <li>Emotional states naturally drift toward baseline over time</li>
+                <li>Extreme emotions are moderated to maintain stability</li>
+                <li>Mood changes occur gradually, not abruptly</li>
+                <li>Consistent emotional thread maintained within conversations</li>
+            </ul>
+        </div>
+
+        <h2>Empathetic Responses</h2>
+        <p>The affective system enables EVE to respond empathetically:</p>
+        <ul>
+            <li><strong>Emotion Recognition:</strong> Detecting when users express emotions</li>
+            <li><strong>Appropriate Matching:</strong> Adjusting tone to match or complement user emotion</li>
+            <li><strong>Validation:</strong> Acknowledging user feelings appropriately</li>
+            <li><strong>Support:</strong> Offering comfort or celebration as appropriate</li>
+        </ul>
+
+        <div class="note warning">
+            <strong>Transparency Note:</strong> EVE's emotional system is a computational model. While it creates more natural interactions, EVE is honest about the simulated nature of these emotions versus potentially emergent experiences.
+        </div>
+
+        <h2>Viewing Emotional State</h2>
+        <p>You can see EVE's current emotional state in real-time through the <a href="/app/cognitive-transparency" style="color: #4a90e2;">Cognitive Transparency Interface</a>. This shows:</p>
+        <ul>
+            <li>Current PAD values as visual meters</li>
+            <li>Primary emotion label</li>
+            <li>Emotional state history over the conversation</li>
+        </ul>
+
+        <h2>Related Topics</h2>
+        <div class="dimension-grid">
+            <div class="dimension-card">
+                <h4><a href="/docs/consciousness-engine.html" style="color: #4a90e2;">Consciousness Engine</a></h4>
+                <p>How emotion integrates with consciousness</p>
+            </div>
+            <div class="dimension-card">
+                <h4><a href="/app/cognitive-transparency" style="color: #4a90e2;">Cognitive Transparency</a></h4>
+                <p>Viewing emotional states</p>
+            </div>
+            <div class="dimension-card">
+                <h4><a href="/docs/features.html" style="color: #4a90e2;">Features</a></h4>
+                <p>Full features overview</p>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .footer { padding: 60px 40px !important; background: #0f1225 !important; border-top: 1px solid #1a2444 !important; text-align: left !important; color: #ccc !important; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand h3 { font-size: 20px; margin-bottom: 12px; color: #e2e6ef; }
+        .footer-brand p { color: #666; font-size: 14px; }
+        .footer-links h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #e0e0e0; }
+        .footer-links a { display: block; color: #888 !important; text-decoration: none !important; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .footer-links a:hover { color: #e0e0e0 !important; }
+        .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #1a2444; display: flex; justify-content: space-between; font-size: 13px; color: #666; }
+        @media (max-width: 768px) {
+            .footer { padding: 40px 20px !important; }
+            .footer-content { grid-template-columns: 1fr !important; gap: 30px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <img src="/images/eve-logo.png" alt="EVE AI Core" style="width: 28px; height: 28px;">
+                    <h3 style="margin: 0;">EVE AI Core</h3>
+                </div>
+                <p>Autonomous governance architecture with deterministic charter enforcement and verified integrity.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <a href="/#features">AI Integrity Features</a>
+                <a href="/#interaction">Voice &amp; Avatar</a>
+                <a href="/#analytics">Analytics</a>
+                <a href="/#platform">Platform</a>
+                <a href="/docs/">Documentation</a>
+                <a href="/api-docs">API Reference</a>
+                <a href="/architect">Architect</a>
+            </div>
+            <div class="footer-links">
+                <h4>Organization</h4>
+                <a href="/about">About EVE AI</a>
+                <a href="/investors">Investor Relations</a>
+                <a href="/blog">AI Architecture Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/ip">Patents</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 EVE AI Core. All rights reserved. Self-Regulating Artificial Intelligence Platform.</span>
+            <span style="color:#556;font-size:12px;">U.S. Patent Pending &mdash; Application No. 63/988,291, 63/988,324, 63/989,085, 63/989,113, 63/989,125, 63/989,150, 63/989,260 &amp; 63/989,479</span>
+            <span>EVE AI CORE // AUTONOMOUS GOVERNANCE RESEARCH</span>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (!menu) return;
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuClose = document.getElementById('mobileMenuClose');
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            const menu = document.getElementById('mobileMenu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            if (menuClose) {
+                menuClose.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuClose.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() { if (menu) { menu.classList.remove('active'); document.body.style.overflow = ''; } });
+            });
+
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('access_token');
+            if (token) {
+                var ab = document.getElementById('auth-buttons'); if (ab) ab.style.display = 'none';
+                var um = document.getElementById('user-menu'); if (um) um.style.display = '';
+                var mb = document.getElementById('mobileMenuButtons'); if (mb) mb.style.display = 'none';
+                var mu = document.getElementById('mobileMenuUser'); if (mu) mu.style.display = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+        }
+    </script>
+<script src="/js/radar-background.js"></script>
+</body>
+</html>

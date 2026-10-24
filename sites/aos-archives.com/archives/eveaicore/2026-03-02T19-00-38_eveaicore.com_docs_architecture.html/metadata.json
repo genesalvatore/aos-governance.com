@@ -1,0 +1,23 @@
+{
+  "id": "EVEAICORE-mm9jodo0",
+  "url": "https://eveaicore.com/docs/architecture.html",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:01:07.391Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a5f04b46405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:01:07 GMT",
+    "last-modified": "Fri, 27 Feb 2026 01:19:24 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=jP1zWt%2B2HzpsyudAOZEtSIXWWOGbo%2FQSRAW%2FVOcGlLTZoNMYA3Mm6sEZV2ImxT5OY9r1Kp2%2FokzsBg4fMewW05BqdYrab1vXHqhmrHo%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 35722,
+  "crawlSource": "sitemap"
+}

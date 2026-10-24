@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://aos-patents.com/sitemap.xml
+
+# AOS Sovereign Patent Registry
+# Virtual Patent Marking under 35 U.S.C. § 287(a)
+# 99 Provisional Patent Applications | Priority: January 10, 2026

@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  --canvas: #f5f2eb;
+}
+
+body {
+  background-color: var(--canvas);
+}
+
+::selection {
+  background: #111;
+  color: #fff;
+}

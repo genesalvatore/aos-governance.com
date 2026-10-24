@@ -1,0 +1,23 @@
+{
+  "id": "EVEAICORE-mm9jo517",
+  "url": "https://eveaicore.com/docs/memory-systems.html",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:00:56.241Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a5aa6e2e405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:00:56 GMT",
+    "last-modified": "Thu, 26 Feb 2026 15:16:06 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=asrBEIplT%2BGqB2fqr9z8nP%2FBI%2FEbbeYoz9IAiTVZ8QGqlyed%2BvJ0GArKUCBZUgfjpWX%2FZkx%2BqzWWnOp87FdWZIWv027dKVNWqzYW4L0%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 30940,
+  "crawlSource": "sitemap"
+}

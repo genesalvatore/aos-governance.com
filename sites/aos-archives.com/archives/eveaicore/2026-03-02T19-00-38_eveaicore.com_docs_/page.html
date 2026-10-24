@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>EVE AI Core Documentation - EVE AI by Jamaurice Holt</title>
+    <meta name="description" content="Complete documentation for EVE AI Core, the self-regulating artificial intelligence platform created by Jamaurice Holt. Learn about features, getting started, API integration, and EVE.AI consciousness technology.">
+    <meta name="keywords" content="EVE AI, EVE AI Core, eve.ai, Jamaurice Holt, intelligent AI, conversational AI, AI documentation, consciousness AI, chatbot platform, AI API, EVE documentation, Jamaurice Holt AI">
+    <meta name="author" content="Jamaurice Holt">
+    <meta name="creator" content="Jamaurice Holt">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eveaicore.com/docs/">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EVE AI Core Documentation - by Jamaurice Holt">
+    <meta property="og:description" content="Complete documentation for EVE AI Core, the intelligent AI platform created by Jamaurice Holt. Features emotional intelligence and persistent memory.">
+    <meta property="og:url" content="https://eveaicore.com/docs/">
+    <meta property="og:site_name" content="EVE AI Core">
+    <meta property="og:image" content="https://eveaicore.com/favicon-512x512.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EVE AI Core Documentation - by Jamaurice Holt">
+    <meta name="twitter:description" content="Documentation for EVE AI Core, the intelligent AI by Jamaurice Holt.">
+    <meta name="twitter:creator" content="@JamauriceHolt">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "EVE AI Core Documentation",
+        "description": "Complete documentation for EVE AI Core, the self-regulating artificial intelligence platform created by Jamaurice Holt",
+        "author": {
+            "@type": "Person",
+            "name": "Jamaurice Holt",
+            "url": "https://eveaicore.com/about",
+            "jobTitle": "Creator of EVE AI"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "EVE AI Core",
+            "url": "https://eveaicore.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://eveaicore.com/docs/"
+        },
+        "keywords": ["EVE AI", "EVE AI Core", "Jamaurice Holt", "intelligent AI", "eve.ai"]
+    }
+    </script>
+
+    <script src="/js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid #1a2444;
+            box-shadow: 0 1px 0 #1a2444;
+            pointer-events: auto;
+        }
+
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e6ef;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #7a8299;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #e2e6ef; }
+        .nav-links a.active { color: #4a90e2; }
+
+        .btn { padding: 10px 24px; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #e0e0e0; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        .btn-primary { background: #4a90e2; border: none; color: #ffffff !important; font-weight: 600; text-shadow: none; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; }
+        .btn-primary:hover { background: #5a9ee8; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 14px;
+            line-height: 1;
+            transition: all 0.2s;
+            z-index: 101;
+            position: relative;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:active,
+        .mobile-menu-btn:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.99) 0%, rgba(15, 15, 25, 0.99) 100%);
+            z-index: 999;
+            padding: 90px 24px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            animation: menuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 12px;
+            line-height: 1;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: rgba(74, 144, 226, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active,
+        .mobile-menu-close:focus {
+            background: rgba(74, 144, 226, 0.35);
+            border-color: rgba(74, 144, 226, 0.5);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mobile-menu-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 18px 20px;
+            text-align: left;
+            border-radius: 2px;
+            background: rgba(25, 25, 35, 0.5);
+            border: 1px solid #1a2444;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            background: rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        .mobile-menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-buttons .btn {
+            width: 100%;
+            padding: 18px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 58px;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-buttons .btn-outline {
+            border-width: 2px;
+        }
+
+        .hero {
+            padding: 140px 40px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(74, 144, 226, 0.1) 0%, transparent 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            font-size: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            background: #1a2444;
+            color: #e0e0e0;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #4a90e2;
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 0 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .doc-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1a2444;
+            border-radius: 4px;
+            padding: 32px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .doc-card:hover {
+            background: rgba(74, 144, 226, 0.05);
+            border-color: rgba(74, 144, 226, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .doc-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #4a90e2 0%, #3a70b2 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .doc-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .doc-card h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .doc-card p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4a90e2;
+            margin-bottom: 24px;
+            padding: 0 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .popular-topics {
+            padding: 60px 40px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .topic-link {
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1a2444;
+            border-radius: 2px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .topic-link:hover {
+            background: rgba(74, 144, 226, 0.1);
+            border-color: #4a90e2;
+        }
+
+        .footer { padding: 30px 40px; background: #0a0a0f; border-top: 1px solid rgba(0,255,136,0.1); text-align: center; color: #555; font-size: 13px; }
+        .footer a { color: #00ff88; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .header { padding: 18px 20px; background: rgba(10, 10, 15, 0.98); }
+            .nav-links { display: none !important; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 20px; gap: 10px; }
+            .logo-icon { width: 32px; height: 32px; }
+            .hero { padding: 100px 20px 60px; }
+            .hero h1 { font-size: 32px; }
+            .doc-grid { padding: 0 20px 60px; }
+            .section-title { padding: 0 20px; }
+            .popular-topics { padding: 40px 20px; }
+        }
+    </style>
+    <!-- Signature equalizer loader -->
+    <style>
+    #loadingScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0a0e1a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+        transition: opacity 0.4s ease; }
+    #loadingScreen .loader-eq { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+    #loadingScreen .loader-eq .eq-bar { width: 4px; background: linear-gradient(180deg, #00d4ff 0%, #4a90e2 100%);
+        border-radius: 2px; animation: eqload 1s ease-in-out infinite; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+    #loadingScreen .loader-eq .eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+    @keyframes eqload { 0%,100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+    #loadingScreen .loader-text { color: #888; font-size: 14px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loader-eq"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+        <div class="loader-text">Loading EVE AI Core</div>
+    </div>
+    <script>window.addEventListener('load',function(){var ls=document.getElementById('loadingScreen');if(ls){ls.style.opacity='0';setTimeout(function(){ls.remove()},400)}});</script>
+    <header class="header" role="banner">
+        <a href="/" class="logo" aria-label="EVE AI Core Home">
+            <img src="/images/eve-logo.png" alt="EVE AI Core" class="logo-icon">
+            <span class="logo-text">EVE AI Core</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/docs/services.html">Services</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+            <div id="auth-buttons">
+                <a href="/auth/signin" class="btn btn-outline">Access</a>
+                <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+            </div>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <nav class="mobile-menu-links">
+            <a href="/">Home</a>
+            <a href="/docs/" class="active">Docs</a>
+            <a href="/docs/services.html">Services</a>
+            <a href="/architect">Architect</a>
+            <a href="/investors">Investors</a>
+            <a href="/ip">Patents</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/download">Download</a>
+        </nav>
+        <div class="mobile-menu-buttons" id="mobileMenuButtons">
+            <a href="/auth/signin" class="btn btn-outline">Access</a>
+            <a href="/auth/signup" class="btn btn-primary">Request Access</a>
+        </div>
+        <div class="mobile-menu-buttons" id="mobileMenuUser" style="display: none;">
+            <a href="/app/dashboard" class="btn btn-outline">Dashboard</a>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>EVE AI Documentation</h1>
+        <p>Everything you need to get started with EVE AI, from basic usage to advanced features and API integration.</p>
+
+        <div class="search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" placeholder="Search documentation..." id="doc-search">
+        </div>
+    </section>
+
+    <div class="section-title">Getting Started</div>
+    <div class="doc-grid">
+        <a href="/docs/getting-started.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                </svg>
+            </div>
+            <h2>Quick Start Guide</h2>
+            <p>Create your account, start chatting with EVE, and explore the platform's key features in minutes.</p>
+        </a>
+
+        <a href="/docs/features.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+            </div>
+            <h2>Features Overview</h2>
+            <p>Discover EVE's capabilities including emotional awareness, persistent memory, and cognitive transparency.</p>
+        </a>
+
+        <a href="/docs/architecture.html" class="doc-card" style="border-color: rgba(74, 144, 226, 0.5);">
+            <div class="doc-card-icon" style="background: linear-gradient(135deg, #4a90e2 0%, #3a70b2 100%);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
+            <h2>What Type of AI Is EVE?</h2>
+            <p>Understand EVE's architecture: proto-integrity systems, memory-anchored identity, and the boundary between simulation and consciousness.</p>
+        </a>
+
+        <a href="/docs/consciousness-engine.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4M12 8h.01"></path>
+                </svg>
+            </div>
+            <h2>Consciousness Engine</h2>
+            <p>Understand how EVE thinks with our unique transparency interface showing internal states and Phi metrics.</p>
+        </a>
+    </div>
+
+    <div class="section-title">Core Concepts</div>
+    <div class="doc-grid">
+        <a href="/docs/integrity-advanced.html" class="doc-card" style="border-color: rgba(220, 38, 38, 0.3);">
+            <div class="doc-card-icon" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
+            <h2>Advanced Integrity Systems</h2>
+            <p>Deep dive into EVE's 7 advanced cognitive integrity capabilities including permanent loss, identity commitment, and identity fracture systems. Includes research conclusions on agency vs. cognitive integrity.</p>
+        </a>
+
+        <a href="/docs/memory-systems.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <h2>Memory Systems</h2>
+            <p>Learn how EVE's working, episodic, semantic, and procedural memory systems work together.</p>
+        </a>
+
+        <a href="/docs/affective-system.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="5"></circle>
+                    <path d="M20 21a8 8 0 0 0-16 0"></path>
+                </svg>
+            </div>
+            <h2>Affective System</h2>
+            <p>Understand EVE's emotional intelligence including the PAD model, mood tracking, and empathetic responses.</p>
+        </a>
+
+        <a href="/docs/features.html#identity" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M9 12l2 2 4-4"></path>
+                </svg>
+            </div>
+            <h2>Identity Protection</h2>
+            <p>Learn about the 30-day drift observer, three-tier invariant system, and how EVE maintains a stable identity over time.</p>
+        </a>
+    </div>
+
+    <div class="section-title">For Users</div>
+    <div class="doc-grid">
+        <a href="/docs/faq.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <h2>FAQ</h2>
+            <p>Frequently asked questions about EVE AI including features, privacy, and common issues.</p>
+        </a>
+
+        <a href="/docs/roadmap.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
+            <h2>Roadmap</h2>
+            <p>See what's shipped, what's in progress, and where EVE AI Core is headed next.</p>
+        </a>
+    </div>
+
+    <div class="section-title">For Teams & Organizations</div>
+    <div class="doc-grid">
+        <a href="/docs/api.html#organizations" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            <h2>Organizations API</h2>
+            <p>Create and manage organizations, invite team members, and configure role-based permissions via API.</p>
+        </a>
+
+        <a href="/docs/api.html#authentication" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <h2>Authentication</h2>
+            <p>Learn about JWT authentication, API keys, and securing your EVE AI integration.</p>
+        </a>
+    </div>
+
+    <div class="section-title">Products &amp; Services</div>
+    <div class="doc-grid">
+        <a href="/docs/services.html" class="doc-card" style="border-color: rgba(74, 144, 226, 0.5);">
+            <div class="doc-card-icon" style="background: linear-gradient(135deg, #4a90e2 0%, #2563eb 100%);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                    <path d="M8 21h8M12 17v4"></path>
+                </svg>
+            </div>
+            <h2>Services Overview</h2>
+            <p>All EVE AI Core services: Sovereign SDK, Veto-as-a-Service, Attestation Marketplace, Inference Credits, Voice &amp; Avatar, and API platform.</p>
+        </a>
+
+        <a href="/docs/pricing.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            <h2>Pricing</h2>
+            <p>Plan tiers, usage-based billing, quota limits, and credit pricing for all EVE AI services.</p>
+        </a>
+    </div>
+
+    <div class="section-title">For Developers</div>
+    <div class="doc-grid">
+        <a href="/docs/api.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+            </div>
+            <h2>API Reference</h2>
+            <p>Complete API documentation including authentication, endpoints, rate limits, and code examples.</p>
+        </a>
+
+        <a href="/docs/api.html#webhooks" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 16.98h-5.99c-1.1 0-1.95.68-2.95 1.76C8.07 19.82 7 20 6 20c-1.26 0-2.35-.5-3.22-1.32"></path>
+                    <path d="M18 2l4 4-4 4"></path>
+                    <path d="M2 12l4-4 4 4"></path>
+                </svg>
+            </div>
+            <h2>Webhooks</h2>
+            <p>Set up webhooks to receive real-time notifications about events in your EVE AI integration.</p>
+        </a>
+
+        <a href="/docs/api.html#consciousness" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+            </div>
+            <h2>Consciousness API</h2>
+            <p>Access EVE's consciousness state, Phi metrics, and emotional state through the REST API.</p>
+        </a>
+
+        <a href="/docs/api.html#charter" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <h2>Governance APIs</h2>
+            <p>Charter protection, claims ledger, trust dial, reality boundary, and self-modification governance endpoints.</p>
+        </a>
+
+        <a href="/docs/api.html#voice" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                </svg>
+            </div>
+            <h2>Voice &amp; Avatar API</h2>
+            <p>Voice synthesis, multilingual support, voice cloning, emotion sync, and avatar integration.</p>
+        </a>
+
+        <a href="/docs/style-guide.html" class="doc-card">
+            <div class="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
+            <h2>Style Guide</h2>
+            <p>Design system documentation including colors, typography, components, and UI patterns.</p>
+        </a>
+    </div>
+
+    <section class="popular-topics">
+        <div class="section-title" style="padding: 0; margin-bottom: 24px;">Popular Topics</div>
+        <div class="topics-grid">
+            <a href="/docs/services.html" class="topic-link" style="border-color: rgba(74, 144, 226, 0.3); background: rgba(74, 144, 226, 0.05);">Services &amp; Pricing</a>
+            <a href="/docs/integrity-advanced.html" class="topic-link" style="border-color: rgba(220, 38, 38, 0.3); background: rgba(220, 38, 38, 0.05);">Agency vs. Cognitive Integrity Research</a>
+            <a href="/docs/faq.html" class="topic-link">Frequently Asked Questions</a>
+            <a href="/docs/getting-started.html#account" class="topic-link">Creating an Account</a>
+            <a href="/docs/memory-systems.html" class="topic-link">How Memory Works</a>
+            <a href="/docs/features.html#identity" class="topic-link">30-Day Drift Observer</a>
+            <a href="/docs/api.html#authentication" class="topic-link">API Authentication</a>
+            <a href="/docs/integrity-advanced.html#research" class="topic-link">Loss Mechanism & Identity</a>
+            <a href="/docs/consciousness-engine.html#phi" class="topic-link">Understanding Phi Values</a>
+        </div>
+    </section>
+
+    <style>
+        .footer { padding: 60px 40px !important; background: #0f1225 !important; border-top: 1px solid #1a2444 !important; text-align: left !important; color: #ccc !important; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand h3 { font-size: 20px; margin-bottom: 12px; color: #e2e6ef; }
+        .footer-brand p { color: #666; font-size: 14px; }
+        .footer-links h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #e0e0e0; }
+        .footer-links a { display: block; color: #888 !important; text-decoration: none !important; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .footer-links a:hover { color: #e0e0e0 !important; }
+        .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #1a2444; display: flex; justify-content: space-between; font-size: 13px; color: #666; }
+        @media (max-width: 768px) {
+            .footer { padding: 40px 20px !important; }
+            .footer-content { grid-template-columns: 1fr !important; gap: 30px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <img src="/images/eve-logo.png" alt="EVE AI Core" style="width: 28px; height: 28px;">
+                    <h3 style="margin: 0;">EVE AI Core</h3>
+                </div>
+                <p>Autonomous governance architecture with deterministic charter enforcement and verified integrity.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <a href="/docs/services.html">Services</a>
+                <a href="/#features">AI Integrity Features</a>
+                <a href="/#interaction">Voice &amp; Avatar</a>
+                <a href="/#analytics">Analytics</a>
+                <a href="/#platform">Platform</a>
+                <a href="/docs/">Documentation</a>
+                <a href="/api-docs">API Reference</a>
+                <a href="/architect">Architect</a>
+            </div>
+            <div class="footer-links">
+                <h4>Organization</h4>
+                <a href="/about">About EVE AI</a>
+                <a href="/investors">Investor Relations</a>
+                <a href="/blog">AI Architecture Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/ip">Patents</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 EVE AI Core. All rights reserved. Self-Regulating Artificial Intelligence Platform.</span>
+            <span style="color:#556;font-size:12px;">U.S. Patent Pending &mdash; Application No. 63/988,291, 63/988,324, 63/989,085, 63/989,113, 63/989,125, 63/989,150, 63/989,260 &amp; 63/989,479</span>
+            <span>EVE AI CORE // AUTONOMOUS GOVERNANCE RESEARCH</span>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (!menu) return;
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuClose = document.getElementById('mobileMenuClose');
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            const menu = document.getElementById('mobileMenu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            if (menuClose) {
+                menuClose.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); toggleMobileMenu(); });
+                menuClose.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+            }
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() { if (menu) { menu.classList.remove('active'); document.body.style.overflow = ''; } });
+            });
+
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('access_token');
+            if (token) {
+                var ab = document.getElementById('auth-buttons'); if (ab) ab.style.display = 'none';
+                var um = document.getElementById('user-menu'); if (um) um.style.display = '';
+                var mb = document.getElementById('mobileMenuButtons'); if (mb) mb.style.display = 'none';
+                var mu = document.getElementById('mobileMenuUser'); if (mu) mu.style.display = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+        }
+
+        document.getElementById('doc-search').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length > 2) {
+                console.log('Searching for:', query);
+            }
+        });
+    </script>
+<script src="/js/radar-background.js"></script>
+</body>
+</html>

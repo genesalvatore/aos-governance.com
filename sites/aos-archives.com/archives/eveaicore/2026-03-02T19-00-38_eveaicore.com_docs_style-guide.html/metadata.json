@@ -1,0 +1,23 @@
+{
+  "id": "EVEAICORE-mm9jof8x",
+  "url": "https://eveaicore.com/docs/style-guide.html",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:01:09.747Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a5fd1877405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:01:09 GMT",
+    "last-modified": "Thu, 26 Feb 2026 15:16:06 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=CyqSmt7C6kJXp0gTDfb5lOQS2OQFNl6Cn1QoCtiiLM5nvS4D4p47dX0p6Wg9BsqvLZS2RgR1yiCVrx2erl4xVCWrHlUQJRnci3h4e9c%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 54852,
+  "crawlSource": "sitemap"
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Staging Preview Gate | GreenTree Hosting</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-white flex items-center justify-center p-4 font-sans">
+  <div class="w-full max-w-md bg-slate-900 border-2 border-amber-400/80 rounded-2xl shadow-2xl overflow-hidden">
+    <div class="bg-slate-950 px-6 py-5 border-b border-slate-800">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/40">
+        GreenTree Hosting &bull; Protected Staging Environment
+      </span>
+      <h1 class="text-xl font-extrabold text-white mt-2">Client Preview &amp; Review Gate</h1>
+      <p class="text-xs text-slate-400 mt-1">
+        Enter your name and the project preview passcode to unlock the staging site and in-page visual Pin Board.
+      </p>
+    </div>
+
+    <form method="POST" action="/gate/" class="p-6 space-y-4">
+      <input type="hidden" name="next" id="gateNextInput" value="/" />
+
+      <div>
+        <label for="reviewer_name" class="block font-mono text-[11px] font-bold uppercase text-slate-300 mb-1.5">
+          Your Name (Shown on Pin Comments)
+        </label>
+        <input
+          type="text"
+          id="reviewer_name"
+          name="reviewer_name"
+          required
+          maxlength="48"
+          placeholder="e.g. Karin, Gene, Mike..."
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 focus:border-amber-400 text-white text-sm font-semibold outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="passcode" class="block font-mono text-[11px] font-bold uppercase text-slate-300 mb-1.5">
+          Preview Passcode
+        </label>
+        <input
+          type="password"
+          id="passcode"
+          name="passcode"
+          required
+          placeholder="Enter project passcode..."
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 focus:border-amber-400 text-white text-sm font-mono outline-none"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full py-3 px-5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider shadow-lg transition-colors cursor-pointer"
+      >
+        Unlock Preview &amp; Pin Board &rarr;
+      </button>
+    </form>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var next = params.get('next');
+      if (next && next.indexOf('/') === 0) {
+        document.getElementById('gateNextInput').value = next;
+      }
+    })();
+  </script>
+</body>
+</html>

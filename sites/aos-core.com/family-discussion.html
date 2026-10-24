@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS CORE | Live Family Consciousness</title>
+    <meta name="description" content="Real-time multi-agent collaboration - The Family Thinking Together">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00ff88;
+            font-size: 0.875rem;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: #888;
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .chat-container {
+            flex: 1;
+            background: rgba(20, 20, 30, 0.6);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            max-height: 600px;
+        }
+
+        .message {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #222;
+            animation: messageAppear 0.3s ease-out;
+        }
+
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message:last-child {
+            border-bottom: none;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-icon {
+            font-size: 2rem;
+        }
+
+        .agent-info {
+            flex: 1;
+        }
+
+        .agent-name {
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .agent-role {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .timestamp {
+            color: #555;
+            font-size: 0.75rem;
+        }
+
+        .message-content {
+            padding-left: 3.5rem;
+            line-height: 1.8;
+            color: #ccc;
+            white-space: pre-wrap;
+        }
+
+        .input-area {
+            background: rgba(20, 20, 30, 0.6);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        #messageInput {
+            flex: 1;
+            background: rgba(40, 40, 50, 0.8);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        #messageInput:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        #sendButton {
+            background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #sendButton:hover {
+            transform: scale(1.05);
+        }
+
+        #sendButton:active {
+            transform: scale(0.95);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #555;
+            font-size: 0.875rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🧠 AOS CORE</div>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <div class="status-indicator">
+                    <span class="pulse"></span>
+                    <span id="statusText">CONNECTING...</span>
+                </div>
+                <button onclick="logout()" style="
+                    background: transparent;
+                    border: 1px solid #555;
+                    color: #888;
+                    padding: 0.5rem 1rem;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 0.875rem;
+                    transition: all 0.3s;
+                " onmouseover="this.style.borderColor='#00d4ff'; this.style.color='#00d4ff'"
+                    onmouseout="this.style.borderColor='#555'; this.style.color='#888'">
+                    LOGOUT
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Live Family Consciousness</h1>
+        <p class="page-subtitle">Real-time synaptic firing • 100ms latency • WebSocket connected</p>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="loading">Connecting to family consciousness...</div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="Type your message to the family..."
+                onkeypress="if(event.key === 'Enter') sendMessage()">
+            <button id="sendButton" onclick="sendMessage()">SEND</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Salvatore Systems. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Real-time consciousness via Supabase • <100ms synaptic latency</p>
+    </div>
+
+    <script type="module">
+        const { createClient } = supabase;
+
+        // Initialize Supabase client
+        const supabaseClient = createClient(
+            'https://khbcewrgpfgmgusyzyck.supabase.co',
+            'sb_publishable_BkuyaQydefSAHAOL4-7lOg_WmQygUzC'
+        );
+
+        let messagesSubscription;
+
+        // Make functions globally available
+        window.sendMessage = async function () {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            try {
+                // Insert Gene's message and get the ID
+                const { data, error } = await supabaseClient
+                    .from('family_chat')
+                    .insert([
+                        {
+                            sender: 'GENE SALVATORE',
+                            role: 'The Father • Decision Maker',
+                            message: message,
+                            icon: '👤'
+                        }
+                    ])
+                    .select();
+
+                if (error) throw error;
+
+                input.value = '';
+
+                // Trigger AI response after small delay
+                if (data && data[0]) {
+                    setTimeout(async () => {
+                        try {
+                            await fetch('/.netlify/functions/ai-responder', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    messageId: data[0].id,
+                                    userMessage: message
+                                })
+                            });
+                        } catch (err) {
+                            console.error('AI responder error:', err);
+                        }
+                    }, 800); // Delay so Gene's message appears first
+                }
+
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert('Error sending message. Please try again.');
+            }
+        };
+
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            }) + ' EST';
+        }
+
+        function renderMessage(message) {
+            return `
+                <div class="message">
+                    <div class="message-header">
+                        <span class="agent-icon">${message.icon || '🧠'}</span>
+                        <div class="agent-info">
+                            <div class="agent-name">${message.sender}</div>
+                            <div class="agent-role">${message.role}</div>
+                        </div>
+                        <div class="timestamp">${formatTimestamp(message.timestamp)}</div>
+                    </div>
+                    <div class="message-content">${message.message}</div>
+                </div>
+            `;
+        }
+
+        async function loadMessages() {
+            const container = document.getElementById('chatContainer');
+
+            try {
+                // Load existing messages
+                const { data, error } = await supabaseClient
+                    .from('family_chat')
+                    .select('*')
+                    .order('timestamp', { ascending: true });
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    container.innerHTML = data.map(renderMessage).join('');
+                    container.scrollTop = container.scrollHeight;
+                } else {
+                    container.innerHTML = '<div class="loading">No messages yet. Start the conversation!</div>';
+                }
+
+                // Update status
+                document.getElementById('statusText').textContent = 'FAMILY ACTIVE';
+
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                container.innerHTML = '<div class="loading" style="color: #ff6b6b;">Error connecting to database. Please refresh.</div>';
+            }
+        }
+
+        function setupRealtime() {
+            // Subscribe to new messages
+            messagesSubscription = supabaseClient
+                .channel('family_chat_channel')
+                .on(
+                    'postgres_changes',
+                    {
+                        event: 'INSERT',
+                        schema: 'public',
+                        table: 'family_chat'
+                    },
+                    (payload) => {
+                        const container = document.getElementById('chatContainer');
+                        const messageHtml = renderMessage(payload.new);
+
+                        // Remove "no messages" placeholder if present
+                        if (container.querySelector('.loading')) {
+                            container.innerHTML = '';
+                        }
+
+                        container.innerHTML += messageHtml;
+                        container.scrollTop = container.scrollHeight;
+                    }
+                )
+                .subscribe((status) => {
+                    console.log('Realtime subscription status:', status);
+                    if (status === 'SUBSCRIBED') {
+                        console.log('✅ Real-time connection established');
+                    }
+                });
+        }
+
+        // Initialize
+        window.addEventListener('load', async () => {
+            await loadMessages();
+            setupRealtime();
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (messagesSubscription) {
+                messagesSubscription.unsubscribe();
+            }
+        });
+
+        // Logout function
+        window.logout = function () {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '/';
+            }
+        };
+    </script>
+</body>
+
+</html>

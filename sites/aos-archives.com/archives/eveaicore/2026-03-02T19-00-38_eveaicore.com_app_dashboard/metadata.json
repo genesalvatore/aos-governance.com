@@ -1,0 +1,25 @@
+{
+  "id": "EVEAICORE-mm9jnuz2",
+  "url": "https://eveaicore.com/app/dashboard",
+  "subject": "EveAICore",
+  "reason": "potential copyright and patent infringerment",
+  "category": "website",
+  "capturedAt": "2026-03-02T19:00:44.019Z",
+  "capturedBy": "AOS Legal Archives — Sitemap Crawler",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cache-control": "no-cache, no-store, must-revalidate",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "9d62a558e9ff405d-SJC",
+    "content-type": "text/html",
+    "date": "Mon, 02 Mar 2026 19:00:43 GMT",
+    "last-modified": "Sat, 28 Feb 2026 19:23:11 GMT",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "pragma": "no-cache",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=1l1ikXSGglr1B3kAShDzb%2BEMOcY65393a9vGkkRVh9QZlTyH5R9jI2FVsEWEqDto9HddxENqDqWA%2BJK4BaQi%2FjjUid2e1PfOobHXeSI%3D\"}]}",
+    "server": "cloudflare"
+  },
+  "htmlSize": 648905,
+  "crawlSource": "sitemap"
+}
