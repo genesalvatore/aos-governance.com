@@ -1148,6 +1148,10 @@ function generateCollisionResistantRef(prefix = "FAB") {
 // ============================================================================
 
 const server = http.createServer(async (req, res) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   try {
     const hostHeader = String(req.headers.host || `localhost:${PORT}`);
     const cleanHost = hostHeader.split(":")[0].toLowerCase().replace(/^www\./, "");
@@ -2390,6 +2394,12 @@ const server = http.createServer(async (req, res) => {
     }
 
     // ========================================================================
+    if (pathname.startsWith("/api/") || pathname.startsWith("/.netlify/")) {
+      res.writeHead(404, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+      res.end(JSON.stringify({ ok: false, error: "API route not found" }));
+      return;
+    }
+
     // 7. Static Files & Prerendered SPA Routes from `dist/`
     // ========================================================================
     if (PREVIEW_GATE_ENABLED && !isAuthenticated) {
