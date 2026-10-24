@@ -2425,8 +2425,6 @@ const server = http.createServer(async (req, res) => {
       "aos-standards.com": "aos-patents.com",
       "aos-standards.org": "aos-patents.com",
       "aos-archives.com": "aos-archives.com",
-      "aos-gate.com": "aos-gate.com",
-      "theintentfirewall.com": "aos-gate.com",
       "aos-license-checker.com": "aos-license-checker.com",
       "aos-evidence.com": "aos-evidence.com",
       "aos-constitution.com": "aos-constitution.com",
