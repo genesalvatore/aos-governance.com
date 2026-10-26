@@ -16,8 +16,23 @@ declare global {
 const MATOMO_SERVER = 'stats.greentreehosting.net';
 const GOV_SITE_ID = '22';
 
+// Privacy guard: never track when the browser sends Global Privacy Control / Do Not Track,
+// or when the visitor chose "essential only" (analytics off) in the cookie banner.
+function analyticsAllowed(): boolean {
+  try {
+    const nav = navigator as Navigator & { globalPrivacyControl?: boolean };
+    if (nav.globalPrivacyControl === true || navigator.doNotTrack === '1') return false;
+    const raw = localStorage.getItem(PREFS_KEY);
+    if (raw) {
+      const p = JSON.parse(raw) as { analytics?: boolean };
+      if (p && p.analytics === false) return false;
+    }
+  } catch { /* storage unavailable: fall through (cookieless tracking only) */ }
+  return true;
+}
 function useMatomo() {
   useEffect(() => {
+    if (!analyticsAllowed()) return;
     window._paq = window._paq || [];
     window._paq.push(['setTrackerUrl', `https://${MATOMO_SERVER}/matomo.php`]);
     window._paq.push(['setSiteId', GOV_SITE_ID]);
@@ -72,6 +87,8 @@ function CookieConsent() {
 
   const save = (consent: string, p: CookiePrefs) => {
     try { localStorage.setItem(CONSENT_KEY, consent); localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch { }
+    window._paq = window._paq || [];
+    window._paq.push([p.analytics ? 'forgetUserOptOut' : 'optUserOut']);
     setVisible(false);
   };
 
