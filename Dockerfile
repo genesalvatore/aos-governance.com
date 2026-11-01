@@ -11,4 +11,6 @@ RUN mkdir -p /app/.data/pin-board
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
   CMD wget -qO- http://127.0.0.1:3000/healthz || exit 1
+RUN mkdir -p /data /app/.data && chown -R node:node /data /app 2>/dev/null || true
+USER node
 CMD ["node", "server.mjs"]

@@ -339,6 +339,10 @@
             }
         };
 
+        function escapeHtml(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
         function formatTimestamp(timestamp) {
             const date = new Date(timestamp);
             return date.toLocaleTimeString('en-US', {
@@ -352,14 +356,14 @@
             return `
                 <div class="message">
                     <div class="message-header">
-                        <span class="agent-icon">${message.icon || '🧠'}</span>
+                        <span class="agent-icon">${escapeHtml(message.icon || '🧠')}</span>
                         <div class="agent-info">
-                            <div class="agent-name">${message.sender}</div>
-                            <div class="agent-role">${message.role}</div>
+                            <div class="agent-name">${escapeHtml(message.sender)}</div>
+                            <div class="agent-role">${escapeHtml(message.role)}</div>
                         </div>
-                        <div class="timestamp">${formatTimestamp(message.timestamp)}</div>
+                        <div class="timestamp">${escapeHtml(formatTimestamp(message.timestamp))}</div>
                     </div>
-                    <div class="message-content">${message.message}</div>
+                    <div class="message-content">${escapeHtml(message.message)}</div>
                 </div>
             `;
         }
@@ -412,7 +416,11 @@
                             container.innerHTML = '';
                         }
 
-                        container.innerHTML += messageHtml;
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = messageHtml;
+                        while (wrapper.firstChild) {
+                            container.appendChild(wrapper.firstChild);
+                        }
                         container.scrollTop = container.scrollHeight;
                     }
                 )
