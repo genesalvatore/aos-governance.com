@@ -1,24 +1,13 @@
 {
-  "name": "aos-governance.com",
-  "version": "1.0.0",
+  "name": "aos-governance-network",
   "private": true,
-  "description": "AOS Governance Standard & Web Portal",
-  "workspaces": [
-    "aos-governance-web"
-  ],
+  "version": "3.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "npm --workspace=aos-governance-web run dev",
-    "build": "npm --workspace=aos-governance-web run build",
-    "lint": "npm --workspace=aos-governance-web run lint"
+    "start": "node server.mjs"
   },
-  "keywords": [
-    "aos",
-    "governance",
-    "standards"
-  ],
-  "author": "Gene Salvatore",
-  "license": "CC-BY-4.0",
-  "overrides": {
-    "minimatch": "^11.0.1"
+  "dependencies": {
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.3"
   }
 }

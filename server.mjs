@@ -1155,9 +1155,25 @@ const server = http.createServer(async (req, res) => {
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   try {
-    const hostHeader = String(req.headers.host || `localhost:${PORT}`);
-    const cleanHost = hostHeader.split(":")[0].toLowerCase().replace(/^www\./, "");
-    const url = new URL(req.url || "/", `http://${hostHeader}`);
+    const rawHostHeader = String(req.headers["x-forwarded-host"] || req.headers.host || `localhost:${PORT}`);
+    const hostDomain = rawHostHeader.split(":")[0].toLowerCase();
+
+    // 0. Enforce 301 Permanent Redirect for all www. hostnames to apex
+    if (hostDomain.startsWith("www.")) {
+      const apexDomain = hostDomain.replace(/^www./, "");
+      const targetUrl = `https://${apexDomain}${req.url || "/"}`;
+      res.writeHead(301, {
+        "Location": targetUrl,
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Type": "text/plain; charset=utf-8",
+      });
+      res.end(`Redirecting to ${targetUrl}`);
+      return;
+    }
+
+    const cleanHost = hostDomain;
+    const url = new URL(req.url || "/", `http://${cleanHost}`);
     const pathname = url.pathname;
     const domainAttr = getSharedDomainAttr(req);
 
@@ -1186,11 +1202,12 @@ const server = http.createServer(async (req, res) => {
     const isBlockedProbePath =
       pathname.split("/").some((seg) => seg.startsWith(".") && seg !== ".netlify") ||
       /\.(?:mjs|cjs|ts|sql|sh|py|php|asp|aspx|jsp|env|bak|old|orig|swp|log|yml|yaml|toml|ini|conf|config)$/i.test(pathname) ||
-      /^\/(?:dockerfile|docker-compose|package(?:-lock)?\.json|brain_manifest\.json|data\/|\.data\/|database\/|db\/|evidence\/|patents\/|session_logs\/|netlify\/)/i.test(pathname);
+      /^\/(?:dockerfile|docker-compose|package(?:-lock)?\.json|brain_manifest\.json|data\/|\.data\/|database\/|db\/|session_logs\/|netlify\/)/i.test(pathname);
     if (isBlockedProbePath) {
       res.writeHead(404, {
         "Content-Type": "text/plain; charset=utf-8",
         "X-Content-Type-Options": "nosniff",
+        "X-Robots-Tag": "noindex, nofollow",
         "Cache-Control": "no-store",
       });
       res.end("Not Found");
@@ -2443,31 +2460,160 @@ const server = http.createServer(async (req, res) => {
       "aos-universe.com": "aos-universe.com",
       "aos-core.com": "aos-core.com",
     };
-    const mappedFolder = HOST_TO_SITE[cleanHost] || "aos-governance.com";
+    const mappedFolder = HOST_TO_SITE[cleanHost] || HOST_TO_SITE[SITE_DOMAIN_DEFAULT] || "aos-governance.com";
+    const canonicalHost = HOST_TO_SITE[cleanHost] ? cleanHost : (SITE_DOMAIN_DEFAULT || "aos-governance.com");
     const activeDistDir = path.join(__dirname, "sites", mappedFolder);
 
+    // Whitelist of valid routes per site (for SPAs, SSG pages, and clean URLs)
+    const SITE_VALID_ROUTES = {
+      "aos-constitution.com": new Set([
+        "/",
+        "/constitution",
+        "/amendments",
+        "/categories",
+        "/safeguards",
+        "/defenders",
+        "/about",
+        "/blog",
+        "/blog/adolescence-response",
+      ]),
+      "aos-governance.com": new Set([
+        "/",
+        "/why",
+        "/policy-response",
+        "/policy-response/openai-industrial-policy-april-2026",
+        "/policy-response/anthropic-mythos-preview-april-2026",
+        "/policy/aos-standard",
+      ]),
+      "aos-evidence.com": new Set([
+        "/",
+        "/audit/what-we-built",
+        "/audit/report",
+        "/audit/threat-model",
+        "/verification",
+        "/evidence/openclaw-governance",
+        "/evidence/architectural-review",
+        "/evidence/thesis-documents",
+        "/learn/constitutional-ai",
+        "/license",
+        "/about",
+        "/license-checker",
+      ]),
+      "aos-license-checker.com": new Set([
+        "/",
+        "/check",
+        "/prohibited",
+        "/report",
+      ]),
+      "aos-patents.com": new Set([
+        "/",
+      ]),
+      "aos-foundation.com": new Set([
+        "/",
+      ]),
+      "aos-archives.com": new Set([
+        "/",
+      ]),
+      "aos-core.com": new Set([
+        "/",
+        "/family-discussion",
+        "/security",
+      ]),
+      "aos-universe.com": new Set([
+        "/",
+        "/admin",
+        "/live",
+        "/ocean-strategy",
+        "/verticals",
+      ]),
+    };
+
     const cleanRel = pathname.replace(/^\/+/, "");
-    const candidates = [
-      path.join(activeDistDir, cleanRel),
+    const normalizedPath = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+    // 1. Direct static file match (assets, sitemap.xml, robots.txt, icons, images, css, js)
+    const staticFilePath = path.join(activeDistDir, cleanRel);
+    if (cleanRel && staticFilePath.startsWith(activeDistDir) && path.extname(cleanRel)) {
+      if (await serveStaticFile(res, staticFilePath, 200)) {
+        return;
+      }
+    }
+
+    // 2. Direct HTML match for pre-rendered pages (e.g. constitution.html, why/index.html)
+    const htmlCandidates = [
       path.join(activeDistDir, cleanRel, "index.html"),
       path.join(activeDistDir, `${cleanRel}.html`),
     ];
-
-    for (const candidate of candidates) {
+    for (const candidate of htmlCandidates) {
       if (!candidate.startsWith(activeDistDir)) continue;
       if (await serveStaticFile(res, candidate, 200)) {
         return;
       }
     }
 
-    if (!path.extname(cleanRel)) {
-      if (await serveStaticFile(res, path.join(activeDistDir, "index.html"), 200)) {
+    // 3. SPA Route handling: If route is in SITE_VALID_ROUTES, serve index.html with updated self-matching canonical
+    const validRoutes = SITE_VALID_ROUTES[mappedFolder] || new Set(["/"]);
+    if (validRoutes.has(normalizedPath) || validRoutes.has(pathname)) {
+      const indexHtmlPath = path.join(activeDistDir, "index.html");
+      try {
+        let html = await fsp.readFile(indexHtmlPath, "utf8");
+        const selfCanonical = `https://${canonicalHost}${normalizedPath === "/" ? "/" : normalizedPath}`;
+        if (/<link[^>]*rel=["']canonical["'][^>]*>/i.test(html)) {
+          html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${selfCanonical}" />`);
+        } else {
+          html = html.replace(/<head>/i, `<head>\n  <link rel="canonical" href="${selfCanonical}" />`);
+        }
+        res.writeHead(200, {
+          "Content-Type": "text/html; charset=utf-8",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "DENY",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
+          "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        });
+        res.end(html);
         return;
+      } catch {
+        // Fall through to 404
       }
     }
 
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("Not Found");
+    // 4. Hard 404 for nonexistent routes:
+    // MUST have X-Robots-Tag: noindex, nofollow, <meta name="robots" content="noindex, nofollow">, and NO <link rel="canonical">
+    res.writeHead(404, {
+      "Content-Type": "text/html; charset=utf-8",
+      "X-Robots-Tag": "noindex, nofollow",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "Cache-Control": "no-store, no-cache, must-revalidate",
+    });
+    res.end(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>404 - Page Not Found | ${SITE_DIVISION_DEFAULT}</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #0b0f19; color: #f3f4f6; margin: 0; padding: 40px 20px; display: flex; align-items: center; justify-content: center; min-height: 100vh; box-sizing: border-box; }
+    .card { max-width: 560px; text-align: center; background: rgba(17, 24, 39, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 48px 32px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+    h1 { font-size: 72px; margin: 0 0 16px; color: #f59e0b; font-weight: 800; letter-spacing: -2px; }
+    h2 { font-size: 24px; margin: 0 0 12px; color: #ffffff; }
+    p { font-size: 16px; color: #9ca3af; margin: 0 0 32px; line-height: 1.6; }
+    a { display: inline-block; background: #f59e0b; color: #0b0f19; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The requested route does not exist on ${cleanHost}. Please return to the homepage.</p>
+    <a href="/">Return to Homepage</a>
+  </div>
+</body>
+</html>`);
   } catch (err) {
     res.writeHead(500, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
