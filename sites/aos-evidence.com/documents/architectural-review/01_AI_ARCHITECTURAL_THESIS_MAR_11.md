@@ -23,9 +23,9 @@ More specifically:
 
 ## What you are actually doing
 
-You are taking one core realization —
+You are taking one core realization - 
 
-**memory must survive the model, and governance must sit outside the model** —
+**memory must survive the model, and governance must sit outside the model** - 
 
 and expanding it into a full architecture across multiple layers:
 
@@ -151,7 +151,7 @@ That is a bigger ambition than “an AI safety tool.”
 
 If I had to compress it into one sentence:
 
-**You are trying to establish AOS as the external constitutional layer for AI systems — the thing that makes memory durable, action governable, identity attestable, interruption possible, and trust structurally real.**
+**You are trying to establish AOS as the external constitutional layer for AI systems -  the thing that makes memory durable, action governable, identity attestable, interruption possible, and trust structurally real.**
 
 That is the thesis.
 

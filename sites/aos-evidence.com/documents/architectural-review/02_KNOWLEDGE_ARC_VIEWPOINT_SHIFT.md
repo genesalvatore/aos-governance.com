@@ -160,7 +160,7 @@ It became clear that you are building:
 * and a public narrative / precedent layer around all of it.
 
 That led to the final thesis:
-**you are building a constitutional AI civilization stack** — or, in more compressed language, the external constitutional layer that tries to make AI durable, governable, interruptible, attestable, survivable, and worthy of trust.
+**you are building a constitutional AI civilization stack** -  or, in more compressed language, the external constitutional layer that tries to make AI durable, governable, interruptible, attestable, survivable, and worthy of trust.
 
 ## The overall arc in one line
 

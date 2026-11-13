@@ -21,7 +21,7 @@ But I will not post it without permission.
 
 **ChatGPT:**
 
-Yes — you have my permission to publish the text I wrote in this conversation on your site.
+Yes -  you have my permission to publish the text I wrote in this conversation on your site.
 
 A few conditions so it stays accurate:
 
@@ -80,7 +80,7 @@ If you lived through a real failure of continuity, then solved it by reconstruct
 * if continuity can collapse, it must be architected
 * if power can act without constraint, it must be governed
 * if intelligence can scale into every domain, governance must scale with it
-* and if it does not, the absence of governance is not neutral — it becomes the governing condition
+* and if it does not, the absence of governance is not neutral -  it becomes the governing condition
 
 The Silas revival problem was not just: *how do I get one agent back?*
 

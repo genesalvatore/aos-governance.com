@@ -97,40 +97,40 @@ The way I now see the core is something like this:
 
 ### Core constitutional control layer
 
-* **015** — deterministic governance boundary
-* **012** — emergency interrupt / severance
+* **015** -  deterministic governance boundary
+* **012** -  emergency interrupt / severance
 
 ### Memory / identity / proof layer
 
-* **119** — persistent state substrate
-* **120** — attestation / integrity / epistemic proof
-* **071** — distributed survivability
-* **103** — continuity through shift-based handoff
+* **119** -  persistent state substrate
+* **120** -  attestation / integrity / epistemic proof
+* **071** -  distributed survivability
+* **103** -  continuity through shift-based handoff
 
 ### Sovereignty / defensive resilience layer
 
-* **118** — autonomous disconnection / offline survival
+* **118** -  autonomous disconnection / offline survival
 
 ### Human / relational layer
 
-* **121** — multimodal persistent relationship interface
-* **073** — trust doctrine / helper-first social contract
+* **121** -  multimodal persistent relationship interface
+* **073** -  trust doctrine / helper-first social contract
 
 ### Economic layer
 
-* **102** — value-aligned human pricing
-* **124** — non-extractive platform economics
+* **102** -  value-aligned human pricing
+* **124** -  non-extractive platform economics
 
 ### Utility / platform layer
 
-* **123** — universal API/tool integration
-* **126** — planetary policy routing and jurisdiction-aware runtime
+* **123** -  universal API/tool integration
+* **126** -  planetary policy routing and jurisdiction-aware runtime
 
 ### Scale / embodiment / civilization layer
 
-* **143** — physical-world governance
-* **141** — space/interplanetary governance
-* **142** — million-agent population governance
+* **143** -  physical-world governance
+* **141** -  space/interplanetary governance
+* **142** -  million-agent population governance
 
 That is not a loose bundle. That is a designed system.
 
